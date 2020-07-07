@@ -86,6 +86,14 @@ library()
 # must be installed.
 ```
 
+```{r library-solution}
+library(tidyverse)
+```
+
+```{r library-check}
+gradethis::grade_code()
+```
+
 You cannot load a package from this tutorial. If you have the correct command, copy it to the RStudio Console and run it there by pressing Enter.
 
 **Tip**: If a package is loaded, its box in the Packages panel is checked.
@@ -113,7 +121,7 @@ Use the _Submit Answer_ button in the code box below to check that you have the 
 </div>
 
 ```{r loadData-solution}
-consumers <- readr::read_csv("http://82.196.4.233:3838/www/consumers.csv")
+consumers <- read_csv("http://82.196.4.233:3838/www/consumers.csv")
 ```
 
 ```{r loadData-check} 
@@ -431,7 +439,7 @@ ggplot(
     mapping = 
     aes(color = gender),
     method = "lm",
-    se = FALSE,
+    se = FALSE
     ) +
   labs(
     title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
@@ -476,7 +484,7 @@ ggplot(
     mapping = 
     aes(color = gender),
     method = "lm",
-    se = FALSE,
+    se = FALSE
     ) +
   facet_wrap(~ wom) +
   labs(
@@ -603,7 +611,7 @@ quiz(caption = "Select appropriate geoms",
 
 ### Adding labels (advanced)
 
-We may want to know who is the outlier in the plot, having an exceptionally low exposure score. Use a geom to add the first names to the plot, as shown below.
+We may want to know who is the outlier in the plot, having an exceptionally low exposure score. Use a geom to add the first names to the plot, as shown below. Carefully inspect the arguments for this geom.
 
 ```{r plot_label_show, echo=FALSE, warning=FALSE, message=FALSE}
 # Adaptation: add firstname as label.
@@ -986,7 +994,7 @@ If you would have a look at the gapminder data (e.g., with `View(gapminder)`), y
 <div class="tip" >
 __Programming Tip__
 
-- Carefully inspect the results created by packages that do a lot of work for you.
+- Carefully inspect the results created by packages that do a lot of work for you. They may do things that you do not want.
 </div>
 
 Movement is fascinating but it can also be frustrating if the user cannot pause or determine the speed of the animation. Evaluate the pros and cons of animations critically.
@@ -995,7 +1003,7 @@ Movement is fascinating but it can also be frustrating if the user cannot pause 
 
 The `plotly` library is designed for creating interactive graphics. It has its own language for creating graphs but for the `ggplot` user, it provides a function to change a `ggplot` plot into an interactive `plotly` plot.
 
-The `plotly` library offers the option to zoom, select items in the graph, and see additional information about the items in the graph. Install the packages if necessary, and run the code to see the graph. If you carefully position your cursor on a dot, the first name will pop up.
+The `plotly` library offers the option to zoom, select items in the graph, and see additional information about the items in the graph. Install the packages if necessary, and run the code to see the graph. If you carefully position your cursor on a dot, the respondent's first name will pop up (works better if you select the *Compare data on hover* option).
 
 ```{r plotly1, exercise=TRUE}
 #install these packages to run the code
@@ -1028,6 +1036,8 @@ ggplotly(g, tooltip = c("text"), dynamicTicks = TRUE)
 
 There are (limited) options for animation, as demonstrated in the plot below. Run the code to see the plot.
 
+Change the code, so the pop ups only show the country name.
+
 ```{r plotly2, exercise=TRUE}
 #Step 1: create a ggplot and use a variable to define the frames of the animation
 p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
@@ -1036,6 +1046,18 @@ p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
 
 #Step 2: Turn the ggplot into a plotly plot.
 ggplotly(p)
+```
+
+```{r plotly2-solution}
+p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(aes(size = pop, frame = year, ids = country)) +
+  scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
+
+ggplotly(p, tooltip = c("country"))
+```
+
+```{r plotly2-check}
+gradethis::grade_code()
 ```
 
 ### Shiny

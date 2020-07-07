@@ -11,4 +11,4 @@ License: AGPL-3
 Encoding: UTF-8
 LazyData: true
 Depends: R (>= 4.0)
-Imports: ggplot2, gradethis, knitr, learnr, readr, shiny, tibble
+Imports: ggplot2, gradethis, knitr, learnr, readr, shiny, stringr, tibble
