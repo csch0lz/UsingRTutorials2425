@@ -1039,6 +1039,9 @@ There are (limited) options for animation, as demonstrated in the plot below. Ru
 Change the code, so the pop ups only show the country name.
 
 ```{r plotly2, exercise=TRUE}
+library(plotly) 
+library(gapminder) #contains the data used here
+
 #Step 1: create a ggplot and use a variable to define the frames of the animation
 p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
   geom_point(aes(size = pop, frame = year, ids = country)) +
@@ -1047,6 +1050,10 @@ p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
 #Step 2: Turn the ggplot into a plotly plot.
 ggplotly(p)
 ```
+
+<div id="plotly2-hint">
+__Hint:__ Have a look at the help for the `ggplotly()` function.
+</div>
 
 ```{r plotly2-solution}
 p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
