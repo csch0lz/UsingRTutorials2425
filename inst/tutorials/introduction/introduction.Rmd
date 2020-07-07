@@ -1,0 +1,1256 @@
+---
+title: "Session 1: Introduction"
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: >
+  Check your understanding of RStudio, loading packages and data;
+  create basic and more advanced plots with `ggplot()`, receive
+  programming tips, and check out some fancy visualization stuff.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(knitr)
+
+tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+# Ensure that library is loaded.
+library(tidyverse)
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+consumers <- readr::read_csv("http://82.196.4.233:3838/www/consumers.csv")
+```
+
+<!-- Define programming tip style -->
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+
+## RStudio Interface
+
+Let us briefly check that you know how to work with R and the RStudio interface.
+
+### Packages tab
+
+In this course, we use the _tidyverse_ approach, which means that we use a series of R packages with a similar philosophy. These packages must be installed once on your computer.
+
+Let us use the RStudio interface to check whether the tidyverse package (and the series of packages that are part of it) are installed on the computer.
+
+```{r install, echo=FALSE}
+question(
+  "Which tab shows the packages that are currently installed?",
+  answer("Console", message = "No, this is where you can run an R command."),
+  answer("Terminal"),
+  answer("R Markdown"),
+  answer("Jobs"),
+  answer("Environment"),
+  answer("History"),
+  answer("Connections"),
+  answer("Tutorial"),
+  answer("Files"),
+  answer("Plots"),
+  answer("Packages", correct = TRUE, message = "All installed packages are listed here. Use the search field to find the tidyverse package quickly."),
+  answer("Help"),
+  answer("Viewer"),
+  allow_retry = TRUE
+)
+```
+
+If the tidyverse package is not installed, install it now. Use `Install Packages...` from the `Tools` menu or run the command `install.packages("tidyverse")` in the _Console_ tab of the RStudio interface. Note the quotes: _tidyverse_ is the name of a file here.
+
+Tip: During install, you may be asked if you want to install sources that need compilation. Answer __No__.
+
+### Load the tidyverse package
+
+We have to install a package only once, but we have to load it in our R session before we can use it. Load the most common tidyverse packages by loading the tidyverse package.
+
+```{r library, exercise=TRUE}
+
+```
+
+```{r library-hint-1}
+# The function that you need:
+library()
+```
+
+```{r library-hint-2}
+# If you run the library() function without package name, you will get a (long)
+# list of all installed packages. Supply a package name without quotes:
+# _tidyverse_ refers to an installed package now, not to a package file that
+# must be installed.
+```
+
+You cannot load a package from this tutorial. If you have the correct command, copy it to the RStudio Console and run it there by pressing Enter.
+
+**Tip**: If a package is loaded, its box in the Packages panel is checked.
+
+**Tip**: You can run a command also by putting the cursor somewhere within the command and press Ctrl-Enter (Windows) or Cmd-Return (Mac).
+
+Go back to this tutorial when you have checked that the `tidyverse` package is loaded.
+
+### Load and inspect data
+
+The list of installed (and loaded) packages includes the `datasets` package, which contains data sets that can directly be used. Normally, however, we load our own data from a file.
+
+Load the data file named `http://82.196.4.233:3838/www/consumers.csv` directly from the internet into a data object called `consumers` in R. 
+
+Use the tidyverse command, not the base R command!
+
+Use the _Submit Answer_ button in the code box below to check that you have the correct command. 
+
+```{r loadData, exercise=TRUE}
+
+```
+
+<div id="loadData-hint">
+**Hint:** Use the [Data Import Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf) to find the function to read a CSV data file.
+</div>
+
+```{r loadData-solution}
+consumers <- readr::read_csv("http://82.196.4.233:3838/www/consumers.csv")
+```
+
+```{r loadData-check} 
+#, warning=FALSE}
+gradethis::grade_code(
+  correct = "Note that tidyverse functions use an underscore (_) where base R functions use a dot (.). File names must always be in quotes."
+  )
+```
+
+Never mind if you see the message _Last value being used to check answer is invisible._
+
+We want to inspect the data in the RStudio interface, so copy the correct command to the RStudio Console and run it there by pressing Enter. 
+
+Now, the data set is listed in the **Environment** tab of the RStudio interface.
+
+Use the **Environment** tab in the RStudio interface to answer the following questions:
+
+__Q1. How many variables does the data set contain?__
+
+```{r inspectData1, exercise = TRUE}
+
+```
+
+```{r inspectData1-check}
+gradethis::grade_result(
+  pass_if(5, "The row containing the consumers data set in the Environment tab says that there are 5 variables (columns) in the data set. The base R command `ncol()` would also give you this number."),
+  fail_if(~ TRUE, "Have a look at the row containing the consumers data set in the **Environment** tab.")
+)
+```
+
+__Q2. How many numerical variables does the data set contain?__
+
+```{r inspectData2, exercise = TRUE}
+
+```
+
+```{r inspectData2-check}
+gradethis::grade_result(
+  pass_if(2, "Variables ad_expo and brand_aw are marked as numerical (num). The play button in the RStudio Environment pane shows the information provided by the base R `str()` function."),
+  fail_if(~ TRUE, "Use the blue-and-white play button in the row of the Environment tab to get basic information abut the variables.")
+)
+```
+
+__Q3. What are the first names of the first and twentieth person in the data set?__
+
+```{r inspectData3, exercise = TRUE}
+"Enter the names as text (within these quotes): "
+```
+
+<div id="inspectData3-hint">
+**Hint:** If you receive the error message _object not found_, the names are not entered as strings, that is, between quotes.
+</div>
+
+```{r inspectData3-check}
+#Note that entering names not as strings yields a parse error.
+gradethis::grade_result(
+  pass_if(
+    function(x) {stringr::str_detect(x, "Asleigh") &
+        stringr::str_detect(x, "Thaamira")}, 
+    "The names are indeed Asleigh and Thaamira."),
+  fail_if(function(x) {stringr::str_detect(x, "Asleigh")}, 
+    "Asleigh is correct, but the name of the twentieth person is missing or wrong. Use the spreadsheet button in the row of the Environment tab to view the data."),
+  fail_if(function(x) {stringr::str_detect(x, "Thaamira")}, 
+    "Thaamira is correct, but the name of the twentieth person is missing or wrong. Use the spreadsheet button in the row of the Environment tab to view the data."),
+  fail_if(~ TRUE, "Use the spreadsheet button in the row of the Environment tab to view the data.")
+)
+```
+
+## Functions
+
+We use functions in R to accomplish something. Let us review the main characteristics of functions in R.
+
+### Function arguments
+
+Function arguments specify the input for a function. Arguments can be named (more typing, less confusion) and unnamed (less typing, more confusion). 
+
+What does the command (below) do? Add the argument names to the arguments in the function.
+
+```{r argumentsNamed1, exercise = TRUE}
+seq(1, 15, 2)
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="argumentsNamed1-hint">
+__Hint:__ Use the Help page for this function (`?seq`).
+</div>
+
+```{r argumentsNamed1-solution}
+seq(from = 1, to = 15, by = 2)
+```
+
+```{r argumentsNamed1-check}
+gradethis::grade_code(
+  incorrect = "Supply each argument name with an equals sign."
+  )
+```
+
+<div class="tip" >
+__Programming Tips__
+
+- Run code and have a look at the output to figure out what the arguments mean.
+- Look up the arguments of the function in the Help page or from the code completion options shown when you start typing within the brackets.
+- If the code is not valid, R displays an error message if the code is run. Correct the mistake before you continue.
+- Run the updated code to see if the results are what they should be.
+</div>
+
+Use this programming approach to find out what the `length.out` argument means.
+
+```{r argumentsNamed2, exercise = TRUE}
+seq(1, 15, length.out = )
+```
+
+__Hint__: In the RStudio interface, put your cursor in the name of a function and press F1 to get help.
+
+Correct the code below, which should give integer numbers from 10 down to 1.
+
+```{r argumentsNamed3, exercise = TRUE}
+seq(10, 1, 1)
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="argumentsNamed3-hint">
+__Hint:__ What does the error message say if you run the code?
+</div>
+
+```{r argumentsNamed3-solution}
+seq(10, 1, -1)
+```
+
+```{r argumentsNamed3-check}
+gradethis::grade_code()
+```
+
+### Function output
+
+In the previous exercises, the function results are send to the screen. Now, store the results of the three functions below in data objects named `my_output`, `my_Output`, and `my_output` respectively.
+
+```{r output1, exercise = TRUE}
+seq(1, 20, 1)
+seq(10, 20, 1)
+seq(10, 10, 1)
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="output1-hint">
+__Hint:__ Spell names correctly. R is case-sensitive: lower case is different from uppercase.
+</div>
+
+```{r output1-solution}
+my_output <- seq(1, 20, 1)
+my_Output <- seq(10, 20, 1)
+my_output <- seq(10, 10, 1)
+```
+
+```{r output1-check}
+gradethis::grade_code()
+```
+
+If your code is correct, copy and paste it to the RStudio console to create the data objects there. Now, you can inspect them in the __Environment__ tab. What does the data object `my_output` contain? Enter the value below.
+
+```{r cleanUp2, exercise = TRUE}
+
+```
+
+```{r cleanUp2-check}
+gradethis::grade_result(
+  pass_if(10, "The first data object created with the name `my_output` is overwritten by the data object last created because they have the same name. In this way, a data object may not contain the data that you initially intended it to contain. Be careful!"),
+  fail_if(~ TRUE, "Check out the data objects that you created in the RStudio interface.")
+)
+```
+
+### Cleaning up
+
+<div style="background-color: #f5f5f5;" >
+__Programming Tip__
+
+- The number of data objects in the R environment may grow quickly. It is good practice to discard data objects that are not needed (anymore). The base R functions `remove()`and, more concisely, `rm()` removes one or more objects from the environment.
+</div>
+
+```{r echo=FALSE}
+# Ensure that the data objects are available in the tutorial.
+my_Output <- seq(10, 20, 1)
+my_output <- seq(10, 10, 1)
+```
+
+Remove all data objects created in the preceding exercise with one `rm()` command.
+
+```{r cleanUp, exercise = TRUE}
+rm()
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="cleanUp-hint">
+__Hint:__ Do not include the same data object name more than once.
+</div>
+
+```{r cleanUp-solution}
+rm(my_output, my_Output)
+```
+
+```{r cleanUp-check}
+gradethis::grade_code(
+  incorrect = "Names of data objects must be used only once and be separated by commas."
+  )
+```
+
+## Plots with `ggplot()`
+
+The Grammar of Graphics approach implemented in the tidyverse package `ggplot()` is becoming a standard. An increasing number of packages produce ggplots, can use them as input, or extend the approach to other types of graphics. Therefore, it is important to master this package well.
+
+We will use the consumers data, loaded in a previous step of this tutorial. It contains fake data about awareness about a particular brand and exposure to an advertising campaign for the brand. These are the variables:
+
+```{r variableDesc}
+tibble::tibble(
+  `Variable name` = c("ad_expo", "wom", "gender", "brand_aw", "firstname"),
+  `Variable Label` = c("Exposure to the advertisement", "Heard about the brand through word of mouth", "Gender of the respondent", "Awareness of the brand", "Respondent's first name"),
+  `Value Labels`= c("1 = No exposure; 10 = Max exposure", "yes, no", "female, male", "1 = Not aware; 10 = Max aware", "")) %>%
+  knitr::kable(booktabs = TRUE)
+```
+
+### Basics
+
+Use the consumers data file to create the plot shown below. Mind the details! Use the [Data Visualization Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) if you want to look up options, for example, which layer to use for setting the title and axis labels.
+
+```{r plot-recreate, exercise=FALSE, message=FALSE, warning=FALSE}
+# Standard ggplot plot with title and axis labels.
+ggplot2::ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(color = wom, shape = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~x,
+    se = FALSE,
+    color = "black"
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+```{r ggplotBasics, exercise = TRUE, message=FALSE, warning=FALSE}
+ggplot()
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="ggplotBasics-hint">
+__Hint:__ The answer checker will first check if all layers are included. Next, it will check the details within each layer. For optimal use of the checker, follow this approach. In addition, it is more efficient to set the x and y aesthetics in the `ggplot()` function than in the separate geoms, if several geoms use the same x and y aesthetics.
+</div>
+
+```{r ggplotBasics-solution}
+ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(color = wom, shape = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "black"
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+```{r ggplotBasics-check}
+gradethis::grade_code(
+  correct = "Was it difficult? The devil is in the details."
+  )
+```
+
+### Aesthetic versus constant
+
+Does gender moderate the effect of exposure on brand awareness? In other words, do females and males have different regression lines?
+
+Create separate regression lines of different colours for females and males. Use shape instead of color to distinguish between respondents who heard about the brand by word of mouth and those who did not.
+
+```{r plot_adapt, exercise=TRUE, warning=FALSE, message=FALSE}
+
+```
+
+<div id="plot_adapt-hint">
+__Hint:__ As a starting point, copy the code from the preceding question into the code box. Use the [Data Visualization Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
+</div>
+
+```{r plot_adapt-solution}
+# Adaptation: swap color and shape, line color as aesthetic.
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE,
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+```{r plot_adapt-check}
+gradethis::grade_code(
+  correct = "Within the `aes()` function, we can link a (categorical) variable to a particular aesthetic, in this example, to color. Each group then receives its own color and its own regression line. Now, we use color as an aesthetic, not as a constant ('black')."
+  )
+```
+
+### Facetting
+
+Instead of using vertex shapes for respondents who heard about the brand by word of mouth and those who did not, we can create separate plots. 
+
+Create the two plots in one row.
+
+```{r plot_facet, exercise=TRUE}
+
+```
+
+<div id="plot_facet-hint">
+__Hint:__ As a starting point, copy the code from the preceding question into the code box. Use the [Data Visualization Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
+</div>
+
+```{r plot_facet-solution}
+# Adaptation: word of mouth as facets instead of shape.
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y =brand_aw)
+  )+
+  geom_point(
+    mapping = aes(color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE,
+    ) +
+  facet_wrap(~ wom) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+```{r plot_facet-check}
+gradethis::grade_code(
+  correct = "If we create different facets for groups on one variable, `facet_wrap()` is the preferred function."
+)
+```
+
+### Geom choice
+
+Use the [Data Visualization Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) to find the geoms that are appropriate for the following plots of the `consumers` data.
+
+```{r geomquiz}
+quiz(caption = "Select appropriate geoms",
+  question("A plot of brand awareness by word of mouth.",
+    answer("geom_area", correct = FALSE, message = ""),
+    answer("geom_bar", correct = FALSE, message = ""),
+    answer("geom_bin2d", correct = FALSE, message = ""),
+    answer("geom_boxplot", correct = TRUE, message = ""),
+    answer("geom_col", correct = TRUE, message = ""),
+    answer("geom_contour", correct = FALSE, message = ""),
+    answer("geom_count", correct = FALSE, message = ""),
+    answer("geom_density", correct = FALSE, message = ""),
+    answer("geom_density2d", correct = FALSE, message = ""),
+    answer("geom_dotplot", correct = TRUE, message = ""),
+    answer("geom_freqpoly", correct = FALSE, message = ""),
+    answer("geom_hex", correct = FALSE, message = ""),
+    answer("geom_histogram", correct = FALSE, message = ""),
+    answer("geom_jitter", correct = FALSE, message = ""),
+    answer("geom_point", correct = FALSE, message = ""),
+    answer("geom_qq", correct = FALSE, message = ""),
+    answer("geom_quantile", correct = FALSE, message = ""),
+    answer("geom_raster", correct = FALSE, message = ""),
+    answer("geom_rug", correct = FALSE, message = ""),
+    answer("geom_smooth", correct = FALSE, message = ""),
+    answer("geom_tile", correct = FALSE, message = ""),
+    answer("geom_violin", correct = TRUE, message = ""),
+    incorrect = "As always in statistics, it is about the number and types (discrete vs. continuous) of variables involved."
+  ),
+  question("A plot of gender by word of mouth.",
+    answer("geom_area", correct = FALSE, message = ""),
+    answer("geom_bar", correct = FALSE, message = ""),
+    answer("geom_bin2d", correct = FALSE, message = ""),
+    answer("geom_boxplot", correct = FALSE, message = ""),
+    answer("geom_col", correct = FALSE, message = ""),
+    answer("geom_contour", correct = FALSE, message = ""),
+    answer("geom_count", correct = TRUE, message = ""),
+    answer("geom_density", correct = FALSE, message = ""),
+    answer("geom_density2d", correct = FALSE, message = ""),
+    answer("geom_dotplot", correct = FALSE, message = ""),
+    answer("geom_freqpoly", correct = FALSE, message = ""),
+    answer("geom_hex", correct = FALSE, message = ""),
+    answer("geom_histogram", correct = FALSE, message = ""),
+    answer("geom_jitter", correct = FALSE, message = ""),
+    answer("geom_point", correct = FALSE, message = ""),
+    answer("geom_qq", correct = FALSE, message = ""),
+    answer("geom_quantile", correct = FALSE, message = ""),
+    answer("geom_raster", correct = FALSE, message = ""),
+    answer("geom_rug", correct = FALSE, message = ""),
+    answer("geom_smooth", correct = FALSE, message = ""),
+    answer("geom_tile", correct = FALSE, message = ""),
+    answer("geom_violin", correct = FALSE, message = ""),
+    incorrect = "As always in statistics, it is about the number and types (discrete vs. continuous) of variables involved."
+  ),
+  question("A plot of brand awareness.",
+    answer("geom_area", correct = TRUE, message = ""),
+    answer("geom_bar", correct = FALSE, message = ""),
+    answer("geom_bin2d", correct = FALSE, message = ""),
+    answer("geom_boxplot", correct = FALSE, message = ""),
+    answer("geom_col", correct = FALSE, message = ""),
+    answer("geom_contour", correct = FALSE, message = ""),
+    answer("geom_count", correct = FALSE, message = ""),
+    answer("geom_density", correct = TRUE, message = ""),
+    answer("geom_density2d", correct = FALSE, message = ""),
+    answer("geom_dotplot", correct = TRUE, message = ""),
+    answer("geom_freqpoly", correct = TRUE, message = ""),
+    answer("geom_hex", correct = FALSE, message = ""),
+    answer("geom_histogram", correct = TRUE, message = ""),
+    answer("geom_jitter", correct = FALSE, message = ""),
+    answer("geom_point", correct = FALSE, message = ""),
+    answer("geom_qq", correct = TRUE, message = ""),
+    answer("geom_quantile", correct = FALSE, message = ""),
+    answer("geom_raster", correct = FALSE, message = ""),
+    answer("geom_rug", correct = FALSE, message = ""),
+    answer("geom_smooth", correct = FALSE, message = ""),
+    answer("geom_tile", correct = FALSE, message = ""),
+    answer("geom_violin", correct = FALSE, message = ""),
+    incorrect = "As always in statistics, it is about the number and types (discrete vs. continuous) of variables involved."
+  ),
+  question("A plot of brand awareness by exposure.",
+    answer("geom_area", correct = FALSE, message = ""),
+    answer("geom_bar", correct = FALSE, message = ""),
+    answer("geom_bin2d", correct = TRUE, message = ""),
+    answer("geom_boxplot", correct = FALSE, message = ""),
+    answer("geom_col", correct = FALSE, message = ""),
+    answer("geom_contour", correct = FALSE, message = ""),
+    answer("geom_count", correct = FALSE, message = ""),
+    answer("geom_density", correct = FALSE, message = ""),
+    answer("geom_density2d", correct = TRUE, message = ""),
+    answer("geom_dotplot", correct = FALSE, message = ""),
+    answer("geom_freqpoly", correct = FALSE, message = ""),
+    answer("geom_hex", correct = TRUE, message = ""),
+    answer("geom_histogram", correct = FALSE, message = ""),
+    answer("geom_jitter", correct = TRUE, message = ""),
+    answer("geom_point", correct = TRUE, message = ""),
+    answer("geom_qq", correct = FALSE, message = ""),
+    answer("geom_quantile", correct = TRUE, message = ""),
+    answer("geom_raster", correct = FALSE, message = ""),
+    answer("geom_rug", correct = TRUE, message = ""),
+    answer("geom_smooth", correct = TRUE, message = ""),
+    answer("geom_tile", correct = FALSE, message = ""),
+    answer("geom_violin", correct = FALSE, message = ""),
+    incorrect = "As always in statistics, it is about the number and types (discrete vs. continuous) of variables involved."
+  )
+)
+```
+
+### Adding labels (advanced)
+
+We may want to know who is the outlier in the plot, having an exceptionally low exposure score. Use a geom to add the first names to the plot, as shown below.
+
+```{r plot_label_show, echo=FALSE, warning=FALSE, message=FALSE}
+# Adaptation: add firstname as label.
+ggplot2::ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE,
+    ) +
+  geom_text(
+    aes(label = firstname),
+    nudge_y = 0.4,
+    check_overlap = TRUE
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+Create this graph yourself.
+
+```{r plot_label, exercise=TRUE, warning=FALSE, message=FALSE}
+
+```
+
+<div id="plot_label-hint">
+__Hint:__ As a starting point, copy the code from the preceding question into the code box. Use the cheat sheet to find the geom.
+</div>
+
+```{r plot_label-solution}
+# Adaptation: swap color and shape, line color as aesthetic.
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE,
+    ) +
+  geom_text(
+    aes(label = firstname),
+    nudge_y = 0.4,
+    check_overlap = TRUE
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+```{r plot_label-check}
+gradethis::grade_code(
+  correct = "The example plot uses `geom_text()` because the boxes created by `geom_label()` obscure the data."
+  )
+```
+
+### Adding primitives (advanced)
+
+Actually, we can draw all kinds of shapes on the plot, for example, an arrow drawing attention to the extremely low exposure score. Use `geom_segment` to create this plot.
+
+```{r plot_primitives_show, echo=FALSE, warning=FALSE, message=FALSE}
+# Adaptation: Add arrow pointing to extreme value.
+ggplot2::ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE,
+    ) +
+  geom_segment(
+    x = 1, xend = 1, y = 4, yend = 2,
+    arrow = arrow(
+      type = "closed"
+    )
+  ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+```{r plot_primitives, exercise=TRUE}
+
+```
+
+<div id="plot_primitives-hint">
+__Hint:__ Pay attention to the `arrow` argument. It uses a function! Use help on the geom and on this function.
+</div>
+
+```{r plot_primitives-solution}
+# Adaptation: Add arrow pointing to extreme value.
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE,
+    ) +
+  geom_segment(
+    x = 1, xend = 1, y = 4, yend = 2,
+    arrow = arrow(
+      type = "closed"
+    )
+  ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+```{r plot_primitives-check}
+gradethis::grade_code(
+  correct = "And yes, you can change the color and size of the arrow just like you can change them for points and other geoms."
+)
+```
+
+## Evaluating a plot
+
+Once you master the `ggplot2` package and other packages for creating plots (see the __Fancy stuff__ part of this tutorial), you should start thinking about what you want to convey with a plot and whether the plot conveys your message in a clear and attractive way.
+
+We will use the following criteria in this course:
+
+1. The data visualization is sufficiently complex to tell a story. For example, it presents both a pattern (as a first impression) and deviations from this pattern (inviting reflection about the pattern) without being overwhelming because of too much information.
+
+2. The data visualization is self-explanatory. It should be comprehensible without reading the accompanying text. For example, use informative, readable labels.
+
+3. The data visualization gives an accurate, not a biased view of the data. For example, sizes should accurately reflect quantity.
+
+4. The data visualization uses graphic features (size, font type, colors, line styles) in such a way that the main parts are stressed and unimportant parts remain visually in the background. Justify your choices with comments in the code.
+
+If you see a plot (or any other graphic):
+
+* Close your eyes after a few seconds. Try to formulate your first impression of the plot, both in terms of the information it gives (What stands out in the plot?) and the (dis)pleasure it gives you. 
+* Inspect the plot more closely. Where do your eyes go and which information do you collect during the process of looking at the plot.
+
+Practice with the plots below. Use the checkboxes to show plots, which will first be shown for a few seconds and, a bit later, for a longer time.
+
+```{r, echo=FALSE}
+fluidPage(
+  fluidRow(
+    column(2,
+      radioButtons("radio", label = h3("Select a plot"),
+    choices = list("Plot 1" = 1, "Plot 2" = 2, "Plot 3" = 3, "Plot 4" = 4, "Plot 5" = 5, "Plot 6" = 6), 
+    selected = 1),
+      sliderInput("slider", label = "", min = 0, max = 20, value = 0,
+                  step = 1, ticks = FALSE, 
+                  animate = TRUE
+      )
+    ),
+    column(10,
+      plotOutput("regPlot")
+    )
+  )  
+)
+```
+
+```{r, context="server", warning=FALSE, message=FALSE}
+output$regPlot <- renderPlot({
+  g <- ggplot(
+    data = consumers,
+    aes(x = ad_expo, y = brand_aw)
+    ) +
+    scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
+    scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
+    theme_bw()
+  
+  ## Create plot versions
+  if (input$radio == 1) { 
+    # just regression line and confidence interval
+    g <- g + geom_smooth(method = "lm", formula = y ~ x, se = TRUE, color = "black")
+    }
+  else if (input$radio == 2) {
+    # point size reflects brand_aw
+    g <- g + 
+      geom_point(aes(size = brand_aw), color = "grey") +
+      geom_smooth(method = "lm", formula = y ~ x, se = FALSE)
+    }
+  else if (input$radio == 3) {
+    # outlier not visible (and regression line without outlier)
+    g <- g + 
+      geom_point(size = 2, color = "grey") +
+      geom_smooth(data = consumers[consumers$ad_expo > 1,], 
+        mapping = aes(x = ad_expo, y = brand_aw),
+        method = "lm", formula = y ~ x, se = FALSE) +
+      scale_x_continuous(limits = c(4, 10))
+    }
+  else if (input$radio == 4) {
+    # grey total regression line, red regression line without outlier
+    g <- g + 
+      geom_point(size = 2, aes(color = ifelse(ad_expo > 1, "grey", "red")), show.legend = FALSE) +
+      geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "grey", size = 2) +
+      geom_smooth(
+        data = consumers[consumers$ad_expo > 1,], 
+        mapping = aes(x = ad_expo, y = brand_aw),
+        method = "lm", formula = y ~ x, se = FALSE, color = "red"
+        ) +
+      geom_text(x = 3.9, y = 4.3, label = "without outlier", size = 3, color = "red", alpha = 0.6) +
+      scale_color_manual(values = c("red", "grey"))
+    }
+  else if (input$radio == 5) {
+    # regression line per gender, with additional regression line for males without outlier
+    g <- g + 
+      geom_point(aes(color = gender), size = 2) +
+      geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)) +
+      geom_smooth(
+        data = consumers[consumers$ad_expo > 1 & consumers$gender == "male",], 
+        mapping = aes(x = ad_expo, y = brand_aw),
+        method = "lm", formula = y ~ x, se = FALSE, color = "blue", linetype = "dashed"
+        ) +
+      geom_text(x = 4.1, y = 3.4, label = "without outlier", size = 3, color = "blue", alpha = 0.6)
+    }
+  else if (input$radio == 6) {
+    # density conours and regression lines per gender
+    g <- g + 
+      geom_density2d(aes(color = gender),  adjust = 2) +
+      geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender))
+    }
+  
+  ## Show plot, depending on slider value
+  if (input$slider == 0) {
+    #show press button text
+    ggplot(data = consumers) + geom_text(x = 0.5, y = 0.5, label = "Press the little play button", size = 12) 
+    } 
+  else if ((input$slider > 0 & input$slider < 3) | (input$slider > 10)) {
+    # ask user to reset the slider 
+    if (input$slider == 20) {
+      if (input$radio == 3 ) {hor_pos = 7}
+      else {hor_pos = 5.5}
+      g <- g + geom_text(x = hor_pos, y = 8.5, label = "Reset the slider to 0\nbefore you watch another plot.", size = 8)
+      }
+    #show plot
+    g
+    } 
+  else {
+    # What did you see?
+    ggplot(data = consumers) + geom_text(x = 0.5, y = 0.5, label = "What did you see?", size = 18)
+    }
+})
+```
+
+## Debugging
+
+Your friend tried to create a non-stacked bar chart showing the proportion of females in the consumers data set who heard by word of mouth against the proportion who did not as well as the proportion of males who heard and who did not hear by word of mouth.
+
+Your friend did not manage to get the code to work. Can you do that?
+```{r debug, exercise = TRUE, eval=FALSE}
+ggplot(data consumers) +
+  geom_bar(
+    mapping = aes(
+      x = wom, 
+      color = gender,
+      position = "dodge"
+  )
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="debug-hint">
+__Hints:__ 
+
+- Pay attention to the error messages when you run the code.
+- For proportions, you have to use a computed variable: check out the help on `geom_bar()`.
+- You may want to check the _R for Data Science_ book: bar charts are tricky.
+</div>
+
+```{r debug-solution}
+ggplot(data = consumers) +
+  geom_bar(
+    mapping = aes(
+      x = wom, 
+      y = ..prop..,
+      group = gender,
+      fill = gender
+    ),
+    position = "dodge"
+  )
+```
+
+```{r debug-check}
+gradethis::grade_code(
+  correct = "To get proportions, you must indeed specify both the y argument (indicating that you want proportions) and the group argument (specifying which total to use for caluclating proportions).", 
+  incorrect = "If you don't see the problems, build up the graph from zero, step by step."
+  )
+```
+
+<div class="tip" >
+__Programming Tips__
+
+- When you program something complicated, build it in steps.
+- Check intermediate results regularly by running the code and inspecting the results.
+</div>
+
+## Fancy stuff
+
+### `gganimate` package
+
+If you want to animate your `ggplot` plot, the package [`gganimate`](https://gganimate.com/index.html) provides you with tools to create an animated GIF (with the `gifski` package) or a video (with the `av` package).
+
+The code below creates an animated gif using [Gapminder](https://www.gapminder.org/) data on life expectancy, GDP per capita, and population size by country. Play around with the settings that are specific to `animate()`.
+
+Note that it takes quite some time to generate the animation.
+
+```{r gganimate1, exercise=TRUE, eval=FALSE}
+# Install the following packages if they haven't been installed.
+library(gganimate)
+library(gifski)
+library(gapminder) #data used
+
+# This code creates an animated ggplot
+g <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  # Here comes the gganimate specific bits
+  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  transition_time(year) +
+  ease_aes('linear') +
+  shadow_wake(
+    wake_length = 0.2
+  )
+
+# And here, we show the animated plot.
+animate(
+  plot = g, #gganimate plot to be shown
+  nframes = 78, #1 frame for each year from 1952 to 2007 plus 2x11  additional frames for 
+  renderer = gifski_renderer( #save as animated GIF
+    file = "gapminder.gif",
+    loop = TRUE
+    ),
+  start_pause = 12, #first frame shows 12 times
+  end_pause = 12, #last frame shows 36 times
+  rewind = FALSE #roll back to the start
+)
+```
+
+If you would have a look at the gapminder data (e.g., with `View(gapminder)`), you would see that the data are available for 1952, 1957, 1962, 1967, and so on. The `gganimate()` animation creates frames for the years in between. In a way, the data for the in-between-years are fabricated; they may give a wrong view of reality. 
+
+<div class="tip" >
+__Programming Tip__
+
+- Carefully inspect the results created by packages that do a lot of work for you.
+</div>
+
+Movement is fascinating but it can also be frustrating if the user cannot pause or determine the speed of the animation. Evaluate the pros and cons of animations critically.
+
+### `ggplotly()` in the `plotly` package
+
+The `plotly` library is designed for creating interactive graphics. It has its own language for creating graphs but for the `ggplot` user, it provides a function to change a `ggplot` plot into an interactive `plotly` plot.
+
+The `plotly` library offers the option to zoom, select items in the graph, and see additional information about the items in the graph. Install the packages if necessary, and run the code to see the graph. If you carefully position your cursor on a dot, the first name will pop up.
+
+```{r plotly1, exercise=TRUE}
+#install these packages to run the code
+library(plotly) 
+library(gapminder) #contains the data used here
+
+#Step 1: create a ggplot
+g <- ggplot(
+  data = consumers,
+  aes(x = ad_expo, y = brand_aw)
+  ) +
+    geom_point(aes(color = gender), size = 2) +
+    geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)) +
+    geom_smooth(
+      data = consumers[consumers$ad_expo > 1 & consumers$gender == "male",], 
+      mapping = aes(x = ad_expo, y = brand_aw),
+      method = "lm", formula = y ~ x, se = FALSE, color = "blue", linetype = "dashed"
+      ) +
+    geom_text(
+      aes(label = firstname),
+      alpha = 0 #trick: make labels invisible (transparent)
+      ) +
+    scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
+    scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
+    theme_bw()
+
+#Step 2: Turn the ggplot into a plotly plot and use plotly options.
+ggplotly(g, tooltip = c("text"), dynamicTicks = TRUE)
+```
+
+There are (limited) options for animation, as demonstrated in the plot below. Run the code to see the plot.
+
+```{r plotly2, exercise=TRUE}
+#Step 1: create a ggplot and use a variable to define the frames of the animation
+p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(aes(size = pop, frame = year, ids = country)) +
+  scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
+
+#Step 2: Turn the ggplot into a plotly plot.
+ggplotly(p)
+```
+
+### Shiny
+
+The [`shiny`]() package is the RStudio contribution to interactive R products. Actually, this tutorial is made with Shiny and it contains a Shiny app, namely, the animated plots used in the _Evaluating a plot_ Section.
+
+Here is the code for these plots. You cannot run the code here because we cannot start a Shiny app from within a Shiny app (this tutorial). If you create a new Shiny app in RStudio (*File > New File > Shiny Web App*) and copy and paste the below code into the Shiny app file (replacing all existing contents), you can run the app from RStudio (use the *Run App* button).
+
+Experiment with the user interface and the R code.
+
+```{r shiny1, eval=FALSE, echo=TRUE}
+# load the shiny package
+library(shiny)
+
+# first part of the app: the User Interface (ui)
+ui <- fluidPage(
+    fluidRow( #the first (and only) row in the interface
+        column(2, #the first (left) column, width 2 out of 12
+               radioButtons("radio", label = h3("Select a plot"),
+                            choices = list("Plot 1" = 1, #label and value if selected
+                                           "Plot 2" = 2, 
+                                           "Plot 3" = 3, 
+                                           "Plot 4" = 4, 
+                                           "Plot 5" = 5, 
+                                           "Plot 6" = 6), 
+                            selected = 1),
+               #only a slider can be animated
+               sliderInput("slider", label = "", min = 0, max = 20, value = 0,
+                           step = 1, ticks = FALSE, 
+                           animate = TRUE
+               )
+        ),
+        column(10, #the second (right) column, width 10 out of 12
+               plotOutput("regPlot") #containing the plot named regPlot
+        )
+    )  
+)
+
+# second part of the app: the R code
+server <- function(input, output, session) {
+  # create a plot named regPlot to be shown in the output
+  output$regPlot <- renderPlot({
+    # the basic (empty) plot  
+    g <- ggplot(
+      data = consumers,
+      aes(x = ad_expo, y = brand_aw)
+      ) +
+      scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
+      scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
+      theme_bw()
+    
+    ## Create a plot version for each radio option
+    if (input$radio == 1) { 
+      # just add regression line and confidence interval to the empty plot
+      g <- g + geom_smooth(method = "lm", 
+                           formula = y ~ x, se = TRUE, 
+                           color = "black")
+    }
+    else if (input$radio == 2) {
+      # point size reflects brand_aw
+      g <- g + 
+        geom_point(aes(size = brand_aw), color = "grey") +
+        geom_smooth(method = "lm", formula = y ~ x, se = FALSE)
+    }
+    else if (input$radio == 3) {
+      # outlier not visible (and regression line without outlier)
+      g <- g + 
+        geom_point(size = 2, color = "grey") +
+        geom_smooth(data = consumers[consumers$ad_expo > 1,], 
+                    mapping = aes(x = ad_expo, y = brand_aw),
+                    method = "lm", formula = y ~ x, se = FALSE) +
+        scale_x_continuous(limits = c(4, 10))
+    }
+    else if (input$radio == 4) {
+      # grey total regression line, red regression line without outlier
+      g <- g + 
+        geom_point(size = 2, 
+          aes(color = ifelse(ad_expo > 1, "grey", "red")), show.legend = FALSE) +
+        geom_smooth(method = "lm", formula = y ~ x, se = FALSE, 
+                    color = "grey", size = 2) +
+        geom_smooth(
+          # trick: base R to create a subset of all consumers, omitting the outlier
+          data = consumers[consumers$ad_expo > 1,], 
+          mapping = aes(x = ad_expo, y = brand_aw),
+          method = "lm", formula = y ~ x, se = FALSE, color = "red"
+        ) +
+        geom_text(x = 3.9, y = 4.3, label = "without outlier", 
+                  size = 3, color = "red", alpha = 0.6) +
+        scale_color_manual(values = c("red", "grey"))
+    }
+    else if (input$radio == 5) {
+      # regression line per gender, with additional regression line 
+      # for males without outlier
+      g <- g + 
+        geom_point(aes(color = gender), size = 2) +
+        geom_smooth(
+          method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)
+          ) +
+        geom_smooth(
+          data = consumers[consumers$ad_expo > 1 & consumers$gender == "male",], 
+          mapping = aes(x = ad_expo, y = brand_aw),
+          method = "lm", formula = y ~ x, se = FALSE, 
+          color = "blue", linetype = "dashed"
+        ) +
+        geom_text(x = 4.1, y = 3.4, label = "without outlier", 
+                  size = 3, color = "blue", alpha = 0.6)
+    }
+    else if (input$radio == 6) {
+      # density conours and regression lines per gender
+      g <- g + 
+        geom_density2d(aes(color = gender),  adjust = 2) +
+        geom_smooth(
+          method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)
+          )
+    }
+    
+    # Show plot, depending on slider value
+    # This is the animation trick: slider values range from 0 to 20,
+    # if it is 0, a text is shown, if it is 1 or 2 or at least 10, 
+    # the plot is shown, a text is shown between 2 and 10, and
+    # a text is added to the plot if the slider is 20.
+    if (input$slider == 0) {
+      #show press button text
+      ggplot(data = consumers) + 
+        geom_text(
+          x = 0.5, y = 0.5, 
+          label = "Press the little play button", size = 12
+          ) 
+    } 
+    else if ((input$slider > 0 & input$slider < 3) | (input$slider > 10)) {
+      # ask user to reset the slider 
+      if (input$slider == 20) {
+        if (input$radio == 3 ) {hor_pos = 7}
+        else {hor_pos = 5.5}
+        g <- g + geom_text(
+          x = hor_pos, y = 8.5, 
+          label = "Reset the slider to 0\nbefore you watch another plot.", 
+          size = 8
+          )
+      }
+      #show plot
+      g
+    } 
+    else {
+      # What did you see?
+      ggplot(data = consumers) + 
+        geom_text(
+          x = 0.5, y = 0.5, 
+          label = "What did you see?", size = 18
+          )
+    }
+  })  
+}
+
+# the command to create and run the app
+shinyApp(ui, server)
+```
+
+Check out the [Shiny demos gallery](https://shiny.rstudio.com/gallery/#demos) for inspiration. Start simple! First create your plot with `ggplot()`, then add it to the Shiny app.
+
+## Data Project
+
+Plots are very useful for getting a first idea of your data. With the members of your group, use `ggplot` plots to describe variables and relations between variables in (one of) your Data Project file(s). 
+
+Download the Data Project data file(s) to a directory that you create for your Data Project. In the context of this tutorial, you must load the data in each code box (in RStudio, you only load it once).
+
+As long as you do not press the *Start Over* button, the code (and plots) are preserved in this tutorial. 
+
+```{r DataProject1, exercise = TRUE}
+# Load your data.
+dataName <- read_csv()
+
+# Create a plot.
+
+```
+
+<div class="tip" >
+__Programming Tips__
+
+- Use lots of comments to explain what you are trying to do. Your team mates and your future self would like to know.
+- Don't delete plots that turn out to be useless. Comment them out (add # to each line start) and add a comment explaining why it is useless. Otherwise, someone else is going to redo your work.
+</div>
+
+```{r DataProject2, exercise = TRUE}
+# Load your data.
+dataName <- read_csv()
+
+# Create a plot.
+
+```
+
+```{r DataProject3, exercise = TRUE}
+# Load your data.
+dataName <- read_csv()
+
+# Create a plot.
+
+```
+
+```{r DataProject4, exercise = TRUE}
+# Load your data.
+dataName <- read_csv()
+
+# Create a plot.
+
+```
+
+```{r DataProject5, exercise = TRUE}
+# Load your data.
+dataName <- read_csv()
+
+# Create a plot.
+
+```
+
+
+
+
