@@ -1,0 +1,499 @@
+---
+title: "Session 2: Descriptive Statistics and Reproducible Reports"
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: >
+    Check your understanding of the basic tidyverse data wrangling 
+    functions, learn how to wrangle in steps and check each step,
+    and start working on your first reproducible research: your
+    Data Project as RMarkdown file.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(knitr)
+
+tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+# Ensure that library is loaded.
+library(tidyverse)
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+Glasgow <- UsingRTutorials::Glasgow
+```
+
+<!-- Define programming tip style -->
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+
+## Inspect Help for a Data Set
+
+Today, we use a data set containing information about friendships, tobacco, alcohol, and substance use among 160 students, who were followed over their second, third and fourth year at a secondary school in Glasgow (*Teenage Friends and Lifestyle Study* research project).
+
+The data set is available within this tutorial, so you do not have to load it. Have a look at the variables using the help function.
+
+```{r loadData, exercise=TRUE}
+
+```
+
+<div id="loadData-hint">
+**Hint:** You can also use RStudio to find the information. In the **Packages** tab, click on the name of the package *UsingRTutorials* and click on *Glasgow*.
+</div>
+
+```{r loadData-solution}
+?Glasgow
+```
+
+```{r loadData-check} 
+#, warning=FALSE}
+gradethis::grade_code()
+```
+
+
+## Piping
+
+The `tidyverse` approach to data wrangling can be summarized as follows:
+
+- Transform data with functions: data frame → new data frame.
+- Breakdown transformations into logical steps.
+- Chain transformations into a pipe `%>%`): Use resulting data of previous step as input data of next step.
+
+```{r}
+data.frame(
+  Function = c("filter(): select cases", 
+               "arrange(): sort cases", 
+               "select(): select variables", 
+               "mutate(): compute new variables", 
+               "summarise(): aggregate (collapse) data", 
+               "group_by(): split by group"),
+  Goal = c("I want to focus on part of my cases.", 
+           "I want to rearrange my cases.", 
+           "I want to focus on some of my variables.", 
+           "I want to change variables.", 
+           "I want summary statistics.", 
+           "I want summaries or changed variables for each group.")
+  ) %>%
+  knitr::kable(
+    caption = "Main data transformation functions",
+    booktab = TRUE
+    ) %>% 
+  kableExtra::kable_styling(
+    bootstrap_options = "striped"
+    )
+```
+
+Apply the `tidyverse` approach to the code below: Join all transformations in one pipe.
+
+```{r pipe, exercise = TRUE, eval=FALSE}
+helpData1 <- filter(Glasgow, money >= 0)
+helpData2 <- group_by(helpData1, student, sex)
+helpData3 <- summarise(helpData2, n_rom = sum(romantic == "yes", na.rm = TRUE))
+helpData4 <- ungroup(helpData3)
+count(helpData4, sex, n_rom)
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="pipe-hint">
+__Hint:__ In a pipe, the data frame originating from a previous step is automatically the data frame used for the next step. You don't have to save an intermediary data frame or specify its name in a pipe. And don't forget to add the pipe symbol!
+</div>
+
+```{r pipe-solution}
+Glasgow %>%
+  #disregard cases with a negative amount of money
+  filter(money >= 0) %>%
+  #summarise number of waves with romantic relation per student
+  group_by(student, sex) %>%
+  summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) %>%
+  #create counts of number of romantic relations per sex
+  ungroup() %>%
+  count(sex, n_rom)
+```
+
+```{r pipe-check}
+gradethis::grade_code(
+  incorrect = "Don't mind the `Error occured while checking the submission` message."
+)
+```
+
+Note: While checking transformed code, you may receive an  `Error occured while checking the submission` message. This merely means that the computer does not have suggestions for you.
+
+<div class="tip" >
+__Programming Tip__
+
+To understand the output of code in a pipe, formulate a comment explaining what each step does or is meant to do to the data.
+
+For example:
+
+```{r, eval=FALSE, echo=TRUE}
+myData %>% 
+  #we only want to look at girls in the first wave
+  filter(sex == "girl" & wave == "t1") %>%
+  #for whom we want to know the average number of friends (but missings may appear!)
+  summarise(avg_friends = mean(friendships, na.rm = TRUE))
+```
+
+</div>
+
+## A Frequency Table
+
+```{r summary1-shown}
+Glasgow %>%
+  # we need summarizing numbers for each number of friendships, so group first
+  # grouping automatically sorts on the variable, so the cumulation works fine
+  group_by(friendships) %>%
+  # summary statistics: note that a new variable can be used immediately
+  summarise(
+    Freq = n(),
+    Perc = 100 * Freq / nrow(Glasgow)
+  ) %>%
+  mutate(
+    CumPerc = cumsum(Perc)
+  )
+```
+
+Create the above table with the absolute frequencies (raw counts), relative frequencies (percentages), and cumulative relative frequencies of student friendship numbers in the `Glasgow` data set.
+
+As always, use tidyverse functions and join all functions in one pipe.
+
+```{r summary1, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="summary1-hint">
+__Hint:__ For relative frequencies, divide the raw counts by the number of cases (nrow(Glasgow)). Use the [cheat sheet](https://www.rstudio.org/links/data_transformation_cheat_sheet) to find cumulative functions.
+</div>
+
+```{r summary1-check}
+gradethis::grade_result(
+  pass_if(
+      ~ {nrow(.result) == 13 && ncol(.result) == 4 && identical(names(.result), c("friendships", "Freq", "Perc", "CumPerc")) && round(.result[[1, 3]]) == 13  && round(.result[[2, 4]]) == 25 },
+    # function(x) {nrow(x) == 13 && ncol(x) == 4 && names(x) == c("friendships", "Freq", "Perc", "CumPerc") && round(x[[1, 3]]) == 13  && round(x[[2, 4]]) == 25 },
+    "You correctly gouped and summarised the number of friendships, using the exact same variable names as in the presented table. And you did not forget to create percentages instead of proportions."),
+  fail_if(~ nrow(.result) != 13, "How can you get one row for each number of friendships?"),
+  fail_if(~ ncol(.result) != 4, "Did you summarize the frequencies, the percentages, and the cumulative percentages? Use `summarize()` to calculate the frequencies and percentages; this will give you one row for each number of friendships. Next, use `mutate()` to get the cumulative percentages. Now you want to retain all rows, so you don't use `summarize()`."),
+  fail_if(~ !(identical(names(.result), c("friendships", "Freq", "Perc", "CumPerc"))), "Use the names of new variables exactly as they are used in the presented table."),
+  fail_if(~ round(.result[[1, 3]]) != 13, "Did you notice that we need percentages, not proportions? Use `Perc = 100 * Freq / nrow(Glasgow)`."),
+  fail_if(~ round(.result[[2, 4]]) != 25, "Did you use the `cumsum()` function to get the cumulative percentages?")
+)
+```
+
+## Missing Values
+
+### How are missing values treated?
+
+The `alcohol` variable in the `Glasgow` data set has missing values. What happens with the missing values in the following commands?
+
+```{r quizNA}
+quiz(
+  caption = "",
+  question("`Glasgow %>% filter(alcohol == \"1 none\")`",
+    answer("Missing values are included."),
+    answer("Missing values are ignored.", correct = TRUE),
+    answer("The result is a missing value.")
+  ),
+  question("`Glasgow %>% select(alcohol == \"1 none\")`",
+    answer("Missing values are included."),
+    answer("Missing values are ignored.", correct = TRUE),
+    answer("The result is a missing value.")
+  ),
+  question("`Glasgow %>% summarise(no_alcohol = sum(alcohol == \"1 none\"))`",
+    answer("Missing values are included."),
+    answer("Missing values are ignored."),
+    answer("The result is a missing value.", correct = TRUE)
+  )
+)
+```
+
+### Dealing with missing values
+
+Correct the code below to count the number of missing values on the `alcohol` variable in the `Glasgow` data set.
+
+```{r countNA, exercise = TRUE, eval=FALSE}
+summarise(Glasgow, alcohol_NA = (alcohol == NA))
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="countNA-hint">
+__Hint:__ We cannot use `== NA`. Check page 2 of the Data Transformation with `dplyr::` cheat sheet for a function to work with missing values (`NA`). Oh, and with how many rows do you want to end up?
+</div>
+
+```{r countNA-solution}
+summarise(Glasgow, alcohol_NA = sum(is.na(alcohol)))
+```
+
+```{r countNA-check}
+gradethis::grade_code()
+```
+
+The previous exercise does not use a pipe because we apply just one transformation. Here, a pipe is perhaps a bit too much.
+
+## New Variables from Equations
+
+In a previous exercise, you saw this code: `Glasgow %>% summarise(no_alcohol = sum(alcohol == "1 none"))`. The part `sum(alcohol == "1 none")` is weird, isn't it? How can we sum an equation?
+
+Let us inspect the relation between the new variable and the original `alcohol` variable to understand the new variable. Instead of summarizing, use `mutate()` to create a variable named `whats_this` that is the equation `(alcohol == "1 none")`. Only retain the old variable `alcohol` and the new variable `whats_this` and sort on both variables. Then scroll through the result: What is the relation between `whats_this` and `alcohol`? 
+
+```{r conditions1, exercise = TRUE}
+
+```
+
+```{r eval=FALSE}
+# correct code
+Glasgow %>% 
+  select(alcohol) %>%
+  mutate(whats_this = (alcohol == "1 none")) %>%
+  arrange(alcohol, whats_this)
+```
+
+```{r conditions1-check}
+gradethis::grade_result(
+  pass_if(~ 
+    { ncol(.result) == 2 &&
+      nrow(.result) == 480 &&
+      "alcohol" %in% names(.result) && "whats_this" %in% names(.result) &&
+      (identical(.result[[1,1]], "1 none") | identical(.result[[1,2]], "1 none") ) &&
+      sum(.result$whats_this, na.rm = TRUE) == 16
+    }, "You have correctly created a new variable, selected the two required variabls, and sorted the cases."),
+  # too many variables
+  fail_if(~ ncol(.result) != 2, "Select only the requested variables."),
+  # too few cases
+  fail_if(~ nrow(.result) != 480, "Don't aggregate cases (don't use `summarise()`)."),
+  # wrong variable selected or wrong name for new variable
+  fail_if(~ !("alcohol" %in% names(.result) && "whats_this" %in% names(.result)), "Select the requested variables and use the suggested variable name."),
+  # not sorted
+  fail_if(~ !(identical(.result[[1,1]], "1 none") | identical(.result[[1,2]], "1 none") ), "Sort by the two variables."),
+  # new variable not correctly calculated
+  fail_if(~ sum(.result$whats_this, na.rm = TRUE) != 16, "The new variable was not correctly calculated. Use the code in the above question.")
+)
+```
+
+<div class="tip" >
+__Programming Tip__
+
+- If you want to understand code, split the code in the smallest steps and inspect ths result of each step.
+</div>
+  
+In the current example, `sum(alcohol == "1 none")` does two things: it creates a new variable with `(alcohol == "1 none")` and it sums the values of this variable. If you create the variable in a separate step, using `mutate()`, you can inspect this variable before it is summed.
+
+### Counting combinations
+
+Scrolling through an entire data set is not ideal, especially not if the data set is large. For understanding the relation between the old (`alcohol`) and new variable (`whats_this`), we only have to see all combinations of values on the two variables that occur. So, let us present one row per combination and count the number of times each combination occurs (name this count variable `n`).
+
+```{r eval=FALSE}
+# correct code
+Glasgow %>% 
+  select(alcohol) %>%
+  mutate(whats_this = (alcohol == "1 none")) %>%
+  group_by(alcohol, whats_this) %>%
+  summarise(n = n())
+# shorter code
+Glasgow %>% 
+  mutate(whats_this = (alcohol == "1 none")) %>%
+  count(alcohol, whats_this)
+```
+
+```{r conditions2, exercise = TRUE}
+
+```
+
+```{r conditions2-check}
+gradethis::grade_result(
+  pass_if(~ 
+    { ncol(.result) == 3 &&
+      nrow(.result) == 6 &&
+      "alcohol" %in% names(.result) && "whats_this" %in% names(.result) &&
+        "n" %in% names(.result) &&
+      .result$whats_this[[1]] == TRUE &&
+      .result$n[[1]] == 16
+    }, "You have correctly counted each combination of the alcohol and whats_this variables."),
+  # t oo many (or) few cases
+  fail_if(~ nrow(.result) != 6, "You have to retain one row for each alcohol-whats_this combination. Use `count()` or `summarise()`."),
+  # too many variables
+  fail_if(~ ncol(.result) != 3, "Did you forget to calculate the whats_this variable or `count()`or `summarise()` the data?"),
+  # wrong variable selected or wrong names for new variables
+  fail_if(~ !("alcohol" %in% names(.result) && "whats_this" %in% names(.result) && "n" %in% names(.result)), "Use the suggested variable names."),
+  # new variable not correctly calculated
+  fail_if(~ .result$whats_this[[1]] != TRUE, "The whats_this variable was not correctly calculated. Use the code in the above question."),
+# new variable not correctly calculated
+  fail_if(~ .result$n[[1]] != 16, "The count variable was not correctly calculated.")
+)
+```
+
+Did `summarize()` preserve missing values on both variables? Check where missing values occurred in the output created by your previous answer. Does each combination of a missing value appear in the table you just created?
+
+<div class="tip" >
+__Programming Tips__
+
+- Use `count()` (or `group_by()` and `summarize(n = n())`) to better understand a variable or a combination of two or more variables.
+- Pay special attention to (combinations that involve) missing values. Missing values may create more missing values in data transformation steps.
+</div>
+
+### Mock test data
+
+Finally, how does R treat a logical variable if we `sum()` it? Time for another little trick: Use the RStudio console (or the code box below) to test what a function does. Create a small input data set and predict the output of the function. Change the code below a few times until you are certain about what `sum()` does with logical values (`TRUE`or `FALSE` or `NA`). Perhaps, it helps understanding if you also use `mean()` instead of `sum()`.
+
+```{r conditions3, exercise = TRUE, eval=FALSE}
+sum(c(TRUE, TRUE, FALSE, FALSE, NA))
+```
+
+<div id="conditions3-hint">
+__Hint:__ Actually, the help on `sum()` tells you how logicals are treated.
+</div>
+
+```{r conditions3-check}
+gradethis::grade_result(
+  fail_if(~ is.na(.result), "Don't forget to add `na.rm=TRUE` to ignore missing values."),
+  pass_if(~ { .result > 0 && .result < 1 }, "How many times do `TRUE` and `FALSE` occur? Which values must `TRUE` and `FALSE` have to get this mean score?"),
+  pass_if(~ TRUE, "How many times does `TRUE` occur? Which values must `TRUE` and `FALSE` have to get this sum score?")
+)
+```
+
+## Multi-Case Functions
+
+With `mutate()`, we usually calculate the score on a new variable from the scores on one or more other variables for the same case or row in a data matrix. For example, we calculate a new variable telling us whether or not the alcohol score of the case equals `1 none` for each student (see the preceding exercises).
+
+There are special functions, however, that use several cases to calculate the value on a new variable for each case. These are listed under **OFFSETS**, **CUMULATIVE AGGREGATES**, and **RANKINGS** on the [`dplyr` cheat sheet](https://www.rstudio.org/links/data_transformation_cheat_sheet). We have used an example in the construction of a frequency table, namely, `cumsum()`.
+
+Let us now see what happens if we use such a function in combination with grouping (`group_by()`).
+
+The `Glasgow` data set contains the number of friendships of each student in three successive waves (t1, t2, and t3). Calculate two new variables:
+
+- `prev_friendships` containing the number of friendships in the preceding wave (if any);
+- `change` that expresses the increase or decrease in a student's number of friendships from one wave to the next. 
+
+Retain only the variables `student`, `wave`, `friendships`, `prev_friendships`, and `change`, so it easy to inspect the results.
+
+```{r change, exercise = TRUE}
+
+```
+
+```{r eval=FALSE}
+# correct code
+Glasgow %>%
+  #sort on student and wave within student
+  arrange(student, wave) %>%
+  #group by student, so data for the same student is used only
+  group_by(student) %>%
+  #use lag() to calculate the difference
+  mutate( 
+    prev_friendships = lag(friendships), #number of friendships in the preceding wave (if any); this command can be included in the next
+    change = friendships - prev_friendships #difference: later minus earlier
+    ) %>%
+  select(student, wave, friendships, prev_friendships, change)
+```
+
+```{r change-check}
+gradethis::grade_result(
+  pass_if(~ {
+    #required variables created (named) and retained
+    "student" %in% names(.result) && "wave" %in% names(.result) &&
+       "friendships" %in% names(.result) && "prev_friendships" %in% names(.result) &&
+       "change" %in% names(.result) &&
+    #only required variables selected
+    ncol(.result) == 5 &&
+    #correctly sorted
+    identical(.result$student[1], "s001") && identical(.result$wave[1], "t1") &&
+    #prev_friendships correctly calculated
+    identical(.result$prev_friendships, transmute(group_by(arrange(Glasgow, student, wave), student), prev_friendships = lag(friendships))$prev_friendships) &&
+    #change correctly calculated
+    identical(.result$change, .result$friendships - .result$prev_friendships)
+    }, 
+    "You correctly sorted and grouped the data before taking the preceding value of friendships as the value for prev_friendships, which you used to calculate change."),
+  fail_if(~ !("student" %in% names(.result) && "wave" %in% names(.result) &&
+       "friendships" %in% names(.result) && "prev_friendships" %in% names(.result) &&
+       "change" %in% names(.result)), 
+       "Did you create the two new variables with the right names and retain the required variables in the data set?"),
+  fail_if(~ ncol(.result) != 5, 
+       "Did you select only the required variables in the data set at the end?"),
+  fail_if(~ !(identical(.result$student[1], "s001") && identical(.result$wave[1], "t1")), 
+        "Sort the data on student and wave before you create the new variables."),
+  fail_if(~ !(identical(.result$prev_friendships, transmute(group_by(arrange(Glasgow, student, wave), student), prev_friendships = lag(friendships))$prev_friendships)), 
+       "Did you group the data by student? Did you use the `lag()` function to create a new variable containing the number of friendships in the preceding wave?"),
+  fail_if(~ !(identical(.result$change, .result$friendships - .result$prev_friendships)), 
+        "You did not calculate the change in number of friendships correctly from `friendships` and `prev_friendships`. Did you subtract the wrong variable?")
+)
+```
+
+<div id="change-hint">
+__Hint:__ Sort the data such that the cases for a student are together and in temporal order. Consult the [cheat sheet](https://www.rstudio.org/links/data_transformation_cheat_sheet) to find the right function for using information from the preceding case. Use help on a function if the description on the cheat sheet is not clear to you.
+</div>
+
+If you managed to create the right data in the preceding exercise, you can inspect the table to see what happens if you use a multi-case function with grouping: `mutate()` only uses the cases (rows) within a group to calculate a new value. 
+
+As a result, the `prev_friendships` value of the first case for a student is missing. The code correctly decides that the value of the preceding case is not relevant.
+
+<div class="tip" >
+__Programming Tip__
+
+- If you use a multi-case function with grouping, check that the function correctly restarts within a group. Pay special attention to the first and last value within a group: are these values as they should be?
+</div>
+
+## Missing Observations
+
+In the preceding exercise, you calculated the change in number of friendships between waves. If we have information for each wave for each student, we have calculated the increase or decrease in number of friendships from wave t1 to wave t2, and from wave t2 to wave t3.
+
+What if we do not have data for a student for a wave? Perhaps a student did not complete the questionnaire in a particular wave, so there is no data at all? In that case, we may have the change in friendships from wave t1 to wave t3 instead of from wave t1 to wave t2. The data are not what we think they are, so our conclusions will be wrong.
+
+For this reason, it is important to check that we have data for each student for each wave. We prefer not to do this by eye-balling the sorted data. Instead, we try to do this with code.
+
+The code typically contains two aggregations (with `summarise()`): 
+
+1. Count the number of values per student as well as the number of cases per student;
+2. Summarize the minimum and maximum number of values of both counts over all students.
+
+If the minimum number of different waves per student is 3 and the maximum value is 3, we know that we have data on three waves for each student. If both the minimum and maximum nuber of observations per student are 3, we know that we have three observations (rows) per student.
+
+```{r eval=FALSE}
+# correct code
+Glasgow %>%
+  #for each student...
+  group_by(student) %>%
+  #count the number of different waves in the data
+  summarise(
+    n_waves = n_distinct(wave),
+    n = n()
+    ) %>%
+  #and summarise the minum and maximum number of waves (grouping is removed by default)
+  summarise(
+    min_waves = min(n_waves),
+    max_waves = max(n_waves),
+    min_n = min(n),
+    max_n = max(n)
+  )
+```
+
+Calculate the minimum and maximum number of observations per student (name the variables: `min_n` and `max_n`) and the minimum and maximum number of distinct wave values per student (name the variables: `min_waves` and `max_waves`). Do we have exactly one observations for each wave for each student?
+
+```{r missingObs, exercise = TRUE}
+
+```
+
+```{r missingObs-check}
+gradethis::grade_result(
+  pass_if(~ identical(.result, correct_result), "message"),
+  fail_if(~ identical(.result, wrong_result), "message")
+)
+```
+
+<div id="missingObs-hint">
+__Hint:__ Use the function `n_distinct()`.
+</div>
+
+<div class="tip" >
+__Programming Tip__
+
+- Never assume that data are complete. Formulate which regularities you expect in the data and check them.
+</div>
+
+## Fancy Stuff
+
+
+## Data Project

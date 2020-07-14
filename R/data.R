@@ -1,0 +1,28 @@
+#' Glasgow secondary school students.
+#'
+#' The data belong to the older of the two student cohorts in the 'Teenage
+#' Friends and Lifestyle Study', which were followed over their second, third
+#' and fourth year at a secondary school in Glasgow. The study was funded by the
+#' chief scientist office of the scottish home and health department under their
+#' smoking initiative (grant k/opr/17/8), and was executed by lynn michell and
+#' patrick west of the medical research council / medical sociology unit,
+#' university of Glasgow. The data have been joined and simplified for
+#' practicing purposes.
+#'
+#' @format A data frame with thirteen variables: 
+#' \describe{
+#'   \item{respondent}{respondent ID, as a character string}
+#'   \item{age}{respondent age, in years with one decimal digit}
+#'   \item{sex}{respondent sex, boy or girl}
+#'   \item{smoking_at_home}{any smokers at home, yes or no}
+#'   \item{smoking_parents}{smoking by at least one parent, yes or no}
+#'   \item{smoking_siblings}{smoking by at least one sibling, yes or no}
+#'   \item{wave}{time of observation, starting in February 1995, when the pupils were aged 13, and ending in January 1997}
+#'   \item{alcohol}{respondent alcohol consumption: 1 (none), 2 (once or twice a year), 3 (once a month), 4 (once a week) and 5 (more than once a week)}
+#'   \item{cannabis}{respondent cannabis consumption: 1 (none), 2 (tried once), 3 (occasional) and 4 (regular)}
+#'   \item{tobacco}{respondent tobacco consumption: 1 (none), 2 (occasional) and 3 (regular, i.e. more than once per week)}
+#'   \item{money}{respondent's pocket money per month, in British pounds}
+#'   \item{romantic}{whether the student had a romantic relation, yes or no}
+#'   \item{friendships}{number of friendship nominations received by other respondents}
+#' }
+"Glasgow"

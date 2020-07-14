@@ -1245,7 +1245,7 @@ dataName <- read_csv()
 __Programming Tips__
 
 - Use lots of comments to explain what you are trying to do. Your team mates and your future self would like to know.
-- Don't delete plots that turn out to be useless. Comment them out (add # to each line start) and add a comment explaining why it is useless. Otherwise, someone else is going to redo your work.
+- Don't delete plots that turn out to be useless. Comment them out (add # to each line start) and add a comment explaining why they are useless. Otherwise, someone else is going to redo your work.
 </div>
 
 ```{r DataProject2, exercise = TRUE}
