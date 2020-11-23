@@ -1,6 +1,9 @@
 ---
 title: "Session 1: Introduction"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
 runtime: shiny_prerendered
 description: >
   Check your understanding of RStudio, loading packages and data;
@@ -62,13 +65,17 @@ question(
 )
 ```
 
-If the tidyverse package is not installed, install it now. Use `Install Packages...` from the `Tools` menu or run the command `install.packages("tidyverse")` in the _Console_ tab of the RStudio interface. Note the quotes: _tidyverse_ is the name of a file here.
+If the tidyverse package is not installed, install it now. Use `Install Packages...` from the `Tools` menu or run the command `install.packages("tidyverse")` in the _Console_ tab of the RStudio interface. Note the quotes: _tidyverse_ is a name (of a file) here.
 
-Tip: During install, you may be asked if you want to install sources that need compilation. Answer __No__.
+Tip: While installing a package, you may be asked if you want to install sources that need compilation. Answer __No__.
 
 ### Load the tidyverse package
 
-We have to install a package only once, but we have to load it in our R session before we can use it. Load the most common tidyverse packages by loading the tidyverse package.
+We have to install a package only once, but we have to load it in our R session before we can use it. 
+
+Load the most common tidyverse packages by loading the tidyverse package in RStudio.
+
+You cannot load a package in the RStudio interface from this tutorial. Use the answer box below to test the command that you build. If you have the correct command, copy it to the RStudio Console and run it there by pressing Enter.
 
 ```{r library, exercise=TRUE}
 
@@ -94,19 +101,17 @@ library(tidyverse)
 gradethis::grade_code()
 ```
 
-You cannot load a package from this tutorial. If you have the correct command, copy it to the RStudio Console and run it there by pressing Enter.
-
 **Tip**: If a package is loaded, its box in the Packages panel is checked.
 
 **Tip**: You can run a command also by putting the cursor somewhere within the command and press Ctrl-Enter (Windows) or Cmd-Return (Mac).
 
-Go back to this tutorial when you have checked that the `tidyverse` package is loaded.
+Come back to this tutorial when you have checked that the `tidyverse` package is loaded in RStudio.
 
 ### Load and inspect data
 
 The list of installed (and loaded) packages includes the `datasets` package, which contains data sets that can directly be used. Normally, however, we load our own data from a file.
 
-Load the data file named `http://82.196.4.233:3838/www/consumers.csv` directly from the internet into a data object called `consumers` in R. 
+In the RStudio interface, load the data file named `http://82.196.4.233:3838/www/consumers.csv` directly from the internet into a data object called `consumers`. 
 
 Use the tidyverse command, not the base R command!
 
@@ -179,16 +184,22 @@ __Q3. What are the first names of the first and twentieth person in the data set
 #Note that entering names not as strings yields a parse error.
 gradethis::grade_result(
   pass_if(
-    function(x) {stringr::str_detect(x, "Asleigh") &
+    function(x) {stringr::str_detect(x, "Ashleigh") &
         stringr::str_detect(x, "Thaamira")}, 
-    "The names are indeed Asleigh and Thaamira."),
-  fail_if(function(x) {stringr::str_detect(x, "Asleigh")}, 
-    "Asleigh is correct, but the name of the twentieth person is missing or wrong. Use the spreadsheet button in the row of the Environment tab to view the data."),
+    "The names are indeed Ashleigh and Thaamira."),
+  fail_if(function(x) {stringr::str_detect(x, "Ashleigh")}, 
+    "Ashleigh is correct, but the name of the twentieth person is missing or wrong. Use the spreadsheet button in the row of the Environment tab to view the data."),
   fail_if(function(x) {stringr::str_detect(x, "Thaamira")}, 
-    "Thaamira is correct, but the name of the twentieth person is missing or wrong. Use the spreadsheet button in the row of the Environment tab to view the data."),
+    "Thaamira is correct, but the name of the first person is missing or wrong. Use the spreadsheet button in the row of the Environment tab to view the data."),
   fail_if(~ TRUE, "Use the spreadsheet button in the row of the Environment tab to view the data.")
 )
 ```
+
+### End of RStudio interface exercises
+
+In the remainder of this tutorial, you will execute your R code within this tutorial instead of copying it into RStudio. 
+
+The code boxes in the tutorial work in the same way as the RStudio console. Anything you learn to do in a tutorial code box, you can also do in RStudio, for example, when you are working on your data project. Remember that.
 
 ## Functions
 
@@ -196,7 +207,7 @@ We use functions in R to accomplish something. Let us review the main characteri
 
 ### Function arguments
 
-Function arguments specify the input for a function. Arguments can be named (more typing, less confusion) and unnamed (less typing, more confusion). 
+Function arguments specify the input for a function. Arguments can be named (more typing, less confusion) and unnamed (less typing, more confusion). The tutorials expect you to name the arguments. 
 
 What does the command (below) do? Add the argument names to the arguments in the function.
 
@@ -223,7 +234,7 @@ gradethis::grade_code(
 __Programming Tips__
 
 - Run code and have a look at the output to figure out what the arguments mean.
-- Look up the arguments of the function in the Help page or from the code completion options shown when you start typing within the brackets.
+- Look up the arguments of the function in the Help page or from the code completion options shown when you start typing within the brackets. __Hint__: In the RStudio interface, put your cursor in the name of a function and press F1 to get help.
 - If the code is not valid, R displays an error message if the code is run. Correct the mistake before you continue.
 - Run the updated code to see if the results are what they should be.
 </div>
@@ -233,8 +244,6 @@ Use this programming approach to find out what the `length.out` argument means.
 ```{r argumentsNamed2, exercise = TRUE}
 seq(1, 15, length.out = )
 ```
-
-__Hint__: In the RStudio interface, put your cursor in the name of a function and press F1 to get help.
 
 Correct the code below, which should give integer numbers from 10 down to 1.
 
@@ -248,7 +257,7 @@ __Hint:__ What does the error message say if you run the code?
 </div>
 
 ```{r argumentsNamed3-solution}
-seq(10, 1, -1)
+seq(from = 10, to = 1, by = -1)
 ```
 
 ```{r argumentsNamed3-check}
@@ -260,9 +269,9 @@ gradethis::grade_code()
 In the previous exercises, the function results are send to the screen. Now, store the results of the three functions below in data objects named `my_output`, `my_Output`, and `my_output` respectively.
 
 ```{r output1, exercise = TRUE}
-seq(1, 20, 1)
-seq(10, 20, 1)
-seq(10, 10, 1)
+seq(from = 1, to = 20, by = 1)
+seq(from = 10, to = 20, by = 1)
+seq(from = 10, to = 10, by = 1)
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -271,16 +280,16 @@ __Hint:__ Spell names correctly. R is case-sensitive: lower case is different fr
 </div>
 
 ```{r output1-solution}
-my_output <- seq(1, 20, 1)
-my_Output <- seq(10, 20, 1)
-my_output <- seq(10, 10, 1)
+my_output <- seq(from = 1, to = 20, by = 1)
+my_Output <- seq(from = 10, to = 20, by = 1)
+my_output <- seq(from = 10, to = 10, by = 1)
 ```
 
 ```{r output1-check}
 gradethis::grade_code()
 ```
 
-If your code is correct, copy and paste it to the RStudio console to create the data objects there. Now, you can inspect them in the __Environment__ tab. What does the data object `my_output` contain? Enter the value below.
+What does the data object `my_output` contain? Enter the value(s) below.
 
 ```{r cleanUp2, exercise = TRUE}
 
@@ -289,7 +298,7 @@ If your code is correct, copy and paste it to the RStudio console to create the 
 ```{r cleanUp2-check}
 gradethis::grade_result(
   pass_if(10, "The first data object created with the name `my_output` is overwritten by the data object last created because they have the same name. In this way, a data object may not contain the data that you initially intended it to contain. Be careful!"),
-  fail_if(~ TRUE, "Check out the data objects that you created in the RStudio interface.")
+  fail_if(~ TRUE, "If you run 'my_output', you can see what it contains.")
 )
 ```
 
@@ -413,7 +422,9 @@ gradethis::grade_code(
 
 Does gender moderate the effect of exposure on brand awareness? In other words, do females and males have different regression lines?
 
-Create separate regression lines of different colours for females and males. Use shape instead of color to distinguish between respondents who heard about the brand by word of mouth and those who did not.
+* Create separate regression lines of different colors for females and males. 
+* Ensure that dots for females and males have different colors.
+* Use shape (instead of color) to distinguish between respondents who heard about the brand by word of mouth and those who did not.
 
 ```{r plot_adapt, exercise=TRUE, warning=FALSE, message=FALSE}
 
@@ -450,7 +461,7 @@ ggplot(
 
 ```{r plot_adapt-check}
 gradethis::grade_code(
-  correct = "Within the `aes()` function, we can link a (categorical) variable to a particular aesthetic, in this example, to color. Each group then receives its own color and its own regression line. Now, we use color as an aesthetic, not as a constant ('black')."
+  correct = "Within the `aes()` function, we can link a variable to a particular aesthetic, in this example, to color. Each group then receives its own color and its own regression line. Now, we use color as an aesthetic, not as a constant ('black')."
   )
 ```
 
@@ -486,12 +497,12 @@ ggplot(
     method = "lm",
     se = FALSE
     ) +
-  facet_wrap(~ wom) +
   labs(
     title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    )
+    ) +
+  facet_wrap(vars(wom))
 ```
 
 ```{r plot_facet-check}
@@ -631,15 +642,15 @@ ggplot2::ggplot(
     method = "lm",
     se = FALSE,
     ) +
-  geom_text(
-    aes(label = firstname),
-    nudge_y = 0.4,
-    check_overlap = TRUE
-    ) +
   labs(
     title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
+    ) +
+  geom_text(
+    aes(label = firstname),
+    nudge_y = 0.4,
+    check_overlap = TRUE
     )
 ```
 
@@ -711,17 +722,17 @@ ggplot2::ggplot(
     method = "lm",
     se = FALSE,
     ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
   geom_segment(
     x = 1, xend = 1, y = 4, yend = 2,
     arrow = arrow(
       type = "closed"
     )
-  ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    )
+  )
 ```
 
 ```{r plot_primitives, exercise=TRUE}
@@ -775,9 +786,9 @@ Once you master the `ggplot2` package and other packages for creating plots (see
 
 We will use the following criteria in this course:
 
-1. The data visualization is sufficiently complex to tell a story. For example, it presents both a pattern (as a first impression) and deviations from this pattern (inviting reflection about the pattern) without being overwhelming because of too much information.
+1. The data visualization is sufficiently complex to tell a story. For example, it presents both a pattern (as a first impression) and deviations from this pattern (inviting reflection about the pattern). The deviations, however, should not be overwhelming because of too much information.
 
-2. The data visualization is self-explanatory. It should be comprehensible without reading the accompanying text. For example, use informative, readable labels.
+2. The data visualization is self-explanatory. It should be comprehensible if it is presented by itself. For example, use informative, readable labels.
 
 3. The data visualization gives an accurate, not a biased view of the data. For example, sizes should accurately reflect quantity.
 
@@ -817,7 +828,7 @@ output$regPlot <- renderPlot({
     ) +
     scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
     scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
-    theme_bw()
+    theme_bw( base_size = 14 )
   
   ## Create plot versions
   if (input$radio == 1) { 
@@ -895,7 +906,7 @@ output$regPlot <- renderPlot({
 
 ## Debugging
 
-Your friend tried to create a non-stacked bar chart showing the proportion of females in the consumers data set who heard by word of mouth against the proportion who did not as well as the proportion of males who heard and who did not hear by word of mouth.
+Your friend tried to create a non-stacked bar chart showing the proportion of females in the consumers data set who heard by word of mouth against the proportion who did not, as well as the proportion of males who heard and who did not hear by word of mouth.
 
 Your friend did not manage to get the code to work. Can you do that?
 ```{r debug, exercise = TRUE, eval=FALSE}
@@ -954,7 +965,7 @@ The code below creates an animated gif using [Gapminder](https://www.gapminder.o
 
 Note that it takes quite some time to generate the animation.
 
-```{r gganimate1, exercise=TRUE, eval=FALSE}
+```{r gganimate1, exercise=TRUE, exercise.lines = 32, eval=FALSE}
 # Install the following packages if they haven't been installed.
 library(gganimate)
 library(gifski)
@@ -978,7 +989,7 @@ g <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
 # And here, we show the animated plot.
 animate(
   plot = g, #gganimate plot to be shown
-  nframes = 78, #1 frame for each year from 1952 to 2007 plus 2x11  additional frames for 
+  nframes = 78, #1 frame for each year from 1952 to 2007 plus 2x11 additional frames for start and end 
   renderer = gifski_renderer( #save as animated GIF
     file = "gapminder.gif",
     loop = TRUE
@@ -997,15 +1008,17 @@ __Programming Tip__
 - Carefully inspect the results created by packages that do a lot of work for you. They may do things that you do not want.
 </div>
 
-Movement is fascinating but it can also be frustrating if the user cannot pause or determine the speed of the animation. Evaluate the pros and cons of animations critically.
+Movement is fascinating but it can also be frustrating if the user cannot pause or determine the speed of the animation. _Evaluate the pros and cons of animations critically._
 
 ### `ggplotly()` in the `plotly` package
 
-The `plotly` library is designed for creating interactive graphics. It has its own language for creating graphs but for the `ggplot` user, it provides a function to change a `ggplot` plot into an interactive `plotly` plot.
+The `plotly` library is designed for creating interactive graphics. It has its own language for creating graphs but for the `ggplot` user, it provides the 'ggplotly()' function to change a `ggplot` plot into an interactive `plotly` plot.
 
-The `plotly` library offers the option to zoom, select items in the graph, and see additional information about the items in the graph. Install the packages if necessary, and run the code to see the graph. If you carefully position your cursor on a dot, the respondent's first name will pop up (works better if you select the *Compare data on hover* option).
+The `plotly` library offers the option to zoom, select items in the graph, and see additional information about the items in the graph. 
 
-```{r plotly1, exercise=TRUE}
+Install the packages in RStudio if necessary, and run the code to see the graph. If you carefully position your cursor on a dot, the respondent's first name will pop up (works better if you select the *Compare data on hover* option).
+
+```{r plotly1, exercise=TRUE, exercise.lines = 26}
 #install these packages to run the code
 library(plotly) 
 library(gapminder) #contains the data used here
@@ -1114,7 +1127,7 @@ server <- function(input, output, session) {
       ) +
       scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
       scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
-      theme_bw()
+      theme_bw( base_size = 14 )
     
     ## Create a plot version for each radio option
     if (input$radio == 1) { 
@@ -1229,15 +1242,28 @@ Check out the [Shiny demos gallery](https://shiny.rstudio.com/gallery/#demos) fo
 
 Plots are very useful for getting a first idea of your data. With the members of your group, use `ggplot` plots to describe variables and relations between variables in (one of) your Data Project file(s). 
 
-Download the Data Project data file(s) to a directory that you create for your Data Project. In the context of this tutorial, you must load the data in each code box (in RStudio, you only load it once).
+Download the Data Project data file(s) to a directory that you create for your Data Project.
 
-As long as you do not press the *Start Over* button, the code (and plots) are preserved in this tutorial. 
+The tutorial must be able to find this data set, so you have to make the Data Project directory your working directory:
+
+* In RStudio, use the _Session_ menu, _Set Working Directory_, _Choose Directory_ option.
+* In the dialog screen, find the Data Project directory that you created and press _Open_.
+* Copy the setwd() command from the RStudio console to the code box in the tutorial.
+
+As long as you do not press the *Start Over* button, the code (and plots) are preserved in this tutorial, so you can use the code later. 
 
 ```{r DataProject1, exercise = TRUE}
-# Load your data.
-dataName <- read_csv()
+# Set your Data Project directory as working directory.
+# (Copy the setwd() command from RStudio here.)
 
-# Create a plot.
+# Load your data in the object myData.
+myData <- read_csv()
+
+# Have a look at the variables in your data.
+str(myData)
+
+# Create your first plot.
+ggplot()
 
 ```
 
@@ -1248,35 +1274,37 @@ __Programming Tips__
 - Don't delete plots that turn out to be useless. Comment them out (add # to each line start) and add a comment explaining why they are useless. Otherwise, someone else is going to redo your work.
 </div>
 
-```{r DataProject2, exercise = TRUE}
-# Load your data.
-dataName <- read_csv()
+In the context of this tutorial, you must load the data in each code box (in RStudio, you only load it once).
 
-# Create a plot.
+```{r DataProject2, exercise = TRUE}
+# Load your data in the object myData.
+myData <- read_csv()
+
+# Create a second plot.
 
 ```
 
 ```{r DataProject3, exercise = TRUE}
-# Load your data.
-dataName <- read_csv()
+# Load your data in the object myData.
+myData <- read_csv()
 
-# Create a plot.
+# Create a third plot.
 
 ```
 
 ```{r DataProject4, exercise = TRUE}
 # Load your data.
-dataName <- read_csv()
+myData <- read_csv()
 
-# Create a plot.
+# Create a fourth plot.
 
 ```
 
 ```{r DataProject5, exercise = TRUE}
 # Load your data.
-dataName <- read_csv()
+myData <- read_csv()
 
-# Create a plot.
+# Create a fifth plot.
 
 ```
 
