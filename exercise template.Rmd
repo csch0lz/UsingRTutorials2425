@@ -1,0 +1,175 @@
+---
+title: "Exercise template"
+author: "Wouter"
+date: "7/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Styles to be included at the top of the document
+<!-- Define programming tip style -->
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+
+<!-- Define question style -->
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+
+
+## Code hint
+
+More than one hint possible.
+
+```{r exerciselabel-hint-1}
+
+```
+
+
+## Markdown (text) hint
+
+Only one hint possible.
+
+<div id="exerciselabel-hint">
+__Hint:__ hinttext.
+</div>
+
+## Programming Tip
+
+<div class="tip" >
+__Programming Tip__
+
+- 
+</div>
+
+## Question style
+
+<div class="question" >
+</div>
+
+## Exercise with result checker
+
+```{r exerciselabel, exercise = TRUE}
+
+```
+
+```{r exerciselabel-check}
+gradethis::grade_result(
+  pass_if(~ identical(.result, correct_result), "message"),
+  fail_if(~ identical(.result, wrong_result), "message")
+)
+```
+
+## Exercise with conditions checker
+
+```{r exerciselabel, exercise = TRUE}
+
+```
+
+```{r exerciselabel-check}
+gradethis::grade_conditions(
+  pass_if(~ identical(.result, correct_result), "message"),
+  fail_if(~ identical(.result, wrong_result), "message")
+)
+```
+
+## Exercise with code checker
+
+```{r exerciselabel, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="exerciselabel-hint">
+__Hint:__ hinttext.
+</div>
+
+```{r exerciselabel-solution}
+"replace this by the correct code (pipe as one line)"
+```
+
+```{r exerciselabel-check}
+gradethis::grade_code(
+  correct = "message", 
+  incorrect = "message"
+  )
+```
+
+## Quiz
+
+```{r quiz}
+quiz(
+  caption = "",
+  question("Which package contains functions for installing other R packages?",
+    answer("base"),
+    answer("tools"),
+    answer("utils", correct = TRUE),
+    answer("codetools")
+  ),
+  question("Which of the R packages listed below are used to create plots?",
+    answer("lattice", correct = TRUE),
+    answer("tools"),
+    answer("stats"),
+    answer("grid", correct = TRUE)
+  )
+)
+```
+
+## Installation
+
+- Student must install the learnr (and gradethis?) package(s) before a tutorial can be taken.
+- Tutorials must be installed with `devtools::install_github("WdeNooy/UsingRTutorials")`. Install `devtools` package, which seems to need the `backports` package.
+- Updating the files on GitHub automatically updates the UsingRTutorials package: re-install/update it and you have the updated package.
+
+##Starting a tutorial
+
+- console: `learnr::run_tutorial("introduction", "UsingRTutorials")`; opens in browser.
+- _Tutorials_ tab in RStudio: Press button _Start Tutorial_ and, when started in the tab, open in new window (cannot be opened in a browser). NOTE: once the `UsingRTutorials` package is installed, the tutorials show up in the _Tutorials_ tab (may take a few seconds), regardless of whether the tutorials package is loaded or not.
+
+## Notes on `learnr`
+
+- While a `learnr` tutorial is running, RStudio _Help_ and _Packages_ tabs can be used, packages can be installed in RStudio, commands can be run from the console, and it is possible to run a shiny app from RStudio. So a lot of functionality of the RStudio interface can be used. 
+-	Packages cannot be installed (must be done in RStudio). 
+-	Packages (libraries) loaded within a tutorial (RMarkdown file) are available in all exercises within learnr, including exercises positioned before loading the package, but not within the RStudio interface. 
+-	A data set loaded in the Rmd document is available for all exercises, including exercises positioned before loading the data set.
+-	A data set imported/read in one exercise (code box) cannot be used in another code box and is not present in the RStudio environment.
+- It is not possible to run a shiny app from within the tutorial.
+-	I can’t make an external CSS file to work, so the (programming) tip style is defined in the tutorial.
+
+## Notes on `gradethis`
+
+-	The provided solution is directly accessible to the student unless we add one (not more!) Markdown (text) hint. A code chunk hint is displayed as a separate answer box if there is a code chunk check.
+-	Sometimes displays message “Last value being used to check answer is invisible. See `?invisible` for more information”. Tell students to ignore this message.
+
+With grade_code(): 
+
+-	If the correct answer does not specify argument names, argument names are considered incorrect and vice versa. Note that the “mapping =” argument does not throw an error.
+	  + Can handle pipes and it can spot the location in a pipe where code starts to diverge as long as the correct answer is a pipe without new line characters. (Note: some gradethis builds throw an error: “Error occured while checking the submission”).
+	  +	We cannot address the code itself in grade_result() (or any of the other gradings?).
+	  
+With grade_result(): 
+
+- Use a tilde if you use .result to refer to the resulting object:
+    fail_if(~ ncol(.result) != 4, "Too few variables!”)
+- but do not use a tilde if you use a function:
+    fail_if(function(x) {ncol(x) != 4}, "Too few variables!”)
+-	if you use more than one criterion, put hem between {}:
+    pass_if( ~ {nrow(.result) == 13 && ncol(.result) == 4 && identical(names(.result), c("friendships", "Freq", "Perc", "CumPerc")) && round(.result[[1, 3]]) == 13  && round(.result[[2, 4]]) == 25 }, “some message”)
+
+Comparing ggplots: 
+
+- compare the code: any difference in the order of layers yields a fail message(?)
+- compare the str (structure) output of each object:
+    +	Within the –check code chunk, create the correct plot:
+      a <- ggplot() + <…>
+    +	Compare the user’s plot as a structure (list of strings?) to the correct plot
+      pass_if( ~ diffobj::diffStr(.result, a)@diff.count.full == 0, "ok")
+    +	Or: A visual solution would be to look at the final svg produced by ggplot2. vdiffr::write_svg(). If the svg values are the same, then the image is the same.  https://github.com/rstudio-education/gradethis/issues/97 
