@@ -125,8 +125,8 @@ quiz(
 
 ## Installation
 
-- Student must install the learnr (and gradethis?) package(s) before a tutorial can be taken.
-- Tutorials must be installed with `devtools::install_github("WdeNooy/UsingRTutorials")`. Install `devtools` package, which seems to need the `backports` package.
+- Student must install the `learnr` (`install.packages("learnr")`) and `gradethis` (`remotes::install_github("rstudio-education/gradethis"`, which will also install `learnr`) packages before a tutorial can be taken.
+- Tutorials must be installed with `devtools::install_github("WdeNooy/UsingRTutorials")`. First install `devtools` package, which may require to update all other packages first.
 - Updating the files on GitHub automatically updates the UsingRTutorials package: re-install/update it and you have the updated package.
 
 ##Starting a tutorial
