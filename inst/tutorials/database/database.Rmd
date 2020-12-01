@@ -173,7 +173,7 @@ Optimal data structure for data management (efficiency and consistency):
 
 The data set for this tutorial, `GlasgowFriends` is very untidy. Let us tidy it up in steps to check that you understand the concept of tidy data and are able to tidy your Data Project data.
 
-Data arising from practical sources or research designs other than the most simple ones, usually contain information about different types of cases. For example, a dat set may contain data (information) that is specific for a person, for an organization, for a particular moment in time. In addition, there can be information that is specific for a combination of case types, for example, information for a person at a particular moment in time.
+Data arising from practical sources or research designs other than the most simple ones, usually contain information about different types of cases. For example, a data set may contain data (information) that is specific for a person, for an organization, for a particular moment in time. In addition, there can be information that is specific for a combination of case types, for example, information for a person at a particular moment in time.
 
 For understanding and tidying your data, it is paramount to identify the types of cases in your data.
 
@@ -330,7 +330,34 @@ GlasgowFriends %>%
 # In the output of this code, 'n_distinct' gives the number of different ages encountered per student. Column 'n' gives the number (frequency) of students.
 ```
 
+<div class="tip" >
+__Programming Tip__
+
+- Be systematic and precise!
+- For example, if a primary key is defined as _the smallest set of variables for which every case has a unique combination of values_, check both parts of the definition: 
+    (1) Every case has a unique combination of values,
+    (2) And this is the smallest set of variables for which 1 holds.
+</div>
+
 ###
 
-Now that we have identified the types of cases in the data set and linked the variables to the types of cases, we can start tidying the data set: We are going to create a separate data frame
+Now that we have identified the types of cases in the data set and linked the variables to the types of cases, we can start tidying the data set: We are going to create a separate tibble for each type of case and we remove duplicates from eahc new table.
+
+Why do we do that? Because this way, each piece of information is stored only once:
+
+- No notational variations, e.g., a person's social security number cannot be different in different cases.
+- Easy editing/updating: change/add a value only in one place.
+- Max storage efficiency: no repetition of information.
+- Information is stored by type of cases: easier to find.
+- Any multilevel structure of the data is clear from the presence of different tables (for statistical analysis).
+
+<div class="question" >
+Use your data wrangling skills from Session 2 and the [data transformation cheatsheet](https://www.rstudio.org/links/data_transformation_cheat_sheet) to create a tibble for each type of case in `GlasgowFriends`.
+</div>
+
+```{r studenttable, exercise = TRUE}
+# Your code to create a table for student information without duplicates:
+
+```
+
 
