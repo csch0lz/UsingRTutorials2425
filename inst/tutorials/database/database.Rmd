@@ -1,0 +1,139 @@
+---
+title: "Session 3: Principles of Database Management"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+    Check your understanding of the tidyverse functions for managing relational data, 
+    learn how to wrangle in steps and check each step,
+    and start continue working on your Data Project.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(knitr)
+
+tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+# Ensure that library is loaded.
+library(tidyverse)
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+GlasgowFriends <- UsingRTutorials::GlasgowFriends
+```
+
+<!-- Define programming tip style -->
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+
+<!-- Define question style -->
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+
+## Variables and Cases
+
+Originating from a language for statistical analysis (the S language), data in R are conceptualized primarily as variables. More precisely, a variable is called an _atomic vector_: a sequence of values of the same type (logical, integer, double, character, complex, raw).
+
+R does not require that variables are joined in a data matrix. 
+
+<div class="question" >
+Use the `runif()` function to create a vector `var1` of 100 random numbers between 12 and 18. Use the same function to create a second vector (`var2`) of 100 random numbers between 1 and 10. Finally, calculate the Spearman correlation between the two vectors. Is the rank correlation between two random variables zero?
+</div>
+
+```{r atomic, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="atomic-hint">
+__Hint:__ No piping now; we cannot pipe atomic vectors, we can only pipe data frames.
+</div>
+
+```{r atomic-solution}
+var1 <- runif(100, min = 0, max = 1)
+var2 <- runif(100, min = 1, max = 2)
+cor(var1, var2, method = "spearman")
+```
+
+```{r atomic-check}
+gradethis::grade_code(
+  correct = "With random variables, the result will vary but most of the times there is a weak positive or negative rank correlation.", 
+  incorrect = "Store the vectors under the names specified in the question."
+  )
+```
+
+The two vectors `var1` and `var2` that you have just created are of equal length. Function `cor()` produces an error if you attempt to calculate a correlation between two vectors of unequal length (check that by changing the above code). This is because R links the first element (number) of vector `var1` to the first element (number) of vector `var2`. It assumes that these two numbers refer to the same case. For example, `var1` may express a student's age and `var2` may express their grade for an IQ test.
+
+<div class="question" >
+What happens to the rank correlation between `var1` and `var2` if you first sort each vector (store the sorted vectors as `vector1sorted` and `vector2sorted`.) 
+</div>
+
+Note: We cannot use the tidyverse function `arrange()` because tidyverse functions work on data frames (see below), not on individual atomic vectors. or once, use the `sort()` function.
+
+```{r atomicsorted, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="atomicsorted-hint">
+__Hint:__Create new data objects (with the suggested names) for the two sorted vectors.
+</div>
+
+```{r atomicsorted-solution}
+"replace this by the correct code (pipe as one line)"
+```
+
+```{r atomicsorted-check}
+gradethis::grade_code(
+  correct = "Because both variables are sorted from small to large, there is (nearly) perfect rank correlation. Cases with lower scores on one variable are matched to case with lower scores on the other variable.", 
+  incorrect = ""
+  )
+```
+
+
+
+
+    Data frame: set of vectors of the same length.
+        Vector = variable (column) in a data frame.
+        Vector must contain an observation for each case (row).
+        R is column oriented!
+
+    Tibble: Data frame with easy printing (few cases to screen) and no sneaky changes.
+        Tidyverse functions (e.g., read_csv()) produce tibbles, base R functions produce data frames.
+
+
+Example
+
+##Just for fun: Create a tibble.
+tibble(
+  var1 = c("a", "b", NA, "d"),
+  var2 = rnorm(4),
+  var3 = 12:15
+)
+
+## # A tibble: 4 x 3
+##   var1    var2  var3
+##   <chr>  <dbl> <int>
+## 1 a      2.15     12
+## 2 b      1.36     13
+## 3 <NA>  -0.282    14
+## 4 d     -0.654    15
+
+Four cases, each with a value (possibly NA) on each of the variables.
+
+    c() for creating a vector from a set of values.
+    NA is not text, so it is not quoted.
+    rnorm(4): 4 random normal numbers (default: M = 0, SD = 1).
+    12:15: integers 12 to 15 (same as seq(from = 12, to = 15, by = 1)).

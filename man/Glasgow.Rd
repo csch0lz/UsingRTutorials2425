@@ -7,7 +7,7 @@
 \format{
 A data frame with thirteen variables: 
 \describe{
-  \item{respondent}{respondent ID, as a character string}
+  \item{student}{respondent ID, as a character string}
   \item{age}{respondent age, in years with one decimal digit}
   \item{sex}{respondent sex, boy or girl}
   \item{smoking_at_home}{any smokers at home, yes or no}
