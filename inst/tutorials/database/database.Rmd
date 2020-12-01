@@ -46,11 +46,19 @@ GlasgowFriends <- UsingRTutorials::GlasgowFriends
 
 Originating from a language for statistical analysis (the S language), data in R are conceptualized primarily as variables. More precisely, a variable is called an _atomic vector_: a sequence of values of the same type (logical, integer, double, character, complex, raw).
 
+###
+
 R does not require that variables are joined in a data matrix. 
 
 <div class="question" >
-Use the `runif()` function to create a vector `var1` of 100 random numbers between 12 and 18. Use the same function to create a second vector (`var2`) of 100 random numbers between 1 and 10. Finally, calculate the Spearman correlation between the two vectors. Is the rank correlation between two random variables zero?
+Use the `runif()` function to create a vector `var1` of 100 random numbers between 12 and 18. Use the same function to create a second vector (`var2`) of 100 random numbers between 1 and 10. Finally, calculate the Spearman correlation between the two vectors with the `stats::cor()` function. Is the rank correlation between two random variables zero?
 </div>
+
+```{r atomic_answer_hidden, eval=FALSE}
+var1 <- runif(n = 100, min = 12, max = 18)
+var2 <- runif(n = 100, min = 1, max = 10)
+cor(var1, var2, method = "spearman")
+```
 
 ```{r atomic, exercise = TRUE}
 
@@ -61,79 +69,268 @@ Use the `runif()` function to create a vector `var1` of 100 random numbers betwe
 __Hint:__ No piping now; we cannot pipe atomic vectors, we can only pipe data frames.
 </div>
 
-```{r atomic-solution}
-var1 <- runif(100, min = 0, max = 1)
-var2 <- runif(100, min = 1, max = 2)
-cor(var1, var2, method = "spearman")
+```{r atomic-check}
+gradethis::grade_result(
+  pass_if(~ !identical(.result, 0), "With random variables, the result will vary but most of the times there is a weak positive or negative rank correlation. By the way, I cannot check if you used the Spearman method."),
+  fail_if(~ identical(.result, 0), "In the first line, create the first vector, in the second line the second vector, and in the third line calculate the correlation.")
+)
 ```
 
-```{r atomic-check}
-gradethis::grade_code(
-  correct = "With random variables, the result will vary but most of the times there is a weak positive or negative rank correlation.", 
-  incorrect = "Store the vectors under the names specified in the question."
-  )
-```
+###
 
 The two vectors `var1` and `var2` that you have just created are of equal length. Function `cor()` produces an error if you attempt to calculate a correlation between two vectors of unequal length (check that by changing the above code). This is because R links the first element (number) of vector `var1` to the first element (number) of vector `var2`. It assumes that these two numbers refer to the same case. For example, `var1` may express a student's age and `var2` may express their grade for an IQ test.
 
 <div class="question" >
-What happens to the rank correlation between `var1` and `var2` if you first sort each vector (store the sorted vectors as `vector1sorted` and `vector2sorted`.) 
+What happens to the rank correlation between `var1` and `var2` if you first sort each vector? Copy the code from the previous code box as your starting point.
 </div>
 
-Note: We cannot use the tidyverse function `arrange()` because tidyverse functions work on data frames (see below), not on individual atomic vectors. or once, use the `sort()` function.
+Note: We cannot use the tidyverse function `arrange()` because tidyverse functions work on data frames (see below), not on individual atomic vectors. For once, use the `base::sort()` function.
+
+```{r atomicsorted_answer_hidden, eval=FALSE}
+var1 <- sort(runif(n = 100, min = 12, max = 18))
+var2 <- sort(runif(n = 100, min = 1, max = 10))
+cor(var1, var2, method = "spearman")
+```
 
 ```{r atomicsorted, exercise = TRUE}
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="atomicsorted-hint">
-__Hint:__Create new data objects (with the suggested names) for the two sorted vectors.
-</div>
-
-```{r atomicsorted-solution}
-"replace this by the correct code (pipe as one line)"
-```
-
 ```{r atomicsorted-check}
 gradethis::grade_code(
-  correct = "Because both variables are sorted from small to large, there is (nearly) perfect rank correlation. Cases with lower scores on one variable are matched to case with lower scores on the other variable.", 
+  correct = "", 
   incorrect = ""
+  )
+gradethis::grade_result(
+  pass_if(~ .result > 0.999, "Because both variables are sorted from small to large, there is (nearly) perfect rank correlation. Cases with lower scores on one variable are matched to case with lower scores on the other variable."),
+  fail_if(~ .result <= 0.999, "Create data objects for the two sorted vectors before you calculate the correlation. Did you use Spearman's correlation?")
+)
+```
+
+###
+
+Working with individual atomic vectors, then, is hazardous. If the order of cases differs between vectors, the wrong values are linked, and the results are wrong.
+
+For this reason, atomic vectors (of the same length) are usually combined into data frames or in tibbles, which are data frames with easy printing (few cases to screen) and no sneaky changes. Note that vectors are the columns in a data frame or tibble. R is column oriented!
+
+Tidyverse functions produce tibbles, base R functions produce data frames. If you have to use functions outside of the tidyverse suite, you may have to change your tibble back into a data frame.
+
+<div class="question" >
+Check that you understand tibbles: Create the tibble depicted below with one command (no piping). Mind the details!
+</div>
+
+```{r tibbleShown}
+tibble(
+  var1 = c("a", "b", NA, "d"),
+  `standard normal random number` = rnorm(4, mean = 0, sd = 1),
+  numbers12_15 = seq(from = 12, to = 15, by = 1),
+  success = c( FALSE, FALSE, TRUE, FALSE)
+)
+```
+
+```{r tibble, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="tibble-hint">
+__Hint:__ Use `c()` for creating a vector from a set of values unless you can create the vector with a function. A standard normal distribution has mean 0 and standard deviation 1.
+</div>
+
+```{r tibble-solution}
+tibble( var1 = c("a", "b", NA, "d"), `standard normal random number` = rnorm(4, mean = 0, sd = 1), numbers12_15 = seq(from = 12, to = 15, by = 1), success = c( FALSE, FALSE, TRUE, FALSE) )
+```
+
+```{r tibble-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "(If you used `12:15` instead of `seq()` to create the third variable, that is OK.)"
   )
 ```
 
+## Tidy Data: EveRything In One Place
 
+Optimal data structure for data management (efficiency and consistency):  
 
+1. Each type of case must have its own table.  
+    + Don't repeat the same information in different rows.  
+    + Split the table.  
+    + _R for Data Science_ does not discuss this much.
 
-    Data frame: set of vectors of the same length.
-        Vector = variable (column) in a data frame.
-        Vector must contain an observation for each case (row).
-        R is column oriented!
+2. Each variable must have its own column.  
+    + Don't stack different types of information in the same column.
+    + Spread information over different columns.
 
-    Tibble: Data frame with easy printing (few cases to screen) and no sneaky changes.
-        Tidyverse functions (e.g., read_csv()) produce tibbles, base R functions produce data frames.
+3. Each value must have its own cell.  
+    + Don't cram more than one piece of information in a cell.  
+    + Split the variable.
 
+4. Each observation must have its own row.  
+    + Don't allow values as columns.
+    + Stack repeated information.  
 
-Example
+### Step 1: Each type of case must have its own table
 
-##Just for fun: Create a tibble.
-tibble(
-  var1 = c("a", "b", NA, "d"),
-  var2 = rnorm(4),
-  var3 = 12:15
-)
+The data set for this tutorial, `GlasgowFriends` is very untidy. Let us tidy it up in steps to check that you understand the concept of tidy data and are able to tidy your Data Project data.
 
-## # A tibble: 4 x 3
-##   var1    var2  var3
-##   <chr>  <dbl> <int>
-## 1 a      2.15     12
-## 2 b      1.36     13
-## 3 <NA>  -0.282    14
-## 4 d     -0.654    15
+Data arising from practical sources or research designs other than the most simple ones, usually contain information about different types of cases. For example, a dat set may contain data (information) that is specific for a person, for an organization, for a particular moment in time. In addition, there can be information that is specific for a combination of case types, for example, information for a person at a particular moment in time.
 
-Four cases, each with a value (possibly NA) on each of the variables.
+For understanding and tidying your data, it is paramount to identify the types of cases in your data.
 
-    c() for creating a vector from a set of values.
-    NA is not text, so it is not quoted.
-    rnorm(4): 4 random normal numbers (default: M = 0, SD = 1).
-    12:15: integers 12 to 15 (same as seq(from = 12, to = 15, by = 1)).
+<div class="question" >
+Use help on `GlasgowFriends` to guess different types of cases in this data set. For each variable, ask yourself the question: What thing has this characteristic?
+</div>
+
+```{r GlasgowFriends, exercise = TRUE}
+?GlasgowFriends
+```
+
+###
+
+You have probably identified _student_ as one type of case in `GlasgowFriends`. _Neighbourhood_ seems to be a different type of case, with characteristics (variables) that are different from the characteristics of a student. And then there is this variable `wave`, which is a characteristic of neither a student nor a neighbourhood.
+
+For identifying types of cases, it is helpful to find the smallest set of variables for which every case (row in the data matrix) has a unique combination of values. This smallest set of variables is called the _primary key_.
+
+Imagine that a data matrix contains only information about a person, such as the person's name, year of birth, address, social security number, and best friend's name. We only need the social security number to uniquely identify a person. If we know this number, we can look up a person's name, year of birth, and so on. 
+
+If we would have two cases with the same social security number, we suspect that there is an error in the data or there are more types of cases in the data than just persons. An additional variable that we must add to the social security number for getting a primary key points us in the direction of another type of cases.
+
+<div class="tip" >
+__Tip__
+
+Identifying the primary key of a data frame or tibble:
+
+1. From the data description, select variables that you think identify types of cases.
+2. Select these variables with `select()`.
+3. Use the function `anyDuplicated()` to check if there is a case (row) with the same values on the selected variables as a preceding case.
+    + If there is a duplicate, add a variable to the key (go to 1).
+    + If there are no duplicates, see if you can remove a variable (and go to 2).
+</div>
+
+<div class="question" >
+Write code that identifies the primary key of tibble `GlasgowFriends`. You may have to try out different combinations of variables; submit only the final code for checking. </div>
+
+```{r primarykeyhidden, eval=FALSE}
+# primary key: this seems to be the only option with four variables
+GlasgowFriends %>%
+  select(student, wave, bestfriend, bfperiod) %>%
+  anyDuplicated()
+```
+
+```{r primarykey, exercise = TRUE}
+
+```
+
+```{r primarykey-solution}
+GlasgowFriends %>%   select(student, wave, bestfriend, bfperiod) %>%   anyDuplicated()
+```
+
+```{r primarykey-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = " Well, maybe you just entered the variables in another order than I expected. If the result is 0 and you use just four variables, your have the correct primary key."
+  )
+```
+
+Don't worry if you cannot find the primary key. Press the _Continue_ button for a strategy that you can use to find the primary key.
+
+###
+
+If you have checked help on function `anyDuplicated()`, you have seen that this function reports the number of the first case (row) that duplicates a preceding row. It doesn't report which preceding row is duplicated, however.
+
+If it is difficult to find the primary key, use the data wrangling techniques that you learned in Session 2 to select cases (rows) with a combination of values on the selected variables that is not unique. Compare rows that are not unique: Which variable has different values? That is the variable you should add to the primary key.
+
+<div class="question" >
+1. Use the code below to find out which variable must be added because it has different values for the first pair of cases that have the same `student` and `wave` values.
+2. Add this variable to the code below. Any variable that must still be added to obtain a primary key?
+</div>
+
+```{r primarykey2, exercise = TRUE}
+# Display cases with the same provisional primary key as consecutive cases.
+GlasgowFriends %>%
+  # for each combination of selected primary key variables...
+  group_by( student, wave ) %>%
+  # ...calculate and add the number of cases with the same values
+  mutate(n_identical = n()) %>%
+  # retain only cases that are not unique on the selected variables
+  filter(n_identical > 1) %>%
+  # sort the cases, so duplicates are next to each other
+  arrange( student, wave ) %>% 
+  # show only the first two cases that are duplicates
+  ungroup() %>%
+  slice(1:2)
+```
+
+###
+
+Every variable in your primary key and every combination of variables may represent a different type of case. 
+
+In case the primary key consists of the variables `student` and `wave`, the types of cases can be:
+
+- Student or person,
+- Wave or time point/period,
+- Student per wave or, equivalently, wave per student.
+
+For practical purposes, it suffices to identify types of cases for which there are at least two variables that measure characteristics of this type of case. In tibble `GlasgowFriends` we have the following variables for each type of cases:
+
+- Student or person: `student`, `neighbourhood`, `age`, `sex`, and several more, that is, student characteristics that do not change between waves
+- Wave or time point/period: only `wave`,
+- Student per wave or, equivalently, wave per student: `alcohol`, `cannabis`, `tobacco`, and several more, that is, student characteristics that may change between waves.
+
+Because we (seem to) have only one variable describing the data collection wave, we do not have to consider this as a separate type of cases. In contrast, student and student per wave are relevant types of cases
+
+<div class="question" >
+For each variable in `GlasgowFriends` determine to which type of case it belongs.
+</div>
+
+<div class="tip" >
+__Tip__
+
+Finding the type of case for a variable:
+
+1. Use common sense: The variable is a characteristic of what?
+2. Check that the variable always has the same value for each value of the type of case (use the code below). If so, the variable is a characteristic of this type of case or of a simpler type of case, see Step 3.
+3. If it is unique and the type of case contains more than one variable, for example, student per wave, check that the variable does not always have the same value for each value of a type of case that consists of only part of the variable used for the type of case in Step 2 (again, use the code below). If so, the variable belongs to a simpler type of case than the one checked in Step 2. Repeat Steps 2 and 3 for each simpler type of case.
+</div>
+
+```{r casetype, exercise = TRUE}
+# Code to check that a variable .var. always has the same value for each value of the selected type of case .type. .
+# Replace .var. by a variable name and replace .type. by the variable(s) that define the type of case.
+GlasgowFriends %>%
+  # For each value of the selected type of case...
+  group_by( student ) %>%
+  # ... calculate the number of distinct values of the selected variable.
+  summarise(n_distinct = n_distinct( friend_1 ), .groups = "drop") %>%
+  # Count number of distinct variable values per type of case (grouping has been dropped): should always be 1.
+  count(n_distinct)
+```
+
+```{r casetype-hint-1}
+# Example: Checking that variable age is unique for each student-wave combination.
+GlasgowFriends %>%
+  # For each value of the selected type of case...
+  group_by( student, wave ) %>%
+  # ... calculate the number of distinct values of the selected variable.
+  summarise(n_distinct = n_distinct( age ), .groups = "drop") %>%
+  # Count number of distinct variable values per type of case (grouping has been dropped): should always be 1.
+  count(n_distinct)
+# In the output of this code, 'n_distinct' gives the number of different ages encountered per student per wave. Column 'n' gives the number (frequency) of student per wave combinations.
+```
+
+```{r casetype-hint-2}
+# If 'age' is unique for each student-wave combination, it can also be unique for each student. If so, 'age' belongs to the student type of case, not the student per wave typ of case.
+# Example: Checking that variable age is unique for each student-wave combination.
+GlasgowFriends %>%
+  # For each value of the selected type of case...
+  group_by( student ) %>%
+  # ... calculate the number of distinct values of the selected variable.
+  summarise(n_distinct = n_distinct( age ), .groups = "drop") %>%
+  # Count number of distinct variable values per type of case (grouping has been dropped): should always be 1.
+  count(n_distinct)
+# In the output of this code, 'n_distinct' gives the number of different ages encountered per student. Column 'n' gives the number (frequency) of students.
+```
+
+###
+
+Now that we have identified the types of cases in the data set and linked the variables to the types of cases, we can start tidying the data set: We are going to create a separate data frame
+

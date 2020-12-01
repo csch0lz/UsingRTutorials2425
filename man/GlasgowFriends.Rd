@@ -8,9 +8,9 @@
 A data frame with thirteen variables: 
 \describe{
   \item{student}{respondent ID, as a character string}
-  \item{burrough}{student's home neighbourhood (fake)}
+  \item{neighbourhood}{student's home neighbourhood (fake)}
   \item{schooldist}{average distance from the neighbourhood to the school (in miles)}
-  \item{name}{(fake) name of the neighbourhood}
+  \item{hoodname}{(fake) name of the neighbourhood}
   \item{age}{respondent age, in years with one decimal digit}
   \item{sex}{respondent sex, boy or girl}
   \item{smoking_at_home}{any smokers at home, yes or no}

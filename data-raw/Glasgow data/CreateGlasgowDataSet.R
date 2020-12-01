@@ -36,7 +36,7 @@ load("Glasgow-substances.RData")
 # Load various data: .
 load("Glasgow-various.RData")
 
-# Create data frame.
+# Create data framnamee.
 
 Glasgow <- cbind( #create matrix
   age = age,
@@ -48,7 +48,7 @@ Glasgow <- cbind( #create matrix
   money = money,
   romantic = romantic
   ) %>%
-  #change into dataframe with new variable names
+  #change into dataframe with new variable s
   broom::fix_data_frame(
     newcol = "student",
     newnames = list("age", "sex",
@@ -112,18 +112,18 @@ dist1 <- ifelse(is.na(distance.1),
              (ifelse(is.na(distance.3), mean(distance.1, na.rm = TRUE), distance.3)), 
               distance.2)), distance.1)
 clustering <- hclust(dist(dist1), method = "ward.D")
-burrough <- cutree(clustering, k=4) # cut tree into 4 clusters (one contains missings)
+neighbourhood <- cutree(clustering, k=4) # cut tree into 4 clusters (one contains missings)
 # draw dendogram with red borders around the 5 clusters
 rect.hclust(clustering, k=4, border="red") 
 # add distance from school per group at wave 1 and group label to tidy frame
-GlasgowFriends <- as_tibble(cbind(burrough, dist.school), rownames = "student" ) %>%
-  select(student, burrough, school.dist = l1) %>%
-  group_by(burrough) %>%
+GlasgowFriends <- as_tibble(cbind(neighbourhood, dist.school), rownames = "student" ) %>%
+  select(student, neighbourhood, school.dist = l1) %>%
+  group_by(neighbourhood) %>%
   mutate(schooldist = round(mean(school.dist, na.rm = TRUE), 2)) %>%
-  mutate(name = case_when(
-    burrough == 1 ~ "Burrough A",
-    burrough == 2 ~ "Burrough B",
-    burrough == 3 ~ "Burrough C",
+  mutate(hoodname = case_when(
+    neighbourhood == 1 ~ "Neighbourhood A",
+    neighbourhood == 2 ~ "Neighbourhood B",
+    neighbourhood == 3 ~ "Neighbourhood C",
     TRUE ~ NA_character_,
   ),
     schooldist = ifelse(is.nan(schooldist), NA_real_, schooldist)
@@ -131,7 +131,7 @@ GlasgowFriends <- as_tibble(cbind(burrough, dist.school), rownames = "student" )
   select(-school.dist) %>%
   right_join(Glasgow, by = "student")
 #cleanup
-rm(angle.1, angle.2, angle.3, clustering, dist.school, dist1, distance.1, distance.2, distance.3, Glasgow, burrough)
+rm(angle.1, angle.2, angle.3, clustering, dist.school, dist1, distance.1, distance.2, distance.3, Glasgow, neighbourhood)
 
 # Add nominated friends (student codes).
 # Load and count friendship nominations.
@@ -160,7 +160,7 @@ GlasgowFriends <- friendships %>%
   # add to base file
   full_join(GlasgowFriends, by = c("student", "wave")) %>%
   # reorder variables (and drop friendships)
-  select(student, burrough:romantic, wave:friend_6) %>%
+  select(student, neighbourhood:romantic, wave:friend_6) %>%
   ungroup()
 # add best friend (if any) with first and last wave
 GlasgowFriends <- friendships %>%
@@ -174,7 +174,9 @@ GlasgowFriends <- friendships %>%
   # add to base file
   full_join(GlasgowFriends, by = "student") %>%
   # reorder and rename
-  select(student, burrough:friend_6, bestfriend = nominated, bfperiod, bfwave)
+  select(student, neighbourhood:friend_6, bestfriend = nominated, bfperiod, bfwave) %>%
+  # remove all grouping info
+  ungroup()
 #cleanup
 rm(friendship.1, friendship.2, friendship.3, friendships)
 

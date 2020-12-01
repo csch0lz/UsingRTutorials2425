@@ -50,12 +50,10 @@ __Programming Tip__
 - 
 </div>
 
-## Question style
+## Exercise with result checker
 
 <div class="question" >
 </div>
-
-## Exercise with result checker
 
 ```{r exerciselabel, exercise = TRUE}
 
@@ -70,18 +68,25 @@ gradethis::grade_result(
 
 ## Exercise with conditions checker
 
+<div class="question" >
+</div>
+
 ```{r exerciselabel, exercise = TRUE}
 
 ```
 
 ```{r exerciselabel-check}
-gradethis::grade_conditions(
+# every pass_if condition must be satisfied
+gradethis::grade_result_strict(
   pass_if(~ identical(.result, correct_result), "message"),
   fail_if(~ identical(.result, wrong_result), "message")
 )
 ```
 
 ## Exercise with code checker
+
+<div class="question" >
+</div>
 
 ```{r exerciselabel, exercise = TRUE}
 
