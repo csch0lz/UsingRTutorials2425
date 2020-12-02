@@ -44,7 +44,7 @@ GlasgowFriends <- UsingRTutorials::GlasgowFriends
 
 ## Variables and Cases
 
-Originating from a language for statistical analysis (the S language), data in R are conceptualized primarily as variables. More precisely, a variable is called an _atomic vector_: a sequence of values of the same type (logical, integer, double, character, complex, raw).
+R originated from a language for statistical analysis (the S language), so it should not come as a surrise that data are conceptualized primarily as variables in R. More precisely, a variable is called an _atomic vector_: a sequence of values of the same type (logical, integer, double, character, complex, raw).
 
 ###
 
@@ -66,7 +66,7 @@ cor(var1, var2, method = "spearman")
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="atomic-hint">
-__Hint:__ No piping now; we cannot pipe atomic vectors, we can only pipe data frames.
+__Hint:__ No piping now; we cannot pipe atomic vectors, we can only pipe data frames. The `stats::` package, like the `base::` package, is automatically loaded when R starts.
 </div>
 
 ```{r atomic-check}
@@ -78,13 +78,13 @@ gradethis::grade_result(
 
 ###
 
-The two vectors `var1` and `var2` that you have just created are of equal length. Function `cor()` produces an error if you attempt to calculate a correlation between two vectors of unequal length (check that by changing the above code). This is because R links the first element (number) of vector `var1` to the first element (number) of vector `var2`. It assumes that these two numbers refer to the same case. For example, `var1` may express a student's age and `var2` may express their grade for an IQ test.
+The two vectors `var1` and `var2` that you have just created are of equal length. Function `cor()` produces an error if you attempt to calculate a correlation between two vectors of unequal length. You may check this by changing the above code. This is because R links the first element (number) of vector `var1` to the first element (number) of vector `var2`. It assumes that these two numbers refer to the same case. For example, `var1` may express a student's age and `var2` may express their grade for an IQ test.
 
 <div class="question" >
 What happens to the rank correlation between `var1` and `var2` if you first sort each vector? Copy the code from the previous code box as your starting point.
 </div>
 
-Note: We cannot use the tidyverse function `arrange()` because tidyverse functions work on data frames (see below), not on individual atomic vectors. For once, use the `base::sort()` function.
+Note: We cannot use the tidyverse function `arrange()` because tidyverse functions work on data frames, not on individual atomic vectors. For once, use the `base::sort()` function.
 
 ```{r atomicsorted_answer_hidden, eval=FALSE}
 var1 <- sort(runif(n = 100, min = 12, max = 18))
@@ -109,9 +109,9 @@ gradethis::grade_result(
 
 ###
 
-Working with individual atomic vectors, then, is hazardous. If the order of cases differs between vectors, the wrong values are linked, and the results are wrong.
+Working with individual atomic vectors, then, is hazardous. If the order of cases differs between vectors, the wrong values are linked, and the results are incorrect.
 
-For this reason, atomic vectors (of the same length) are usually combined into data frames or in tibbles, which are data frames with easy printing (few cases to screen) and no sneaky changes. Note that vectors are the columns in a data frame or tibble. R is column oriented!
+For this reason, atomic vectors of the same length are usually combined into data frames or in tibbles, which are data frames with easy printing (few cases to screen) and no sneaky changes. Note that vectors are the columns in a data frame or tibble. R is column oriented!
 
 Tidyverse functions produce tibbles, base R functions produce data frames. If you have to use functions outside of the tidyverse suite, you may have to change your tibble back into a data frame.
 
@@ -150,30 +150,33 @@ gradethis::grade_code(
 
 ## Tidy Data: EveRything In One Place
 
-Optimal data structure for data management (efficiency and consistency):  
+Rules for optimal data structure (efficiency and consistency):  
 
 1. Each type of case must have its own table.  
-    + Don't repeat the same information in different rows.  
-    + Split the table.  
-    + _R for Data Science_ does not discuss this much.
+    + Is the same information repeated in different rows?  
+    + Split the table; transfer the info on each type of case to a separate table.  
+    + The book _R for Data Science_ does not discuss this much.
 
-2. Each variable must have its own column.  
+2. Each observation must have its own row.  
+    + Do different variables address the same information?  
+    + Stack repeated information.  
+    + Don't allow values as columns.
+
+3. Each variable must have its own column.  
+    + Is there a variable with values that should be variables by themselves? 
     + Don't stack different types of information in the same column.
     + Spread information over different columns.
 
-3. Each value must have its own cell.  
+4. Each value must have its own cell.  
+    + Does a variable contain more than one piece of information?
     + Don't cram more than one piece of information in a cell.  
     + Split the variable.
 
-4. Each observation must have its own row.  
-    + Don't allow values as columns.
-    + Stack repeated information.  
-
-### Step 1: Each type of case must have its own table
+### 1. Each type of case must have its own table
 
 The data set for this tutorial, `GlasgowFriends` is very untidy. Let us tidy it up in steps to check that you understand the concept of tidy data and are able to tidy your Data Project data.
 
-Data arising from practical sources or research designs other than the most simple ones, usually contain information about different types of cases. For example, a data set may contain data (information) that is specific for a person, for an organization, for a particular moment in time. In addition, there can be information that is specific for a combination of case types, for example, information for a person at a particular moment in time.
+Data arising from practical sources or research designs other than the most simple ones usually contain information about different types of cases. For example, a data set may contain information that belongs to a person, to an organization, to a particular moment in time. In addition, there can be information that describes a combination of case types, for example, information on a person at a particular moment in time.
 
 For understanding and tidying your data, it is paramount to identify the types of cases in your data.
 
@@ -185,15 +188,15 @@ Use help on `GlasgowFriends` to guess different types of cases in this data set.
 ?GlasgowFriends
 ```
 
-###
+### Primary key
 
-You have probably identified _student_ as one type of case in `GlasgowFriends`. _Neighbourhood_ seems to be a different type of case, with characteristics (variables) that are different from the characteristics of a student. And then there is this variable `wave`, which is a characteristic of neither a student nor a neighbourhood.
+You have probably identified _student_ as one type of cases in `GlasgowFriends`. _Neighbourhood_ seems to be a different type of cases, with characteristics (variables) that are different from the characteristics of a student. And then there is this variable `wave`, which is a characteristic of neither a student nor a neighbourhood.
 
 For identifying types of cases, it is helpful to find the smallest set of variables for which every case (row in the data matrix) has a unique combination of values. This smallest set of variables is called the _primary key_.
 
 Imagine that a data matrix contains only information about a person, such as the person's name, year of birth, address, social security number, and best friend's name. We only need the social security number to uniquely identify a person. If we know this number, we can look up a person's name, year of birth, and so on. 
 
-If we would have two cases with the same social security number, we suspect that there is an error in the data or there are more types of cases in the data than just persons. An additional variable that we must add to the social security number for getting a primary key points us in the direction of another type of cases.
+If we would have two cases with the same social security number, we suspect that there is an error in the data or that there is no unique row for a person. The latter situation arises if there are more types of cases in the data than just persons. An additional variable that we must add to the social security number for getting a primary key points us in the direction of other types of cases.
 
 <div class="tip" >
 __Tip__
@@ -203,8 +206,8 @@ Identifying the primary key of a data frame or tibble:
 1. From the data description, select variables that you think identify types of cases.
 2. Select these variables with `select()`.
 3. Use the function `anyDuplicated()` to check if there is a case (row) with the same values on the selected variables as a preceding case.
-    + If there is a duplicate, add a variable to the key (go to 1).
-    + If there are no duplicates, see if you can remove a variable (and go to 2).
+    + If there is a duplicate, add a variable to the key (go to Step 1).
+    + If there are no duplicates, see if you can remove a variable and still have no duplicates (and go to Step 2).
 </div>
 
 <div class="question" >
@@ -222,7 +225,7 @@ GlasgowFriends %>%
 ```
 
 ```{r primarykey-solution}
-GlasgowFriends %>%   select(student, wave, bestfriend, bfperiod) %>%   anyDuplicated()
+GlasgowFriends %>% select(student, wave, bestfriend, bfperiod) %>% anyDuplicated()
 ```
 
 ```{r primarykey-check}
@@ -234,11 +237,11 @@ gradethis::grade_code(
 
 Don't worry if you cannot find the primary key. Press the _Continue_ button for a strategy that you can use to find the primary key.
 
-###
+### Finding the primary key
 
 If you have checked help on function `anyDuplicated()`, you have seen that this function reports the number of the first case (row) that duplicates a preceding row. It doesn't report which preceding row is duplicated, however.
 
-If it is difficult to find the primary key, use the data wrangling techniques that you learned in Session 2 to select cases (rows) with a combination of values on the selected variables that is not unique. Compare rows that are not unique: Which variable has different values? That is the variable you should add to the primary key.
+If it is difficult to find the primary key, use the data wrangling techniques that you learned in Session 2 to select cases (rows) with a combination of values on the selected variables that is not unique. Compare rows that are not unique: Which variable has different values? This is the variable that you should add to the primary key.
 
 <div class="question" >
 1. Use the code below to find out which variable must be added because it has different values for the first pair of cases that have the same `student` and `wave` values.
@@ -261,36 +264,41 @@ GlasgowFriends %>%
   slice(1:2)
 ```
 
-###
+### Finding the type of cases for a variable 
 
-Every variable in your primary key and every combination of variables may represent a different type of case. 
+Every variable in your primary key and every combination of these variables may represent a different type of cases. 
 
 In case the primary key consists of the variables `student` and `wave`, the types of cases can be:
 
-- Student or person,
-- Wave or time point/period,
+- Student/person,
+- Wave/time point or period,
 - Student per wave or, equivalently, wave per student.
 
-For practical purposes, it suffices to identify types of cases for which there are at least two variables that measure characteristics of this type of case. In tibble `GlasgowFriends` we have the following variables for each type of cases:
+For practical purposes, it suffices to identify types of cases for which there are at least two variables in the tibble. In tibble `GlasgowFriends` we have the following variables for each type of cases:
 
-- Student or person: `student`, `neighbourhood`, `age`, `sex`, and several more, that is, student characteristics that do not change between waves
-- Wave or time point/period: only `wave`,
-- Student per wave or, equivalently, wave per student: `alcohol`, `cannabis`, `tobacco`, and several more, that is, student characteristics that may change between waves.
+- Student or person: `student`, `neighbourhood`, `age`, `sex`, and several more, which represent student characteristics that do not change between waves.
+- Wave or time point/period: only `wave`.
+- Student per wave or, equivalently, wave per student: `alcohol`, `cannabis`, `tobacco`, and several more, which represent student characteristics that may change between waves.
 
-Because we (seem to) have only one variable describing the data collection wave, we do not have to consider this as a separate type of cases. In contrast, student and student per wave are relevant types of cases
+If we have only one variable describing the data collection wave, we do not have to consider this as a separate type of cases. In contrast, student and student per wave are relevant types of cases here.
 
-<div class="question" >
-For each variable in `GlasgowFriends` determine to which type of case it belongs.
-</div>
+Student characteristics that do not change between waves must have the same values for a student across all waves. So characteristics (variables) that always have the same value for a student belong to the student type of cases. These variabls should eventually be split off into a tibble with one case (row) per student.
+
+In contrast, student characteristics that change between waves belong to the student-per-wave type of cases and should have their own tibble. 
 
 <div class="tip" >
 __Tip__
 
-Finding the type of case for a variable:
+Finding the type of cases for a variable:
 
 1. Use common sense: The variable is a characteristic of what?
-2. Check that the variable always has the same value for each value of the type of case (use the code below). If so, the variable is a characteristic of this type of case or of a simpler type of case, see Step 3.
-3. If it is unique and the type of case contains more than one variable, for example, student per wave, check that the variable does not always have the same value for each value of a type of case that consists of only part of the variable used for the type of case in Step 2 (again, use the code below). If so, the variable belongs to a simpler type of case than the one checked in Step 2. Repeat Steps 2 and 3 for each simpler type of case.
+2. Check that the variable has the same value for each value of the variables that identify a type of cases (use the code below). If so, the variable is a characteristic of this type of cases or of a simpler type of cases, see Step 3.
+3. If Step 2 is true and the type of cases is identified by more than one variable, for example, student per wave, repeat Step 2 for each subset of the identifying variables.
+4. The variable belongs to the simplest type of cases (identified by fewest variables) satisfying the check in Step 2.
+</div>
+
+<div class="question" >
+For each variable in `GlasgowFriends` determine to which type of case it belongs.
 </div>
 
 ```{r casetype, exercise = TRUE}
@@ -298,9 +306,9 @@ Finding the type of case for a variable:
 # Replace .var. by a variable name and replace .type. by the variable(s) that define the type of case.
 GlasgowFriends %>%
   # For each value of the selected type of case...
-  group_by( student ) %>%
+  group_by( .type. ) %>%
   # ... calculate the number of distinct values of the selected variable.
-  summarise(n_distinct = n_distinct( friend_1 ), .groups = "drop") %>%
+  summarise(n_distinct = n_distinct( .var. ), .groups = "drop") %>%
   # Count number of distinct variable values per type of case (grouping has been dropped): should always be 1.
   count(n_distinct)
 ```
@@ -336,12 +344,12 @@ __Programming Tip__
 - Be systematic and precise!
 - For example, if a primary key is defined as _the smallest set of variables for which every case has a unique combination of values_, check both parts of the definition: 
     (1) Every case has a unique combination of values,
-    (2) And this is the smallest set of variables for which 1 holds.
+    (2) and this is the smallest set of variables for which 1 holds.
 </div>
 
-###
+### Splitting a table
 
-Now that we have identified the types of cases in the data set and linked the variables to the types of cases, we can start tidying the data set: We are going to create a separate tibble for each type of case and we remove duplicates from eahc new table.
+Now that we have identified the types of cases in the data set and assigned the variables to types of cases, we can start tidying the data set. We are going to create a separate tibble for each type of case and we remove duplicates from each new table. We get rid of repeated information!
 
 Why do we do that? Because this way, each piece of information is stored only once:
 
@@ -349,15 +357,196 @@ Why do we do that? Because this way, each piece of information is stored only on
 - Easy editing/updating: change/add a value only in one place.
 - Max storage efficiency: no repetition of information.
 - Information is stored by type of cases: easier to find.
-- Any multilevel structure of the data is clear from the presence of different tables (for statistical analysis).
+- Any multilevel structure of the data (for statistical analysis) is clear from the presence of different tables.
 
 <div class="question" >
-Use your data wrangling skills from Session 2 and the [data transformation cheatsheet](https://www.rstudio.org/links/data_transformation_cheat_sheet) to create a tibble for each type of case in `GlasgowFriends`.
+Use your data wrangling skills from Session 2 and the [data transformation cheatsheet](https://www.rstudio.org/links/data_transformation_cheat_sheet) to create a tibble for each type of case in `GlasgowFriends` and name these tibbles `Student`, `StudentWave`, and `StudentBestfriend`.
 </div>
 
-```{r studenttable, exercise = TRUE}
-# Your code to create a table for student information without duplicates:
+```{r studenttable, exercise = TRUE, exercise.lines = 5}
+# Your code to create a table for student information without duplicates.
+
+# Use View(Student) if you want to view the contents of the table that you created.
+# But note that the code checker won't work if you add this command.
 
 ```
 
+<!-- To hide the solution, use a textual hint. -->
+<div id="studenttable-hint">
+__Hint:__ Use the cheatsheet to find a function to retain only distinct cases/rows. For now, include the neighbourhood variables in the Student tibble.
+</div>
+
+```{r studenttable-solution}
+Student <- GlasgowFriends %>% select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) %>% distinct()
+```
+
+```{r studenttable-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = " However, if you selected 9 variables and the new tibble contains 160 rows, your code is fine. You probably selected the variables in a different order."
+  )
+```
+
+
+```{r studentwavetable, exercise = TRUE, exercise.lines = 5}
+# Your code to create a table for student per wave information without duplicates.
+
+# Use View(StudentWave) if you want to view the contents of the table that you created.
+# But note that the code checker won't work if you add this command.
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="studentwavetable-hint">
+__Hint:__ It is a good custom to use the primary key variables as the first variables in a tibble.
+</div>
+
+```{r studentwavetable-solution}
+StudentWave <- GlasgowFriends %>% select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% distinct()
+```
+
+```{r studentwavetable-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = " However, if you selected 12 variables and the new tibble contains 480 rows, your code is fine. You probably selected the variables in a different order."
+  )
+```
+
+<div class="question" >
+Include the `student` variable in the `StudentBestfriend` tibble.
+</div>
+
+```{r bestfriendstable, exercise = TRUE, exercise.lines = 5}
+# Your code to create a table for best friends information without duplicates.
+
+# Use View(StudentBestfriend) if you want to view the contents of the table that you created.
+# But note that the code checker won't work if you add this command.
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="bestfriendstable-hint">
+__Hint:__ Include the `student` variable, otherwise we don't know who nominated the best friend.
+</div>
+
+```{r bestfriendstable-solution}
+StudentBestfriend <- GlasgowFriends %>% select(student, bestfriend, bfperiod, bfwave ) %>% distinct()
+```
+
+```{r bestfriendstable-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = " However, if you selected 4 variables and the new tibble contains 519 rows, your code is fine. You probably selected the variables in a different order."
+  )
+```
+
+### 
+
+Not all repeated information can be found with the help of the primary key. If you look carefully at the student tibble that you split off from tibble `GlasgowFriends`, you may notice that neighbourhood information is repeated. This suggests that neighbourhood is a type of cases that should be split off into a separate table.
+
+```{r showStudentTable}
+GlasgowFriends %>% select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) %>% distinct() %>% arrange(neighbourhood, student)
+```
+
+<div class="question" >
+Split off the neigbourhood information into a tibble called `Neighbourhood`. Use one pipe.
+</div>
+
+```{r hoodtable, exercise = TRUE, exercise.lines = 5, exercise.setup = "studenttable-solution" }
+# Your code to create a table for neighbourhood information without duplicates.
+
+# Use View(Neighbourhood) if you want to view the contents of the table that you created.
+# But note that the code checker won't work if you add this command.
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="hoodtable-hint">
+__Hint:__ Use the `Student` tibble as your starting point..
+</div>
+
+```{r hoodtable-solution, exercise.setup = "studenttable-solution"}
+Neighbourhood <- Student %>% select(neighbourhood, schooldist, hoodname) %>% distinct()
+```
+
+```{r hoodtable-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = " However, if you selected 3 variables and the new tibble contains 4 rows, your code is fine. You probably selected the variables in a different order."
+  )
+```
+
+###
+
+<div class="question" >
+Find the primary key of the `Neighbourhood` tibble.
+</div>
+
+```{r hoodtablekey, exercise = TRUE, exercise.setup = "hoodtable-solution"}
+# Your code to identify the primary key of the neighbourhood tibble.
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="hoodtablekey-hint">
+__Hint:__ Use code presented earlier in this tutorial as your starting point.
+</div>
+
+```{r hoodtablekey-solution}
+Neighbourhood %>% select(neighbourhood) %>% anyDuplicated()
+```
+
+```{r hoodtablekey-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Review the subsections 'Primary key' and `Finding the primary key` in this tutorial."
+  )
+```
+
+###
+
+<div class="question" >
+Remove the neighbourhood information from the `Student` tibble except the variable(s) that constitute(s) the primary key of the `Neighbourhood` tibble.
+</div>
+
+```{r student2table, exercise = TRUE, exercise.lines = 5, exercise.setup = "studenttable-solution"}
+# Your code to remove the superfluous neighbourhood variables from the Student tibble.
+
+# Use View(Student) if you want to view the contents of the resulting table.
+# But note that the code checker won't work if you add this command.
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="student2table-hint">
+__Hint:__ It is more efficient to specify the variables that must be dropped (use the `-` sign) than the ones that must be retained.
+</div>
+
+```{r student2table-solution}
+Student <- Student %>% select(-schooldist, -hoodname)
+```
+
+```{r student2table-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = " However, if you the new STudent tibble contains 7 variables and (still) 160 rows, your code is probably fine. You may have selected the variables in a different way."
+  )
+```
+
+### Foreign key, one-to-many vs. many-to-many relations
+
+The primary key of the `Neighbourhood` tibble must remain in the `Student` tibble, otherwise we no longer know a student's neighbourhood if we stop using the `GlasgowFriends` tibble. Do we stop using the `GlasgowFriends` tibble? Sure, because it is untidy.
+
+The primary key of the `Neighbourhood` tibble is called a _foreign key_ in the `Student` tibble. With primary keys and foreign keys, we can join information from different tables. Actually, we could reconstruct the `GlasgowFriends` tibble from the split-off tables.
+
+In case you wonder why the primary key of the `GlasgowFriends` tibble gave us the student, student-per-wave, and best-friend types of cases but not the neighbourhood type of cases, here is an important distinction:
+
+1. _One-to-many relation_: A student is living in only one neighbourhood (at least in this data set) even though many students can live in the same neighbourhood. As a consequence, a student has only one score on the `neighbourhood` variable, just like they have only one score on the `sex`variable (at least in this data set). So we cannot distinguish between a real student characteristic like sex and a different type of cases, such as neighbourhood by looking at variation in scores per student.
+2. _Many-to-many relation_: A student may appear in many waves (actually, three in this data set) and a wave may include many students. If the data set contains a separate case for each wave for each student, we have variation in waves across students (and the other way around). The primary key picks this up.
+
+However, not every many-to-many relation is picked up by the pimary key. This is the next topic of this tutorial.
+
+But first: Enjoy that you have come so far. You have covered quite a lot of ground. The insights and skills you have gained may prove very valuable during your career.
+
+### 2. Each observation must have its own row.
 
