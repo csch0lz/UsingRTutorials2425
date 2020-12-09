@@ -8,7 +8,7 @@ runtime: shiny_prerendered
 description: >
     Check your understanding of the tidyverse functions for managing relational data, 
     learn how to wrangle in steps and check each step,
-    and start continue working on your Data Project.
+    and continue working on your Data Project.
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +21,6 @@ library(kableExtra)
 
 tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-
 ```
 
 ```{r, context="data", include=FALSE}
@@ -800,7 +799,7 @@ Two of the joins produce a tibble with more cases than the largest tibble used f
 ```{r joinquiz}
 quiz(
   caption = "",
-  question("Is the key used to join the tibbles not a primary key in both tibbles?",
+  question("Is the key used to join the tibbles a primary key in neither of the two tibbles?",
     answer("Yes", message = "Check if student is a primary key in a tibble with anyDuplicated()."),
     answer("No", correct = TRUE)
   ),

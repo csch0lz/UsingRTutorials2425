@@ -157,8 +157,9 @@ quiz(
 With grade_code(): 
 
 -	If the correct answer does not specify argument names, argument names are considered incorrect and vice versa. Note that the “mapping =” argument does not throw an error.
-	  + Can handle pipes and it can spot the location in a pipe where code starts to diverge as long as the correct answer is a pipe without new line characters. (Note: some gradethis builds throw an error: “Error occured while checking the submission”).
-	  +	We cannot address the code itself in grade_result() (or any of the other gradings?).
+- Can handle pipes and it can spot the location in a pipe where code starts to diverge as long as the correct answer is a pipe without new line characters. (Note: some gradethis builds throw an error: “Error occured while checking the submission”).
+-	We cannot address the code itself in grade_result() (or any of the other gradings?).
+- For a chain of setups, e.g., code-checking question 3 requires the solution to code-checking question 2, which requires the solution to code-checking question 1, both the exercise and exercise-solution chunks of code-checking question 2 must refer to the solution of code-checking question 1.
 	  
 With grade_result(): 
 

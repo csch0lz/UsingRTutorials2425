@@ -1,0 +1,627 @@
+---
+title: 'Session 4: Data Types'
+output:
+  learnr::tutorial:
+    progressive: yes
+    allow_skip: yes
+runtime: shiny_prerendered
+description: |
+  Dive into the details of some special data types: factors, dates and times, and string and continue working on your Data Project.
+---
+
+```{r setup, include=FALSE}
+# Ensure that libraries are loaded.
+library(tidyverse)
+# includes stringr:: for string manipulation 
+# includes forcats:: for factor manipulation
+# includes readr:: for (importing and) parsing data
+library(lubridate) # date&time manipulation
+library(broom) # presenting statistical results
+library(learnr)
+library(gradethis)
+library(knitr)
+library(kableExtra)
+
+tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+Brexit <- UsingRTutorials::Brexit
+surveyweek1 <- UsingRTutorials::surveyweek1
+```
+
+<!-- Define programming tip style -->
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+
+<!-- Define question style -->
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+
+## Factors  
+
+A factor is the R data type for a categorical (nominal or ordinal measurement level) variable. It may remind you of a variable with value labels in SPSS, but it is different. And it is a bit complicated.
+
+The basic question is: When is it better to use a factor than a character variable?
+
+### Character variables
+
+R treats a character variable as a categorical variable (nominal measurement level).
+
+Our example data set `Brexit` contains 600 articles about Brexit from the (former) website nujij.nl.
+
+<div class="question" >
+Create a frequency table of the variable `category` in the `Brexit`dataset.
+</div>
+
+```{r freqtable, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="freqtable-hint">
+__Hint:__ Use tidyverse!
+</div>
+
+```{r freqtable-solution}
+Brexit %>% count(category)
+```
+
+```{r freqtable-check}
+gradethis::grade_code(
+  correct = "That wasn't hard, was it?", 
+  incorrect = ""
+  )
+```
+
+###
+
+Note the order of values in this frequency table: alphabetical. 
+
+In addition, note the negligible number of observations for media, etc.
+
+### Character variable in statistical analysis
+
+In statistical analysis, a character variable is usually converted into dummies. Regression models in R do this automatically.
+
+Below are the results of a regression model predicting the number of votes for a post from the post category.
+
+```{r regression, exercise = TRUE}
+# Linear regression: more in Session 6.
+lm(votes ~ category, data = Brexit) %>%
+  broom::tidy() %>% #retrieving the main results
+  kable(digits = c(0,2,2,2,3),
+               col.names = c("Parameter", "b", "SE", "t", "p"),
+               align = "lrrrr") %>%
+  kable_styling() %>%
+  kable_paper(full_width = FALSE)
+```
+
+```{r quiz}
+question("What is the reference category here?",
+  answer("(Intercept)"),
+  answer("Algemeen", correct = TRUE),
+  answer("Economie"),
+  answer("Media"),
+  answer("Overig"),
+  answer("Politiek"),
+  answer("Showbizz"),
+  answer("Wetenschap")
+)
+```
+
+Want another reference category or reorder the categories? Create a factor.
+
+<div class="tip" >
+__Programming Tip__
+
+- Having the values in another order than alphabetically is the main reason for using a factor instead of a character variable.
+</div>
+
+### Create a factor   
+
+<div class="question" >
+Create a factor called `cat_fact` from the variable `category` and add it to tibble `Brexit`.
+</div>
+
+```{r factor, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="factor-hint">
+__Hint:__ Use the (base::) `factor()` function.
+</div>
+
+```{r factor-solution}
+Brexit <- Brexit %>% mutate(cat_fact = factor(x = category))
+```
+
+```{r factor-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+###
+
+Have a close look at the description of the new factor:
+
+```{r factorinfo, exercise = TRUE, exercise.setup = "factor-solution", exercise.eval = TRUE}
+# Info shown in Environment tab if you work in RStudio.
+str(Brexit$cat_fact)
+```
+
+The factor contains a set of labels (levels) plus a set of integer values.
+
+In contrast to SPSS, we must use the labels, we cannot use the factor integer values!
+
+### Change the first factor category 
+
+<div class="question" >
+Add a factor called `cat_new` to tibble `Brexit` in which `Economie` (_Economy_) is the first category.
+</div>
+
+```{r relevel, exercise = TRUE, exercise.setup = "factor-solution"}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="relevel-hint">
+__Hint:__ Use `fct_relevel()`, which is part of the `forcats` package, which is loaded by the `tidyverse` package.
+</div>
+
+```{r relevel-solution, exercise.setup = "factor-solution"}
+Brexit <- Brexit %>% mutate(cat_new = fct_relevel(cat_fact, "Economie"))
+```
+
+```{r relevel-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "There are more ways of getting the result but we want you to use the function you learned in the book."
+  )
+```
+
+###
+
+Now check that `Economie` is the reference category in a regression model.
+
+```{r relevelmodel, exercise = TRUE, exercise.setup = "relevel-solution"}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="relevelmodel-hint">
+__Hint:__ Adapt the code for a regression model from a previous exercise but do not use the `broom::tidy()`, `kable()`, and `kable_styling()`, and `kable_paper()` functions. Details on statistical analysis in R follow in Session 6.
+</div>
+
+```{r relevelmodel-solution}
+lm(votes ~ cat_new, data = Brexit)
+```
+
+```{r relevelmodel-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+Note that we save the changes in the `Brexit` tibble because we want to use the reordered factor later on in this tutorial. But we use a new name for the new variable, so the original variable is preserved.
+
+### Recode factor levels
+
+<div class="question" >
+Categories `Media`, `Overig` (_Other_), `Showbizz`, and `Wetenschap` (_Science_) contain only one observation. Merge them with category `Algemeen` (_General_) in a new variable `cat_fact2` in tibble `Brexit`. </div>
+
+```{r recodefactor, exercise = TRUE, exercise.setup = "factor-solution"}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="recodefactor-hint">
+__Hint:__ Use variable `cat_fact` as your starting point..
+</div>
+
+```{r recodefactor-solution}
+Brexit <- Brexit %>% mutate(cat_fact2 = forcats::fct_recode(cat_fact, "Algemeen" = "Media", "Algemeen" = "Overig", "Algemeen" = "Showbizz", "Algemeen" = "Wetenschap"))
+```
+
+```{r recodefactor-check}
+gradethis::grade_code(
+  correct = "In the `fct_recode()`function, the new value is to the left, the old value is to the right. As in y <- x.", 
+  incorrect = "Perhaps your order of factor values is different but your result can be OK. The code checker can only deal with one order. Poor soul that it is."
+  )
+```
+
+### Grouping a numeric variable into a factor
+
+Variable `reactions` in tibble `Brexit` gives the number of reactions that a post received. We would like to create a new variable that groups the number of reactions into three bins. Each bin should contain more or less the same number of observations (posts).
+
+Unfortunately, variable `reactions` is not numeric.
+
+<div class="question" >
+Use function `parse_number()` to create a new numeric variable `react_num` in tibble `Brexit`, which gives us the number of reactions to a post.
+</div>
+
+```{r groupreactions1, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="groupreactions1-hint">
+__Hint:__ Function `parse_number()` is part of the `readr` package, which is loaded by the `tidyverse` package.
+</div>
+
+```{r groupreactions1-solution}
+Brexit <- Brexit %>% mutate(react_num = parse_number(reactions))
+```
+
+```{r groupreactions1-check}
+gradethis::grade_code(
+  correct = "We use `parse_number()` to extract the (first) number from a string. Your first string manipulation in this tutorial! More to follow.", 
+  incorrect = "Use tidyverse code with piping!"
+  )
+```
+
+###
+
+The three reactions bins should be labeled "low", "medium", "high". But the substantive order from low to high does not match the alphabetical order. The bins variable must therefore be a factor.
+
+<div class="question" >
+Group the number of reactions in three bins with (nearly) the same number of cases and store this variable as a factor named `react_cat` in tibble `Brexit`.
+</div>
+
+```{r orderedfactor, exercise = TRUE, exercise.setup = "groupreactions1-solution"}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="orderedfactor-hint">
+__Hint:__ There are two steps: (1) bin the variable, (2) create a factor from the bins. The two steps can be performed in one `mutate()` function. It is even possible to use the same name for the new variable in both steps.
+</div>
+
+```{r orderedfactor-solution, exercise.setup = "groupreactions1-solution"}
+Brexit <- Brexit %>% mutate(react_cat = ntile(react_num, 3), react_cat = factor(react_cat, levels = c(1, 2, 3), labels = c("low", "medium", "high")))
+```
+
+```{r orderedfactor-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Note the `levels` (sets the order) and `labels` (sets the label/value) arguments of the `factor()` function."
+  )
+```
+
+###
+
+Plot a bar chart of the factor representing the reactions bins. Are the bins in the desired order?
+
+<div class="question" >
+</div>
+
+```{r binplot, exercise = TRUE, exercise.setup = "orderedfactor-solution"}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="binplot-hint">
+__Hint:__ hinttext.
+</div>
+
+```{r binplot-solution}
+ggplot(Brexit) + geom_bar(mapping = aes(x = react_cat))
+```
+
+```{r binplot-check}
+gradethis::grade_code(
+  correct = "Yes indeed, all three bins have the same number of observations (posts).", 
+  incorrect = ""
+  )
+```
+
+<div class="tip" >
+__Programming Tip__
+
+- An ordered factor assigns ordinal measurement level. In a regression model, no ordinary dummy variables are created for an ordered factor. So avoid ordered factors, unless you really need an ordinal variable.
+</div>
+
+## Dates and Times  
+
+### DateTime data object
+
+Example: Publication date of post on _nujij.nl_.
+
+```{r POSIXct, echo=FALSE}
+str(Brexit$pubDate, "%B %d, %Y %H:%M:%S")
+```
+
+Date plus time of day are (usually) stored as a `POSIXct` data type.
+
+- Number of seconds since the beginning of 1970.
+- Shown in the standard format (of your computer locale).
+
+### String to DateTime  
+
+In data set `Brexit`, variable `pubDate` specifies the date and time an article was posted as a string, e.g., "`r Brexit$pubDate[1]`".  
+
+```{r pubDate_readr}
+# Parse with readr:: (p. 134 {Ch. 11.3.4})
+Brexit <- Brexit %>%
+  mutate(pubDateTime = parse_datetime(pubDate, "%B %d, %Y %H:%M:%S"))
+# Parse with lubridate:: (p. 239 {Ch. 16.2.1})
+Brexit <- Brexit %>% mutate(pubDateTime2 = mdy_hms(pubDate))
+```
+
+Year, month, day, hour, minute, second formatting codes:
+
+- `readr::parse_datetime()`: see help for `parse_datetime()` under __Format specification__.
+- `lubridate::`: See help for `parse_date_time()` under __Details__.  
+
+
+- Package `lubridate::` simplifies the identification of date/time elements.
+- Formatting codes are also used for displaying dates and times.
+
+
+### Retrieve info from DateTime
+
+It is easy to get the date and weekday with the `lubridate::` package.  
+
+
+
+```{r date}
+Brexit <- Brexit %>% 
+  mutate(date = 
+    date(pubDateTime))
+```
+
+```{r echo=FALSE}
+Brexit %>% ggplot(aes(date)) + geom_area(stat="count")
+```
+
+```{r weekday}
+Brexit <- Brexit %>% 
+  mutate(weekday = 
+    wday(pubDateTime, label=TRUE))
+```
+
+```{r echo=FALSE}
+Brexit %>% ggplot(aes(weekday)) + geom_bar()
+```
+
+
+
+
+- Note that there is a `Date` variable type in R. It behaves just like a `DateTime` variable.
+- `date()` is also a base R function.
+
+###  
+
+Time of day is trickier because R has no time data type.  
+
+
+```{r hour}
+Brexit <- Brexit %>% 
+  mutate(hour = 
+    hour(pubDateTime))
+```
+
+```{r echo=FALSE}
+Brexit %>% ggplot(aes(hour)) + geom_bar()
+```
+
+```{r setting_yearday}
+# Trick: As if each day is January 1.
+Brexit <- Brexit %>% 
+  mutate(time = update(pubDateTime, yday = 1))
+```
+
+```{r echo=FALSE}
+Brexit %>% ggplot(aes(time)) + geom_area(stat = "bin") + scale_x_datetime(date_labels = "%H")
+Brexit$time <- NULL
+```
+
+
+
+
+
+
+### Calculating with DateTime  
+
+Time between publications: difftime (several time units) or duration (seconds).
+
+```{r duration}
+Brexit <- Brexit %>% arrange(pubDateTime) %>% #sort
+  mutate(lapse_sec = #calculate
+    as.duration(pubDateTime - lag(pubDateTime, n = 1L)))
+```
+
+
+
+```{r echo=FALSE}
+Brexit %>% ggplot(aes(as.numeric(lapse_sec))) + geom_histogram()
+```
+
+- Subtracting 2 datetimes yields data type difftime.
+- `as.duration()` changes a difftime into a duration (difference always measured in seconds.)  
+- `as.numeric()`changes a difftime or duration to a numeric (for plotting.)  
+
+
+
+
+- Subtraction yields a difftime, expressed in the largest time unit that is smaller than the smallest measured time difference.
+- `difftime` has a `unit =` argument, which expresses/sets the time unit.  
+- Work with durations unless you have to take into account daylight saving and leap seconds.
+- Note: For minutes, hours, days, and weeks, duration can be divided (ignoring leap seconds) by the appropriate number of seconds.
+
+## Strings  
+
+### String manipulation  
+
+Main applications:  
+
+1. Change string into another type (factor, date, number) that is more convenient for analysis.  
+    - Examples on previous slides (string to factor or datetime).  
+2. Query and quantify natural text contents.  
+    - Find texts with particular contents.  
+    - Change content characteristics into variables.  
+    - Not applicable to all complex data sets.
+
+
+- Topic 2 is esp. relevant for students working on a complex data set including text (natural language): nujij.nl, German Chancellor Debate (debate statement text available in variable `TEXT`).  
+
+
+### Change variable names
+
+Friends & Families weekly survey: nasty variable names. Use `rename()`?
+
+<img src="surveyweek1.png" width="900px">
+
+
+- Data sets in the wild often contain troublesome variable names.
+- We can use `rename()` to change each name.
+- Instead, let's handle variable names as string data.
+
+
+### Variable names are strings
+
+Let us try to retain only the date in the variable name.
+
+```{r}
+# Store variable name in a vector with the names() function.
+varname <- names(surveyweek1)[4] 
+# [4] selects item 4 from the vector (= series) of variable names
+```
+
+Selected (fourth) variable name: 
+
+"`r varname`""
+
+
+Execute the command. Where does the data object `varname` appear? What is it?
+
+### Manipulate a variable name
+
+Step 1: Remove all up to (and including) the first " - ".
+```{r}
+# Find the first position of " - ".
+str_locate(varname, " - ") #start and end position!
+# Select everything after the end position of " - ".
+varname <- str_sub(varname, start = str_locate(varname, " - ")[2] + 1)
+varname #show result
+```
+
+
+- Book focuses on finding and replacing partcular strings/words.
+- `str_locate()` with `str_sub()` nice for cutting up a string.
+- `[2]` behind str_locate() selects the second item of the vector: the end position.
+
+
+### 
+
+Step 2: Remove all up to (and including)  ", ".
+
+```{r}
+# Select substring after the end position of ", ".
+varname <- str_sub(varname, start = str_locate(varname, ", ")[2] + 1)
+varname #show result
+```
+
+Step 3: Remove all from (and including)  " - ".
+
+```{r}
+# Select substring up to start position of " - ".
+varname <- str_sub(varname, end = str_locate(varname, " - ")[1] - 1)
+varname #show result
+```
+
+
+- Note that `start` and `end` arguments can be combined in `sub_str()`.
+- Steps 2 and 3 can thus be done in one command.
+
+
+### Manipulate all variable names
+
+Apply commands to all relevant variables (sequence 4 to 10).
+
+```{r}
+varnames <- names(surveyweek1)[4:10] #store selected variable names in a vector
+str_locate(varnames, " - ") #matrix of start and end positions
+str_locate(varnames, " - ")[,2] #vector of end positions
+```
+
+
+- now, str_locate creates matrix with start and end position columns, so the value in the second column must be selected: [,2]
+
+
+### 
+
+Apply commands to all relevant variables (sequence 4 to 10).
+
+```{r}
+varnames <- str_sub(varnames, start = str_locate(varnames, " - ")[,2] + 1) #remove unto " - "
+varnames <- str_sub(varnames, start = str_locate(varnames, ", ")[,2] + 1) #remove unto ", "
+varnames <- str_sub(varnames, end = str_locate(varnames, " - ")[,1] - 1)
+varnames #show result
+```
+
+```{r eval=FALSE}
+# Replace variable names in tibble.
+names(surveyweek1)[4:10] <- varnames
+```
+
+
+- Note the comma that is added between the square brackets. [,2] refers to the second column in the matrix.
+
+
+### 
+
+Because the variable names are so well structured, we can achieve the same with the tidyverse `separate()` function.
+
+```{r eval=FALSE}
+#tidyverse requires a data frame
+varnames <- data.frame(name = names(surveyweek1)[4:10]) %>%
+  #split each name into three parts
+  separate(name, into = c("humbug", "date", "topic"), sep = " - ") %>%
+  #split the date into weekday and date
+  separate(date, into = c("weekday", "date"), sep = ", ") %>%
+  #extract the date variable as a vector
+  pull(date)
+# Replace variable names in tibble.
+names(surveyweek1)[4:10] <- varnames 
+```
+
+
+Inspect the results of each step (with `View()`).
+
+
+
+- Tidyverse functions only operate on data frames but the variable names are a vector: just a series of names.
+- Therefore we must change them into a data frame at the start with `data.frame()` and transform them back to a vector (without variable name) at the end with `pull()`.
+
+## Fun Stuff
+
+## Data Project
+
+* Change an interesting character variable in your complex data set into a factor.
+* Reorder the groups (values) within the factor.
+* Group a numeric variable into a factor with nice group labels.
+
+Select a time or date variable in your complex data set.
+
+* If it is not in DateTime (or Date) format, change it into that format.
+* Compare some values of the DateTime variable to the values (strings) in the original .csv file. Have the values been correctly read?
+* Graph the time or date variable to check the distribution.
+
+<div class="tip" >
+__Programming Tip__
+
+- - Never assume that dates and times are correctly read.
+</div>
