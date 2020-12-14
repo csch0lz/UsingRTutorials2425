@@ -66,7 +66,7 @@ cor(var1, var2, method = "spearman")
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="atomic-hint">
-__Hint:__ No piping now; we cannot pipe atomic vectors, we can only pipe data frames. The `stats::` package, like the `base::` package, is automatically loaded when R starts.
+__Hint:__ No piping now; we cannot pipe atomic vectors, we can only pipe data frames. The `stats` package, like the `base` package, is automatically loaded when R starts.
 </div>
 
 ```{r atomic-check}

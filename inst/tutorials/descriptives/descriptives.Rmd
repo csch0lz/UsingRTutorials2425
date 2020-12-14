@@ -362,7 +362,7 @@ summarise(Glasgow, alcohol_NA = (alcohol == NA))
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="countNA-hint">
-__Hint:__ We cannot use `== NA`. Check page 2 of the Data Transformation with `dplyr::` cheat sheet for a function to work with missing values (`NA`). Oh, and with how many rows do you want to end up?
+__Hint:__ We cannot use `== NA`. Check page 2 of the Data Transformation with `dplyr` cheat sheet for a function to work with missing values (`NA`). Oh, and with how many rows do you want to end up?
 </div>
 
 ```{r countNA-solution}
@@ -708,7 +708,7 @@ __Programming Tip__
 
 R has several packages for creating tabular output. In a later session, we will discuss some packages for tabulating statistical output.
 
-Here, we present a function in a basic package for tabular output (`knitr::`), which works very well with piping and RMarkdown (discussed later in this tutorial). In addition, we use the `kableExtra::` function to fine-tune tables created with `kable()`.
+Here, we present a function in a basic package for tabular output (`knitr`), which works very well with piping and RMarkdown (discussed later in this tutorial). In addition, we use the `kableExtra` function to fine-tune tables created with `kable()`.
 
 ### 
 
@@ -753,7 +753,7 @@ Glasgow %>%
 ```
 
 <div class="question" >
-Try to reproduce this table using the code box below, piping the wrangled data into the `kable()` in package `knitr::` (which is automatically loaded in the tutorial).
+Try to reproduce this table using the code box below, piping the wrangled data into the `kable()` in package `knitr` (which is automatically loaded in the tutorial).
 </div>
 
 Mind the details: header, column headings, column alignment, number of decimal places.
@@ -764,7 +764,7 @@ Mind the details: header, column headings, column alignment, number of decimal p
 
 ###
 
-The above table is not particularly pretty, so let us improve it with the help of package `kableExtra::`.
+The above table is not particularly pretty, so let us improve it with the help of package `kableExtra`.
 
 ```{r tableExampleExtra}
 library(kableExtra)
@@ -789,7 +789,7 @@ Glasgow %>%
 ```
 
 <div class="question" >
-Reproduce this table using the code box below. Again, mind the details. Check out the options offered by `kableExtra::` on the [package website](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
+Reproduce this table using the code box below. Again, mind the details. Check out the options offered by `kableExtra` on the [package website](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
 </div>
 
 <div id="kableExtra-hint">
@@ -982,7 +982,7 @@ This would be a good moment to delete the text and code chunks from the standard
 Add a code chunk, name it, and import your data file into a data object with `read_csv()`.
 </div>
 
-Note that `read_csv()` is part of the `readr::` package, which is automatically loaded by the `tidyverse::` package.
+Note that `read_csv()` is part of the `readr` package, which is automatically loaded by the `tidyverse` package.
 
 ### 
 

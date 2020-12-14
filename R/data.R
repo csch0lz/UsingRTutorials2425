@@ -63,3 +63,35 @@
 #'   \item{bfperiod}{wave for the phase in the period of best friendship}
 #' }
 "GlasgowFriends"
+
+#' Articles on Brexit posted on the (former) Dutch news site nujij.nl.
+#' 
+#' @format A data frame with eight variables:
+#' \describe{
+#'   \item{id}{Original article ID}
+#'   \item{category}{Type of article (Dutch)}
+#'   \item{pubDate}{Post date and time}
+#'   \item{title}{Article heading}
+#'   \item{text}{Article (body) text}
+#'   \item{clicks}{Number of clicks received by the article}
+#'   \item{votes}{Number of votes received by the article}
+#'   \item{reactions}{Number of reactions posted on the article}
+#' }
+"Brexit"
+
+#' Subset of variables and observations from the first Friends & Families (MIT) weekly survey.
+#' 
+#' @format A data frame with ten variables:
+#' \describe{
+#'   \item{participantID}{Original participant ID}
+#'   \item{StartDate}{Date and time the participant started this survey}
+#'   \item{EndDate}{Date and time the participant submitted this survey}
+#'   \item{To the best of your recollection [...] March 8 - Sad or depressed}{Survey question on participant's mood}
+#'   \item{To the best of your recollection [...] March 9 - Sad or depressed}{Survey question on participant's mood}
+#'   \item{To the best of your recollection [...] March 10 - Sad or depressed}{Survey question on participant's mood}
+#'   \item{To the best of your recollection [...] March 11 - Sad or depressed}{Survey question on participant's mood}
+#'   \item{To the best of your recollection [...] March 12 - Sad or depressed}{Survey question on participant's mood}
+#'   \item{To the best of your recollection [...] March 13 - Sad or depressed}{Survey question on participant's mood}
+#'   \item{To the best of your recollection [...] March 14 - Sad or depressed}{Survey question on participant's mood}
+#' }
+"surveyweek1"
