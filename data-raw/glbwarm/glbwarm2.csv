@@ -1,0 +1,816 @@
+﻿govact,posemot,negemot,ideology,age,sex,partyid
+7,1,6,Somewhat Liberal,34,female,Independent
+6,5,6,Moderate; Middle of the Road,50,male,Independent
+5.2,2,6,Somewhat Conservative,50,female,Independent
+6,4.33,6,Moderate; Middle of the Road,71,male,Democrat
+7,3,6,Very Liberal,40,female,Democrat
+4.8,1.33,6,Somewhat Conservative,64,female,Republican
+6.6,2,6,Somewhat Liberal,70,male,Democrat
+5.4,2.33,6,Liberal,30,female,Democrat
+4.8,2.67,6,Moderate; Middle of the Road,46,male,Independent
+3.4,1,6,Moderate; Middle of the Road,65,female,Independent
+6.4,4.33,6,Moderate; Middle of the Road,65,female,Democrat
+5.8,3,6,Moderate; Middle of the Road,67,male,Republican
+6,2.67,6,Moderate; Middle of the Road,62,female,Republican
+4.8,2,6,Liberal,41,female,Democrat
+4.4,2,6,Moderate; Middle of the Road,55,male,Republican
+7,5.33,6,Moderate; Middle of the Road,55,male,Republican
+6.4,4,6,Moderate; Middle of the Road,64,male,Independent
+6,5,6,Moderate; Middle of the Road,35,female,Independent
+7,1.33,6,Somewhat Conservative,40,female,Democrat
+6.4,3.33,6,Very Conservative,72,male,Republican
+5.6,5.33,6,Very Conservative,72,male,Independent
+6.4,3.67,6,Liberal,37,female,Democrat
+5.8,5,6,Conservative,50,female,Democrat
+7,2.67,6,Very Liberal,64,male,Democrat
+5.4,4.67,6,Liberal,68,female,Democrat
+6.8,3.67,6,Very Conservative,52,male,Republican
+6.2,4.67,6,Moderate; Middle of the Road,83,male,Democrat
+7,4,6,Liberal,73,male,Democrat
+5.8,2.67,6,Moderate; Middle of the Road,62,female,Republican
+4,6,6,Somewhat Liberal,19,female,Democrat
+6,3.67,6,Moderate; Middle of the Road,44,female,Independent
+6.8,4.33,6,Conservative,40,male,Democrat
+6.6,1,6,Moderate; Middle of the Road,59,male,Democrat
+6.2,6,6,Somewhat Liberal,30,male,Democrat
+1.8,3.33,6,Moderate; Middle of the Road,55,female,Republican
+5.6,2.67,6,Very Conservative,64,female,Republican
+2.6,1,6,Moderate; Middle of the Road,32,female,Republican
+5.4,1,6,Conservative,54,male,Republican
+6.2,1,6,Very Liberal,67,female,Democrat
+5.4,1,6,Moderate; Middle of the Road,64,female,Republican
+4.8,1,6,Very Liberal,40,female,Democrat
+5.4,1.33,6,Moderate; Middle of the Road,67,female,Independent
+6.8,1.67,6,Somewhat Conservative,47,female,Democrat
+4.4,4.33,6,Moderate; Middle of the Road,47,male,Independent
+2.4,2,6,Moderate; Middle of the Road,42,female,Democrat
+5,6,6,Somewhat Liberal,30,female,Independent
+6.8,6,6,Moderate; Middle of the Road,51,male,Independent
+7,6,6,Very Liberal,22,female,Democrat
+4.2,3,6,Liberal,55,female,Independent
+5.4,3,6,Liberal,56,male,Democrat
+3.6,6,6,Moderate; Middle of the Road,43,male,Independent
+6.2,4.67,6,Somewhat Liberal,34,male,Independent
+5.6,2.33,6,Moderate; Middle of the Road,45,male,Democrat
+5.2,3,6,Somewhat Liberal,29,male,Democrat
+5.8,3.33,6,Moderate; Middle of the Road,34,female,Independent
+5,1.33,6,Moderate; Middle of the Road,31,female,Independent
+5.8,1.67,6,Somewhat Liberal,44,female,Democrat
+7,3,6,Moderate; Middle of the Road,48,female,Independent
+5.8,1.67,6,Somewhat Conservative,18,female,Republican
+5.4,5.33,6,Moderate; Middle of the Road,82,male,Democrat
+5.4,3.67,5.67,Moderate; Middle of the Road,38,female,Independent
+5.8,3.67,5.67,Somewhat Liberal,76,male,Democrat
+4.6,3,5.67,Liberal,64,male,Democrat
+5,1.67,5.67,Moderate; Middle of the Road,41,female,Republican
+5.6,2.33,5.67,Conservative,67,male,Republican
+6.2,1.33,5.67,Liberal,42,female,Democrat
+5.4,1.67,5.67,Liberal,25,female,Democrat
+6.6,2,5.67,Somewhat Liberal,58,male,Democrat
+6.8,5,5.67,Liberal,60,female,Democrat
+7,2,5.67,Very Liberal,82,male,Democrat
+5.6,2.67,5.67,Liberal,72,male,Democrat
+4.4,1,5.67,Somewhat Conservative,66,female,Democrat
+5,5.67,5.67,Liberal,32,male,Democrat
+5.6,3.33,5.67,Moderate; Middle of the Road,64,female,Democrat
+4.8,2,5.67,Liberal,55,female,Democrat
+6.2,3.33,5.67,Moderate; Middle of the Road,44,male,Democrat
+5.2,1,5.67,Moderate; Middle of the Road,40,female,Republican
+7,2.33,5.67,Somewhat Conservative,21,female,Republican
+2.8,6,5.67,Liberal,62,female,Republican
+6,2.33,5.67,Somewhat Liberal,56,female,Democrat
+4.8,4,5.67,Liberal,63,male,Democrat
+7,6,5.67,Liberal,32,male,Democrat
+4.8,4.67,5.67,Moderate; Middle of the Road,50,male,Independent
+4.2,3,5.67,Somewhat Conservative,73,male,Republican
+3.4,4,5.67,Somewhat Conservative,44,female,Republican
+6.4,2,5.67,Somewhat Liberal,65,female,Democrat
+4.8,1.33,5.67,Moderate; Middle of the Road,36,female,Independent
+6.4,3.67,5.67,Very Liberal,66,male,Democrat
+5.2,3.33,5.67,Liberal,32,female,Democrat
+6,5.33,5.67,Moderate; Middle of the Road,42,female,Democrat
+4.6,5,5.67,Conservative,33,female,Democrat
+5.4,5,5.67,Moderate; Middle of the Road,38,female,Independent
+5.6,4,5.33,Somewhat Conservative,65,male,Democrat
+7,3.67,5.33,Moderate; Middle of the Road,60,male,Democrat
+4.8,5,5.33,Moderate; Middle of the Road,51,female,Independent
+3.4,1,5.33,Somewhat Conservative,73,male,Independent
+5.6,1.67,5.33,Somewhat Conservative,63,male,Independent
+6,3.33,5.33,Moderate; Middle of the Road,67,female,Democrat
+4.2,5,5.33,Liberal,42,male,Democrat
+5.2,4.33,5.33,Liberal,73,female,Democrat
+6.2,1,5.33,Liberal,44,female,Democrat
+6.6,1.67,5.33,Liberal,44,female,Democrat
+6.2,5,5.33,Somewhat Liberal,49,male,Democrat
+5,2,5.33,Very Conservative,64,male,Republican
+7,5.33,5.33,Very Liberal,57,female,Democrat
+5.6,2,5.33,Very Liberal,50,male,Democrat
+5.4,3.67,5.33,Moderate; Middle of the Road,27,male,Republican
+6.2,2.33,5.33,Very Liberal,48,male,Democrat
+4.8,5,5.33,Moderate; Middle of the Road,73,male,Democrat
+5.2,3.33,5.33,Moderate; Middle of the Road,58,female,Independent
+6,4.67,5.33,Somewhat Conservative,69,male,Republican
+4.6,4.67,5.33,Moderate; Middle of the Road,68,male,Democrat
+4.6,2.67,5.33,Conservative,43,female,Democrat
+4,4,5.33,Moderate; Middle of the Road,36,male,Democrat
+6.2,4.33,5.33,Moderate; Middle of the Road,63,female,Independent
+5.6,4.33,5.33,Moderate; Middle of the Road,59,female,Independent
+4.8,4,5.33,Conservative,64,female,Democrat
+6.2,2,5.33,Somewhat Liberal,61,female,Democrat
+6.4,3.67,5.33,Liberal,23,female,Democrat
+5.8,5.33,5.33,Somewhat Liberal,67,female,Democrat
+6.4,4.67,5.33,Liberal,45,female,Democrat
+6.4,2.67,5.33,Somewhat Conservative,41,female,Republican
+5.2,2.33,5.33,Moderate; Middle of the Road,55,female,Democrat
+7,6,5.33,Conservative,33,female,Republican
+5,2.67,5.33,Moderate; Middle of the Road,22,male,Independent
+6.6,4,5.33,Somewhat Liberal,56,male,Democrat
+5.6,2.33,5.33,Somewhat Conservative,62,male,Republican
+5.8,3.33,5.33,Somewhat Liberal,59,male,Democrat
+5.6,3.33,5.33,Conservative,65,male,Independent
+4.4,5,5.33,Somewhat Conservative,41,male,Democrat
+3.6,2,5.33,Conservative,42,female,Democrat
+6.2,2,5.33,Moderate; Middle of the Road,31,female,Democrat
+5.4,2,5.33,Moderate; Middle of the Road,28,female,Democrat
+4.6,3.33,5.33,Liberal,27,female,Independent
+4.8,2,5.33,Conservative,31,female,Republican
+7,1.67,5.33,Somewhat Liberal,50,female,Democrat
+5.6,3.67,5.33,Somewhat Liberal,43,female,Democrat
+5.8,1.33,5.33,Somewhat Liberal,58,male,Independent
+1,5,5,Very Liberal,59,female,Democrat
+7,1,5,Liberal,71,male,Democrat
+5.4,2,5,Liberal,63,male,Democrat
+2.2,2.67,5,Very Conservative,76,male,Republican
+5.2,4,5,Liberal,45,female,Democrat
+7,2.33,5,Somewhat Conservative,67,male,Democrat
+5.6,1,5,Moderate; Middle of the Road,33,male,Independent
+4.6,5,5,Very Liberal,28,female,Democrat
+4.8,1,5,Somewhat Conservative,51,female,Democrat
+5.6,3.33,5,Somewhat Conservative,66,male,Democrat
+4.6,4,5,Moderate; Middle of the Road,49,male,Democrat
+5.8,2.33,5,Conservative,72,male,Republican
+5.2,1,5,Liberal,29,female,Democrat
+4,2.67,5,Very Conservative,50,female,Independent
+5.8,4,5,Liberal,37,female,Democrat
+3.8,2.33,5,Moderate; Middle of the Road,67,female,Democrat
+5.8,2.33,5,Moderate; Middle of the Road,31,female,Democrat
+6,2.67,5,Moderate; Middle of the Road,30,female,Republican
+2.6,2.67,5,Moderate; Middle of the Road,51,male,Democrat
+5.4,1.67,5,Somewhat Liberal,48,female,Democrat
+5.6,4.33,5,Somewhat Conservative,54,female,Republican
+5.6,3.67,5,Liberal,70,female,Republican
+5,3.67,5,Moderate; Middle of the Road,72,female,Independent
+5.2,5,5,Moderate; Middle of the Road,64,female,Democrat
+5.2,5,5,Liberal,27,male,Independent
+4,4.67,5,Moderate; Middle of the Road,33,female,Democrat
+5.6,1.67,5,Very Conservative,63,male,Republican
+3.6,3,5,Moderate; Middle of the Road,29,female,Democrat
+6.6,2,5,Very Liberal,26,female,Democrat
+5.8,3.67,5,Liberal,67,female,Democrat
+4.8,2,5,Liberal,65,female,Independent
+5.8,3.67,5,Conservative,50,female,Republican
+6,4,5,Moderate; Middle of the Road,53,female,Republican
+4.6,1,5,Very Liberal,32,male,Democrat
+6.2,2.67,5,Moderate; Middle of the Road,32,male,Independent
+5.4,2,5,Somewhat Conservative,59,male,Republican
+6.4,6,5,Somewhat Conservative,57,male,Republican
+6.2,5.33,5,Moderate; Middle of the Road,51,male,Democrat
+4.8,4.33,5,Liberal,48,male,Democrat
+3,4,5,Somewhat Liberal,50,female,Democrat
+7,4,5,Moderate; Middle of the Road,27,male,Independent
+4,5,5,Somewhat Liberal,36,female,Republican
+4.8,2.67,5,Very Liberal,18,male,Democrat
+4.6,5,5,Moderate; Middle of the Road,34,female,Democrat
+6,4,5,Somewhat Conservative,63,male,Independent
+4.6,3.33,5,Moderate; Middle of the Road,36,female,Democrat
+6,3.33,5,Liberal,60,male,Democrat
+5.4,3,5,Liberal,19,male,Democrat
+5.2,5,5,Conservative,60,male,Republican
+4.8,3.33,5,Somewhat Conservative,33,male,Republican
+4.8,1.33,5,Moderate; Middle of the Road,54,male,Democrat
+6,2,5,Liberal,60,male,Democrat
+6.6,5,5,Moderate; Middle of the Road,57,male,Independent
+6.4,2.33,5,Moderate; Middle of the Road,34,male,Independent
+5.6,1,5,Liberal,21,female,Democrat
+4.4,2.33,5,Somewhat Conservative,62,male,Republican
+4,2.33,5,Moderate; Middle of the Road,52,female,Independent
+3.4,5.67,5,Moderate; Middle of the Road,29,female,Independent
+7,3,5,Very Liberal,22,female,Democrat
+4.2,4,5,Moderate; Middle of the Road,66,female,Democrat
+5.2,1,5,Liberal,38,female,Democrat
+5.8,2.67,5,Somewhat Liberal,44,female,Independent
+5.4,4,5,Somewhat Conservative,62,male,Republican
+5,2.33,5,Liberal,21,female,Democrat
+5.8,1,5,Moderate; Middle of the Road,54,male,Democrat
+5.8,2.33,5,Moderate; Middle of the Road,40,female,Democrat
+5.2,3.33,5,Somewhat Liberal,27,male,Independent
+3.2,4,5,Moderate; Middle of the Road,52,male,Independent
+3.6,3.67,4.67,Conservative,61,female,Independent
+3.8,5.67,4.67,Moderate; Middle of the Road,59,female,Democrat
+5,3,4.67,Moderate; Middle of the Road,71,male,Independent
+5.4,3.67,4.67,Moderate; Middle of the Road,60,male,Democrat
+7,5,4.67,Very Liberal,40,male,Democrat
+6.6,2,4.67,Liberal,85,male,Democrat
+5,3.67,4.67,Somewhat Liberal,34,male,Democrat
+4.8,4,4.67,Moderate; Middle of the Road,32,male,Republican
+5,3.33,4.67,Moderate; Middle of the Road,84,male,Democrat
+6.2,2,4.67,Somewhat Liberal,57,female,Democrat
+5.8,2,4.67,Moderate; Middle of the Road,66,male,Democrat
+4,4.67,4.67,Very Conservative,46,female,Democrat
+4.8,4.33,4.67,Liberal,57,female,Democrat
+5.2,2.67,4.67,Moderate; Middle of the Road,29,male,Democrat
+5.8,2.67,4.67,Moderate; Middle of the Road,40,female,Democrat
+5.2,2,4.67,Moderate; Middle of the Road,51,female,Democrat
+6.4,1,4.67,Somewhat Conservative,27,male,Republican
+4.6,4.33,4.67,Somewhat Liberal,66,male,Democrat
+6,4.67,4.67,Liberal,25,female,Independent
+5.2,4,4.67,Moderate; Middle of the Road,79,male,Democrat
+5.6,5.33,4.67,Conservative,60,female,Democrat
+5.4,3.33,4.67,Somewhat Liberal,21,female,Democrat
+5.2,2.33,4.67,Somewhat Liberal,30,male,Democrat
+5.8,5,4.67,Somewhat Liberal,68,female,Democrat
+3.6,3.33,4.67,Moderate; Middle of the Road,28,male,Independent
+3.6,2.33,4.67,Conservative,62,male,Republican
+6.2,2,4.67,Somewhat Liberal,65,male,Democrat
+5.6,3,4.67,Somewhat Conservative,39,female,Republican
+5.8,4.67,4.67,Very Conservative,49,female,Independent
+5.2,3.67,4.67,Moderate; Middle of the Road,27,male,Independent
+4.8,2,4.67,Somewhat Liberal,54,male,Independent
+5.4,2.67,4.67,Moderate; Middle of the Road,61,male,Democrat
+4.4,2,4.67,Moderate; Middle of the Road,69,female,Democrat
+4.4,4.33,4.67,Moderate; Middle of the Road,59,female,Democrat
+5.6,4.33,4.67,Liberal,68,female,Democrat
+4.8,1.33,4.67,Conservative,43,female,Republican
+5.4,1.67,4.67,Moderate; Middle of the Road,43,female,Republican
+5,1.67,4.67,Moderate; Middle of the Road,39,female,Independent
+4,4.67,4.67,Liberal,42,female,Democrat
+5.2,4,4.67,Conservative,61,male,Democrat
+6.6,5.67,4.67,Moderate; Middle of the Road,27,male,Independent
+3.4,2.33,4.67,Moderate; Middle of the Road,19,male,Democrat
+6.6,1.67,4.67,Moderate; Middle of the Road,51,female,Democrat
+4,4.67,4.67,Moderate; Middle of the Road,42,female,Independent
+6.4,2,4.67,Moderate; Middle of the Road,46,female,Republican
+6,4.33,4.67,Moderate; Middle of the Road,17,male,Independent
+5.2,5.67,4.67,Somewhat Conservative,43,female,Republican
+5,1.33,4.67,Moderate; Middle of the Road,60,female,Democrat
+5.4,2,4.67,Moderate; Middle of the Road,57,female,Independent
+6.8,3.33,4.67,Liberal,67,female,Democrat
+5.8,2,4.67,Somewhat Liberal,36,female,Democrat
+5.2,4.67,4.67,Liberal,42,female,Democrat
+6.8,3.33,4.67,Moderate; Middle of the Road,30,male,Independent
+4.2,2.33,4.33,Moderate; Middle of the Road,68,female,Democrat
+3.8,3.67,4.33,Moderate; Middle of the Road,57,male,Republican
+5.2,3.67,4.33,Conservative,72,male,Independent
+5.4,1,4.33,Moderate; Middle of the Road,42,female,Republican
+3.8,3.33,4.33,Somewhat Conservative,75,male,Republican
+5.6,2.33,4.33,Moderate; Middle of the Road,52,female,Republican
+5.6,2,4.33,Conservative,54,male,Republican
+5,3,4.33,Liberal,68,male,Democrat
+4.8,5.67,4.33,Somewhat Conservative,69,male,Democrat
+4.8,4.33,4.33,Moderate; Middle of the Road,54,male,Democrat
+5.8,2,4.33,Moderate; Middle of the Road,21,male,Democrat
+3.6,3.33,4.33,Conservative,72,male,Republican
+5.2,2.67,4.33,Moderate; Middle of the Road,63,male,Independent
+4.2,1.33,4.33,Moderate; Middle of the Road,53,female,Democrat
+5.8,3.33,4.33,Liberal,63,male,Democrat
+5.6,3.67,4.33,Moderate; Middle of the Road,60,male,Independent
+3.6,2.33,4.33,Moderate; Middle of the Road,30,female,Independent
+6.2,4.33,4.33,Moderate; Middle of the Road,47,female,Independent
+3.4,1,4.33,Moderate; Middle of the Road,42,female,Democrat
+4,4,4.33,Moderate; Middle of the Road,55,female,Independent
+3.4,1,4.33,Moderate; Middle of the Road,22,female,Democrat
+6,2.33,4.33,Somewhat Conservative,55,male,Democrat
+5.8,3.67,4.33,Liberal,55,female,Democrat
+3.8,3.33,4.33,Somewhat Conservative,64,female,Republican
+4.4,2,4.33,Very Liberal,44,male,Democrat
+4.4,4.67,4.33,Moderate; Middle of the Road,20,female,Democrat
+5.2,3.67,4.33,Somewhat Liberal,24,male,Democrat
+5.8,3,4.33,Somewhat Liberal,54,male,Democrat
+4.8,2.67,4.33,Somewhat Liberal,23,male,Democrat
+4.6,4,4.33,Somewhat Liberal,62,male,Democrat
+5,2.33,4.33,Somewhat Liberal,27,female,Independent
+5.2,4.67,4.33,Conservative,64,female,Republican
+5.6,4,4.33,Liberal,41,female,Independent
+5.8,2.33,4.33,Liberal,27,male,Democrat
+5,2,4.33,Moderate; Middle of the Road,43,female,Independent
+4.4,3.33,4.33,Somewhat Conservative,44,male,Republican
+6.2,4.67,4.33,Somewhat Conservative,36,female,Republican
+6.6,4,4.33,Somewhat Liberal,63,male,Independent
+4,3.67,4.33,Somewhat Liberal,26,female,Democrat
+4,5.33,4.33,Very Liberal,43,female,Independent
+6.8,2.33,4,Moderate; Middle of the Road,47,male,Democrat
+5.6,4,4,Moderate; Middle of the Road,60,female,Democrat
+5.2,3.33,4,Liberal,41,female,Democrat
+6.4,2,4,Somewhat Liberal,47,female,Democrat
+5.8,3.33,4,Liberal,64,male,Democrat
+6.8,4.67,4,Moderate; Middle of the Road,60,female,Republican
+5.8,2.67,4,Liberal,57,male,Democrat
+4.4,1.33,4,Conservative,55,female,Republican
+5.2,2.67,4,Liberal,55,female,Democrat
+6.6,2.67,4,Moderate; Middle of the Road,42,female,Democrat
+6,3.67,4,Moderate; Middle of the Road,51,male,Independent
+4,4,4,Moderate; Middle of the Road,39,female,Independent
+4.6,1,4,Very Liberal,53,female,Democrat
+5,3,4,Somewhat Liberal,74,male,Democrat
+3.6,2.67,4,Moderate; Middle of the Road,42,male,Republican
+4.4,4,4,Somewhat Conservative,29,female,Democrat
+5.8,3.33,4,Very Liberal,56,male,Democrat
+4.4,4,4,Somewhat Liberal,33,male,Independent
+5,1,4,Moderate; Middle of the Road,57,female,Democrat
+4.8,3,4,Somewhat Conservative,77,female,Republican
+4.4,2.67,4,Liberal,36,female,Democrat
+4.8,1.33,4,Very Conservative,26,male,Republican
+5.8,4.33,4,Somewhat Liberal,77,female,Democrat
+5.2,6,4,Liberal,25,male,Democrat
+4,4,4,Moderate; Middle of the Road,27,male,Democrat
+4,4.33,4,Somewhat Liberal,23,male,Democrat
+5.4,3.67,4,Somewhat Conservative,59,female,Republican
+4,4,4,Moderate; Middle of the Road,29,male,Independent
+5,3,4,Liberal,68,male,Democrat
+4.2,5.33,4,Somewhat Conservative,63,female,Republican
+5.8,2,4,Moderate; Middle of the Road,25,male,Democrat
+4,4,4,Liberal,60,male,Democrat
+5.8,4.33,4,Somewhat Liberal,71,male,Democrat
+5.6,2.67,4,Liberal,55,female,Independent
+4.6,4.33,4,Moderate; Middle of the Road,65,female,Independent
+5.2,2.67,4,Moderate; Middle of the Road,37,female,Republican
+4,4,4,Moderate; Middle of the Road,38,male,Democrat
+4.6,3.67,4,Somewhat Liberal,62,female,Republican
+6.4,4,4,Moderate; Middle of the Road,39,female,Independent
+4.2,6,4,Moderate; Middle of the Road,52,female,Independent
+4,3,4,Somewhat Liberal,38,female,Democrat
+5.2,4.67,4,Moderate; Middle of the Road,22,female,Democrat
+4,3.33,4,Moderate; Middle of the Road,43,female,Independent
+5.8,4,4,Liberal,33,male,Democrat
+5.8,4,4,Liberal,30,male,Independent
+5.8,4,4,Somewhat Liberal,59,female,Democrat
+4.4,1,4,Moderate; Middle of the Road,40,female,Independent
+3.8,4,4,Somewhat Conservative,54,male,Republican
+5.2,3,4,Moderate; Middle of the Road,48,male,Independent
+4,3.33,4,Moderate; Middle of the Road,65,female,Democrat
+5.2,2.33,4,Somewhat Liberal,40,female,Democrat
+5.6,5.67,4,Moderate; Middle of the Road,28,male,Democrat
+5.4,2.33,4,Liberal,29,male,Democrat
+4,2.67,4,Somewhat Conservative,80,male,Independent
+5,4,4,Somewhat Liberal,27,female,Democrat
+7,3.67,4,Moderate; Middle of the Road,49,male,Democrat
+5.8,4.33,4,Liberal,31,male,Independent
+4.8,2.33,4,Somewhat Liberal,35,female,Democrat
+5,4,4,Somewhat Conservative,23,male,Democrat
+3.4,1.67,4,Moderate; Middle of the Road,38,female,Independent
+4.6,3.67,4,Moderate; Middle of the Road,74,female,Independent
+5,4,4,Liberal,27,male,Independent
+6,4.33,4,Moderate; Middle of the Road,31,male,Independent
+5,3,4,Somewhat Liberal,35,female,Democrat
+3.8,2.67,4,Somewhat Conservative,68,female,Democrat
+4.8,3.33,4,Very Conservative,47,male,Republican
+4.8,4,4,Conservative,69,female,Republican
+4,3.33,4,Moderate; Middle of the Road,18,female,Independent
+6.6,1,4,Conservative,54,female,Independent
+5,5.33,4,Moderate; Middle of the Road,73,male,Independent
+5,4,4,Somewhat Liberal,63,female,Independent
+4,2,4,Moderate; Middle of the Road,29,male,Independent
+5.4,5.67,4,Conservative,36,female,Republican
+4.6,4.67,4,Moderate; Middle of the Road,50,male,Democrat
+5.2,2.67,4,Moderate; Middle of the Road,44,female,Republican
+5,4,4,Moderate; Middle of the Road,68,male,Independent
+6,3.33,4,Moderate; Middle of the Road,33,male,Democrat
+4.2,4,4,Moderate; Middle of the Road,49,female,Independent
+5.4,3.67,4,Liberal,49,female,Democrat
+4,4,4,Moderate; Middle of the Road,33,male,Independent
+3.2,2.67,4,Somewhat Conservative,29,female,Republican
+5,5,4,Very Liberal,79,female,Democrat
+4.2,4,4,Moderate; Middle of the Road,49,female,Independent
+4.2,2,4,Very Liberal,36,female,Republican
+4.8,1,4,Liberal,29,female,Democrat
+6.6,2.33,3.67,Very Liberal,85,male,Democrat
+5.2,4,3.67,Moderate; Middle of the Road,72,female,Independent
+4.6,3,3.67,Conservative,40,male,Republican
+4,2.67,3.67,Moderate; Middle of the Road,38,female,Independent
+4,3.67,3.67,Conservative,72,female,Republican
+4.2,4.33,3.67,Moderate; Middle of the Road,41,female,Democrat
+6.4,1.67,3.67,Liberal,42,female,Democrat
+4.8,1,3.67,Liberal,51,female,Democrat
+6.2,3.33,3.67,Moderate; Middle of the Road,83,male,Independent
+4.4,3.67,3.67,Somewhat Liberal,59,male,Democrat
+4.4,4.67,3.67,Liberal,53,male,Republican
+4.2,4,3.67,Moderate; Middle of the Road,34,male,Democrat
+5.6,5,3.67,Liberal,35,male,Democrat
+3.4,1,3.67,Moderate; Middle of the Road,27,male,Independent
+3.8,3,3.67,Moderate; Middle of the Road,28,female,Independent
+4.8,5,3.67,Moderate; Middle of the Road,65,male,Democrat
+4.2,5.33,3.67,Moderate; Middle of the Road,45,female,Democrat
+4.4,2.33,3.67,Somewhat Liberal,59,female,Democrat
+3.4,1.67,3.67,Somewhat Conservative,53,female,Republican
+5.2,5,3.67,Somewhat Conservative,55,female,Republican
+4.4,2.67,3.67,Moderate; Middle of the Road,72,female,Democrat
+4.6,4.33,3.67,Liberal,24,female,Democrat
+5.2,1,3.67,Somewhat Conservative,55,female,Republican
+4.2,5,3.67,Moderate; Middle of the Road,57,female,Democrat
+5.8,3,3.67,Very Liberal,26,female,Democrat
+7,1,3.67,Somewhat Liberal,31,male,Democrat
+5.6,4,3.67,Somewhat Conservative,30,female,Republican
+6,2.33,3.67,Very Conservative,44,female,Republican
+5.2,2.33,3.67,Somewhat Liberal,59,female,Republican
+4,2,3.67,Moderate; Middle of the Road,29,female,Republican
+4,4.67,3.67,Moderate; Middle of the Road,30,female,Independent
+5.4,2.33,3.67,Somewhat Conservative,53,male,Democrat
+4.4,5,3.67,Liberal,36,female,Democrat
+3.6,3.33,3.67,Moderate; Middle of the Road,51,male,Democrat
+5.4,3,3.67,Liberal,33,male,Democrat
+4.6,3.33,3.67,Somewhat Liberal,26,female,Democrat
+5,5.33,3.67,Moderate; Middle of the Road,32,female,Democrat
+4.2,2.33,3.67,Somewhat Conservative,54,female,Republican
+3.6,4,3.67,Moderate; Middle of the Road,71,female,Republican
+4,2,3.67,Moderate; Middle of the Road,18,male,Democrat
+4.8,3.67,3.67,Somewhat Conservative,56,male,Republican
+2.8,3.67,3.67,Somewhat Conservative,38,female,Independent
+5,2.67,3.67,Somewhat Liberal,53,male,Democrat
+5.2,3,3.67,Moderate; Middle of the Road,62,male,Independent
+4.4,1.67,3.67,Very Liberal,35,female,Democrat
+4.8,3.67,3.67,Moderate; Middle of the Road,49,male,Independent
+3.8,2.67,3.67,Moderate; Middle of the Road,43,female,Independent
+4.2,3.67,3.67,Somewhat Liberal,22,male,Democrat
+3.4,3.67,3.67,Liberal,22,male,Democrat
+5.2,3.67,3.67,Moderate; Middle of the Road,19,female,Independent
+5.8,2.33,3.67,Liberal,65,female,Democrat
+2.2,3.33,3.67,Moderate; Middle of the Road,30,male,Independent
+4,3,3.67,Moderate; Middle of the Road,29,male,Independent
+5.6,2,3.67,Somewhat Conservative,59,male,Independent
+4.4,3.33,3.67,Somewhat Liberal,48,male,Democrat
+5.6,3.67,3.67,Somewhat Liberal,55,male,Independent
+5,4.33,3.67,Moderate; Middle of the Road,19,male,Republican
+4.6,3.67,3.67,Moderate; Middle of the Road,51,male,Republican
+5.8,3.67,3.67,Liberal,40,male,Democrat
+3.6,4,3.33,Moderate; Middle of the Road,58,male,Democrat
+4.6,4.67,3.33,Somewhat Conservative,71,female,Republican
+5.4,1.33,3.33,Somewhat Liberal,34,female,Democrat
+4,4,3.33,Very Liberal,43,female,Democrat
+4.6,4.67,3.33,Somewhat Liberal,77,male,Republican
+5.2,2.33,3.33,Somewhat Liberal,52,female,Democrat
+4,2.67,3.33,Very Liberal,55,male,Independent
+2.8,3.67,3.33,Somewhat Liberal,65,female,Democrat
+5.8,5,3.33,Very Liberal,50,female,Democrat
+4.6,2,3.33,Somewhat Liberal,40,female,Democrat
+5,1.33,3.33,Moderate; Middle of the Road,41,female,Independent
+4.2,3,3.33,Conservative,69,female,Republican
+4.8,2.67,3.33,Moderate; Middle of the Road,40,female,Democrat
+3.8,3.33,3.33,Conservative,79,female,Independent
+3,1.33,3.33,Somewhat Conservative,83,male,Independent
+5.6,4.67,3.33,Moderate; Middle of the Road,73,male,Democrat
+3.4,3,3.33,Conservative,67,female,Republican
+4.4,3.67,3.33,Moderate; Middle of the Road,29,male,Democrat
+5.6,3.67,3.33,Moderate; Middle of the Road,25,female,Democrat
+3.6,3,3.33,Moderate; Middle of the Road,27,male,Independent
+5.2,2,3.33,Conservative,46,female,Republican
+6.8,4,3.33,Moderate; Middle of the Road,59,male,Independent
+5.6,3,3.33,Very Conservative,71,male,Republican
+4.8,4,3.33,Moderate; Middle of the Road,41,female,Democrat
+4,4,3.33,Liberal,21,female,Democrat
+3.4,1.67,3.33,Somewhat Conservative,83,female,Independent
+4.6,2,3.33,Moderate; Middle of the Road,35,female,Democrat
+4.6,3.67,3.33,Liberal,30,male,Democrat
+6.4,4,3.33,Very Liberal,45,female,Democrat
+4.8,4.67,3.33,Moderate; Middle of the Road,65,male,Republican
+5.2,3,3.33,Somewhat Liberal,19,male,Democrat
+4.2,2.33,3.33,Somewhat Conservative,40,female,Democrat
+5,4,3.33,Very Conservative,26,male,Democrat
+4,3,3.33,Very Liberal,23,male,Democrat
+4.4,3.33,3.33,Moderate; Middle of the Road,26,female,Democrat
+4.6,3.33,3.33,Somewhat Conservative,60,female,Democrat
+5.4,5,3.33,Moderate; Middle of the Road,87,male,Democrat
+4,3.67,3.33,Moderate; Middle of the Road,43,female,Independent
+5.4,5,3.33,Somewhat Liberal,54,male,Democrat
+4.6,2.67,3.33,Moderate; Middle of the Road,18,female,Independent
+3.4,5,3.33,Moderate; Middle of the Road,39,female,Republican
+5.4,4,3.33,Somewhat Liberal,45,female,Democrat
+5,3.67,3.33,Moderate; Middle of the Road,65,male,Republican
+4.2,2.67,3.33,Moderate; Middle of the Road,42,female,Republican
+5.2,2.33,3.33,Conservative,71,female,Republican
+5.2,3,3.33,Liberal,55,male,Democrat
+5.2,1,3.33,Moderate; Middle of the Road,24,female,Democrat
+2.6,4,3.33,Somewhat Liberal,53,female,Democrat
+5,4.67,3.33,Liberal,29,female,Democrat
+6.8,3,3.33,Liberal,70,female,Democrat
+4.6,4.33,3.33,Somewhat Conservative,23,female,Republican
+4.6,3.33,3.33,Somewhat Conservative,25,female,Republican
+4.6,3,3.33,Liberal,41,female,Democrat
+3.4,2,3.33,Somewhat Liberal,40,female,Democrat
+5.2,4,3.33,Moderate; Middle of the Road,41,female,Democrat
+5.4,2.67,3.33,Conservative,36,female,Independent
+5.2,2.33,3,Moderate; Middle of the Road,63,female,Democrat
+6,4,3,Somewhat Liberal,49,female,Democrat
+4.8,3,3,Somewhat Conservative,46,female,Republican
+4.8,2.67,3,Conservative,69,female,Republican
+4.6,1,3,Moderate; Middle of the Road,58,male,Democrat
+5,4,3,Moderate; Middle of the Road,40,female,Democrat
+4.6,4,3,Moderate; Middle of the Road,57,female,Independent
+4.4,4,3,Moderate; Middle of the Road,41,female,Republican
+5.6,1,3,Moderate; Middle of the Road,37,female,Independent
+3.6,3,3,Somewhat Conservative,73,male,Independent
+5.2,2,3,Somewhat Liberal,53,female,Democrat
+4.8,4.33,3,Moderate; Middle of the Road,71,female,Independent
+4.2,3.67,3,Somewhat Liberal,57,male,Democrat
+5.2,4,3,Conservative,53,female,Republican
+4.2,2.33,3,Conservative,65,male,Republican
+4,3,3,Moderate; Middle of the Road,41,female,Democrat
+4,3,3,Conservative,29,male,Independent
+5.4,4.67,3,Liberal,49,female,Independent
+2.4,3.33,3,Very Conservative,62,male,Republican
+4.6,2,3,Somewhat Conservative,32,female,Republican
+5.6,4.33,3,Moderate; Middle of the Road,78,male,Democrat
+3.6,5,3,Conservative,42,female,Republican
+5.6,4.67,3,Moderate; Middle of the Road,75,female,Democrat
+3.8,3.67,3,Moderate; Middle of the Road,36,female,Independent
+4,3,3,Moderate; Middle of the Road,34,female,Democrat
+5.2,1.67,3,Liberal,33,female,Democrat
+3.8,3.67,3,Moderate; Middle of the Road,30,male,Independent
+4.8,4,3,Somewhat Conservative,63,female,Democrat
+3.6,3.33,3,Conservative,64,male,Republican
+4.2,4,3,Conservative,76,male,Republican
+5.6,3.33,3,Moderate; Middle of the Road,41,male,Independent
+4.8,4.67,3,Moderate; Middle of the Road,32,male,Democrat
+2.8,2,3,Moderate; Middle of the Road,31,female,Independent
+4,4.67,3,Moderate; Middle of the Road,75,female,Democrat
+7,2.33,3,Very Liberal,51,male,Democrat
+5.4,1.67,3,Moderate; Middle of the Road,41,female,Republican
+4,3,3,Moderate; Middle of the Road,25,female,Democrat
+4.2,3,3,Somewhat Liberal,47,male,Democrat
+4,3,3,Somewhat Liberal,53,male,Republican
+3.6,5.67,3,Moderate; Middle of the Road,54,female,Democrat
+3.4,3,3,Moderate; Middle of the Road,27,female,Independent
+4,2.33,3,Somewhat Conservative,65,male,Republican
+4.6,5,3,Conservative,65,female,Republican
+4.2,3,3,Moderate; Middle of the Road,59,female,Independent
+4,3,3,Moderate; Middle of the Road,64,female,Democrat
+5.6,4.33,3,Somewhat Liberal,40,female,Democrat
+4.2,3,3,Liberal,71,female,Democrat
+5.2,5,3,Moderate; Middle of the Road,36,female,Republican
+6.4,3.67,3,Moderate; Middle of the Road,55,male,Democrat
+5.4,3,3,Moderate; Middle of the Road,41,female,Democrat
+5.8,1.33,2.67,Moderate; Middle of the Road,48,female,Republican
+3.4,1.67,2.67,Conservative,64,male,Republican
+4.2,5,2.67,Moderate; Middle of the Road,61,female,Independent
+4,3.33,2.67,Conservative,47,female,Republican
+4.4,3.67,2.67,Moderate; Middle of the Road,63,female,Democrat
+5.4,4,2.67,Moderate; Middle of the Road,33,female,Democrat
+2.8,1,2.67,Very Conservative,44,male,Independent
+1.4,1.67,2.67,Somewhat Conservative,76,male,Republican
+4.4,3.33,2.67,Moderate; Middle of the Road,66,male,Democrat
+6,5,2.67,Moderate; Middle of the Road,67,female,Democrat
+6.6,4.67,2.67,Somewhat Conservative,55,male,Democrat
+4.4,2.33,2.67,Somewhat Liberal,61,male,Democrat
+5.2,3.67,2.67,Somewhat Liberal,77,male,Democrat
+5.6,4,2.67,Somewhat Liberal,46,female,Democrat
+3.8,4.33,2.67,Moderate; Middle of the Road,41,female,Democrat
+4,3.33,2.67,Liberal,62,female,Democrat
+4.6,1,2.67,Moderate; Middle of the Road,60,female,Democrat
+2,4.67,2.67,Conservative,29,male,Republican
+5,2,2.67,Somewhat Liberal,73,male,Democrat
+2.2,6,2.67,Moderate; Middle of the Road,59,male,Democrat
+4.4,2.67,2.67,Somewhat Conservative,72,male,Republican
+6,4,2.67,Liberal,68,female,Democrat
+1.2,2,2.67,Somewhat Conservative,68,male,Independent
+2.8,4.33,2.67,Moderate; Middle of the Road,26,male,Independent
+5,2,2.67,Conservative,57,male,Republican
+4.4,2.33,2.67,Moderate; Middle of the Road,29,female,Democrat
+4.2,2,2.67,Moderate; Middle of the Road,55,female,Democrat
+4.6,5.67,2.67,Moderate; Middle of the Road,19,male,Democrat
+4.2,1,2.67,Liberal,43,male,Democrat
+3.6,2,2.67,Liberal,55,female,Democrat
+2.8,4,2.67,Conservative,73,male,Republican
+4.6,3.33,2.67,Conservative,49,male,Republican
+4.4,1,2.67,Moderate; Middle of the Road,58,female,Democrat
+4.4,2.67,2.67,Somewhat Liberal,36,male,Republican
+3.6,3,2.67,Very Conservative,79,female,Republican
+6.8,2.67,2.67,Very Liberal,74,male,Democrat
+6.8,3,2.67,Moderate; Middle of the Road,39,male,Independent
+5.2,1,2.67,Moderate; Middle of the Road,64,female,Independent
+3.8,1.67,2.67,Very Conservative,42,female,Republican
+4.2,3.33,2.67,Moderate; Middle of the Road,51,female,Democrat
+4.6,1,2.67,Very Liberal,63,female,Democrat
+4.4,2.33,2.67,Moderate; Middle of the Road,40,female,Independent
+4,2.33,2.67,Moderate; Middle of the Road,42,female,Independent
+5,2,2.33,Liberal,55,female,Democrat
+2.6,4,2.33,Moderate; Middle of the Road,70,female,Republican
+6.4,4.33,2.33,Conservative,71,male,Republican
+3.4,2.33,2.33,Liberal,32,male,Democrat
+4,3.67,2.33,Moderate; Middle of the Road,51,male,Independent
+3.2,3.33,2.33,Conservative,60,male,Independent
+2.4,2.67,2.33,Moderate; Middle of the Road,67,male,Republican
+3.4,1,2.33,Conservative,76,male,Republican
+2.6,5,2.33,Moderate; Middle of the Road,66,female,Republican
+5,3.33,2.33,Moderate; Middle of the Road,67,male,Democrat
+3.2,4.67,2.33,Somewhat Conservative,80,female,Democrat
+5.6,4,2.33,Somewhat Conservative,67,male,Republican
+5.2,1.67,2.33,Somewhat Liberal,22,female,Republican
+5,5,2.33,Moderate; Middle of the Road,68,male,Republican
+5.2,3,2.33,Somewhat Liberal,26,male,Democrat
+4.4,2,2.33,Moderate; Middle of the Road,64,male,Independent
+4,4,2.33,Moderate; Middle of the Road,29,male,Independent
+4.4,4,2.33,Somewhat Conservative,63,male,Republican
+2.8,4.33,2.33,Very Conservative,69,male,Republican
+4.8,1,2.33,Moderate; Middle of the Road,31,male,Independent
+5.4,3.33,2.33,Moderate; Middle of the Road,31,male,Independent
+5.2,3.67,2.33,Moderate; Middle of the Road,28,female,Independent
+4,4,2.33,Moderate; Middle of the Road,32,female,Republican
+6,1.33,2.33,Liberal,35,female,Democrat
+5.6,5,2.33,Somewhat Conservative,31,male,Republican
+5,3,2.33,Moderate; Middle of the Road,39,female,Democrat
+2.6,5,2,Very Conservative,60,male,Republican
+3.4,3,2,Somewhat Conservative,32,male,Democrat
+3.6,1.67,2,Somewhat Conservative,58,female,Republican
+4,3,2,Somewhat Conservative,80,male,Republican
+4.6,2,2,Liberal,44,female,Democrat
+3.8,2,2,Moderate; Middle of the Road,41,female,Republican
+3,2.67,2,Moderate; Middle of the Road,72,male,Republican
+2.2,2.67,2,Moderate; Middle of the Road,45,male,Independent
+5,1.33,2,Moderate; Middle of the Road,39,male,Independent
+4.8,1.33,2,Conservative,70,male,Republican
+4,3,2,Liberal,54,female,Democrat
+5.4,2.67,2,Conservative,60,male,Republican
+3.6,3.67,2,Somewhat Conservative,78,male,Republican
+3.6,2,2,Conservative,63,male,Republican
+6.4,2,2,Moderate; Middle of the Road,56,male,Independent
+4.4,2.67,2,Moderate; Middle of the Road,63,male,Democrat
+3.8,4.33,2,Moderate; Middle of the Road,26,female,Democrat
+4.4,1,2,Somewhat Conservative,57,male,Republican
+2,2.33,2,Very Conservative,48,male,Republican
+2.2,1.67,2,Moderate; Middle of the Road,27,male,Independent
+1,2,2,Conservative,60,male,Republican
+3.2,5,2,Conservative,62,male,Republican
+3.6,3,2,Moderate; Middle of the Road,67,male,Independent
+2.2,4.33,2,Conservative,61,male,Republican
+3.6,3.33,2,Somewhat Conservative,61,male,Republican
+4.2,4.33,2,Very Conservative,53,male,Republican
+4,5.33,2,Liberal,47,female,Democrat
+5.2,2,2,Moderate; Middle of the Road,47,female,Democrat
+4,1,2,Moderate; Middle of the Road,25,female,Independent
+3.4,2,2,Moderate; Middle of the Road,33,female,Democrat
+4.8,3.33,2,Somewhat Conservative,38,female,Independent
+2.2,3.67,2,Conservative,52,male,Republican
+4.2,4.33,2,Liberal,29,female,Democrat
+4,4,2,Liberal,26,male,Independent
+3.2,5.33,2,Conservative,63,male,Republican
+4,2.67,2,Conservative,39,female,Democrat
+2.2,4.67,2,Conservative,53,male,Republican
+3.2,2.33,2,Conservative,66,male,Republican
+2.4,4,2,Conservative,66,male,Republican
+4,3.33,2,Conservative,52,female,Republican
+5.4,1,2,Moderate; Middle of the Road,55,female,Republican
+5,3.33,2,Moderate; Middle of the Road,35,female,Democrat
+4.6,1.67,2,Conservative,30,male,Republican
+3,4,2,Moderate; Middle of the Road,29,female,Republican
+4.2,1.33,2,Moderate; Middle of the Road,30,male,Democrat
+2.4,5,2,Very Conservative,48,male,Republican
+3.4,2,2,Moderate; Middle of the Road,24,male,Independent
+6.2,1.33,2,Moderate; Middle of the Road,43,female,Republican
+2.6,1,2,Somewhat Conservative,44,female,Republican
+2,4.33,2,Conservative,72,male,Republican
+5,1,2,Moderate; Middle of the Road,54,female,Republican
+3.4,3.67,2,Somewhat Conservative,19,female,Republican
+7,1,2,Conservative,27,female,Independent
+4.6,3,2,Conservative,52,male,Republican
+4,2.33,1.67,Moderate; Middle of the Road,22,male,Democrat
+6,5,1.67,Somewhat Conservative,70,female,Republican
+3.6,3.33,1.67,Conservative,71,male,Republican
+1,2.67,1.67,Conservative,52,male,Republican
+3.6,6,1.67,Very Conservative,69,male,Republican
+4.6,4.33,1.67,Somewhat Liberal,75,male,Democrat
+1.6,5,1.67,Moderate; Middle of the Road,72,male,Republican
+4.6,5,1.67,Somewhat Liberal,48,male,Republican
+4.8,2.33,1.67,Conservative,68,male,Democrat
+4,2.33,1.67,Moderate; Middle of the Road,50,male,Republican
+5.8,4,1.67,Moderate; Middle of the Road,61,female,Independent
+5,1.33,1.67,Moderate; Middle of the Road,61,female,Democrat
+3.2,2.33,1.67,Somewhat Conservative,66,female,Independent
+2.2,4.67,1.67,Moderate; Middle of the Road,60,male,Independent
+4.6,1.67,1.67,Somewhat Conservative,23,male,Republican
+3.8,2,1.67,Conservative,44,female,Republican
+3.2,2.67,1.67,Moderate; Middle of the Road,25,female,Republican
+5.4,4.67,1.67,Moderate; Middle of the Road,26,male,Independent
+5,3.33,1.67,Moderate; Middle of the Road,45,male,Republican
+4,3.67,1.67,Conservative,66,male,Republican
+6,1,1.67,Somewhat Liberal,32,male,Democrat
+4,1.33,1.67,Very Conservative,62,male,Republican
+2.2,4,1.67,Somewhat Conservative,67,male,Republican
+4.4,3.33,1.67,Somewhat Conservative,40,male,Republican
+5.6,3.67,1.67,Liberal,32,female,Democrat
+4.6,1,1.67,Moderate; Middle of the Road,20,male,Independent
+4.8,2.33,1.67,Moderate; Middle of the Road,50,male,Independent
+4.2,2,1.67,Conservative,73,female,Republican
+4.6,1.67,1.67,Moderate; Middle of the Road,23,male,Independent
+3.6,5.67,1.67,Moderate; Middle of the Road,19,female,Democrat
+5.2,3.67,1.67,Somewhat Conservative,44,female,Democrat
+6.4,1.67,1.67,Somewhat Conservative,65,female,Republican
+2.4,3.67,1.67,Conservative,38,female,Republican
+1.8,2.67,1.67,Conservative,40,female,Republican
+5.2,2.67,1.67,Moderate; Middle of the Road,58,male,Republican
+1.6,3.67,1.67,Very Conservative,72,male,Republican
+3.8,4.33,1.33,Somewhat Conservative,79,male,Democrat
+2.4,4.67,1.33,Somewhat Conservative,69,male,Republican
+3.8,2.67,1.33,Conservative,43,female,Republican
+3.8,5,1.33,Moderate; Middle of the Road,52,male,Republican
+1.4,4.33,1.33,Very Conservative,69,male,Republican
+2.8,2.33,1.33,Somewhat Conservative,67,male,Republican
+5,1.67,1.33,Somewhat Liberal,37,female,Independent
+5.4,3.67,1.33,Very Conservative,63,male,Republican
+3.4,3.67,1.33,Somewhat Conservative,69,female,Republican
+4.2,2,1.33,Moderate; Middle of the Road,25,male,Independent
+5,3,1.33,Conservative,64,male,Republican
+4.2,4,1.33,Moderate; Middle of the Road,65,male,Independent
+4,2.67,1.33,Moderate; Middle of the Road,27,male,Independent
+1.4,4.67,1.33,Very Conservative,40,male,Republican
+4.6,2.67,1.33,Moderate; Middle of the Road,41,female,Democrat
+4,2.67,1.33,Somewhat Conservative,73,male,Republican
+4.8,1,1.33,Moderate; Middle of the Road,20,female,Independent
+2.8,4,1.33,Moderate; Middle of the Road,62,male,Democrat
+5.2,2.67,1.33,Conservative,29,female,Republican
+1.2,3,1.33,Conservative,71,male,Republican
+4.6,1.33,1.33,Somewhat Liberal,22,female,Independent
+1.4,6,1.33,Conservative,62,female,Republican
+5,1,1.33,Liberal,44,female,Democrat
+4,5,1.33,Conservative,62,male,Republican
+2.2,3.33,1.33,Very Conservative,49,male,Republican
+3.6,3,1.33,Moderate; Middle of the Road,56,female,Independent
+4,1.67,1.33,Somewhat Conservative,46,male,Republican
+1.4,1,1,Conservative,71,male,Independent
+4.2,1.67,1,Liberal,36,male,Democrat
+1,6,1,Conservative,69,male,Independent
+1,4,1,Very Conservative,76,male,Republican
+1,1,1,Very Conservative,42,male,Republican
+3.6,1,1,Liberal,68,female,Democrat
+2.2,1,1,Moderate; Middle of the Road,40,female,Independent
+2.2,1,1,Very Liberal,63,male,Independent
+2.8,2.33,1,Moderate; Middle of the Road,54,male,Independent
+3,3,1,Conservative,61,male,Republican
+1,6,1,Very Conservative,43,female,Republican
+2.8,4.67,1,Somewhat Conservative,70,male,Republican
+1,2,1,Conservative,67,male,Republican
+3.8,2.67,1,Moderate; Middle of the Road,52,female,Independent
+4,1,1,Moderate; Middle of the Road,41,male,Independent
+1.4,1,1,Very Conservative,73,male,Republican
+1,1,1,Very Conservative,59,male,Republican
+1,4,1,Very Conservative,54,male,Republican
+4,2,1,Moderate; Middle of the Road,56,female,Democrat
+1,1,1,Conservative,70,male,Republican
+4.8,1,1,Somewhat Conservative,70,female,Republican
+4.6,3.67,1,Moderate; Middle of the Road,33,female,Independent
+1.6,1,1,Very Conservative,64,female,Republican
+1,1,1,Conservative,64,male,Republican
+1,1.67,1,Conservative,68,male,Republican
+4.2,3,1,Very Conservative,41,female,Republican
+4.4,1,1,Moderate; Middle of the Road,30,female,Independent
+4,1,1,Moderate; Middle of the Road,67,female,Democrat
+3.4,5,1,Moderate; Middle of the Road,52,female,Democrat
+2.2,1,1,Very Conservative,68,male,Republican
+4.8,1,1,Somewhat Conservative,66,male,Democrat
+4.6,1,1,Liberal,50,male,Democrat
+1.2,4,1,Very Conservative,62,male,Republican
+1,1,1,Moderate; Middle of the Road,46,male,Independent
+1,1,1,Conservative,73,male,Republican
+1,1,1,Conservative,58,male,Republican
+5,1,1,Very Liberal,34,female,Democrat
+2.2,6,1,Very Conservative,65,male,Republican
+5,6,1,Very Conservative,42,female,Republican
+2.4,4,1,Conservative,42,female,Republican
+3.6,2.67,1,Moderate; Middle of the Road,34,male,Independent
+3,3,1,Conservative,67,female,Republican
+1,6,1,Moderate; Middle of the Road,71,male,Republican
+2.2,5.33,1,Conservative,52,male,Republican
+2,1,1,Moderate; Middle of the Road,35,female,Republican
+4.6,4,1,Moderate; Middle of the Road,51,male,Democrat
+1,1,1,Very Conservative,39,female,Democrat
+2.8,5,1,Very Conservative,61,male,Republican
+5,5.33,1,Liberal,21,male,Independent
+1.2,1,1,Conservative,66,female,Republican
+2,4,1,Somewhat Conservative,68,male,Republican
+2.8,1,1,Moderate; Middle of the Road,30,female,Democrat
+4,1,1,Very Conservative,30,female,Republican
+3.2,1,1,Very Conservative,57,female,Republican
+1.2,1.67,1,Conservative,60,male,Independent
+3,5,1,Somewhat Conservative,55,male,Republican
+2.2,4.67,1,Very Conservative,50,male,Republican
+5.8,1.67,1,Moderate; Middle of the Road,42,female,Republican
+5.6,1,1,Very Conservative,53,male,Republican
+1.2,6,1,Conservative,34,male,Republican
+1.8,1.67,1,Very Conservative,62,male,Republican
+1,3.67,1,Very Conservative,63,male,Republican
+3.8,2,1,Conservative,29,male,Republican
+1.2,1.33,1,Very Conservative,31,female,Republican
+4,1,1,Moderate; Middle of the Road,24,male,Independent
+3,2.67,1,Moderate; Middle of the Road,53,male,Republican
+3.4,2,1,Moderate; Middle of the Road,41,male,Democrat
+3.6,1,1,Somewhat Conservative,70,male,Republican
+1.2,5,1,Conservative,49,female,Republican
+1.8,1.33,1,Conservative,55,male,Independent
+2.6,1,1,Conservative,75,female,Republican
+1.6,1,1,Very Conservative,34,male,Republican
+2.2,3,1,Conservative,59,male,Republican
+2.6,1,1,Conservative,67,female,Republican
+1.8,1,1,Very Conservative,63,male,Republican
+2.2,5,1,Moderate; Middle of the Road,54,female,Independent
+2,1,1,Very Conservative,42,female,Republican
+4.4,3.33,1,Somewhat Conservative,18,male,Independent
+4,1,1,Conservative,52,female,Republican
+3.4,1,1,Very Conservative,67,female,Republican

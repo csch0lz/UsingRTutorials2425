@@ -992,7 +992,7 @@ docs %>%
   )
 ```
 
-Well, what's the difference between the two topics? Note that the results may change dramatically from one run to the next.
+Well, what's the difference between the two topics? Note that the results may change dramatically from one run to the next. Perhaps, there is just one story.
 
 ## Data Project
 

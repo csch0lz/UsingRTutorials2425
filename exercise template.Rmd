@@ -85,7 +85,7 @@ gradethis::grade_result_strict(
 
 ## Exercise with code checker
 
-<div class="question" >
+<div class="question">
 </div>
 
 ```{r exerciselabel, exercise = TRUE}

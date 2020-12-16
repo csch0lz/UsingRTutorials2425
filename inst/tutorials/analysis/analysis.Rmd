@@ -1,0 +1,543 @@
+---
+title: 'Session 6: Statistical Analysis'
+output:
+  learnr::tutorial:
+    progressive: yes
+    allow_skip: yes
+runtime: shiny_prerendered
+description: |
+  We don't follow the approach to data analysis presented in the book. Instead, we apply our skills in statistical analysis within R.
+---
+
+```{r setup, include=FALSE}
+# Ensure that libraries are loaded.
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(knitr)
+library(kableExtra)
+# New packages (must be installed before taking this tutorial)
+library(haven) #For importing SPSS data files.
+library(car) #For ANOVA.  
+# If you want to create a regression table or moderation plot, install and load these packages.
+library(texreg) #For pretty regression results.
+library(effects) #For two-way interaction plots.
+
+tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+glbwarm <- UsingRTutorials::glbwarm
+glbwarm_spss <- UsingRTutorials::glbwarm_spss
+```
+
+<!-- Define programming tip style -->
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+
+<!-- Define question style -->
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+
+## Import SPSS Data
+
+### 
+
+SPSS data files have a complicated setup with variable labels and value labels. R data frames do not have such labels. 
+
+Let us have a look at two options for importing SPSS data into R.
+
+Option 1. Export from SPSS to .csv and import .csv in R.
+
+- Export data from SPSS to a CSV file with value labels for categorical variables: _File > Export > CSV Data_ with _Save value labels where defined instead of data values_.
+- Use `read_csv()` (as you learned before) to import the CSV file. 
+
+The resulting R data set is available in this tutorial as `glbwarm`.
+
+<div class="question">
+Have a look at the imported CSV file. Any variables that had better become factors?
+</div>
+
+```{r import1, exercise = TRUE}
+
+```
+
+###
+
+Option 2. Import SPSS .sav file directly with tidyverse package `haven`.
+
+```{r importSPSS}
+# Import SPSS data file as tibble.
+glbwarm <- haven::read_spss("glbwarm.sav")
+# Change all labelled variables into factors.
+glbwarm <- haven::as_factor(glbwarm)
+```
+
+
+Inspect the variables and use R code to retrieve a variable label.
+
+
+
+- We already learned how to import .csv files.
+- Statistical packages can usually export data as .csv file.
+- `read_spss()` preserves the variable label as an attribute.
+- Get a variable label with `attributes(glbwarm$posemot)$label`.
+
+
+## Basic Statistical Models
+
+
+- The most common statistical analyses in R.  
+- Read: Sections 3 and 4 in [_Help, My Collaborator Uses R! An Introduction to Reproducible Statistical Analyses in R_](https://wdenooy.github.io/Switch2R/index.html).
+
+
+### t Test: `t.test()`
+
+<div class="blue">
+There can be different versions of the same function for different tests.
+
+
+Vignette: 
+
+```{r t.test.vignette, eval=FALSE, echo=TRUE}
+t.test(x, ...)
+
+### Default S3 method:
+t.test(x, y = NULL,
+       alternative = c("two.sided", "less", "greater"),
+       mu = 0, paired = FALSE, 
+#### <b>       
+       var.equal = FALSE,
+#### </b>
+       conf.level = 0.95, ...)
+
+### S3 method for class 'formula'
+t.test(formula, data, subset, na.action, ...)
+```
+
+
+- the function with just `x` is for a one sample t test: specify hypothesized population value with argument `mu =`.  
+- the function with `x, y` is for paired samples t tests.  
+- the function with a formula is for two samples t tests; `y` must be a variable with two categories.  
+
+
+### F test on Two Variances: `var.test()`  
+
+<div class="blue">
+You have to check the assumptions yourself.
+
+
+Are `govact` variances equal for females and males?  
+
+```{r var.test, echo=TRUE}
+vartest_1 <- var.test(govact ~ sex, data = glbwarm)
+vartest_1$p.value #Show test results.
+```
+
+R formula: dependent variable/outcome ~ independent variable/predictor. 
+
+
+- `e-08` means `* 10^8` (scientific notation).
+- Note that the results are stored as class htest, just like the results from t.test.
+
+
+### Two-Sample t-Test With Variance Check
+
+The result of the variance test is used as a condition with TRUE or FALSE as outcome.
+
+```{r t.test, eval=TRUE, echo=TRUE}
+# Save results as data object.
+ttest_1 <- t.test(govact ~ sex, data = glbwarm,
+       alternative = "two.sided",
+       mu = 0, 
+       paired = FALSE, 
+#### <b>       
+       var.equal = (vartest_1$p.value > 0.05),
+#### </b>
+       conf.level = 0.95)
+```
+
+The results (`ttest_1`) is a list, as we have seen in Session 5.  
+
+
+- Integrate F test in t test: 
+    `var.equal = (var.test(govact ~ sex, data = glbwarm)$p.value > 0.05)`.
+
+
+### Linear Regression: `lm()`  
+
+Vignette:
+```{r lm_vignette, eval=FALSE, echo=TRUE}
+lm(formula, data, subset, weights, na.action,
+   method = "qr", model = TRUE, x = FALSE, y = FALSE, qr = TRUE,
+   singular.ok = TRUE, contrasts = NULL, offset, ...)
+```
+
+Formula with numeric variables and factors as predictors.  
+```{r lm_main, eval=TRUE, echo=TRUE}
+model_1 <- lm(govact ~ age10 + negemot + partyid, 
+              data = glbwarm)
+```
+
+See book p. 358-371 Section {23.4} for using regression formulas, including interactions and transformations within a formula.
+
+
+Inspect the regression results with `summary()`.
+
+
+
+- Quick inspection of results with summary() and print(). Not for presentation of results!
+- All results data objects have summary() and print() functions.
+
+
+### Linear Regression: Two-Way Interaction  
+
+Interaction effect between negative emotions (continuous) and age (continuous).
+```{r lm_interaction, eval=TRUE, echo=TRUE}
+model_2 <- lm(govact ~ age10*negemot + partyid, 
+              data = glbwarm)
+```
+
+Interaction effect between negative emotions (continuous) and party identification (categorical).
+```{r lm_interaction2, eval=TRUE, echo=TRUE}
+model_3 <- lm(govact ~ age10 + negemot*partyid, 
+              data = glbwarm)
+```
+
+
+- Inspect the regression results with `print()`.
+- What is the difference with `summary()`?
+
+
+
+
+
+### Analysis of Variance: `lm()` and `car::Anova()`
+
+Step 1: ANOVA is linear regression with special contrasts (`contr.sum`).
+
+```{r step_1_lm, eval=TRUE, echo=TRUE, message=FALSE}
+# Estimate linear model with two factors including their interaction.
+model_4 <- lm(govact ~ sex * partyid, data = glbwarm, 
+#### <b>              
+  contrasts=list(sex=contr.sum, partyid=contr.sum))
+#### </b>
+```
+
+Step 2: Calculate the sums of squares partition.
+
+- `stats::anova()` for balanced designs.
+- `car::Anova()` for balanced and unbalanced designs.  
+
+```{r step_2_anova, eval=TRUE, echo=TRUE, message=FALSE}
+# Estimate (Type II) analysis of variance.
+anova_model4 <- car::Anova(model_4)
+```
+
+
+
+Inspect the result of Step 2.
+
+
+
+
+- Contrasts: contr.helmert, contr.poly, contr.sum, contr.treatment.
+- `contr.sum`: deviation from mean. (Main) effects as deviation from (grand) mean in ANOVA.
+- `Anova()` needed for (correct) sums of squares table.
+- `anova_model4` is a data frame, so you can use it as any data frame.
+- For example, knit it to a pretty (HTML or PDF) table with `knitr::kable()` (next topic).
+
+
+### Missing Values  
+
+Statistical functions handle missing values correctly: 
+
+- Cases with a missing value on a variable included in the analysis are dropped (listwise deletion). 
+- Don't drop cases with missing values yourself with `na.omit()` because you may also drop cases with missing values only on variables that are not included in the analysis.  
+
+
+
+
+## Print-Quality Results Tables
+
+### Off-The-Shelf Tables
+
+```{r packageTables, echo=FALSE}
+# Create a data frame for the contents of the table.
+data.frame(
+  Package = c("base, stats", "papaja", "stargazer", "texreg"),
+  Models = c("all", "t test, regression, anova", "regression", "regression"),
+  Format = c("plain text", "PDF, Word (HTML)", "PDF, HTML, plain", "PDF, HTML, plain"),
+  Style = c("-", "APA6", "div., not APA6", "generic"),
+  Comparison = c("-", "stacked", "side-by-side", "side-by-side"),
+  Peculiarities = c("only for quick inspection", "2 steps: apa_print() and apa_table()", "", "texreg(), hmtlreg(), screenreg()"),
+  stringsAsFactors = FALSE
+  ) %>%
+  knitr::kable(align = "llllll") %>% #show with kable() from the knitr package
+  kable_styling(full_width = T) %>%
+  row_spec(0, font_size = 28)
+```
+
+
+- Functions in `base::` and `stats::` are `summary()` and `print()`.
+- Comparison: Results of two of more models in one table.
+- `texreg::` peculiarities: different functions (with partly different options) for different output formats.
+
+
+### Installing `papaja::`
+
+Package `papaja::` is not in the CRAN repository (or any of its mirrors).
+
+Install it from github (you must have internet connection):
+
+```{r eval=FALSE}
+# Install a package to install packages outside CRAN.
+install.packages("devtools")
+
+# Install the stable development version of papaja from GitHub
+devtools::install_github("crsh/papaja")
+```
+
+See https://crsh.github.io/papaja_man/ for a papaja manual.
+
+
+Install and load `papaja`.
+
+
+
+- Ensure that everyone manages to install papaja (so they can use it for tables in the next problem set)
+- An example of installing a package that is not on CRAN.
+- You can be asked to update a list of packages first. Go the the console.
+- You may want to use tables (and plots) from `papaja` now.
+- We will see more of `papaja` in Session 7.
+
+
+### Print-Quality Table With `texreg::`
+
+```{r model2_texreg, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+# Table for HTML output.
+htmlreg(list(model_1,model_2), #the regression model(s) shown
+        single.row = T, #coefficient and standard error on the same row
+        star.symbol = "\\*", 
+        doctype = F, #better for Markdown document
+        html.tag = F, #better for Markdown document 
+        head.tag = F, #better for Markdown document
+        body.tag = F, #better for Markdown document 
+        caption = "", #no caption to save space on the slide
+        custom.coef.names = c(NA, "Age/10", "Negative emotions", "Independent", "Republican", "Age/10*Neg. emotions"),
+        vertical.align.px = 6)
+# For PDF output, use the texreg() function, with slightly different arguments (options).
+# Use Help to see more arguments.
+```
+
+<div class="blue">
+See the RMarkdown document of the slides for the code. Note the `results='asis'` option for the code chunk.
+
+
+
+- The `results='asis'` is needed to get html as html instead of html as text output from R. 
+- This is one example of packages that operate on lm() objects. Also see `confint()`, `coef()`, `resid()`.
+- Read the help info to these functions.  
+
+
+### Custom Tables with `broom::` and `knitr::` (1)
+
+Step 1: Function `broom::tidy()` extracts relevant statistics from a statistical results object into a tibble.
+
+```{r broom}
+results_4 <- broom::tidy(model_4, #the data object created with lm()
+  conf.int = TRUE, #add confidence interval limits
+  conf.level = 0.95) #confidence level
+head(results_4, 3)
+```
+
+
+
+- `broom::` produces a tibble (data frame), so you can manipulate it like any other.
+- For example, rename effects (term) with `recode()`.
+
+
+### Custom Tables with `broom::` and `knitr::` (2)
+
+Step 2: Select and adjust values to suit your needs.
+
+```{r adjust_table}
+results_4 <- results_4 %>% 
+  mutate( 
+    CI = #join the lower and upper limits of the confidence interval
+      paste0( "[", format( round(conf.low, digits = 2), nsmall = 2 ), ", ", 
+            format( round(conf.high, digits = 2), nsmall = 2 ), "]" ),
+    p = ifelse(
+      p.value < 0.0005, #if smaller than .0005
+      "< .001", #use this result
+      as.character(format(round(p.value, digits = 3), nsmall = 3))) #otherwise use the p value
+  ) %>%
+  select(term, estimate, std.error, p, CI)
+```
+
+
+- An example of wrangling a table of statistical results.
+
+
+### Custom Tables with `broom::` and `knitr::` (3)
+
+Step 3: Create a table with `knitr::kable()` and `kableExtra::`
+
+```{r kable, eval=FALSE}
+results_4 %>% knitr::kable(digits = c(0, 2, 2, 0, 0),
+  col.names = c("Parameter", "B", "SE", "p", "95\\% CI"),
+  align = "lrrcc",
+  caption = "Table 1. Predicting opinion about global warming.",
+  booktabs = TRUE, #nicer layout in PDF
+  escape = FALSE #pay attention to special characters
+#### <b>
+  ) %>%
+  kableExtra::footnote( #does not show on slide
+    general_title = "",
+    symbol = "$*$ $p$ < .05. $**$ $p$ < .01. $***$ $p$ < .001.")
+#### </b>
+```
+
+Table is shown on the next slide.
+
+
+- Note that `knitr::` and `kableExtra::` can be used in a pipe.
+- PDF output has more formatting options than HTML (or Word).
+- ioslides does not render all options.
+
+
+### Custom Tables with `broom::` and `knitr::` (4)
+
+```{r kable_show, echo=FALSE}
+# For correct layout in ioslides HTML, font size and column widths have to be
+# added and the first/single star must be escaped.
+# Note that this is not necessary in ordinary HTML or in PDF output.
+results_4 %>% kable(format = "html",
+  digits = c(0, 2, 2, 0, 0),
+  col.names = c("Parameter", "B", "SE", "p", "95% CI"),
+  align = "lrrcc",
+  caption = "Table 1. Predicting opinion about global warming.",
+  #booktabs = TRUE, #nicer layout in PDF
+  escape = FALSE #pay attention to special characters
+  ) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, font_size = 28) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "3cm") %>%
+  column_spec(3, width = "3cm") %>%
+  column_spec(4, width = "3cm") %>%
+  column_spec(5, width = "5cm") %>%
+  footnote(
+    general_title = "",
+    symbol = "   \\* p < .05. \\*\\* p < .01. \\*\\*\\* p < .001.")
+```
+
+<br>
+
+`kable()` does not knit nicely to Word. Knit to HTML and import HTML in Word.
+
+
+- Some additional formatting is necessary for presenting the table with ioslides.
+
+
+## Results Plots
+
+
+
+
+### Standard Plots
+
+A data object with statistical results may have a `plot()` function.
+
+
+
+Apply the `plot()` function to the result of linear regression. 
+
+- Which plots do you get? 
+- Are these all plots that you can get with this function?
+
+
+
+See `plot.lm()` for help.
+
+For quick inspection rather than final presentation.
+
+
+1. residuals against fitted (predicted) values, 
+2. sqrt(| residuals |) against fitted values, 
+3. Normal Q-Q plot, 
+4. residuals against leverages.
+
+
+### Off-The-Shelf Plots
+
+There are many packages offering ready-to-use plots, for example:
+
+- `papaja::`: plots for analysis of variance.
+- `coefplot::`: plots regression coefficients for one or more models (`ggplot2` plots)
+- `visreg::`: plots regression lines (`ggplot2` plots).
+- `effects::`: plots regression lines (not `ggplot2` plots).
+
+Note: `ggplot2` plots can be further customized: save the plot (e.g., `p`) and then add layers, themes, ... (e.g., `p + theme_bw()`). 
+
+
+
+
+### Interaction Plot with the `effects::` Package
+
+<div class="columns-2">
+
+You can graph interaction effects with the `effects::` package
+
+```{r model2_effects, echo=TRUE}
+# Step 1: Create a data object 
+# containing all effects.
+eff.model2 <- 
+  effects::allEffects(model_2)
+# Step 2: Plot interaction effects.
+plot(eff.model2, 'age10:negemot', 
+     x.var = 'age10')
+```
+
+
+
+
+- Note the `rug` on the horizontal axis, showing the age score of all cases within a negemot group. Good coverage of the variable on the x axis is required for reliable conditional regression lines.  
+- Make a plot with a facet for each age group.  
+- It is not so difficult to create this plot with `ggplot()`.  
+
+
+### Custom Plots with `ggplot()`
+
+Select or extract the statistics and plot them with `ggplot2::`.
+
+<div class="columns-2">
+
+```{r anova_plot, eval=TRUE, echo=TRUE}
+glbwarm %>% group_by(partyid, sex) %>% 
+  summarise(avg_govact = mean(govact)) %>% 
+  ggplot(aes(x = partyid, y = avg_govact, 
+             color = sex)) + 
+    geom_line(aes(group = sex)) + 
+    geom_point() +
+    labs(x = "Party identification",
+    y = "Gov.intervention") +
+    theme_bw() +
+    theme(legend.position = c(0.8, 0.8),
+      legend.background = element_blank())
+```
+
+
+
+
+## Fun Stuff
+
+## Data Project

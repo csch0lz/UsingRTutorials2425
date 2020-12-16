@@ -18,7 +18,6 @@ library(knitr)
 library(kableExtra)
 # New packages (must be installed before taking this tutorial)
 
-
 tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
