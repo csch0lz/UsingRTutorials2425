@@ -33,7 +33,6 @@ More than one hint possible.
 
 ```
 
-
 ## Markdown (text) hint
 
 Only one hint possible.
