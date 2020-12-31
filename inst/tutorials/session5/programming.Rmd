@@ -1,0 +1,755 @@
+---
+title: 'Session 5: Programming'
+output:
+  learnr::tutorial:
+    progressive: yes
+    allow_skip: yes
+runtime: shiny_prerendered
+description: |
+  Practice with creating functions and some basic programming tricks. As of this session, there is more time for working on your Data Project.
+---
+
+```{r setup, include=FALSE}
+# Ensure that libraries are loaded.
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(knitr)
+library(kableExtra)
+# New packages (must be installed before taking this tutorial)
+
+tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+flights4 <- UsingRTutorials::flights4
+# Store the results of a t test, so the htest object is available in the tutorial.
+result_t <- flights4 %>% t.test(arr_delay0 ~ origin, data = ., na.action = "na.omit")
+# Ensure that the final function report_ttest() is available in the tutorial.
+report_ttest <- function(result_t) { 
+  if (is.null(result_t) || class(result_t) != "htest") { 
+    return("#### Input is not a result of t.test()! ######") 
+  } else { 
+      paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
+             format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ", 
+             ifelse(result_t$p.value >= 0.0005, 
+                    paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),
+                    "< 0.001"), 
+             ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2), 
+             ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]") 
+  } 
+}
+```
+
+<!-- Define programming tip style -->
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+
+<!-- Define question style -->
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+
+## Piping
+
+### 
+
+Pipe more: Cut out intermediary results.
+
+<div class="question" >
+Replace the code below by one pipe.
+</div>
+
+```{r pipeIt, exercise = TRUE, exercise.lines = 6}
+# Show a plot of the logarithm of arrival delays for flights to 
+# Atlanta, Boston, or Buffalo in January.
+flights4_january <- filter(flights4, month == 1)
+flights4_jan_atlantabostonbuffalo <- filter(flights4_january, dest %in% c("ATL", "BOS", "BUF"))
+flights4_jan_ATLBOSBUF_logdelay <- mutate(flights4_jan_atlantabostonbuffalo, log_arr_delay0 = log(arr_delay0 + 1))
+ggplot(flights4_jan_ATLBOSBUF_logdelay, aes(x = log_arr_delay0)) + geom_area(stat = "count")
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="pipeIt-hint">
+__Hint:__ Where does the (input) data argument go in a pipe?.
+</div>
+
+```{r pipeIt-solution}
+flights4 %>% filter(month == 1 & dest %in% c("ATL", "BOS", "BUF")) %>% mutate(log_arr_delay0 = log(arr_delay0 + 1)) %>% ggplot(aes(x = log_arr_delay0)) + geom_area(stat = "count")
+```
+
+```{r pipeIt-check}
+gradethis::grade_code(
+  correct = "The (input) data argument disappears in a pipe if it is the first argument.", 
+  incorrect = "Perhaps you should join the two filter functions."
+  )
+```
+
+###
+
+The pipe is much more concise because you do not have to give a name to intermediary data objects, that clutter your environment, and must be specified as argument in the next step. In addition, you run the risk of inadvertently using or overwriting an intermediary data object that was created somewhere in the preceding code. This can be a real problem if your project becomes more complex, so your code becomes longer.
+
+### `.` in a pipe  
+
+Piping requires that the first argument of the function is the (input) tibble/data frame. All `tidyverse` functions have this characteristic. Base R functions, among others, do not necessarily have this characteristic.
+
+<div class="question" >
+Test if average arrival delay differs between the two airports of origin included in the `flights4` tibble. Pipe this tibble into the `t.test()` function (of the `stats` package).
+</div>
+
+```{r pipedot, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="pipedot-hint">
+__Hint:__  Check help on the `t.test()` function.
+</div>
+
+```{r pipedot-solution}
+flights4 %>% t.test(arr_delay0 ~ origin, data = .)
+```
+
+```{r pipedot-check}
+gradethis::grade_code(
+  correct = "The `data` argument is not the first argument, so it must be specified and the input data tibble must be represented by a dot. As you have done!", 
+  incorrect = "Check the chapters on pipes in the book."
+  )
+```
+
+###
+
+In a pipe, `.` represents the input object. Use it if:  
+
+- the data frame is not the first argument of a function (see the preceding exercise),  
+- you don't use a function (see the example below).  
+
+```{r pipedot2, exercise = TRUE, exercise.lines = 4}
+# Get the value of the t statistic of an independent samples t test.
+flights4 %>% 
+  t.test(arr_delay0 ~ origin, data = .) %>%
+  .$statistic #not a function
+```
+
+We will see soon where `$statistic` comes from.  
+
+## Lists
+
+### 
+
+The R object `List` is a collection of possibly different elements. Remember that a data frame (or tibble) is a collection of atomic vectors of equal length? In contrast, a list can contain all kinds of data objects: atomic vectors, single values, data frames, and so on.
+
+Examples:  
+
+1. Data frame (or tibble): list of (logic/num/char) vectors (variables).  
+    Restriction: All vectors have the same length.  
+2. Statistical results: list with coefficients, etc.  
+3. Nested data: More than one value per variable per case.  
+
+### Extracting statistical results  
+
+A t test yields a results object, which is a list.  
+
+```{r storeresults, exercise = TRUE, exercise.lines = 4}
+# Store the results of a t test.
+result_t <- flights4 %>% 
+  t.test(arr_delay0 ~ origin, data = .)
+result_t #Default print method for these results.
+```
+
+- Results of t test are saved here, so we can inspect the results object in the Environment (if you run this code in RStudio). 
+
+###   
+
+Results are stored as object of class: `htest`.
+
+```{r echo=TRUE}
+str(result_t)
+```
+
+- List elements are different: one number, two numbers, character string.  
+- "names" attribute: the name(s) of the list element value(s).
+- other attribute: other description of the list element value, e.g., the confidence level of the confidence interval.
+
+###  
+
+<div class="question" >
+Extract the confidence interval from the t test results data object with `[[]]` and show (print) it (instead of saving it as a new data object). 
+</div>
+
+```{r extractbracket, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="extractbracket-hint">
+__Hint:__ See the book secion on _Recursive Vectors (Lists)_.
+</div>
+
+```{r extractbracket-solution}
+result_t[["conf.int"]]
+```
+
+```{r extractbracket-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Perhaps you used the element number in the list instead of the element name to extract the confidence level. That is OK."
+  )
+```
+
+<div class="question" >
+Do the same thing but now use `$`.
+</div>
+
+```{r extractdollar, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="extractdollar-hint">
+__Hint:__ See the book secion on _Recursive Vectors (Lists)_.
+</div>
+
+```{r extractdollar-solution}
+result_t$conf.int
+```
+
+```{r extractdollar-check}
+gradethis::grade_code(
+  correct = "`$conf.int` is shorthand for `[['conf.int']]`.", 
+  incorrect = ""
+  )
+```
+
+###
+
+Let's go one level down in the list of t test results.
+
+<div class="question" >
+Show (print) the confidence level (as a number).
+</div>
+
+```{r extractlevel, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="extractlevel-hint">
+__Hint:__ The confidence level is an attribute (`attr` in the structure overview presented above), so use the `attributes()` function.
+</div>
+
+```{r extractlevel-solution}
+attributes(result_t$conf.int)[["conf.level"]]
+```
+
+```{r extractlevel-check}
+gradethis::grade_code(
+  correct = "You extracted the number correctly from the list that `attributes()` generates.", 
+  incorrect = "If you get more than just the number, you have to go down one level in the list that `attributes()` generates. If you get the right number, you may have used `[['conf.level']]` instead of `$conf.level`; that's OK."
+  )
+```
+
+###
+
+<div class="question" >
+Now extract the label "conf.level" from the list of t test results.
+</div>
+
+```{r extractlabel, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="extractlabel-hint">
+__Hint:__ Attributes may have names. Use the `names()` function.
+</div>
+
+```{r extractlabel-solution}
+names(attributes(result_t$conf.int))
+```
+
+```{r extractlabel-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Did you also use the `attributes()` function to select the relevant attribute?"
+  )
+```
+
+###
+
+Let us practice a little bit more.
+
+<div class="question" >
+Get the name and value of the mean of the second group and use functions `paste0()` and `round()` to show the sentence: "The mean in group JFK is 15.7 minutes arrival delay." Note: no piping here because the functions are not tidyverse.
+</div>
+
+```{r paste0, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="paste0-hint">
+__Hint:__ Use help on functions `paste0()` and `round()`.
+</div>
+
+```{r paste0-solution}
+paste0("The ", names(result_t$estimate)[2], " is ", round(result_t$estimate[2], digits = 1) , " minutes arrival delay.")
+```
+
+```{r paste0-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+###
+
+<div class="tip" >
+__Programming Tips__
+
+- Attribute names and attribute values are nested within a list element.  
+- `attributes()` creates a list; select from this list with $ or [[]].
+- 'Drill' into lower levels step by step: 
+    + `attributes(result_t)` returns all first-level names and attributes (as a list);
+    + `attributes(result_t$conf.int)` returns all attributes of this element;
+    + `attributes(result_t$conf.int)$conf.level` gives the value of the conf.level attribute;  
+    + `names(attributes(result_t$conf.int))` returns the name of the conf.int attribute.  
+- `result_t$conf.int[1]` yields the lower limit of the confidence interval
+</div>
+
+### Extract test results in APA style
+
+The code below extracts the results of the t test in APA style.  
+
+```{r APA1, exercise = TRUE, exercise.eval = TRUE, exercise.lines = 7}
+paste0(                       # base R function to concatenate strings
+  "*t* (", 
+  round(result_t$parameter, digits = 2), ") = ",        # df
+  round(result_t$statistic, digits = 2),                # t
+  ", *p* = ", round(result_t$p.value, digits = 3),      # p
+  ", 95%CI[", round(result_t$conf.int[1], digits = 2),  # 95%CI lower
+  ", ", round(result_t$conf.int[2], digits = 2), "]")   # 95%CI upper
+```
+
+The stars will turn t and p into italics in a knitted document. We will come back to that later in this tutorial.
+
+### Conditions with `ifelse()` 
+
+You may (or should) have noticed that the notation of the p value is not in line with APA requirements. It should be either 'p < 0.001' or the exact p value with three decimal places. In addition, the other numerical results are not always reported with two decimal places.
+
+<div class="question" >
+Correct the below code, so the result meets the APA requirements.
+</div>
+
+```{r APA2, exercise = TRUE}
+paste0("*t* (", 
+  format(round(result_t$parameter, digits = 2), nsmall = 3), ") = ",
+  format(round(result_t$statistic, digits = 2), nsmall = 3), 
+  ", *p* ", 
+  ifelse(result_t$p.value < 0.0005, 
+         paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),
+         "< 0.001"),
+  ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 3),
+  ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 3), "]")
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="APA2-hint">
+__Hint:__ Use help on functions `format()` and `ifelse()`.
+</div>
+
+```{r APA2-solution}
+paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ", format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ", ifelse(result_t$p.value >= 0.0005, paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)), "< 0.001"), ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2), ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]")
+```
+
+```{r APA2-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Check the number of decimal places and the reported p value. Remember: A t value well above 2 is statistically significant."
+  )
+```
+
+## Functions
+
+Functions in mathematics: `y = f(x)`.
+
+Functions in R: `y <- f(x)`.
+
+Meaning: Do something to data object `x` -- `f(x)` -- and store result in data object `y`. For short: Transform `x` into `y`.  
+
+Left-hand data object (`y`):  
+- Does not exist: new data object created. Can be a function!  
+- Exists: data object overwritten.  
+- Not named: output to screen (console).  
+
+### Creating a function for reporting t tests in APA style 
+
+Step 1: Add `function()` and enclose code within `{` and `}`.  
+
+```{r, eval=FALSE, echo=TRUE}
+report_ttest <- function() {
+  paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
+    format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ", 
+    ifelse(result_t$p.value >= 0.0005, 
+      paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),"< 0.001"),
+    ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2),
+    ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]")
+}
+```
+
+`report_ttest` is the name of the new function.  
+
+<div class="tip" >
+__Programming Tip__
+
+- Start function creation with code that works.
+</div>
+
+### Identify inputs as arguments
+
+Step 2: Specify user input. 
+
+You have been using arguments in functions to specify the input for a function. For example, you have specified the formula of the t test with `arr_delay0 ~ origin` and the tibble containing the data with the `data =` argument.
+
+For displaying t test results, the user must specify the data object containing the results of `t.test()`. In the current code, this object is `result_t`.   
+
+```{r, eval=FALSE, echo=TRUE}
+report_ttest <- function(result_t) {
+  paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
+    format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ", 
+    ifelse(result_t$p.value >= 0.0005, 
+      paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),"< 0.001"),
+    ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2),
+    ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]")
+}
+```
+
+### Check encapsulation
+
+Encapsulation: Avoid that you inadvertently use a variable or other data object from your current working environment within your function. If that is the case, your function will not work or work not as intended in another working environment. 
+
+Step 3: Ensure that all data object names in the body are:
+
+1. named as arguments (`result_t`), or  
+2. created within the body (none in this example).  
+
+```{r APA4, exercise = TRUE, exercise.lines = 8}
+report_ttest <- function(result_t) {
+  paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
+    format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ", 
+    ifelse(result_t$p.value >= 0.0005, 
+      paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),"< 0.001"),
+    ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2),
+    ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]")
+}
+```
+
+Note that you are having a data object `result_t` in your working environment. Still, this data object is not automatically used by the function (see error below). 
+
+```{r APA5, exercise = TRUE, exercise.setup = "APA4"}
+report_ttest()
+```
+
+The user must specify the function input. Because `result_t` is an argument, every `result_t` within the function refers to this argument, not to anything else in the working environment.
+
+Include a library command in the function for any package that must be loaded to execute the function. The function assumes that the package has been installed by the user. In this example, functions `paste0()`, `format()`, and `round()` are always available because they are part of the `base` package.
+
+### Using the unction
+
+1. Run the function (once per R session).  
+2. Apply the function to a t test result.  
+
+```{r APA6, exercise = TRUE}
+#Run the function once.
+report_ttest <- function(result_t) {
+  paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
+    format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ", 
+    ifelse(result_t$p.value >= 0.0005, 
+      paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),"< 0.001"),
+    ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2),
+    ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]")
+}
+report_ttest(result_t) #Apply it to result_t.
+```
+
+When you run the first part of this code, the function appears in the environment, so it can be used.
+
+###
+
+Finally, some fine details.
+
+<div class="question" >
+- Add a named argument `digits =` to the `report_ttest()` function that specifies the number of decimal places for numeric results other than p values.
+- Set the default number of decimal places to 2 in this function.
+</div>
+
+```{r APA3, exercise = TRUE, exercise.lines = 8}
+report_ttest <- function(result_t) {
+  paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
+    format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ", 
+    ifelse(result_t$p.value >= 0.0005, 
+      paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),"< 0.001"),
+    ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2),
+    ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]")
+}
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="APA3-hint">
+__Hint:__ The number of digits is relevant both to rounding and displaying decimals. Try different numbers of digits to test the function.
+</div>
+
+```{r APA3-solution}
+report_ttest <- function(result_t, digits = 2) { paste0("*t* (", format(round(result_t$parameter, digits = digits), nsmall = digits), ") = ", format(round(result_t$statistic, digits = digits), nsmall = digits), ", *p* ",  ifelse(result_t$p.value >= 0.0005,  paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),"< 0.001"), ", 95%CI[", format(round(result_t$conf.int[1], digits = digits), nsmall = digits), ", ", format(round(result_t$conf.int[2], digits = digits), nsmall = digits), "]") }
+```
+
+```{r APA3-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+## Control Flow: Conditions
+
+###   
+
+Our function still has flaws: It gives errors or wrong output if the input is not a `t.test()` result (class `htest`).  
+
+```{r error=TRUE, echo=TRUE}
+#Run a regression.
+result_lm <- flights4 %>% lm(arr_delay0 ~ origin, data = .)
+#Use regression results in function report_ttest().
+report_ttest(result_lm)
+```
+
+When you encounter a coding error in RStudio, a debugging window and a Traceback panel may open.
+
+### `if () {} else {}`
+
+Let's fix it.  
+
+<div class="question" >
+Use `if (class(result_t) != "htest") {} else {}` to print either "#### Input is not a result of t.test()! ######" or the APA-style formatted t test result.
+</div>
+
+```{r classcheck, exercise = TRUE}
+report_ttest <- function(result_t) {
+  paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
+    format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ", 
+    ifelse(result_t$p.value >= 0.0005, 
+      paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),"< 0.001"),
+    ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2),
+    ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]")
+}
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="classcheck-hint">
+__Hint:__ Check the use of `return` in a function.
+</div>
+
+```{r classcheck-solution}
+report_ttest <- function(result_t) { if (class(result_t) != "htest") { return("#### Input is not a result of t.test()! ######") } else { paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ", format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ",  ifelse(result_t$p.value >= 0.0005, paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),"< 0.001"), ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2), ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]") } }
+```
+
+```{r classcheck-check}
+gradethis::grade_code(
+  correct = "A function returns the result of the last step in the code or what is marked by `return()`. Note that `print('#### Input is not a result of t.test()! ######')` also works because for input that is not the result of a t test, the function stops with the command in the if-part.", 
+  incorrect = ""
+  )
+```
+
+### 
+
+A function returns: 
+
+- the last value that it computed, or  
+- the output of an explicit `return()` command, which stops further execution of the function.  
+
+### 
+
+Let us check the new function for different types of input.
+
+```{r classcheck2, exercise = TRUE, exercise.eval = TRUE, exercise.lines = 5}
+# Applied to t test results.
+report_ttest(result_t)
+# Applied to regression results.
+report_ttest(result_lm)
+# Applied to empty object.
+report_ttest(NULL) 
+```
+
+<div class="tip" >
+__Programming Tip__
+
+- Empty data objects may cause problems. Always include them in a function test.
+</div>
+
+### Conditions and logical operators
+
+Imagine that we want to ensure that empty data objects are treated just like data objects of the wrong class (that is, not a data object with t test results).
+
+<div class="question" >
+Use the `is.null()` function in the condition to add input that is empty (`NULL`) in addition to input that is not of class `htest`.
+</div>
+
+```{r logical, exercise = TRUE, exercise.lines = 13}
+report_ttest <- function(result_t) { 
+  if (class(result_t) != "htest") { 
+    return("#### Input is not a result of t.test()! ######") 
+  } else { 
+      paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
+             format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ", 
+             ifelse(result_t$p.value >= 0.0005, 
+                    paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),
+                    "< 0.001"), 
+             ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2), 
+             ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]") 
+  } 
+}
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="logical-hint">
+__Hint:__ Use logical 'or'. But how, exactly?
+</div>
+
+```{r logical-solution}
+report_ttest <- function(result_t) { if (is.null(result_t) || class(result_t) != "htest") { return("#### Input is not a result of t.test()! ######") } else { paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ", format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ",  ifelse(result_t$p.value >= 0.0005, paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 3)),"< 0.001"), ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2), ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]") } }
+```
+
+```{r logical-check}
+gradethis::grade_code(
+  correct = "Logical 'or' here works with a single value not with a vector of values. For this reason, we must use `||` instead of `|`.", 
+  incorrect = "Logical 'or' here works with a single value not with a vector of values. How do we specify 'or' in this situation?"
+  )
+```
+
+###
+
+Working with single values instead of vectors:  
+
+- Use double `||` (or) and `&&` (and) instead of `|` and `&`. The latter are for vectorised operations, e.g., in `mutate()`.  
+- `==` is vectorised. Unless you're sure that there is one value (as in `class()`), use non-vectorised `identical()`.  
+
+### For loops
+
+Imagine that we want to use t tests to check differences in average arrival delay for four destination airports: BOS, LAX, MCO, and SFO. We can use a for loop.
+
+<div class="question">
+Try to make sense of the below code. For example, change things and predict what changes in the resulting 
+</div>
+
+```{r for1, exercise = TRUE, exercise.lines = 17}
+# Create a vector containing the four destinations.
+destinations <- c("BOS", "LAX", "MCO", "SFO")
+# Create an empty list to store the six results.
+ttests <- list()
+# Loop to calculate a t test for each pair of destinations.
+for (i in destinations) {
+  for (j in destinations) {
+    if (j < i) {
+      # Each pair of destinations is used once if j < i (or i < j)
+      ttests <- append(ttests, list(flights4 %>%
+        filter(dest %in% c(i, j)) %>%
+        t.test(arr_delay0 ~ dest, data = .)))
+    }
+  }
+}
+# Inspect the result.
+str(ttests)
+```
+
+###
+
+<div class="question" >
+Write a for loop that retrieves the group means and t test results (APA style, use the function created earlier) like the output below.
+</div>
+
+```{r eval=TRUE, echo=FALSE} 
+# To have the ttests list available, recreate it.
+# Create a vector containing the four destinations.
+destinations <- c("BOS", "LAX", "MCO", "SFO")
+# Create an empty list to store the six results.
+ttests <- list()
+# Loop to calculate a t test for each pair of destinations.
+for (i in destinations) {
+  for (j in destinations) {
+    if (j < i) {
+      # Each pair of destinations is used once if j < i (or i < j)
+      ttests <- append(ttests, list(flights4 %>%
+        filter(dest %in% c(i, j)) %>%
+        t.test(arr_delay0 ~ dest, data = .)))
+    }
+  }
+}
+# Loop to print one t test per line.
+for (i in seq_along(ttests)) {
+  print(paste0("Test number ", i, ": The ", names(ttests[[i]]$estimate)[1], " is ", round(ttests[[i]]$estimate[[1]], digits = 1), " whereas the ", names(ttests[[i]]$estimate)[2], " is ", round(ttests[[i]]$estimate[[2]], digits = 1), ", ", report_ttest(ttests[[i]]), ". " ))
+}
+
+```
+
+Note: This exercise is difficult.
+
+```{r for2, exercise = TRUE, exercise.setup = "for1", exercise.lines = 12}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="for2-hint">
+__Hint:__ Use `print()` and `paste0()`. Don't forget to use double brackets to extract a list from a list.
+</div>
+
+```{r for2-solution}
+for (i in seq_along(ttests)) { print(paste0("Test number ", i, ": The ", names(ttests[[i]]$estimate)[1], " is ", round(ttests[[i]]$estimate[[1]], digits = 1), " whereas the ", names(ttests[[i]]$estimate)[2], " is ", round(ttests[[i]]$estimate[[2]], digits = 1), ", ", report_ttest(ttests[[i]]), "." ) ) }
+```
+
+```{r for2-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+## Fun Stuff
+
+### Embedding output in R Markdown
+
+Why did we create the `report_ttest()` function? We want to display the t test results in APA style to the reader. This means that the result of the function must be displayed within a sentence in the report.
+
+This is called inline code. Have a close look at the text below. The part `r report_ttest(result_t)` tells R to display the result of `report_ttest(result_t)` on this spot in the text.
+
+```{r, eval=FALSE, echo=TRUE}
+There is a significant difference in average delay between the two
+airports, `r report_ttest(result_t)`.  
+```
+
+The next sentence consists of the R Markdown text shown above. 
+
+There is a significant difference in average delay between the two airports, `r report_ttest(result_t)`.  
+
+As you can see, the t test results are shown to the reader. Note the italics of t and p instead of the surrounding stars.
+
+<div class="tip" >
+__Programming Tip__
+
+- This is a valuable way to report correct numerical results. If the data or analysis change, the new results will be shown.
+</div>
+
+## Data Project
+
+If you have code that you use several times, create a function for this code.
+
+It is time to finish tidying your group's project data. You will need the remaining time to design and create your data visualization. So, get that data tidy. And use inline code to display important information about the data to the reader.
+
+
