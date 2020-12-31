@@ -1023,7 +1023,7 @@ Play around with the settings that are specific to `animate()`.
 
 Note that it takes quite some time to generate the animation.
 
-```{r gganimate1, exercise=TRUE, exercise.lines = 32, eval=FALSE}
+```{r gganimate1, exercise=TRUE, exercise.lines = 32, exercise.timelimit = 120, eval=FALSE}
 # Install the following packages if they haven't been installed.
 library(gganimate)
 library(gifski)
