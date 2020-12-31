@@ -506,7 +506,7 @@ gradethis::grade_code(
 ###
 
 ```{r plotweekday, echo=FALSE}
-Brexit  %>% mutate(weekday = wday(parse_datetime(pubDate, "%B %d, %Y %H:%M:%S"), label=TRUE)) %>% ggplot(aes(weekday)) + geom_bar()
+Brexit  %>% mutate(weekday = lubridate::wday(parse_datetime(pubDate, "%B %d, %Y %H:%M:%S"), label=TRUE)) %>% ggplot(aes(weekday)) + geom_bar()
 ```
 
 Variable `weekday` must be a factor. How can you tell?
@@ -879,7 +879,7 @@ str(surveyweek1)
 - Tidyverse functions only operate on data frames but the variable names are a vector: just a series of names.
 - Therefore we must change them into a data frame at the start with `data.frame()` and transform them back to a vector (without variable name) at the end with `pull()`.
 
-## Fun Stuff
+## Fancy Stuff
 
 Natural text such as the header or body text of posts is used for classifying texts (topic modelling), for example, using sentiment analysis, or investigating relations between words, e.g., as visualized in a word cloud. 
 

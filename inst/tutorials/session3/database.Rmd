@@ -946,7 +946,7 @@ If the join variable(s) is/are a primary key in one of the two tibbles, there is
 
 If the join variable(s) is/are not a primary key in both tibbles, there is a many-to-many relation. It is hard to predict the number of resulting observations except that this number is usually (much) larger than the largest tibble involved in the many-to-many relation.
     
-## Fun Stuff
+## Fancy Stuff
 
 ### Contingency tables (crosstabs)
 
@@ -1071,7 +1071,7 @@ layout_1 <- igraph::layout_with_fr(net_wave1)
 layout_1 <- igraph::norm_coords(layout_1, ymin=-1, ymax=1, xmin=-2, xmax=2)
 # Plot the network.
 par(mar = c(0, 0, 0, 0))
-igraph::plot(net_wave1, 
+plot(net_wave1, 
      vertex.label = NA, #hide node labels
      vertex.size = 8, #vertex size
      vertex.color = V(net_wave1)$sex_color,

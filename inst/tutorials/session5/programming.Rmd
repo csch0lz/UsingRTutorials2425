@@ -721,7 +721,7 @@ gradethis::grade_code(
   )
 ```
 
-## Fun Stuff
+## Fancy Stuff
 
 ### Embedding output in R Markdown
 

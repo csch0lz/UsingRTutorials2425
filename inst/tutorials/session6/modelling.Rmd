@@ -754,7 +754,7 @@ library(effects)
 # Step 1: Create a data object containing all effects.
 eff.model2 <- effects::allEffects(model_1a)
 # Step 2: Plot interaction effects.
-effects::plot(eff.model2, 'age:negemot', x.var = 'age')
+plot(eff.model2, 'age:negemot', x.var = 'age')
 ```
 
 Note the `rug` on the horizontal axis, showing the age score of all cases within a `negemot` group. Good coverage of the variable on the x axis is required for reliable conditional regression lines.  
@@ -867,7 +867,7 @@ Use `gpglot()` to create the above means plot.
 
 ## Data Project
 
-No fun stuff in this tutorial. Work on your Data Project.
+No fancy stuff in this tutorial. Work on your Data Project.
 
 Statistical analyses are not necessary for the Data Project. The Data Project focuses on visualizations.
 
