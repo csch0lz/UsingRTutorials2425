@@ -15,17 +15,17 @@ library(tidyverse)
 # includes stringr:: for string manipulation 
 # includes forcats:: for factor manipulation
 # includes readr:: for (importing and) parsing data
+# includes lubridate:: for date&time manipulation
+# includes broom:: for presenting statistical results
 library(learnr)
 library(gradethis)
 library(knitr)
 library(kableExtra)
 # New packages (must be installed before taking this tutorial)
-library(lubridate) # date&time manipulation
-library(broom) # presenting statistical results
-library(tm) # to create & handle text corpora
-library(wordcloud) # for word clouds
-library(RColorBrewer) # color palettes (for word clouds; also loaded by wordcloud package)
-library(topicmodels) # topic modelling
+# library(tm) # to create & handle text corpora
+# library(wordcloud) # for word clouds
+# library(RColorBrewer) # color palettes (for word clouds; also loaded by wordcloud package)
+# library(topicmodels) # topic modelling
 
 tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -895,24 +895,25 @@ Use help and inspect intermediary results to understand what happens here.
 # Load the required packages.
 library(tm)
 library(wordcloud)
+library(RColorBrewer)
 # Create a corpus for the headings (titles) of the Brexit articles.
 docs <- Brexit %>%
   # extract the titles as a vector
   pull(title) %>%
   # use tm functions to create a corpus
-  VectorSource() %>%
-  Corpus() %>%
+  tm::VectorSource() %>%
+  tm::Corpus() %>%
   # use tm functions to clean the data
-  tm_map(removeNumbers) %>% #remove numbers (assuming they are not informative)
-  tm_map(removePunctuation) %>% #remove punctuation (assuming they are not informative)
-  tm_map(stripWhitespace) %>% #remove blanks
-  tm_map(content_transformer(tolower)) %>% #only lower case letters
-  tm_map(removeWords, stopwords("dutch")) #remove Duch stopwords
+  tm::tm_map(removeNumbers) %>% #remove numbers (assuming they are not informative)
+  tm::tm_map(removePunctuation) %>% #remove punctuation (assuming they are not informative)
+  tm::tm_map(stripWhitespace) %>% #remove blanks
+  tm::tm_map(content_transformer(tolower)) %>% #only lower case letters
+  tm::tm_map(removeWords, stopwords("dutch")) #remove Duch stopwords
 # Create our first wordcloud.
-wordcloud(
+wordcloud::wordcloud(
   docs, 
   random.order = FALSE,
-  colors = brewer.pal(11, "Spectral")
+  colors = RColorBrewer::brewer.pal(11, "Spectral")
   )
 ```
 
@@ -927,9 +928,9 @@ Play around with the selection of words and the arguments of the `wordcloud()` f
 ```{r exerciselabel, exercise = TRUE, exercise.eval = TRUE}
 docs %>% 
   #remove word "brexit"
-  tm_map(removeWords, c("brexit")) %>%
+  tm::tm_map(removeWords, c("brexit")) %>%
   #create wordcloud
-  wordcloud(
+  wordcloud::wordcloud(
     random.order = FALSE,
     colors = brewer.pal(11, "Spectral")
   )
@@ -943,11 +944,11 @@ Usually, a document-term-matrix is required for classifying texts based on the (
 # Load the required package.
 library(topicmodels)
 # Create a document-term-matrix from the corpus.
-dtm = DocumentTermMatrix(docs)
+dtm = tm::DocumentTermMatrix(docs)
 # Run a Latent Dirichlet Allocation topic model with 2 topics
-lda = LDA(dtm, k = 2, seed = 234) 
+lda = topicmodels::LDA(dtm, k = 2, seed = 234) 
 # Calculate the probabilities that a text or word belongs to Topic 1 or Topic 2.
-pred = posterior(lda,dtm) 
+pred = topicmodels::posterior(lda,dtm) 
 
 # Show word clouds of terms that are more strongly related to one topic than to the other.
 # First, create a tibble with the ratio of the probability that a term links with Topic 2 over the probability that a term links with Topic 1.
@@ -962,7 +963,7 @@ probRatio <- pred$terms %>% as_tibble() %>%
   #only retain the rows with a valid probability ratio (namely, topic 2)
   filter(topic == 2)
 
-# SHow two plots side by side.
+# Show two plots side by side.
 par(mar = c(0, 0, 0, 0), mfcol = c(1, 2))
 # Wordcloud Topic 1: terms that are at least 5 times more likely for topic 1.
 nottopic1 <- probRatio %>%
@@ -970,11 +971,11 @@ nottopic1 <- probRatio %>%
   pull(term) #we need a vector for the removeWords() function
 docs %>% 
   #remove word "brexit"
-  tm_map(removeWords, nottopic1) %>%
+  tm::tm_map(removeWords, nottopic1) %>%
   #create wordcloud
-  wordcloud(
+  wordcloud::wordcloud(
     random.order = FALSE,
-    colors = brewer.pal(11, "Spectral"),
+    colors = RColorBrewer::brewer.pal(11, "Spectral"),
     min.freq = 2
   )
 # Wordcloud Topic 2: terms that are at least 5 times more likely for topic 1.
@@ -983,11 +984,11 @@ nottopic2 <- probRatio %>%
   pull(term) #we need a vector for the removeWords() function
 docs %>% 
   #remove word "brexit"
-  tm_map(removeWords, nottopic2) %>%
+  tm::tm_map(removeWords, nottopic2) %>%
   #create wordcloud
-  wordcloud(
+  wordcloud::wordcloud(
     random.order = FALSE,
-    colors = brewer.pal(11, "Spectral"),
+    colors = RColorBrewer::brewer.pal(11, "Spectral"),
     min.freq = 2
   )
 ```

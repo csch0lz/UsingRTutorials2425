@@ -10,6 +10,26 @@ Description: This package contains tutorials for the course Using R for Data Wra
 License: AGPL-3
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 4.0)
-Imports: ggplot2, gradethis, knitr, learnr, readr, shiny, stringr, tibble, kableExtra
+Depends: 
+    R (>= 4.0),
+    gradethis, 
+    kableExtra, 
+    knitr, 
+    learnr, 
+    tidyverse
+Imports: 
+    car,
+    DiagrammeR, 
+    effects,
+    gapminder,
+    gganimate,
+    gifski,
+    igraph,
+    plotly,
+    RColorBrewer,
+    shiny, 
+    texreg,
+    tm,
+    topicmodels,
+    wordcloud
 RoxygenNote: 7.1.1

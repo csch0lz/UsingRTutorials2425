@@ -1030,7 +1030,7 @@ library(gifski)
 library(gapminder) #data used
 
 # This code creates an animated ggplot
-g <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+g <- ggplot(gapminder::gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
   geom_point(alpha = 0.7, show.legend = FALSE) +
   scale_colour_manual(values = country_colors) +
   scale_size(range = c(2, 12)) +
@@ -1045,7 +1045,7 @@ g <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
   )
 
 # And here, we show the animated plot.
-animate(
+gganimate::animate(
   plot = g, #gganimate plot to be shown
   nframes = 78, #1 frame for each year from 1952 to 2007 plus 2x11 additional frames for start and end 
   renderer = gifski_renderer( #save as animated GIF

@@ -1062,16 +1062,16 @@ arrows_wave1 <- StudentWaveFriend %>%
 nodes_wave1 <- Student %>%
   mutate(sex_color = ifelse(sex == "boy", "steelblue1", "tomato1"))
 # Create an igraph object: a list of nodes (=vertices) combined with a list of lines/arrows.
-net_wave1 <- graph_from_data_frame(d=arrows_wave1, vertices=nodes_wave1, directed=TRUE)
+net_wave1 <- igraph::graph_from_data_frame(d=arrows_wave1, vertices=nodes_wave1, directed=TRUE)
 
 # Create a layout: positioning of the nodes.
 set.seed(35546)
-layout_1 <- layout_with_fr(net_wave1)
+layout_1 <- igraph::layout_with_fr(net_wave1)
 # Spread out the network horizontally.
-layout_1 <- norm_coords(layout_1, ymin=-1, ymax=1, xmin=-2, xmax=2)
+layout_1 <- igraph::norm_coords(layout_1, ymin=-1, ymax=1, xmin=-2, xmax=2)
 # Plot the network.
 par(mar = c(0, 0, 0, 0))
-plot(net_wave1, 
+igraph::plot(net_wave1, 
      vertex.label = NA, #hide node labels
      vertex.size = 8, #vertex size
      vertex.color = V(net_wave1)$sex_color,
@@ -1093,7 +1093,7 @@ Talking about networks: A relational database is a network of tables (tibbles) a
 # install.packages("DiagrammeR")
 library(DiagrammeR)
 
-grViz("
+DiagrammeR::grViz("
 digraph database {
 graph [
 rankdir = 'LR'
@@ -1139,7 +1139,7 @@ For such fine-tuning, we have to use HTML code.
 
 ```{r diagram2, exercise = TRUE, exercise.eval = TRUE}
 library(DiagrammeR)
-grViz("
+DiagrammeR::grViz("
 digraph database {
     graph [rankdir = LR]
     node [

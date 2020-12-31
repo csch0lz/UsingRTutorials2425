@@ -17,7 +17,7 @@ library(gradethis)
 library(knitr)
 library(kableExtra)
 # New packages (must be installed before taking this tutorial)
-library(haven) #For importing SPSS data files.
+# library(haven) #For importing SPSS data files, part of tidyverse.
 library(car) #For ANOVA.  
 # If you want to create a regression table or moderation plot, install and load these packages.
 library(texreg) #For pretty regression results.
@@ -411,7 +411,7 @@ Use the `Anova()` function to show the sums of squares partition with associated
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="anova2-hint">
-__Hint:__ You may have to install and load the `car` package.
+__Hint:__ You may have to load the `car` package.
 </div>
 
 ```{r anova2-solution}
@@ -421,7 +421,7 @@ Anova(model_2)
 ```{r anova2-check}
 gradethis::grade_code(
   correct = "", 
-  incorrect = ""
+  incorrect = "Perhaps you used the package name in the command, which is fine."
   )
 ```
 
@@ -481,10 +481,11 @@ We will see more of `papaja` in Session 7. Ensure that it is installed now in RS
 ### Print-Quality Table With `texreg`
 
 ```{r model2_texreg, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+library(texreg)
 model_1 <- lm(govact ~ age + negemot + partyid, data = glbwarm)
 model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
 # Table for HTML output.
-htmlreg(list(model_1,model_1a), #the regression model(s) shown
+texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
         single.row = T, #coefficient and standard error on the same row
         star.symbol = "\\*", 
         doctype = F, #better for Markdown document
@@ -503,8 +504,10 @@ The above table is generated from the code below. What happens if you run the co
 </div>
 
 ```{r texreg, exercise = TRUE, exercise.setup = "lm3-solution"}
+# Attach the texreg package.
+library(texreg)
 # Table for HTML output.
-htmlreg(list(model_1,model_1a), #the regression model(s) shown
+texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
         single.row = T, #coefficient and standard error on the same row
         star.symbol = "\\*", 
         doctype = F, #better for Markdown document
@@ -528,8 +531,10 @@ This is how the code looks in the RMarkdown document.
 
 ````markdown
 `r ''````{r eval=TRUE, echo=FALSE, results='asis'}
+# Attach the texreg package.
+library(texreg)
 # Table for HTML output.
-htmlreg(list(model_1,model_1a), #the regression model(s) shown
+texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
         single.row = T, #coefficient and standard error on the same row
         star.symbol = "\\*", 
         doctype = F, #better for Markdown document
@@ -565,7 +570,7 @@ __Hint:__ Read the help info to these functions.
 
 ### Custom Tables with `broom` and `knitr`
 
-If you want to have full control of your table, create it yourself with packages `broom` and `knitr`.
+If you want to have full control of your table, create it yourself with packages `broom` and `knitr`. Note that `broom` is part of tidyverse, so you do not have to load it separately.
 
 Step 1: Function `broom::tidy()` extracts relevant statistics from a statistical results object into a tibble.
 
@@ -589,7 +594,7 @@ results_1 <- broom::tidy(model_1a, conf.int = TRUE, conf.level = 0.95)
 ```{r broom-check}
 gradethis::grade_code(
   correct = "Send results_1 to the screen to see the results.", 
-  incorrect = ""
+  incorrect = "Perhaps you did not specify the `broom` package with the `tidy()` function (`broom::tidy()`), which is OK."
   )
 ```
 
@@ -744,10 +749,12 @@ Note: `ggplot2` plots can be further customized: save the plot (e.g., `p`) and t
 You can graph interaction effects with the `effects` package in two steps.
 
 ```{r effects, exercise=TRUE, exercise.setup = "lm3-solution", exercise.eval = TRUE }
+# Load effects package.
+library(effects)
 # Step 1: Create a data object containing all effects.
 eff.model2 <- effects::allEffects(model_1a)
 # Step 2: Plot interaction effects.
-plot(eff.model2, 'age:negemot', x.var = 'age')
+effects::plot(eff.model2, 'age:negemot', x.var = 'age')
 ```
 
 Note the `rug` on the horizontal axis, showing the age score of all cases within a `negemot` group. Good coverage of the variable on the x axis is required for reliable conditional regression lines.  
