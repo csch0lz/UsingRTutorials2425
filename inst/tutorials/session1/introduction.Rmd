@@ -236,7 +236,7 @@ seq(1, 15, 2)
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="argumentsNamed1-hint">
-__Hint:__ Use the Help page for this function (`?seq`).
+__Hint:__ Use the Help page for this function (`?seq`). The help will show in the _Help_ tab in RStudio.
 </div>
 
 ```{r argumentsNamed1-solution}
@@ -342,7 +342,7 @@ gradethis::grade_result(
 <div style="background-color: #f5f5f5;" >
 __Programming Tip__
 
-- The number of data objects in the R environment may grow quickly. It is good practice to discard data objects that are not needed (anymore). The base R functions `remove()`and, more concisely, `rm()` removes one or more objects from the environment.
+- The number of data objects in the R environment may grow quickly. It is good practice to discard data objects that are not needed (anymore). The base R functions `remove()`and, more concisely, `rm()` remove one or more objects from the environment.
 </div>
 
 ```{r echo=FALSE}
@@ -425,7 +425,7 @@ ggplot()
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="ggplotBasics-hint">
-__Hint:__ The answer checker will first check if all layers are included. Next, it will check the details within each layer. For optimal use of the checker, follow this approach. In addition, it is more efficient to set the x and y aesthetics in the `ggplot()` function than in the separate geoms, if several geoms use the same x and y aesthetics.
+__Hint:__ The answer checker will first check if all layers are included. If a layer is missing, it will report "I expected you to call + where you called ggplot()". Next, it will check the details within each layer. For optimal use of the checker, follow this approach. In addition, it is more efficient to set the x and y aesthetics in the `ggplot()` function than in the separate geoms, if several geoms use the same x and y aesthetics.
 </div>
 
 ```{r ggplotBasics-solution}
@@ -706,7 +706,7 @@ Create this graph yourself.
 ```
 
 <div id="plot_label-hint">
-__Hint:__ As a starting point, copy the code from the preceding question into the code box. Use the cheat sheet to find the geom.
+__Hint:__ As a starting point, copy the code from a preceding question into the code box. Use the cheat sheet to find the geom.
 </div>
 
 ```{r plot_label-solution}
@@ -1058,6 +1058,8 @@ gganimate::animate(
 )
 ```
 
+### 
+
 If you would have a look at the gapminder data (e.g., with `View(gapminder)`), you would see that the data are available for 1952, 1957, 1962, 1967, and so on. The `gganimate()` animation creates frames for the years in between. In a way, the data for the in-between-years are fabricated; they may give a wrong view of reality. 
 
 <div class="tip" >
@@ -1075,13 +1077,13 @@ The `plotly` library is designed for creating interactive graphics. It has its o
 The `plotly` library offers the option to zoom, select items in the graph, and see additional information about the items in the graph. 
 
 <div class="question" >
-Install the packages in RStudio if necessary, and run the code to see the graph. 
+Run the code to see the graph. 
 </div>
 
 If you carefully position your cursor on a dot, the respondent's first name will pop up (works better if you select the *Compare data on hover* option).
 
 ```{r plotly1, exercise=TRUE, exercise.lines = 26}
-#install these packages to run the code
+#these packages have been installed by UsingRTutorials
 library(plotly) 
 library(gapminder) #contains the data used here
 
@@ -1118,9 +1120,6 @@ Change the code, so the pop ups only show the country name.
 </div>
 
 ```{r plotly2, exercise=TRUE}
-library(plotly) 
-library(gapminder) #contains the data used here
-
 #Step 1: create a ggplot and use a variable to define the frames of the animation
 p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
   geom_point(aes(size = pop, frame = year, ids = country)) +
@@ -1313,7 +1312,7 @@ If you want to create a Shiny app, first create your plot with `ggplot()`, then 
 Plots are very useful for getting a first idea of your data. With the members of your group, use `ggplot` plots to describe individual variables and relations between variables in (one of) your Data Project file(s). 
 
 <div class="question" >
-If you haven't done so previously in this tutorial, download the Data Project data file(s) from Canvas to a directory that you create for your Data Project.
+If you haven't done so previously, download the Data Project data file(s) from Canvas to a directory that you create for your Data Project.
 </div>
 
 The tutorial must be able to find this data set, so you have to make the Data Project directory your working directory:

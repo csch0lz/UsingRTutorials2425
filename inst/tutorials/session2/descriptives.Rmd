@@ -59,7 +59,7 @@ Have a look at the variables using the help function.
 
 <div id="loadData-hint">
 __Hint:__ You can also use RStudio to find the information. In the __Packages__ tab, click on the name of the package _UsingRTutorials_ and click on _Glasgow._
-Note that the help file opens in your browser, not within the tutorial.
+Note that the help file may open in your browser (under Windows), not within the tutorial.
 </div>
 
 ```{r loadData-solution}
@@ -105,7 +105,7 @@ data.frame(
 ```
 
 <div class="question" >
-Apply the `tidyverse` approach to the code below: Join all transformations in one pipe.
+Apply the `tidyverse` approach to the code below: Start with the data set and join all transformations in one pipe such that the result is shown on the screen.
 </div>
 
 ```{r pipe, exercise = TRUE, eval=FALSE}
@@ -168,7 +168,7 @@ Glasgow %>%
 ```
 
 <div class="question" >
-Create the above table with the absolute frequencies (raw counts), relative frequencies (percentages), and cumulative relative frequencies of student friendship numbers in the `Glasgow` data set.
+Create the above table with the absolute frequencies (raw counts), relative frequencies (percentages), and cumulative relative frequencies of the number of friendships per student in the `Glasgow` data set.
 </div>
 
 As always, use tidyverse functions and join all functions in one pipe.
@@ -201,7 +201,7 @@ gradethis::grade_result(
 <div class="tip" >
 __Programming Tip__
 
-- The current version of __summarise()__ by default ungroups the results. Hence the message in the console "`summarise()` ungrouping output (override with `.groups` argument)". 
+- The current version of __summarise()__ by default undoes the last grouping. Hence the message in the console "`summarise()` ungrouping output (override with `.groups` argument)". 
 - This is the safe option. It is easy to forget that data are grouped, but results on grouped data can be very different from what you expect or want. 
 </div>
 
@@ -215,6 +215,8 @@ Some useful functions for recoding or grouping variables have been added to 'tid
 
 <div class="question" >
 Create a new variable `money_class` dividing the Glasgow students into three groups containing more or less the same number of cases. For now, act as if value -1 is an acceptable value.
+
+Send the results to the screen.
 </div>
 
 ```{r binning, exercise = TRUE}
@@ -243,6 +245,8 @@ Create a new variable `money_class2` with the following groups for the Glasgow s
 - group 0: 0 (no pocket money), 
 - group 1: 1 - 10, 
 - group 2: more than 10 pounds per month.
+
+Send the results to the screen.
 </div>
 
 ```{r recodemoney, exercise = TRUE}
@@ -279,7 +283,9 @@ gradethis::grade_code(
 <div class="question" >
 Which value has `money_class2` if the original score on `money` was `-1`?
 
-Finally, set `-1` on variable `money` to missing. A negative number of pounds as pocket money cannot be correct.
+Finally, set `-1` on variable `money` to missing (change the `money` variable). A negative number of pounds as pocket money cannot be correct.
+
+Send the results to the screen.
 </div>
 
 ```{r recodemissing, exercise = TRUE}
@@ -292,7 +298,7 @@ __Hint:__ Don't forget to specify the variable inside the __na_if()__ function.
 </div>
 
 ```{r recodemissing-solution}
-Glasgow %>% mutate(money = na_if(money, -1))
+Glasgow %>% mutate(money = na_if(x = money, y = -1))
 ```
 
 ```{r recodemissing-check}
@@ -321,8 +327,8 @@ quiz(
     answer("The result is a missing value.")
   ),
   question("`Glasgow %>% select(alcohol)`",
-    answer("Missing values are included."),
-    answer("Missing values are ignored.", correct = TRUE),
+    answer("Missing values are included.", correct = TRUE),
+    answer("Missing values are ignored."),
     answer("The result is a missing value.")
   ),
   question("`Glasgow %>% summarise(no_alcohol = sum(alcohol == \"1 none\"))`",
@@ -434,7 +440,9 @@ __Programming Tip__
 - If you want to understand code, split the code in the smallest steps and inspect the results of each step.
 - Send the results to the screen or (especially in RStudio) pipe them into the `View()` command (note the first capital letter).
 </div>
-  
+
+###
+
 In the current example, `sum(alcohol == "1 none")` does two things: it creates a new variable with `(alcohol == "1 none")`, which has `TRUE` or `FALSE` as values, and it sums the values of this variable. 
 
 ### Counting combinations
@@ -496,7 +504,7 @@ In which situations does count assign a missing value (`NA`) to the new variable
 <div class="tip" >
 __Programming Tips__
 
-- Use `count()` (which is equal to `group_by()` and `summarize(n = n())`) to better understand a variable or a combination of two or more variables.
+- Use `count()` (which is equal to `group_by()` and `summarise(n = n())`) to better understand a variable or a combination of two or more variables.
 - Pay special attention to (combinations that involve) missing values. Missing values may create more missing values in data transformation steps because every transformation involving a missing value results in a missing value.
 </div>
 
@@ -529,7 +537,7 @@ gradethis::grade_result(
 <div class="tip" >
 __Programming Tip__
 
-- In R, __c()__ creates a __vector__, which is a series of values (of the same type). It is used when we have to pass more than one value to a function. For example, __ggplot()__ uses it a lot.
+- In R, `c()` creates a __vector__, which is a series of values (of the same type). It is used when we have to pass more than one value to a function argument. For example, `ggplot()` uses it a lot.
 </div>
 
 ## Multi-Case Functions
@@ -613,14 +621,14 @@ As a result, the `prev_friendships` value of the first case for a student is mis
 <div class="tip" >
 __Programming Tip__
 
-- If you use a multi-case function with grouping, check that the function correctly restarts within a group. Pay special attention to the first and last value within a group: are these values as they should be?
+- If you use a multi-case function with grouping, check that the function correctly restarts for a new group. Pay special attention to the first and last value within a group: are these values as they should be?
 </div>
 
 ## Missing Observations
 
 In the preceding exercise, you calculated the change in number of friendships between waves. If we have information for each wave for each student, we have calculated the increase or decrease in number of friendships from wave t1 to wave t2, and from wave t2 to wave t3.
 
-What if we do not have data for a student for a wave? Perhaps a student did not complete the questionnaire in a particular wave, so there is no data at all? In that case, we may have the change in friendships from wave t1 to wave t3 instead of from wave t1 to wave t2. The data are not what we think they are, so our conclusions are wrong.
+What if we do not have data for a student for a wave? Perhaps a student did not complete the questionnaire in wave t2, so we have no data? In that case, we may have the change in friendships from wave t1 to wave t3 instead of from wave t1 to wave t2. The data are not what we think they are, so our conclusions are wrong.
 
 In addition, there can be coding mistakes, for example, a student has two t2 scores but no t3 score.
 
@@ -995,7 +1003,7 @@ This function has some important features:
 -	Files starting with http://, https://, ftp://, or ftps:// are automatically downloaded.
 
 <div class="question" >
-We don't like guesses; we want to be sure that the variable type is correct. Check the variable types reported when the data was read. Then use the `col_types` argument in your `read_csv()` command to read the data with the right variable types. 
+We don't like guesses; we want to be sure that the variable type is correct. Check the variable types reported when the data was read against the original data set. Then use the `col_types` argument in your `read_csv()` command to read the data with the right variable types. 
 </div>
 
 Now, you are sure that the data will be read in the right way.
@@ -1036,7 +1044,7 @@ Add a caption to the plot and change the plot to a square layout. Knit the docum
 __Programming Tips__
 
 - Carefully inspect a knitted RMarkdown document for the presence and layout of plots and tables and for unwanted code or R messages.
-- Don't worry about code or output created by code that you may not need in the end. I is easy to skip a code chunk and not displaying its results by setting the code chunk option `eval=` to `FALSE`. Preserving (but hiding) unnecessary code prevents you from creating the code again later on.
+- Don't worry about code or output created by code that you may not need in the end. It is easy to skip a code chunk and not displaying its results by setting the code chunk option `eval=` to `FALSE`. Preserving (but hiding) unnecessary code prevents you from creating the code again later on.
 </div>
 
 ### 
@@ -1062,9 +1070,13 @@ Knit your RMarkdown document to PDF to check that it works and LaTeX package is 
 If you want to fine-tune your PDF document:
 
 - Add `keep_tex: TRUE` to the document YAML, like this (mind the indentation):
-  `output:
-    pdf_document: 
-      keep_tex: TRUE`
+
+```{r echo = TRUE, eval = FALSE}
+output:
+  pdf_document: 
+    keep_tex: TRUE
+```
+
 - `keep_tex: TRUE` saves the TeX file (extension `.tex`), which you can open in a TeX editor, for example [overleaf](https://www.overleaf.com/) or [Texmaker](https://www.xm1math.net/texmaker/).
 
 ## Data Project
@@ -1075,6 +1087,6 @@ Use the `filter()`, `arrange()`, `select()`, `group_by()`, `mutate()`, and `summ
 
 Put and run the code in code chunks within your R Markdown document. Add plenty of comments to your code.
 
-Use ggplot() to visualize the remarkable features. Copy the code of interesting plots that you created in Tutorial 1 into code chunks of your R Markdown document.
+Use `ggplot()` to visualize the remarkable features. Copy the code of interesting plots that you created in Tutorial 1 into code chunks of your R Markdown document.
 
 Describe remarkable features of your data in the R Markdown document (outside the code chunks: for the reader). 
