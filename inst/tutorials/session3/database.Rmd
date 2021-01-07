@@ -542,13 +542,10 @@ gradethis::grade_code(
 Remove the neighbourhood information from the `Student` tibble except the variable(s) that constitute(s) the primary key of the `Neighbourhood` tibble.
 </div>
 
-```{r student2table, exercise = TRUE, exercise.lines = 5, exercise.setup = "studenttable-solution"}
+```{r student2table, exercise = TRUE, exercise.lines = 4, exercise.setup = "studenttable-solution"}
 # Your code to remove the superfluous neighbourhood variables from the Student tibble.
 Student <- Student %>% 
   ????()
-# Use View(Student) if you want to view the contents of the resulting tibble.
-# But note that the code checker won't work if you add this command.
-
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -1036,7 +1033,7 @@ StudentWave %>% left_join(Student, by = "student") %>% count( wave, alcohol ) %>
 # table.
 ```
 
-```{r crosstabs1-solution}
+```{r crosstabs1-solution, exercise.setup = "studentwavetable-solution"}
 StudentWave %>% left_join(Student, by = "student") %>% count( wave, alcohol ) %>% pivot_wider(names_from = wave, values_from = n)
 ```
 
