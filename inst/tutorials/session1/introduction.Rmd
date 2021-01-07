@@ -1319,7 +1319,7 @@ The tutorial must be able to find this data set, so you have to make the Data Pr
 
 * In RStudio, use the _Session_ menu, _Set Working Directory_, _Choose Directory_ option.
 * In the dialog screen, find the Data Project directory that you created and press _Open_.
-* Copy the setwd() command from the RStudio console to the below code box. Now, you can work with the data set within this code box.
+* Copy the `setwd()` command from the RStudio console to the below code box. Now, you can work with the data set within this code box.
 
 <div class="question" >
 Use the below code box to import your data set, inspect it, and create plots. 

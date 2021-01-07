@@ -44,7 +44,7 @@ GlasgowFriends <- UsingRTutorials::GlasgowFriends
 
 ## Variables and Cases
 
-R originated from a language for statistical analysis (the S language), so it should not come as a surrise that data are conceptualized primarily as variables in R. More precisely, a variable is called an _atomic vector_: a sequence of values of the same type (logical, integer, double, character, complex, raw).
+R originated from a language for statistical analysis (the S language), so it should not come as a surprise that data are conceptualized primarily as variables in R. More precisely, a variable is called an _atomic vector_: a sequence of values of the same type (logical, integer, double, character, complex, raw).
 
 ###
 
@@ -129,12 +129,19 @@ tibble(
 ```
 
 ```{r tibble, exercise = TRUE}
-
+tibble( 
+  var1 = c(), 
+  standard normal random number = rnorm(), 
+  numbers12_15 = seq(), 
+  success = c() 
+  )
 ```
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="tibble-hint">
-__Hint:__ Use `c()` for creating a vector from a set of values unless you can create the vector with a function. A standard normal distribution has mean 0 and standard deviation 1.
+__Hint:__ How can we use a variable name with spaces? See Chapter 7.
+
+__Hint:__ Look up a function in RStudio help or n the book if you don't understand it.
 </div>
 
 ```{r tibble-solution}
@@ -144,7 +151,7 @@ tibble( var1 = c("a", "b", NA, "d"), `standard normal random number` = rnorm(4, 
 ```{r tibble-check}
 gradethis::grade_code(
   correct = "", 
-  incorrect = "(If you used `12:15` instead of `seq()` to create the third variable, that is OK.)"
+  incorrect = "(If you used `12:15` or `c(12, 13, 14, 15)` instead of `seq()` to create the third variable, that is OK.)"
   )
 ```
 
@@ -227,7 +234,11 @@ GlasgowFriends %>%
 ```
 
 ```{r primarykey, exercise = TRUE}
-
+# Add the variables in the select() function that you think 
+# represent different types of units.
+GlasgowFriends %>% 
+  select(  ) %>% 
+  anyDuplicated()
 ```
 
 ```{r primarykey-solution}
@@ -288,7 +299,7 @@ For practical purposes, it suffices to identify types of cases for which there a
 
 If we have only one variable describing the data collection wave, we do not have to consider this as a separate type of cases. In contrast, student and student per wave are relevant types of cases here.
 
-Student characteristics that do not change between waves must have the same values for a student across all waves. So characteristics (variables) that always have the same value for a student belong to the student type of cases. These variabls should eventually be split off into a tibble with one case (row) per student.
+Student characteristics that do not change between waves must have the same values for a student across all waves. So characteristics (variables) that always have the same value for a student belong to the student type of cases. These variables should eventually be split off into a tibble with one case (row) per student.
 
 In contrast, student characteristics that change between waves belong to the student-per-wave type of cases and should have their own tibble. 
 
@@ -308,14 +319,16 @@ For each variable in `GlasgowFriends` determine to which type of case it belongs
 </div>
 
 ```{r casetype, exercise = TRUE}
-# Code to check that a variable .var. always has the same value for each value of the selected type of case .type. .
-# Replace .var. by a variable name and replace .type. by the variable(s) that define the type of case.
+# Code to check that a variable .var. always has the same value for each value
+# of the selected type of case .type. . Replace .var. by a variable name and
+# replace .type. by the variable(s) that define the type of case.
 GlasgowFriends %>%
   # For each value of the selected type of case...
   group_by( .type. ) %>%
   # ... calculate the number of distinct values of the selected variable.
   summarise(n_distinct = n_distinct( .var. ), .groups = "drop") %>%
-  # Count number of distinct variable values per type of case (grouping has been dropped): should always be 1.
+  # Count number of distinct variable values per type of case (grouping has been
+  # dropped): should always be 1.
   count(n_distinct)
 ```
 
@@ -326,13 +339,16 @@ GlasgowFriends %>%
   group_by( student, wave ) %>%
   # ... calculate the number of distinct values of the selected variable.
   summarise(n_distinct = n_distinct( age ), .groups = "drop") %>%
-  # Count number of distinct variable values per type of case (grouping has been dropped): should always be 1.
+  # Count number of distinct variable values per type of case (grouping has been
+  # dropped): should always be 1.
   count(n_distinct)
-# In the output of this code, 'n_distinct' gives the number of different ages encountered per student per wave. Column 'n' gives the number (frequency) of student per wave combinations.
+# In the output of this code, 'n_distinct' gives the number of different ages
+# encountered per student per wave. Column 'n' gives the number (frequency) of
+# student per wave combinations.
 ```
 
 ```{r casetype-hint-2}
-# If 'age' is unique for each student-wave combination, it can also be unique for each student. If so, 'age' belongs to the student type of case, not the student per wave typ of case.
+# If 'age' is unique for each student-wave combination, it can also be unique for each student. If so, 'age' belongs to the student type of case, not the student per wave type of case.
 # Example: Checking that variable age is unique for each student-wave combination.
 GlasgowFriends %>%
   # For each value of the selected type of case...
@@ -369,17 +385,20 @@ Why do we do that? Because this way, each piece of information is stored only on
 Use your data wrangling skills from Session 2 and the [data transformation cheatsheet](https://www.rstudio.org/links/data_transformation_cheat_sheet) to create a tibble for each type of case in `GlasgowFriends` and name these tibbles `Student`, `StudentWave`, and `StudentBestfriend`.
 </div>
 
-```{r studenttable, exercise = TRUE, exercise.lines = 5}
+```{r studenttable, exercise = TRUE, exercise.lines = 8}
 # Your code to create a tibble for student information without duplicates.
-
+Student <- GlasgowFriends %>% 
+  # select the relevant variables
+  select() %>% 
+  # only keep cases that are distinct (not identical)
+  distinct()
 # Use View(Student) if you want to view the contents of the tibble that you created.
 # But note that the code checker won't work if you add this command.
-
 ```
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="studenttable-hint">
-__Hint:__ Use the cheatsheet to find a function to retain only distinct cases/rows. For now, include the neighbourhood variables in the Student tibble.
+__Hint:__ For now, include the neighbourhood variables in the Student tibble.
 </div>
 
 ```{r studenttable-solution}
@@ -394,12 +413,16 @@ gradethis::grade_code(
 ```
 
 
-```{r studentwavetable, exercise = TRUE, exercise.lines = 5}
+```{r studentwavetable, exercise = TRUE, exercise.lines = 8}
 # Your code to create a tibble for student per wave information without duplicates.
-
-# Use View(StudentWave) if you want to view the contents of the tibble that you created.
+StudentWave <- GlasgowFriends %>% 
+  # select the relevant variables
+  select() %>% 
+  # only keep cases that are distinct (not identical)
+  distinct()
+# Use View(StudentWave) if you want to view the contents of the tibble that you
+# created.
 # But note that the code checker won't work if you add this command.
-
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -418,16 +441,16 @@ gradethis::grade_code(
   )
 ```
 
-<div class="question" >
-Include the `student` variable in the `StudentBestfriend` tibble.
-</div>
-
-```{r bestfriendstable, exercise = TRUE, exercise.lines = 5}
+```{r bestfriendstable, exercise = TRUE, exercise.lines = 8}
 # Your code to create a tibble for best friends information without duplicates.
-
-# Use View(StudentBestfriend) if you want to view the contents of the tibble that you created.
+StudentBestfriend <- GlasgowFriends %>% 
+  # select the relevant variables
+  select() %>% 
+  # only keep cases that are distinct (not identical)
+  distinct()
+# Use View(StudentBestfriend) if you want to view the contents of the tibble
+# that you created.
 # But note that the code checker won't work if you add this command.
-
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -458,12 +481,16 @@ GlasgowFriends %>% select(student, neighbourhood, schooldist, hoodname, age, sex
 Split off the neigbourhood information into a tibble called `Neighbourhood`. Use one pipe.
 </div>
 
-```{r hoodtable, exercise = TRUE, exercise.lines = 5, exercise.setup = "studenttable-solution" }
+```{r hoodtable, exercise = TRUE, exercise.lines = 8, exercise.setup = "studenttable-solution" }
 # Your code to create a tibble for neighbourhood information without duplicates.
-
-# Use View(Neighbourhood) if you want to view the contents of the tibble that you created.
+Neighbourhood <- Student %>% 
+  # select the relevant variables
+  select() %>% 
+  # only keep cases that are distinct (not identical)
+  distinct()
+# Use View(Neighbourhood) if you want to view the contents of the tibble that
+# you created.
 # But note that the code checker won't work if you add this command.
-
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -517,7 +544,8 @@ Remove the neighbourhood information from the `Student` tibble except the variab
 
 ```{r student2table, exercise = TRUE, exercise.lines = 5, exercise.setup = "studenttable-solution"}
 # Your code to remove the superfluous neighbourhood variables from the Student tibble.
-
+Student <- Student %>% 
+  ????()
 # Use View(Student) if you want to view the contents of the resulting tibble.
 # But note that the code checker won't work if you add this command.
 
@@ -525,6 +553,8 @@ Remove the neighbourhood information from the `Student` tibble except the variab
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="student2table-hint">
+__Hint:__ Which tidyverse function lets you __select__ variables?
+
 __Hint:__ It is more efficient to specify the variables that must be dropped (use the `-` sign) than the ones that must be retained.
 </div>
 
@@ -535,7 +565,7 @@ Student <- Student %>% select(-schooldist, -hoodname)
 ```{r student2table-check}
 gradethis::grade_code(
   correct = "", 
-  incorrect = " However, if you the new STudent tibble contains 7 variables and (still) 160 rows, your code is probably fine. You may have selected the variables in a different way."
+  incorrect = " However, if you the new Student tibble contains 7 variables and (still) 160 rows, your code is probably fine. You may have selected the variables in a different way."
   )
 ```
 
@@ -551,7 +581,7 @@ In case you wonder why the primary key of the `GlasgowFriends` tibble gave us th
 
 2. _Many-to-many relation_: A student may appear in many waves (actually, three in this data set) and a wave may include many students. If the data set contains a separate case for each wave for each student, we have variation in waves across students (and the other way around). The primary key picks this up.
 
-However, not every many-to-many relation is picked up by the pimary key. This is the next topic in this tutorial.
+However, not every many-to-many relation is picked up by the primary key. This is the next topic in this tutorial.
 
 But first: Enjoy that you have come so far. You have covered quite a lot of ground. The insights and skills you have gained may prove very valuable during your career.
 
@@ -559,7 +589,18 @@ But first: Enjoy that you have come so far. You have covered quite a lot of grou
 
 There is something fishy about the friends in the `StudentWave` tibble. For each student in each wave, up to six friends could have been registered. 
 
-- If less then six friends were nominated, the cells contain missing vallues (`NA`). That is a waste of space.
+```{r showfriends}
+GlasgowFriends %>% 
+  select(student, wave, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% 
+  distinct() %>%
+  slice(1:6) %>%
+  kable(booktabs = TRUE) %>%
+  kableExtra::kable_classic(full_width = FALSE) %>%
+  kableExtra::column_spec(4, color = c("red", "black", "black", "red", "black", "black")) %>%
+  kableExtra::column_spec(5, color = c("black", "black", "red", "black", "black", "black"))
+```
+
+- If less then six friends were nominated, the cells contain missing values (`NA`). That is a waste of space.
 - The same student may appear in each of the six friendship variables. We have the same type of information (friendship) in different variables. That is a pain if we want to know how many times a student was chosen as a friend.
 - The variable names contain a number (`friend_1`, `friend_2`, and so on). But numbers are values (first mentioned friend, second mentioned friend, ...). We should not allow values as columns.
 
@@ -570,18 +611,13 @@ Use the tidyverse `gather()` function to create a new tibble named `StudentWaveF
 </div>
 
 ```{r gatherfriends, exercise = TRUE, exercise.setup = "studentwavetable-solution"}
-
+StudentWaveFriend <- StudentWave %>% 
+  gather() %>%
+  select()
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="gatherfriends-hint">
-__Hint:__ Use tibble `StudentWave` as your starting point. Don't forget to drop some variables that you do not need in the new tibble. What do you want to do with missing values?
-</div>
-
-```{r gatherfriends-notshown, eval=FALSE}
-StudentWaveFriend <- StudentWave %>% 
-  gather(key = "friendnumber", value = "friend", friend_1:friend_6, na.rm = TRUE) %>%
-  select(student, wave, friend)
+```{r gatherfriends-solution}
+StudentWaveFriend <- StudentWave %>% gather(key = "friendnumber", value = "friend", friend_1:friend_6, na.rm = TRUE) %>% select(student, wave, friend)
 ```
 
 ```{r gatherfriends-check}
@@ -589,6 +625,7 @@ gradethis::grade_result(
   fail_if(~ nrow(StudentWaveFriend) > 1600, "Did you remove the rows with missing values for the friend variable? These rows are superfluous. Use an argument in the `gather()` function to remove the rows."),
   fail_if(~ ("alcohol" %in% names(StudentWaveFriend)) | ("cannabis" %in% names(StudentWaveFriend)) | ("money" %in% names(StudentWaveFriend)) | ("romantic" %in% names(StudentWaveFriend)), "Drop the student characteristics that have only one value per student per wave: alcohol, cannabis, and so on. Why are they untidy in the new tibble?"),
   fail_if(~ ncol(StudentWaveFriend) > 3, "Function `gather()` creates two new variables: key and value. One of the two is pretty useless in this particular case. Drop it."),
+  fail_if(~ ncol(StudentWaveFriend) < 3, "Did you select the relevant variables in the end: student, wave, and friend?"),
   pass_if(~ TRUE, "You only retained the three variables that matter: the student who nominated a friend, the wave at which the nomination was made, and the student code of the nominated friend. And you dropped missing values, which reduces the number of rows considerably.")
 )
 ```
@@ -600,12 +637,12 @@ Oh, and remove the friendship data from tibble `StudentWave`.
 </div>
 
 ```{r gatherfriends2, exercise = TRUE, exercise.setup = "studentwavetable-solution"}
-
+StudentWave <- StudentWave %>% 
+  ???
 ```
 
-```{r gatherfriends2-notshown, eval=FALSE}
-StudentWave <- StudentWave %>%
-  select(student:romantic)
+```{r gatherfriends2-solution, eval=FALSE}
+StudentWave <- StudentWave %>% select(student:romantic)
 ```
 
 ```{r gatherfriends2-check}
@@ -617,7 +654,7 @@ gradethis::grade_result(
 
 ###
 
-The `gather()` and `spread()` functions are being replaced by the `pivot_longer()` and `pivot_wider()` functions in tidyverse. The ew functions ar emore flexible. For example, `pivot_longer()` can spread more than one variable. This is very useful if you have panel survey data in which a battery of questions is repeated in different waves.
+The `gather()` and `spread()` functions are being replaced by the `pivot_longer()` and `pivot_wider()` functions in tidyverse. The new functions are more flexible. For example, `pivot_longer()` can spread more than one variable. This is very useful if you have panel survey data in which a battery of questions is repeated in different waves.
 
 ```{r createGlasgowWide}
 # create a tibble with waves as different columns
@@ -625,7 +662,7 @@ GlasgowWide <- UsingRTutorials::Glasgow %>%
   pivot_wider(id_cols = student:smoking_siblings, names_from = wave, values_from = alcohol:friendships)
 ```
 
-Tibble `GlasgowWide` contains the original panel ave data in this format. (This tibble is loaded in this tutorial.)
+Tibble `GlasgowWide` contains the original panel wave data in panel wave format. (This tibble is loaded in this tutorial.)
 
 <div class="question" >
 Use the `pivot_longer()` function to gather the information measured per wave in tibble `GlasgowWide`. 
@@ -637,10 +674,10 @@ Note: Send the gathered tibble to the screen, do not store it in a new data obje
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="pivotlonger-hint">
-__Hint:__ Read the vignette: Issue the R command `vignette("pivot")`. Look for the part on multiple observations per row.
-</div>
+```{r pivotlonger-hint-1}
+# Read the vignette: Issue the R command `vignette("pivot")`. 
+# Look for the part on multiple observations per row.
+```
 
 ```{r pivotlonger-solution}
 GlasgowWide %>% pivot_longer(cols = alcohol_t2:friendships_t1, names_to = c(".value", "wave"), names_sep = "_")
@@ -667,8 +704,13 @@ Inspect the tibble `StudentBestfriend` that you created previously.
 Is there a variable with values that should be variables by themselves?
 </div>
 
-```{r owncolumn, exercise = TRUE, exercise.setup = "bestfriendstable-solution", exercise.eval = TRUE}
-str(StudentBestfriend)
+```{r owncolumn, eval = TRUE, echo = FALSE}
+GlasgowFriends %>% 
+  select(student, bestfriend, bfperiod, bfwave ) %>% 
+  distinct()%>%
+  slice(1:10) %>%
+  kable(booktabs = TRUE) %>%
+  kableExtra::kable_classic(full_width = FALSE)
 ```
 
 ###
@@ -677,20 +719,37 @@ The values `from` and `to` in variable `bfperiod` actually refer to variables: t
 
 In a tidy data set, we do not stack different types of information in the same column, so we have to spread the information over different columns. We want a tibble with variables `from`and `to` instead of `bfperiod` and `bfwave`.
 
+```{r owncolumn2, eval = TRUE, echo = FALSE}
+GlasgowFriends %>% 
+  select(student, bestfriend, bfperiod, bfwave ) %>% 
+  distinct()%>%
+  # students without best friend are dropped
+  filter(!is.na(bestfriend)) %>%
+  # spread the bfperiod values into new variables
+  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave) %>%
+  slice(1:10) %>%
+  kable(booktabs = TRUE) %>%
+  kableExtra::kable_classic(full_width = FALSE)
+```
+
 <div class="question" >
 Replace the `StudentBestfriend` tibble by a tibble with variables `from`and `to` instead of `bfperiod` and `bfwave`.
 </div>
 
-```{r gatherBestfriend-notshown}
-StudentBestfriend <- StudentBestfriend %>%
-  # students without best friend are dropped
-  filter(!is.na(bestfriend)) %>%
-  # spread the bfperiod values into new variables
-  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
+```{r gatherBestfriend-solution}
+StudentBestfriend <- StudentBestfriend %>% filter(!is.na(bestfriend)) %>% pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
+```
+
+```{r gatherBestfriend-hint-1}
+# You have to spread variables with the pivot_wider() function.
 ```
 
 ```{r gatherBestfriend, exercise = TRUE, eval=FALSE, exercise.setup = "bestfriendstable-solution"}
-
+StudentBestfriend <- StudentBestfriend %>%
+  # students without best friend are dropped
+  ???() %>%
+  # spread the bfperiod values into new variables
+  pivot_wider()
 ```
 
 ```{r gatherBestfriend-check}
@@ -701,10 +760,6 @@ gradethis::grade_result(
   pass_if(~ TRUE, "You removed missing values correctly and spread the `bfperiod` variable, using `bfwave`for the new values.")
 )
 ```
-
-<div id="gatherBestfriend-hint">
-__Hint:__ You have to spread variables.
-</div>
 
 ### 4. Each value must have its own cell. 
 
@@ -719,13 +774,8 @@ Write tidyverse code to split the `alcohol` variable in the `StudentWave` tibble
 Note: Send the results to the screen, do not store it in a new data object (so the code checker can do its work).
 
 ```{r separate, exercise = TRUE, exercise.setup = "studentwavetable-solution"}
-
+StudentWave %>% separate()
 ```
-
-<!-- To hide the solution, use a textual hint. -->
-<div id="separate-hint">
-__Hint:__ You cannot split on a particular character, such as a blank, because you would get more than two parts. Separate on position number: At which character number do you want to split?
-</div>
 
 ```{r separate-solution}
 StudentWave %>% separate(col = alcohol, into = c("alcohol_code", "alcohol_label"), sep = 2)
@@ -734,7 +784,7 @@ StudentWave %>% separate(col = alcohol, into = c("alcohol_code", "alcohol_label"
 ```{r separate-check}
 gradethis::grade_code(
   correct = "", 
-  incorrect = "Use the tidyverse function `separate()`."
+  incorrect = "You cannot split on a particular character, such as a blank, because you would get more than two parts. Only the first part of the alcohol label will be used. Separate on position number: At which character number do you want to split?"
   )
 ```
 
@@ -883,9 +933,9 @@ It does not happen with a left or right join with the order of tables reversed o
 knitr::include_graphics("images/FullLeftjoin.png")
 ```
 
-<div class="question" >
-"So, how can we explain the number of cases if we use a full join on the tibbles `Student` and `StudentBestfriend`?
-</div>
+Can you explain the number of cases if we use a full join on the tibbles `Student` and `StudentBestfriend`?
+
+This is not super simple.
 
 ### Joining on non-primary keys
 
@@ -970,13 +1020,24 @@ Create the above contingency table using the tidyverse `count()` and `pivot_wide
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="crosstabs1-hint">
-__Hint:__ Inspect intermediary results by piping them into `View()`.
-</div>
+```{r crosstabs1-hint-1}
+# You have to use data from two tables, so join them first.
+StudentWave %>% left_join(Student, by = "student")
+```
+
+```{r crosstabs1-hint-2}
+# Inspect the results of count() by piping them into `View()` or showing them on
+# the screen.
+StudentWave %>% left_join(Student, by = "student") %>% count( wave, alcohol ) %>% View()
+```
+
+```{r crosstabs1-hint-3}
+# Use pivot_wider() to change one variable into the columns of the contingency
+# table.
+```
 
 ```{r crosstabs1-solution}
-StudentWave %>% left_join(Student, by = "student") %>% count( sex, alcohol ) %>% pivot_wider(names_from = sex, values_from = n)
+StudentWave %>% left_join(Student, by = "student") %>% count( wave, alcohol ) %>% pivot_wider(names_from = wave, values_from = n)
 ```
 
 ```{r crosstabs1-check}
@@ -988,7 +1049,7 @@ gradethis::grade_code(
 
 ###
 
-Let us go one step futher. Use your knowledge about the `kableExtra` package from Session 2.
+Let us go one step further. Use your knowledge about the `kableExtra` package from Session 2.
 
 ```{r crosstabs2-shown}
 # alcohol use by wave crosstabs from original dataset
@@ -1030,7 +1091,7 @@ gradethis::grade_code(
 
 Many-to-many relations can be visualized as networks. Friendship nominations among students can be depicted with nodes representing students and arrows showing friendship nominations.
 
-The `StudentWaveFriend` tibble contains all the information that we need to draw a friendship network for the Glasgow data. Variable `student` in this tibble represents the student nominating a friend, variable `friend` represents the student nominated, and the simple fact that the nominator and nominee are in the same bservation represents the arrow. A line in a network is just a pair of nodes!
+The `StudentWaveFriend` tibble contains all the information that we need to draw a friendship network for the Glasgow data. Variable `student` in this tibble represents the student nominating a friend, variable `friend` represents the student nominated, and the simple fact that the nominator and nominee are in the same observation represents the arrow. A line in a network is just a pair of nodes!
 
 There are many R packages for network visualization and network analysis or modelling, consult [CRAN Task View: gRaphical Models in R](https://cran.r-project.org/web/views/gR.html). [Network visualization with R](https://kateto.net/network-visualization) offers a tutorial on some R packages for network visualization. The examples below use the 'igraph` package.
 
@@ -1213,7 +1274,7 @@ For one or more of your complex data sets, ask yourself:
 4. Does a variable contain more than one piece of information?
     If so, separate the pieces into different variables.
 
-Include the code to check your data and the code to tidy the data in the Rmakrdown file of your group's Data Project.
+Include the code to check your data and the code to tidy the data in the RMarkdown file of your group's Data Project.
 
 Checking and tidying your data is an important part of the group effort in the Data Project. Get it done as soon as possible, so you can use tidy data to find the topic of your visualization.
 

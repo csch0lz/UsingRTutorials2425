@@ -110,7 +110,7 @@ Apply the `tidyverse` approach to the code below: Start with the data set and jo
 
 ```{r pipe, exercise = TRUE, eval=FALSE}
 helpData1 <- filter(Glasgow, money >= 0)
-helpData2 <- group_by(helpData1, student, sex)
+helpData2 <- group_by(helpData1, sex, student)
 helpData3 <- summarise(helpData2, n_rom = sum(romantic == "yes", na.rm = TRUE))
 helpData4 <- ungroup(helpData3)
 count(helpData4, sex, n_rom)
@@ -122,7 +122,7 @@ __Hint:__ In a pipe, the data frame originating from a previous step is automati
 </div>
 
 ```{r pipe-solution, echo=FALSE}
-Glasgow %>% filter(money >= 0) %>% group_by(student, sex) %>% summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) %>% ungroup() %>% count(sex, n_rom)
+Glasgow %>% filter(money >= 0) %>% group_by(sex, student) %>% summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) %>% ungroup() %>% count(sex, n_rom)
 ```
 
 ```{r pipe-check}
@@ -136,7 +136,7 @@ Note: While checking transformed code, you may receive an `Error occured while c
 <div class="tip" >
 __Programming Tip__
 
-To understand the output of code in a pipe, formulate a comment explaining what each step does or is meant to do to the data.
+For readability, formulate a comment explaining what each step in the pipe does or is meant to do to the data.
 
 For example:
 
@@ -181,7 +181,9 @@ As always, use tidyverse functions and join all functions in one pipe.
 <div id="summary1-hint">
 __Hint:__ You must group the data before you summarise.
 
-__Hint:__ For relative frequencies, divide the raw counts by the number of cases (nrow(Glasgow)). Use the [cheat sheet](https://www.rstudio.org/links/data_transformation_cheat_sheet) to find cumulative functions.
+__Hint:__ For relative frequencies, divide the raw counts by the number of cases (nrow(Glasgow)). 
+
+__Hint:__ Use the [cheat sheet](https://www.rstudio.org/links/data_transformation_cheat_sheet) to find cumulative functions.
 </div>
 
 ```{r summary1-check}
