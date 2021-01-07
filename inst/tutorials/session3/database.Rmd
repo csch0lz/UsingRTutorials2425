@@ -1001,7 +1001,8 @@ Another application of spreading: cross-tabulation. A contingency table of two v
 
 ```{r crosstabs1-shown}
 # alcohol use by wave crosstabs from original dataset
-GlasgowFriends %>% 
+GlasgowFriends %>%
+  distinct(student, wave, alcohol) %>%
   # count alcohol values per wave
   count( wave, alcohol ) %>%
   # spread wave to get columns for waves
@@ -1073,7 +1074,7 @@ Create the above contingency table using the tidyverse `count()` and `pivot_wide
 __Hint:__ Use the [kableExtra webpage](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html) for the layout. Column names are partly defined in the `kable()` function and partly in a `kableExtra` function.
 </div>
 
-```{r crosstabs2-solution}
+```{r crosstabs2-solution, exercise.setup = "studentwavetable-solution"}
 StudentWave %>% left_join(Student, by = "student") %>% count( sex, wave, alcohol ) %>% pivot_wider(names_from = c(sex, wave), values_from = n, values_fill = 0) %>% kable(booktab = TRUE, col.names = c("Alcohol Usage", "wave 1", "wave 2", "wave 3", "wave 1", "wave 2", "wave 3")) %>% add_header_above(c(" " = 1, "Boys" = 3, "Girls" = 3)) %>% kable_paper(full_width = FALSE)
 ```
 
