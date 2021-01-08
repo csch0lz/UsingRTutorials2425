@@ -15,8 +15,8 @@ library(tidyverse)
 # includes stringr:: for string manipulation 
 # includes forcats:: for factor manipulation
 # includes readr:: for (importing and) parsing data
-# includes lubridate:: for date&time manipulation
-# includes broom:: for presenting statistical results
+# does not include broom:: for presenting statistical results
+library(lubridate) # for date&time manipulation
 library(learnr)
 library(gradethis)
 library(knitr)
@@ -71,10 +71,9 @@ Create a frequency table of the variable `category` in the `Brexit`dataset.
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="freqtable-hint">
-__Hint:__ Use tidyverse!
-</div>
+```{r freqtable-hint-1}
+# Use the count() function and pipe.
+```
 
 ```{r freqtable-solution}
 Brexit %>% count(category)
@@ -106,9 +105,10 @@ lm(votes ~ category, data = Brexit) %>%
   kable(digits = c(0,2,2,2,3),
                col.names = c("Parameter", "b", "SE", "t", "p"),
                align = "lrrrr") %>%
-  kable_styling() %>%
-  kable_paper(full_width = FALSE)
+  kableExtra::kable_classic(full_width = FALSE)
 ```
+
+###
 
 ```{r quiz}
 question("What is the reference category here?",
@@ -141,10 +141,15 @@ Create a factor called `cat_fact` from the variable `category` and add it to tib
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="factor-hint">
-__Hint:__ Use the (base::) `factor()` function.
-</div>
+```{r factor-hint-1}
+# Use mutate().
+Brexit <- Brexit %>% mutate()
+```
+
+```{r factor-hint-2}
+# Use the (base::) `factor()` function.
+factor(x = )
+```
 
 ```{r factor-solution}
 Brexit <- Brexit %>% mutate(cat_fact = factor(x = category))
@@ -172,6 +177,8 @@ In contrast to SPSS, we must use the labels, we cannot use the factor integer va
 
 ### Change the first factor category 
 
+The first category is the reference group if we use a character variable or factor as a predictor in a regression model. So let us reset the first category of the factor that we have just created. 
+
 <div class="question" >
 Add a factor called `cat_new` to tibble `Brexit` in which `Economie` (_Economy_) is the first category.
 </div>
@@ -180,10 +187,14 @@ Add a factor called `cat_new` to tibble `Brexit` in which `Economie` (_Economy_)
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="relevel-hint">
-__Hint:__ Use `fct_relevel()`, which is part of the `forcats` package, which is loaded by the `tidyverse` package.
-</div>
+```{r relevel-hint-1}
+# Use `fct_relevel()`, which is part of the `forcats` package, which is loaded by the `tidyverse` package.
+```
+
+```{r relevel-hint-2}
+# Oh yes, use mutate() again. You should know that by now.
+Brexit <- Brexit %>% mutate()
+```
 
 ```{r relevel-solution, exercise.setup = "factor-solution"}
 Brexit <- Brexit %>% mutate(cat_new = fct_relevel(cat_fact, "Economie"))
@@ -198,24 +209,30 @@ gradethis::grade_code(
 
 ###
 
-Now check that `Economie` is the reference category in a regression model.
+<div class="question" >
+Now check that `Economie` is the reference category in a regression model. 
+</div>
 
-```{r relevelmodel, exercise = TRUE, exercise.setup = "relevel-solution"}
+Adapt the code for a regression model from a previous exercise. Use only the `lm()` function, which will send the results to the screen. That suffices for checking the reference category.
+
+```{r relevelmodel-init}
+Brexit <- Brexit %>% 
+  mutate(cat_fact = factor(x = category), 
+         cat_new = fct_relevel(cat_fact, "Economie")
+         )
+```
+
+```{r relevelmodel, exercise = TRUE, exercise.setup = "relevelmodel-init"}
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="relevelmodel-hint">
-__Hint:__ Adapt the code for a regression model from a previous exercise but do not use the `broom::tidy()`, `kable()`, and `kable_styling()`, and `kable_paper()` functions. Details on statistical analysis in R follow in Session 6.
-</div>
-
-```{r relevelmodel-solution}
+```{r relevelmodel-solution, exercise.setup = "relevelmodel-init"}
 lm(votes ~ cat_new, data = Brexit)
 ```
 
 ```{r relevelmodel-check}
 gradethis::grade_code(
-  correct = "", 
+  correct = "Details on statistical analysis in R follow in Session 6.", 
   incorrect = ""
   )
 ```
@@ -231,13 +248,17 @@ Categories `Media`, `Overig` (_Other_), `Showbizz`, and `Wetenschap` (_Science_)
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="recodefactor-hint">
-__Hint:__ Use variable `cat_fact` as your starting point..
-</div>
+```{r recodefactor-hint-1}
+# Use variable `cat_fact` as your starting point..
+```
+
+```{r recodefactor-hint-2}
+# Use function `fct_recode()`.
+mutate(cat_fact2 = fct_recode(cat_fact, ))
+```
 
 ```{r recodefactor-solution}
-Brexit <- Brexit %>% mutate(cat_fact2 = forcats::fct_recode(cat_fact, "Algemeen" = "Media", "Algemeen" = "Overig", "Algemeen" = "Showbizz", "Algemeen" = "Wetenschap"))
+Brexit <- Brexit %>% mutate(cat_fact2 = fct_recode(cat_fact, "Algemeen" = "Media", "Algemeen" = "Overig", "Algemeen" = "Showbizz", "Algemeen" = "Wetenschap"))
 ```
 
 ```{r recodefactor-check}
@@ -261,10 +282,10 @@ Use function `parse_number()` to create a new numeric variable `react_num` in ti
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="groupreactions1-hint">
-__Hint:__ Function `parse_number()` is part of the `readr` package, which is loaded by the `tidyverse` package.
-</div>
+```{r groupreactions1-hint-1}
+# Function `parse_number()` is part of the `readr` package, which is loaded by
+# the `tidyverse` package.
+```
 
 ```{r groupreactions1-solution}
 Brexit <- Brexit %>% mutate(react_num = parse_number(reactions))
@@ -279,8 +300,6 @@ gradethis::grade_code(
 
 ###
 
-The three reactions bins should be labeled "low", "medium", "high". But the substantive order from low to high does not match the alphabetical order. The bins variable must therefore be a factor.
-
 <div class="question" >
 Group the number of reactions in three bins with (nearly) the same number of cases and store this variable as a factor named `react_cat` in tibble `Brexit`.
 </div>
@@ -289,10 +308,17 @@ Group the number of reactions in three bins with (nearly) the same number of cas
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="orderedfactor-hint">
-__Hint:__ There are two steps: (1) bin the variable, (2) create a factor from the bins. The two steps can be performed in one `mutate()` function. It is even possible to use the same name for the new variable in both steps.
-</div>
+```{r orderedfactor-hint-1}
+# There are two steps. In the first step, bin the numeric variable.
+ntile()
+```
+
+```{r orderedfactor-hint-2}
+# In the second step, create a factor from the bins. 
+# The two steps can be performed in one `mutate()` function. It is even possible
+# to use the same name for the new variable in both steps.
+mutate(react_cat = ntile(react_num, 3), react_cat = factor())
+```
 
 ```{r orderedfactor-solution, exercise.setup = "groupreactions1-solution"}
 Brexit <- Brexit %>% mutate(react_cat = ntile(react_num, 3), react_cat = factor(react_cat, levels = c(1, 2, 3), labels = c("low", "medium", "high")))
@@ -305,21 +331,26 @@ gradethis::grade_code(
   )
 ```
 
+The three reactions bins should be labeled "low", "medium", "high". But the substantive order from low to high does not match the alphabetical order. The bins variable must therefore be a factor.
+
 ###
 
-Plot a bar chart of the factor representing the reactions bins. Are the bins in the desired order?
-
 <div class="question" >
+Plot a bar chart of the factor representing the reactions bins. Are the bins in the desired order?
 </div>
 
-```{r binplot, exercise = TRUE, exercise.setup = "orderedfactor-solution"}
+```{r binplot-ini, exercise.setup = "groupreactions1-solution"}
+Brexit <- Brexit %>% mutate(react_cat = ntile(parse_number(reactions), 3), react_cat = factor(react_cat, levels = c(1, 2, 3), labels = c("low", "medium", "high")))
+```
+
+
+```{r binplot, exercise = TRUE, exercise.setup = "binplot-ini"}
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="binplot-hint">
-__Hint:__ hinttext.
-</div>
+```{r binplot-hint-1}
+# Use ggplot() and geom_bar().
+```
 
 ```{r binplot-solution}
 ggplot(Brexit) + geom_bar(mapping = aes(x = react_cat))
@@ -327,7 +358,7 @@ ggplot(Brexit) + geom_bar(mapping = aes(x = react_cat))
 
 ```{r binplot-check}
 gradethis::grade_code(
-  correct = "Yes indeed, all three bins have the same number of observations (posts).", 
+  correct = "The bins are in the right order: low - medium - high. And yes indeed, all three bins have the same number of observations (posts).", 
   incorrect = ""
   )
 ```
@@ -365,18 +396,23 @@ Create a date-time variable `pubDateTime` in tibble `Brexit` using a parse funct
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="pubDate1-hint">
-__Hint:__ Carefully specify the date and time formatting codes. See help for `parse_datetime()` under __Format specification__.
-</div>
+```{r pubDate1-hint-1}
+# The parse function is `parse_datetime()`.
+parse_datetime(pubDate, format = "")
+```
+
+```{r pubDate1-hint-2}
+# Carefully specify the date and time formatting codes. 
+# See help for `strptime()` under __Details__.
+```
 
 ```{r pubDate1-solution}
-Brexit <- Brexit %>% mutate(pubDateTime = parse_datetime(pubDate, "%B %d, %Y %H:%M:%S"))
+Brexit <- Brexit %>% mutate(pubDateTime = parse_datetime(pubDate, format = "%B %d, %Y %H:%M:%S"))
 ```
 
 ```{r pubDate1-check}
 gradethis::grade_code(
-  correct = "Compare the new variable to the original publication date variable: Is the new variable correct?", 
+  correct = "Use `Brexit %>% select(pubDate, pubDateTime) %>% View()` in the above code box to compare the new variable to the original publication date variable: Is the new variable correct?", 
   incorrect = ""
   )
 ```
@@ -391,10 +427,9 @@ Now do the same with the `lubridate` package (p. 239 {Ch. 16.2.1}), storing the 
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="pubDate2-hint">
-__Hint:__ Select the correct function. Check out help for `ymd_hms()`.
-</div>
+```{r pubDate2-hint-1}
+# Select the correct function. Check out help for `ymd_hms()`.
+```
 
 ```{r pubDate2-solution}
 Brexit <- Brexit %>% mutate(pubDateTime2 = mdy_hms(pubDate))
@@ -428,10 +463,14 @@ Add a variable `date` to the `Brexit` tibble, using the recently created variabl
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="Date-hint">
-__Hint:__ Don't forget to pipe.
-</div>
+```{r Date-hint-1}
+# How about the `date()` function in package lubridate?
+```
+
+```{r Date-hint-2}
+# You really should be able to write the code yourself,
+# instead of looking at the solution in the next hint.
+```
 
 ```{r Date-solution, exercise.setup = "pubDate1-solution"}
 Brexit <- Brexit %>% mutate(date = date(pubDateTime))
@@ -450,14 +489,20 @@ gradethis::grade_code(
 Inspect the dates of the posts with a frequency polygon.
 </div>
 
-```{r datePlot, exercise = TRUE, exercise.setup = "Date-solution"}
+```{r datePlot-init}
+Brexit <- Brexit %>% mutate(date = date(parse_datetime(pubDate, format = "%B %d, %Y %H:%M:%S")))
+```
+
+
+```{r datePlot, exercise = TRUE, exercise.setup = "datePlot-init"}
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="datePlot-hint">
-__Hint:__ Pay attention to the `stat` argument.
-</div>
+```{r datePlot-hint-1}
+# Pay attention to the `stat` argument in `geom_freqpoly().
+# Look the value up under __Computed Variables__ in the RStudio help on
+# `geom_freqpoly()`.
+```
 
 ```{r datePlot-solution}
 Brexit %>% ggplot(aes(x = date)) + geom_freqpoly(stat = "count")
@@ -477,7 +522,7 @@ gradethis::grade_code(
 
 ###
 
-It is easy to get the weekday with the `lubridate` package.
+It is also easy to get the weekday with the `lubridate` package.
 
 <div class="question" >
 Store the weekday as a new variable `weekday` containing the names of the weekdays in the tibble `Brexit`.
@@ -489,7 +534,7 @@ Store the weekday as a new variable `weekday` containing the names of the weekda
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="weekday-hint">
-__Hint:__ How about the `wday()` function?
+__Hint:__ How about the `wday()` function? Let's not show the correct code here because I know that you can do it yourself.
 </div>
 
 ```{r weekday-solution}
@@ -513,7 +558,7 @@ Variable `weekday` must be a factor. How can you tell?
 
 ###  
 
-It is trickier to get the time of day because R has no time data type. The book offers a trick.
+It is trickier to get the time of day because R has no time data type. The book offers a trick (Chapter 13, Section Setting Components {16.3.3}).
 
 <div class="question" >
 Apply this trick to the `pubDateTime` variable in tibble `Brexit` to create a variable `time`. Show the variable as an area plot; don't save it.
@@ -523,10 +568,23 @@ Apply this trick to the `pubDateTime` variable in tibble `Brexit` to create a va
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="time-hint">
-__Hint:__ See Section _Setting Components_ in the book.
-</div>
+```{r time-hint-1}
+# Use the `update()` function.
+update()
+```
+
+```{r time-hint-2}
+# Use `geom_area()`.
+ggplot(aes(time)) 
+  + geom_area()
+```
+
+```{r time-hint-3}
+# And use `scale_x_datetime` to set the labels of the horizontal axis to hour.
+ggplot(aes(time))
+  + geom_area()
+  + scale_x_datetime()
+```
 
 ```{r time-solution}
 Brexit %>% mutate(time = update(pubDateTime, yday = 1)) %>% ggplot(aes(time)) + geom_area(stat = "bin", bins = 30) + scale_x_datetime(date_labels = "%H")
@@ -551,10 +609,15 @@ Subtract the `pubDateTime` of the previous post from the `pubDateTime` of the cu
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="timelapse-hint">
-__Hint:__ Sort the data to be sure that they are in chronological order.
-</div>
+```{r timelapse-hint-1}
+# Sort the data to be sure that they are in chronological order before you
+# calculate the time lapse.
+```
+
+```{r timelapse-hint-2}
+# Use the `lag()` function.
+lag()
+```
 
 ```{r timelapse-solution, exercise.setup = "pubDate1-solution"}
 Brexit <- Brexit %>% arrange(pubDateTime) %>% mutate(lapse = pubDateTime - lag(pubDateTime, n = 1L))
@@ -578,20 +641,27 @@ Brexit %>%
   slice(1:6)
 ```
 
-The time difference between subsequent postings are clearly in seconds (see above plot). What if we use the dates of publications?
+The time difference between subsequent postings are clearly in seconds (see above table). What if we use the dates of publications?
 
 <div class="question" >
-Show the difference in days between the first six subsequent posts (new variable `lapse2`) as in the above table.
+Show the difference in days (dates) between subsequent posts (new variable `lapse2`) for the first six posts in a table.
 </div>
 
-```{r daylapse, exercise = TRUE, exercise.setup = "Date-solution"}
+```{r daylapse, exercise = TRUE, exercise.setup = "datePlot-init"}
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="daylapse-hint">
-__Hint:__ Don't save the new variable, just show it in a table.
-</div>
+```{r daylapse-hint-1}
+# Don't save the new variable lapse2, just show it in a table.
+```
+
+```{r daylapse-hint-2}
+# Show only date and lapse2 in the table.
+```
+
+```{r daylapse-hint-3}
+# Use slice() to select the first six rows.
+```
 
 ```{r daylapse-solution}
 Brexit %>% arrange(date) %>% mutate(lapse2 = date - lag(date, n = 1L)) %>% select(date, lapse2) %>% slice(1:6)
@@ -608,19 +678,30 @@ gradethis::grade_code(
 
 Now the difference is expressed in days. Subtracting two date-times yields data type `difftime`, which can have several time units. It is the largest time unit that is smaller than the smallest measured time difference.
 
-If you want to be sure that second is the time unit of the date-time difference, change the `difftime` into a `duration` with the `as.duration()` function.
+If you want to be sure that second is the time unit of the date-time difference, change the `difftime` into a `duration` with the `as.duration()` function. See the book for more details.
+
+###
+
+If we want to use data type `difftime` in a plot, we have to change it into a numeric variable with the `as.numeric()` function.
 
 <div class="question" >
-Plot variable `lapse` as a histogram with 50 bins.
+Plot variable `lapse` (time between subsequent posts in seconds) as a histogram with 50 bins.
 </div>
 
-```{r plotlapse, exercise = TRUE, exercise.setup = "timelapse-solution"}
+```{r plotlapse-ini}
+Brexit <- Brexit %>% 
+  mutate(pubDateTime = parse_datetime(pubDate, format = "%B %d, %Y %H:%M:%S")) %>%
+  arrange(pubDateTime) %>% 
+  mutate(lapse = pubDateTime - lag(pubDateTime, n = 1L))
+```
+
+
+```{r plotlapse, exercise = TRUE, exercise.setup = "plotlapse-ini"}
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
 <div id="plotlapse-hint">
-__Hint:__ Use `as.numeric()` to tell ggplot that the `difftime` data object must be treated as a numerica variable.
+__Hint:__ You should really be able to create this plot by yourself. Just don't forget to use `as.numeric(lapse)` instead of `lapse`.
 </div>
 
 ```{r plotlapse-solution}
@@ -637,7 +718,7 @@ gradethis::grade_code(
 <div class="tip" >
 __Programming Tips__
 
-- Work with `duration` instead of `difftime` unless you have to take into account daylight saving and leap seconds.
+- Work with data type `duration` instead of `difftime` unless you have to take into account daylight saving and leap seconds.
 - Note: For minutes, hours, days, and weeks, a `duration` can be divided (ignoring leap seconds) by the appropriate number of seconds.
 </div>
 
@@ -712,24 +793,38 @@ varname
 ```
 ###
 
-The book focuses on finding and replacing partcular strings/words:
+The book focuses on finding and replacing particular strings/words:
 
-- `str_locate()` with `str_sub()` nice for cutting up a string.
+- `str_locate()` with `str_sub()` are nice for cutting up a string.
 - `[2]` behind str_locate() selects the second item of the vector: the end position.
 
 ### 
 
+We now have: 
+
+```{r step1result}
+str_sub(names(surveyweek1)[4], start = str_locate(names(surveyweek1)[4], " - ")[2] + 1)
+```
+
+```{r step2-ini}
+varname <- str_sub(names(surveyweek1)[4], start = str_locate(names(surveyweek1)[4], " - ")[2] + 1)
+```
+
 Step 2: Get rid of the weekday name, so remove all up to (and including)  ", ".
 
-```{r step2, exercise = TRUE, exercise.setup = "step1", exercise.lines = 6}
-# Show the name that we start with.
-varname
+```{r step2, exercise = TRUE, exercise.setup = "step2-ini", exercise.lines = 6}
 # Select substring after the end position of ", ".
 varname <- str_sub(varname, start = str_locate(varname, ", ")[2] + 1)
 # Show result: see the difference.
 varname
 ```
+
 ###
+
+```{r step3-ini}
+varname <- str_sub(names(surveyweek1)[4], start = str_locate(names(surveyweek1)[4], " - ")[2] + 1)
+varname <- str_sub(varname, start = str_locate(varname, ", ")[2] + 1)
+```
 
 Step 3: Get rid of the "Sad or depressed" part, so remove all from (and including)  " - ".
 
@@ -742,11 +837,13 @@ varname <- str_sub(varname, end = str_locate(varname, " - ")[1] - 1)
 varname
 ```
 
+This is the variable name that we were after.
+
 <div class="tip" >
 __Programming Tip__
 
 - It is good practice to check intermediary results, so you know that your code performs as expected.
-- It is equally good practice to comment out code that is only used for checking results when the code is definitive.
+- It is equally good practice to comment out code that is only used for checking intermediary results when the code is definitive.
 </div>
 
 ###
@@ -757,13 +854,13 @@ Note that `start` and `end` arguments can be combined in `sub_str()`. Steps 2 an
 Write the `str_sub()`function that combines Steps 2 and 3. 
 </div>
 
-```{r step2and3, exercise = TRUE, exercise.setup = "step1"}
-
+```{r step2and3, exercise = TRUE, exercise.setup = "step2-ini"}
+str_sub(varname, )
 ```
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="step2and3-hint">
-__Hint:__ Don't store the result in `varname`; just use the `str_sub()` function.
+__Hint:__ You should be able to figure this out. Use help on the `str_sub()` and `str_locate()` functions.
 </div>
 
 ```{r step2and3-solution}
@@ -863,7 +960,7 @@ Inspect the results of each step in the pipe with `View()`. Note that the View w
 
 ```{r separate, exercise = TRUE, exercise.lines = 12}
 #tidyverse requires a data frame
-varnames <- data.frame(name = names(surveyweek1)[4:10]) %>%
+varnames <- data_frame(name = names(surveyweek1)[4:10]) %>%
   #split each name into three parts
   separate(name, into = c("humbug", "date", "topic"), sep = " - ") %>%
   #split the date into weekday and date
@@ -877,7 +974,7 @@ str(surveyweek1)
 ```
 
 - Tidyverse functions only operate on data frames but the variable names are a vector: just a series of names.
-- Therefore we must change them into a data frame at the start with `data.frame()` and transform them back to a vector (without variable name) at the end with `pull()`.
+- Therefore we must change them into a data frame at the start with `data_frame()` and transform them back to a vector (without variable name) at the end with `pull()`.
 
 ## Fancy Stuff
 
@@ -885,7 +982,7 @@ Natural text such as the header or body text of posts is used for classifying te
 
 ### Word cloud
 
-The special R data class `Corpus` has been developed to handle sets of texts. The `tm` package offers nice tools for creating, cleaning, and manipulating a corpus of texts. Let us use this package and the `wordcloud` and `wordcloud2` packages to create some word clouds.
+The special R data class `Corpus` has been developed to handle sets of texts. The `tm` package offers nice tools for creating, cleaning, and manipulating a corpus of texts. Let us use this package and the `wordcloud` package to create some word clouds.
 
 <div class="question" >
 Use help and inspect intermediary results to understand what happens here.
