@@ -112,17 +112,54 @@ Apply the `tidyverse` approach to the code below: Start with the data set and jo
 helpData1 <- filter(Glasgow, money >= 0)
 helpData2 <- group_by(helpData1, sex, student)
 helpData3 <- summarise(helpData2, n_rom = sum(romantic == "yes", na.rm = TRUE))
-helpData4 <- ungroup(helpData3)
-count(helpData4, sex, n_rom)
+count(helpData3, sex, n_rom)
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="pipe-hint">
-__Hint:__ In a pipe, the data frame originating from a previous step is automatically the data frame used for the next step. You don't have to save an intermediary data frame or specify its name in a pipe. And don't forget to add the pipe symbol!
-</div>
+```{r pipe-hint-1}
+# In a pipe, the data frame originating from a previous step is automatically
+# the data frame used for the next step. You don't have to save an intermediary
+# data frame or specify its name in a pipe. And don't forget to add the pipe
+# symbol!
+```
 
-```{r pipe-solution, echo=FALSE}
-Glasgow %>% filter(money >= 0) %>% group_by(sex, student) %>% summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) %>% ungroup() %>% count(sex, n_rom)
+```{r pipe-hint-2}
+# A pipe for the first function:
+Glasgow %>% 
+  filter(money >= 0)
+```
+
+```{r pipe-hint-3}
+# Have a look at the result of this pipe with View().
+Glasgow %>% 
+  filter(money >= 0) %>% View()
+# Note that the View window may be hidden behind your RStudio screen.
+```
+
+```{r pipe-hint-4}
+# A pipe for the first two functions:
+Glasgow %>% 
+  filter(money >= 0) %>%
+  group_by(sex, student)
+# Note that group_by() does not change the result.
+# It's effect is that subsequent functions are applied to each group 
+# instead of to the whole data set.
+```
+
+```{r pipe-hint-5}
+# See the impact of group_by on the summarise() function:
+Glasgow %>% 
+  filter(money >= 0) %>%
+  group_by(sex, student) %>% 
+  summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) %>% View()
+# Run the code also without group_by() to see the difference.
+```
+
+```{r pipe-hint-6}
+# You can now finish this pipe on your own, right?
+```
+
+```{r pipe-solution}
+Glasgow %>% filter(money >= 0) %>% group_by(sex, student) %>% summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) %>% count(sex, n_rom)
 ```
 
 ```{r pipe-check}
@@ -177,14 +214,63 @@ As always, use tidyverse functions and join all functions in one pipe.
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="summary1-hint">
-__Hint:__ You must group the data before you summarise.
+```{r summary1-hint-1}
+# You must group the data before you summarise.
+Glasgow %>%
+  group_by( ??? )
+# Which variable provides the groups?
+# In other words: The values of which variable are counted?
+```
 
-__Hint:__ For relative frequencies, divide the raw counts by the number of cases (nrow(Glasgow)). 
+```{r summary1-hint-2}
+# Use summarise() with the n() function to count the number of cases per group. 
+Glasgow %>%
+  group_by( ??? ) %>%
+  summarise(
+    Freq = n()
+  )
+```
 
-__Hint:__ Use the [cheat sheet](https://www.rstudio.org/links/data_transformation_cheat_sheet) to find cumulative functions.
-</div>
+```{r summary1-hint-3}
+# For relative frequencies, divide the raw counts by the number of cases. 
+Glasgow %>%
+  group_by( ??? ) %>%
+  summarise(
+    Freq = n(),
+    Perc = ??? / nrow(Glasgow)
+  )
+```
+
+```{r summary1-hint-4}
+# Use mutate() to calculate the cumulative
+# percentages.
+Glasgow %>%
+  group_by( ??? ) %>%
+  summarise(
+    Freq = n(),
+    Perc = 100 * Freq / nrow(Glasgow)
+  ) %>%
+  mutate( ??? )
+```
+
+```{r summary1-hint-5}
+# Use mutate() to calculate the cumulative
+# percentages.
+Glasgow %>%
+  group_by(friendships) %>%
+  summarise(
+    Freq = n(),
+    Perc = 100 * Freq / nrow(Glasgow),
+    CumPerc = cumsum(Perc)
+  )
+# If we calculate cumulative percentages within summarise(),
+# the data are grouped, so cumsum() starts anew for every
+# friendships value.
+```
+
+```{r summary1-hint-6}
+# With the preceding two hints, you should be able to get the correct code.
+```
 
 ```{r summary1-check}
 gradethis::grade_result(
@@ -225,10 +311,11 @@ Send the results to the screen.
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="binning-hint">
-__Hint:__ Use __mutate()__ to create the new variable.
-</div>
+```{r binning-hint-1}
+# Use __mutate()__ to create the new variable.
+Glasgow %>% mutate(money_class = ??? )
+# Which of the recoding and grouping functions should you use?
+```
 
 ```{r binning-solution}
 Glasgow %>% mutate(money_class = ntile(x = money, n = 3))
@@ -240,6 +327,8 @@ gradethis::grade_code(
   incorrect = "Please, specify argument names."
   )
 ```
+
+###
 
 <div class="question" >
 Create a new variable `money_class2` with the following groups for the Glasgow students' pocket money: 
@@ -255,24 +344,49 @@ Send the results to the screen.
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="recodemoney-hint">
-__Hint:__ Use __>=__ and __<=__ for "larger or equal" and "smaller or equal".
-</div>
+```{r recodemoney-hint-1}
+# Use mutate().
+Glasgow %>% mutate(
+  money_class2 = ???()
+)
+# Which of the recoding and grouping functions should you use?
+```
 
-```{r eval=FALSE}
+```{r recodemoney-hint-2}
+# Indeed, use case_when().
+Glasgow %>% mutate(
+  money_class2 = case_when(
+    
+  )
+)
+# Which of the recoding and grouping functions should you use?
+```
+
+```{r recodemoney-hint-3}
+# What is the condition for group 1: 1 - 10? 
+# Use __>=__ and __<=__ for "larger or equal" and "smaller or equal".
+Glasgow %>% mutate(
+  money_class2 = case_when(
+    money == 0 ~ 0,
+    ??? ~ 1
+  )
+)
+```
+
+```{r recodemoney-hint-4}
+# What is the condition for group 2: more than 10 pounds per month? 
+# Use __>=__ and __<=__ for "larger or equal" and "smaller or equal".
 Glasgow %>% mutate(
   money_class2 = case_when(
     money == 0 ~ 0,
     money > 0 & money <= 10 ~ 1,
-    money > 10 ~ 2 #if omitted, -1 (and all other codes not covered) become NA
+    ??? ~ 2
   )
 )
-#NOTE: Values outside the groups (here: all negative values) are set to NA. NA itself cannot be assigned as target value because it is considere a logical variable; instead NA_real_ can be assigned.
 ```
 
 ```{r recodemoney-solution}
-mutate(Glasgow, money_class2 = case_when( money == 0 ~ 0, money > 0 & money <= 10 ~ 1, money > 10 ~ 2))
+Glasgow %>% mutate(money_class2 = case_when( money == 0 ~ 0, money > 0 & money <= 10 ~ 1, money > 10 ~ 2))
 ```
 
 ```{r recodemoney-check}
@@ -282,22 +396,66 @@ gradethis::grade_code(
   )
 ```
 
+###
+
 <div class="question" >
 Which value has `money_class2` if the original score on `money` was `-1`?
+</div>
 
-Finally, set `-1` on variable `money` to missing (change the `money` variable). A negative number of pounds as pocket money cannot be correct.
+```{r recodemoney1-ini}
+Glasgow <- Glasgow %>% 
+  mutate(
+    money_class = ntile(x = money, n = 3),
+    money_class2 = case_when( money == 0 ~ 0, money > 0 & money <= 10 ~ 1, money > 10 ~ 2)
+    )
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="recodemoney1-hint">
+__Hint:__ You should be able to complete this code.
+</div>
+
+```{r recodemoney1, exercise = TRUE, exercise.setup = "recodemoney1-ini"}
+# Complete this code: replace '???'.
+# Note: This code uses a version of data set Glasgow that includes the new variable money_class2.
+Glasgow %>%
+  #select the money variable and the new variable money_class2.
+  select( ??? ) %>%
+  #keep only rows with value -1 for money
+  filter(money == ???)
+# the results are shown on the screen
+```
+
+###
+
+If you succeeded in completing the above code correctly, you can see that a value not covered by a `case_when()` function are set to missing (`NA`).
+
+It is good to remember this.
+
+###
+
+<div class="question" >
+Instead of grouping the values, set `-1` on variable `money` to missing (change the `money` variable). A negative number of pounds as pocket money cannot be correct.
+</div>
 
 Send the results to the screen.
-</div>
 
 ```{r recodemissing, exercise = TRUE}
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="recodemissing-hint">
-__Hint:__ Don't forget to specify the variable inside the __na_if()__ function.
-</div>
+```{r recodemissing-hint-1}
+# Use mutate().
+Glasgow %>% mutate(
+  money = ???()
+)
+# Which of the recoding and grouping functions should you use?
+```
+
+```{r recodemissing-hint-2}
+# Indeed, the na_if() function.
+# Check out the help for this function to see which arguments you have to use.
+```
 
 ```{r recodemissing-solution}
 Glasgow %>% mutate(money = na_if(x = money, y = -1))

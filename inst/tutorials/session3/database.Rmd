@@ -185,7 +185,9 @@ Rules for optimal data structure (efficiency and consistency):
     + Don't cram more than one piece of information in a cell.  
     + Split the variable.
 
-### 1. Each type of case must have its own tibble
+The next four sections of this tutorial discuss these four rules.
+
+## 1. Each type of case must have its own tibble
 
 The data set for this tutorial, `GlasgowFriends` is very untidy. Let us tidy it up in steps to check that you understand the concept of tidy data and are able to tidy your Data Project data.
 
@@ -582,7 +584,7 @@ However, not every many-to-many relation is picked up by the primary key. This i
 
 But first: Enjoy that you have come so far. You have covered quite a lot of ground. The insights and skills you have gained may prove very valuable during your career.
 
-### 2. Each observation must have its own row.
+## 2. Each observation must have its own row.
 
 There is something fishy about the friends in the `StudentWave` tibble. For each student in each wave, up to six friends could have been registered. 
 
@@ -693,7 +695,7 @@ __Programming Tip__
 - Use `pivot_longer()` and `pivot_wider()` rather than `gather()` and `spread()`.
 </div>
 
-### 3. Each variable must have its own column.  
+## 3. Each variable must have its own column.  
 
 Inspect the tibble `StudentBestfriend` that you created previously. 
 
@@ -758,7 +760,7 @@ gradethis::grade_result(
 )
 ```
 
-### 4. Each value must have its own cell. 
+## 4. Each value must have its own cell. 
 
 Finally, variables sometimes contain more than one piece of information. If this is the case, we should split the variable.
 
