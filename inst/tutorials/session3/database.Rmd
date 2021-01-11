@@ -1037,7 +1037,7 @@ StudentWave %>% left_join(Student, by = "student") %>% count( wave, alcohol ) %>
 # table.
 ```
 
-```{r crosstabs1-solution, exercise.setup = "studentwavetable-solution"}
+```{r crosstabs1-solution}
 StudentWave %>% left_join(Student, by = "student") %>% count( wave, alcohol ) %>% pivot_wider(names_from = wave, values_from = n)
 ```
 
