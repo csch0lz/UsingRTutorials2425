@@ -1017,6 +1017,15 @@ GlasgowFriends %>%
 Create the above contingency table using the tidyverse `count()` and `pivot_wider()` functions.
 </div>
 
+```{r crosstabs1-usedtobesetup}
+Student <- GlasgowFriends %>% 
+  select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) %>% 
+  distinct()
+StudentWave <- GlasgowFriends %>% 
+  select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% 
+  distinct()
+```
+
 ```{r crosstabs1, exercise = TRUE, exercise.setup = "studentwavetable-solution"}
 
 ```
