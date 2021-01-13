@@ -26,6 +26,9 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```{r, context="data", include=FALSE}
 # Ensure that the data is loaded for the remainder of this tutorial.
 GlasgowFriends <- UsingRTutorials::GlasgowFriends
+# Create the Student table.
+# It is not used in grade_result(), so it may already be around.
+Student <- GlasgowFriends %>% select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) %>% distinct()
 ```
 
 <!-- Define programming tip style -->
@@ -432,7 +435,7 @@ StudentWave <- GlasgowFriends %>%
 __Hint:__ It is a good custom to use the primary key variables as the first variables in a tibble.
 </div>
 
-```{r studentwavetable-solution, exercise.setup = "studenttable-solution"}
+```{r studentwavetable-solution}
 StudentWave <- GlasgowFriends %>% select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% distinct()
 ```
 
@@ -483,7 +486,7 @@ GlasgowFriends %>% select(student, neighbourhood, schooldist, hoodname, age, sex
 Split off the neigbourhood information into a tibble called `Neighbourhood`. Use one pipe.
 </div>
 
-```{r hoodtable, exercise = TRUE, exercise.lines = 8, exercise.setup = "studenttable-solution" }
+```{r hoodtable, exercise = TRUE, exercise.lines = 8}
 # Your code to create a tibble for neighbourhood information without duplicates.
 Neighbourhood <- Student %>% 
   # select the relevant variables
@@ -500,7 +503,7 @@ Neighbourhood <- Student %>%
 __Hint:__ Use the `Student` tibble as your starting point..
 </div>
 
-```{r hoodtable-solution, exercise.setup = "studenttable-solution"}
+```{r hoodtable-solution}
 Neighbourhood <- Student %>% select(neighbourhood, schooldist, hoodname) %>% distinct()
 ```
 
@@ -544,7 +547,7 @@ gradethis::grade_code(
 Remove the neighbourhood information from the `Student` tibble except the variable(s) that constitute(s) the primary key of the `Neighbourhood` tibble.
 </div>
 
-```{r student2table, exercise = TRUE, exercise.lines = 4, exercise.setup = "studenttable-solution"}
+```{r student2table, exercise = TRUE, exercise.lines = 4}
 # Your code to remove the superfluous neighbourhood variables from the Student tibble.
 Student <- Student %>% 
   ????()
@@ -735,6 +738,14 @@ GlasgowFriends %>%
 Replace the `StudentBestfriend` tibble by a tibble with variables `from`and `to` instead of `bfperiod` and `bfwave`.
 </div>
 
+```{r gatherBestfriend, exercise = TRUE, eval=FALSE, exercise.setup = "bestfriendstable-solution"}
+StudentBestfriend <- StudentBestfriend %>%
+  # students without best friend are dropped
+  ???() %>%
+  # spread the bfperiod values into new variables
+  pivot_wider()
+```
+
 ```{r gatherBestfriend-solution}
 StudentBestfriend <- StudentBestfriend %>% filter(!is.na(bestfriend)) %>% pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
 ```
@@ -743,12 +754,12 @@ StudentBestfriend <- StudentBestfriend %>% filter(!is.na(bestfriend)) %>% pivot_
 # You have to spread variables with the pivot_wider() function.
 ```
 
-```{r gatherBestfriend, exercise = TRUE, eval=FALSE, exercise.setup = "bestfriendstable-solution"}
-StudentBestfriend <- StudentBestfriend %>%
-  # students without best friend are dropped
-  ???() %>%
-  # spread the bfperiod values into new variables
-  pivot_wider()
+```{r gatherBestfriend-hint-2}
+# Within pivot_wider() function, use arguments: id_cols, names_from, and values_from.
+```
+
+```{r gatherBestfriend-hint-3}
+# Check out the vignette: issue the R command `vignette("pivot")` in RStudio.
 ```
 
 ```{r gatherBestfriend-check}
@@ -773,7 +784,8 @@ Write tidyverse code to split the `alcohol` variable in the `StudentWave` tibble
 Note: Send the results to the screen, do not store it in a new data object (so the code checker can do its work).
 
 ```{r separate, exercise = TRUE, exercise.setup = "studentwavetable-solution"}
-StudentWave %>% separate()
+StudentWave %>% 
+  separate()
 ```
 
 ```{r separate-solution}
@@ -799,22 +811,36 @@ However, when we want to analyze data, we may need information from different ti
 
 - `left_join()`
 - `right_join()`
-- `full_join()`
 - `inner_join()`
+- `full_join()`
 
 These functions may yield different results, most notably, different numbers of cases. 
 
 ```{r eval=FALSE}
-Student %>% left_join(StudentBestfriend, by = "student") %>% nrow()
-Student %>% right_join(StudentBestfriend, by = "student") %>% nrow()
-Student %>% full_join(StudentBestfriend, by = "student") %>% nrow()
-Student %>% inner_join(StudentBestfriend, by = "student") %>% nrow()
-StudentBestfriend %>% inner_join(Student, by = "student") %>% nrow()
+Student %>% left_join(StudentBestfriend, by = "student")
+Student %>% right_join(StudentBestfriend, by = "student")
+Student %>% inner_join(StudentBestfriend, by = "student")
+StudentBestfriend %>% inner_join(Student, by = "student")
+Student %>% full_join(StudentBestfriend, by = "student")
 ```
 
 <div class="question" >
-Use the below code box to join the `Student` and `StudentBestfriend` tibbles with each of the four joins. Count the number of cases that result (the base function `nrow()` is handy). Can you explain the differences between the results?
+Use the below code box to join the `Student` and `StudentBestfriend` tibbles with each of the four joins. 
+
+* Do you get the same number of cases (rows) with all joins?
+* Compare the number of cases with those of the `Student` table (`r nrow(Student)` rows) and the `StudentBestfriend` table (`r GlasgowFriends %>% 
+  select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
+  filter(!is.na(bestfriend)) %>% 
+  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave) %>% nrow()` rows). What do you notice?
 </div>
+
+```{r join1-setup}
+# Create the definitive StudentBestfriend tibble.
+StudentBestfriend <- GlasgowFriends %>% 
+  select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
+  filter(!is.na(bestfriend)) %>% 
+  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
+```
 
 ```{r join1, exercise = TRUE}
 
@@ -822,45 +848,119 @@ Use the below code box to join the `Student` and `StudentBestfriend` tibbles wit
 
 ```{r join1-hint-1}
 # Join the two tibbles, using `student` as key.
+# Start, for example, with a left join:
 Student %>% left_join(StudentBestfriend, by = "student")
 ```
 
-```{r join1-hint-2}
-# Using `nrow()` to count the number of cases.
-Student %>% left_join(StudentBestfriend, by = "student") %>% nrow()
-```
-
-```{r join1-hint-3}
-# Compare the sizes of the original tibbles.
-nrow(Student)
-nrow(StudentBestfriend)
-# Which number of cases reappears with which join? Why not with the other joins?
-```
 
 ###
 
-Two of the joins produce a tibble with more cases than the largest tibble used for the join. This happens in the following circumstances:
+Here are some graphical examples of what happens with the four different joins.
 
-1. The key used to join the tibbles is not a primary key in both tibbles.
-2. Not every value of the join key appears in both tibbles.
-3. The join key has missing values in at least one tibble.
+- A left join that joins `StudentBestFriend` to `Student`:
+    `Student %>% left_join(StudentBestfriend, by = "student")`
+```{r out.width="80%"}
+knitr::include_graphics("images/Leftjoin.png")
+```
+
+Each row (case) in the first (left) tibble is preserved in the resulting tibble. In addition, each row in the second (right) tibble with a key match in the first tibble is preserved.
+
+- A right join that joins `StudentBestFriend` to `Student`:
+    `Student %>% right_join(StudentBestfriend, by = "student")`
+```{r out.width="80%"}
+knitr::include_graphics("images/Rightjoin.png")
+```
+
+Like a `left_join()` but now with the tibbles reversed.
+
+- An inner join that joins `StudentBestFriend` to `Student` or the other way around:
+    `Student %>% inner_join(StudentBestfriend, by = "student")`
+    `StudentBestfriend %>% inner_join(Student, by = "student")`
+```{r out.width="80%"}
+knitr::include_graphics("images/Innerjoin.png")
+```
+
+Only rows with key values that appear in both tibbles are preserved.
+
+- A full join that joins `StudentBestFriend` to `Student`:
+    `Student %>% full_join(StudentBestfriend, by = "student")`
+
+```{r out.width="80%"}
+knitr::include_graphics("images/Fulljoin.png")
+```
+
+All rows of both tibbles are preserved.
+
+###
+
+Two of the joins produce a tibble with more cases than the largest tibble used for the join. This may happen in one or more of the following circumstances:
+
+1. The key used to join the tibbles is _not_ a primary key in _both_ tibbles.
+2. The join key has missing values in at least one tibble.
+3. Not every value of the join key in one tibble appears in the other tibble.
+
+It is important to check whether these circumstances apply to the tibbles that you want to join. If not, the join should create a tibble with as many rows as one of the tibbles that were joined. Else, the joined tibble may contain (many) more rows than any of the two original tables.
+
+### Checking if the key is primary
+
+You have learned earlier in this tutorial how to see if a key is a primary key. The questions below check your understanding. Use the code box below the questions if you want to use code to find the answers to the questions.
 
 ```{r joinquiz}
 quiz(
   caption = "",
-  question("Is the key used to join the tibbles a primary key in neither of the two tibbles?",
+  question("Is the key used to join the tibbles NOT a primary key in both tibbles?",
     answer("Yes", message = "Check if student is a primary key in a tibble with anyDuplicated()."),
     answer("No", correct = TRUE)
   ),
   question("Does every value of the key used to join the tibbles appears in both tibbles?",
     answer("Yes", message = "You can check this with the anti_join() function. See below."),
-    answer("No", correct = TRUE, message = "You can check this with the anti_join() function. See below.")
+    answer("No", correct = TRUE, message = "You can check this with the anti_join() function, which is discussed next in this tutorial.")
   ),
   question("Does the join key have missing values in at least one tibble?",
     answer("Yes", message = "You can check this with summarise(n_missing = sum(is.na(student)))."),
     answer("No", correct = TRUE, message = "You can check this with summarise(n_missing = sum(is.na(student))).")
   )
 )
+```
+
+```{r join1a-setup}
+# Create the definitive StudentBestfriend tibble.
+StudentBestfriend <- GlasgowFriends %>% 
+  select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
+  filter(!is.na(bestfriend)) %>% 
+  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
+```
+
+```{r join1a, exercise = TRUE}
+
+```
+
+### Checking for missing values on a join key
+
+```{r join1b-setup}
+# Create the definitive StudentBestfriend tibble.
+StudentBestfriend <- GlasgowFriends %>% 
+  select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
+  filter(!is.na(bestfriend)) %>% 
+  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
+```
+
+```{r join1b, exercise = TRUE}
+
+```
+
+```{r join1b-hint-1}
+# Remember how to count the number of missing values?
+# For example, use sum(is.na()) within summarise().
+```
+
+```{r join1b-hint-2}
+# For the Student tibble, replace .key. by the join key variable(s).
+Student %>% summarise(n_missing = sum(is.na( .key. )))
+```
+
+```{r join1b-hint-3}
+# Do the same for the StudentBestfriend tibble.
 ```
 
 ### Checking join key overlap: `anti_join()`
@@ -873,6 +973,14 @@ Variable `student` is a primary key without missing values in tibble `Student`. 
 Student %>% anti_join(StudentBestfriend, by = "student") %>% nrow()
 # But all student IDs in tibble `StudentBestfriend` appear in tibble `Student`.
 StudentBestfriend %>% anti_join(Student, by = "student") %>% nrow()
+```
+
+```{r join2-setup}
+# Create the definitive StudentBestfriend tibble.
+StudentBestfriend <- GlasgowFriends %>% 
+  select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
+  filter(!is.na(bestfriend)) %>% 
+  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
 ```
 
 <div class="question">
@@ -899,45 +1007,32 @@ gradethis::grade_code(
   )
 ```
 
-### 
 
-As noted before, variable `student` is a primary key without missing values in tibble `Student`. Therefore, adding the information from this tibble to the `StudentBestfriend` tibble (with `student` as join key) adds one neighbourhood code, one age, sex, and so on to each observation in tibble `StudentBestfriend`. The resulting number of observations equals the number of observations in tibble `StudentBestfriend`. 
+### Number of rows resulting
 
-This happens with the following joins:
+Variable `student` is a primary key without missing values in tibble `Student`. Therefore, adding the information from this tibble to the `StudentBestfriend` tibble (with `student` as join key) adds one neighbourhood code, one age, sex, and so on to each observation in tibble `StudentBestfriend`. The resulting number of observations equals the number of observations in tibble `StudentBestfriend`. This happens, for example in the left and right joins illustrated below. 
 
 - A left join that joins `Student` to `StudentBestFriend`:
-    `StudentBestfriend %>% left_join(Student, by = "student")`
-```{r out.width="80%"}
-knitr::include_graphics("images/Leftjoin.png")
-```
-    
-
+    `StudentBestFriend %>% right_join(Student, by = "student")`
 - A right join that joins `StudentBestFriend` to `Student`:
     `Student %>% right_join(StudentBestfriend, by = "student")`
-```{r out.width="80%"}
-knitr::include_graphics("images/Rightjoin.png")
-```
-
-- An inner join that joins `StudentBestFriend` to `Student` or the other way around:
-    `Student %>% inner_join(StudentBestfriend, by = "student")`
-    `StudentBestfriend %>% inner_join(Student, by = "student")`
-```{r out.width="80%"}
-knitr::include_graphics("images/Innerjoin.png")
-```
     
+```{r out.width="80%"}
+knitr::include_graphics("images/LeftRightjoin.png")
+```
 
-The resulting number of observations does not equal the number of observations in tibble `StudentBestfriend` with a left or right join with the order of tables reversed or a full join. Now, the students from the `Student` tibble that do not appear in the `StudentBestfriend` tibble are preserved. A full join, for example:
+The resulting number of observations does not equal the number of observations in tibble `StudentBestfriend` with, for example, a full join. Now, students from the `Student` tibble that do not appear in the `StudentBestfriend` tibble are preserved.
 
 - A full join that joins `StudentBestFriend` to `Student`:
     `Student %>% full_join(StudentBestfriend, by = "student")`
-
+    
 ```{r out.width="80%"}
 knitr::include_graphics("images/FullLeftjoin.png")
 ```
 
-Can you explain the number of cases if we use a full join on the tibbles `Student` and `StudentBestfriend`? This is not always super simple.
-
 ### Joining on non-primary keys
+
+If the join key is not a primary key in both tibbles, the number of cases in the resulting tibble is larger than the number of cases in any of the two original tibbles.
 
 <div class="question" >
 How many rows (observations) do we get when we join the `StudentWave` and `StudentBestfriend` tibbles? Can you predict this number or explain it afterwards?
@@ -949,7 +1044,7 @@ knitr::include_graphics("images/ManyManyJoin.png")
 
 ###
 
-Actually, it is very hard to predict the number of cases that will result from a join on two keys that are not primary keys. 
+It is very hard to predict the number of cases that will result from a join on two keys that are not primary keys. 
 
 - For every value on the join key, the number of cases in the first tibble is multiplied by the number of cases in the second tibble. Note that this also applies to missing values on the join key: Every `NA` in the first table is linked to every `NA` in the second table. This is usually not what you want.
 - Depending on the type of join, cases in the first and/or second tibble that do not have a match in the other tibble are included or excluded in the resulting tibble.
