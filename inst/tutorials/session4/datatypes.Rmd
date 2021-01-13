@@ -300,6 +300,18 @@ gradethis::grade_code(
 
 ###
 
+Inspect  the changed `Brexit` tibble (e.g., with `View()`) to check that the results are OK. Compare the old and new reactions scores. The first six rows are shown below.
+
+```{r groupreactions1output}
+Brexit %>% 
+  mutate(react_num = parse_number(reactions)) %>%
+  select(reactions, react_num) %>%
+  slice(1:6)
+```
+The numerical reactions variable seems to be OK.
+
+###
+
 <div class="question" >
 Group the number of reactions in three bins with (nearly) the same number of cases and store this variable as a factor named `react_cat` in tibble `Brexit`.
 </div>
@@ -525,7 +537,7 @@ gradethis::grade_code(
 It is also easy to get the weekday with the `lubridate` package.
 
 <div class="question" >
-Store the weekday as a new variable `weekday` containing the names of the weekdays in the tibble `Brexit`.
+Use the `pubDateTime` variable to calculate the weekday at which a post was published as a new variable `weekday` containing the names of the weekdays. Send the `weekday` variable to the screen for checking the results.
 </div>
 
 ```{r weekday, exercise = TRUE, exercise.setup = "pubDate1-solution"}
@@ -538,7 +550,7 @@ __Hint:__ How about the `wday()` function? Let's not show the correct code here 
 </div>
 
 ```{r weekday-solution}
-Brexit <- Brexit %>% mutate(weekday = wday(pubDateTime, label=TRUE))
+Brexit %>% mutate(weekday = wday(pubDateTime, label=TRUE)) %>% select(weekday)
 ```
 
 ```{r weekday-check}
@@ -680,41 +692,6 @@ Now the difference is expressed in days. Subtracting two date-times yields data 
 
 If you want to be sure that second is the time unit of the date-time difference, change the `difftime` into a `duration` with the `as.duration()` function. See the book for more details.
 
-###
-
-If we want to use data type `difftime` in a plot, we have to change it into a numeric variable with the `as.numeric()` function.
-
-<div class="question" >
-Plot variable `lapse` (time between subsequent posts in seconds) as a histogram with 50 bins.
-</div>
-
-```{r plotlapse-ini}
-Brexit <- Brexit %>% 
-  mutate(pubDateTime = parse_datetime(pubDate, format = "%B %d, %Y %H:%M:%S")) %>%
-  arrange(pubDateTime) %>% 
-  mutate(lapse = pubDateTime - lag(pubDateTime, n = 1L))
-```
-
-
-```{r plotlapse, exercise = TRUE, exercise.setup = "plotlapse-ini"}
-
-```
-
-<div id="plotlapse-hint">
-__Hint:__ You should really be able to create this plot by yourself. Just don't forget to use `as.numeric(lapse)` instead of `lapse`.
-</div>
-
-```{r plotlapse-solution}
-Brexit %>% ggplot(aes(x = as.numeric(lapse))) + geom_histogram(bins = 50)
-```
-
-```{r plotlapse-check}
-gradethis::grade_code(
-  correct = "", 
-  incorrect = ""
-  )
-```
-
 <div class="tip" >
 __Programming Tips__
 
@@ -775,21 +752,22 @@ Step 1: Remove all up to (and including) the first " - ".
 Run the below code and inspect the intermediary results to check that you understand what each line of code does. For example, why is there `+ 1` within the `str_sub()` function?
 </div>
 
-```{r step1, exercise = TRUE, exercise.lines = 14}
+```{r step1, exercise = TRUE, exercise.lines = 15}
 # Store variable name in a data object, so we can use it.
 varname <- names(surveyweek1)[4]
 # Show result to check that the code works.
-varname
+varname # Intermediary result. Comment out in your Data Project code!
 
 # Find the first position of " - ".
 # Show results for understanding before using it below.
 str_locate(varname, " - ") #start and end position!
+# Intermediary result. Comment out in your Data Project code!
 
 # Select everything after the end position of " - ".
 varname <- str_sub(varname, start = str_locate(varname, " - ")[2] + 1)
 
 # Show result to check that the code works.
-varname
+varname # Intermediary result. Comment out in your Data Project code!
 ```
 ###
 
@@ -815,8 +793,8 @@ Step 2: Get rid of the weekday name, so remove all up to (and including)  ", ".
 ```{r step2, exercise = TRUE, exercise.setup = "step2-ini", exercise.lines = 6}
 # Select substring after the end position of ", ".
 varname <- str_sub(varname, start = str_locate(varname, ", ")[2] + 1)
-# Show result: see the difference.
-varname
+# Show result: see the difference. 
+varname # Intermediary result. Comment out in your Data Project code!
 ```
 
 ###
@@ -828,7 +806,7 @@ varname <- str_sub(varname, start = str_locate(varname, ", ")[2] + 1)
 
 Step 3: Get rid of the "Sad or depressed" part, so remove all from (and including)  " - ".
 
-```{r step3, exercise = TRUE, exercise.setup = "step2", exercise.lines = 6}
+```{r step3, exercise = TRUE, exercise.setup = "step3-ini", exercise.lines = 6}
 # Show the name that we start with.
 varname
 # Select substring up to start position of " - ".
@@ -876,7 +854,7 @@ gradethis::grade_code(
 
 ### Manipulate all variable names
 
-Now, let us apply the commands to all relevant variables (sequence 4 to 10).
+Let us apply the commands to all relevant variables (sequence 4 to 10).
 
 <div class="question" >
 Run the below code. What do `names()` and `str_locate()` produce now?
@@ -896,7 +874,12 @@ str_locate(varname, " - ")
 
 Now, str_locate creates a matrix with start and end position columns for each variable. If we want the start positions or the end positions, we must select the first column `[,1]` or the second column `[,2]` from the matrix.
 
-```{r strlocate2, exercise = TRUE, exercise.setup = "strlocate1"}
+```{r strlocate2-ini}
+# Get all selected variable names.
+varname <- names(surveyweek1)[4:10]
+```
+
+```{r strlocate2, exercise = TRUE, exercise.setup = "strlocate2-ini"}
 # Get the end positions from the matrix.
 str_locate(varname, " - ")[,2]
 ```
@@ -960,7 +943,7 @@ Inspect the results of each step in the pipe with `View()`. Note that the View w
 
 ```{r separate, exercise = TRUE, exercise.lines = 12}
 #tidyverse requires a data frame
-varnames <- data_frame(name = names(surveyweek1)[4:10]) %>%
+varnames <- tibble(name = names(surveyweek1)[4:10]) %>%
   #split each name into three parts
   separate(name, into = c("humbug", "date", "topic"), sep = " - ") %>%
   #split the date into weekday and date

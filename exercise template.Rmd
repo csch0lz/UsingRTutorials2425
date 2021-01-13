@@ -153,6 +153,11 @@ quiz(
 -	The provided solution is directly accessible to the student unless we add one (not more!) Markdown (text) hint. A code chunk hint is displayed as a separate answer box if there is a code chunk check.
 -	Sometimes displays message “Last value being used to check answer is invisible. See `?invisible` for more information”. Tell students to ignore this message.
 
+Exercise setup (preparing data etc.):
+
+- Chaining of solution code as setup (specify a-solution as exercise.setup, which has b-solution as setup) does not seem to work.
+- Creating (new) data objects in a setup code chunk that is referenced with exercise.setup does not seem to work. A setup chunk (name-setup) does work (see crosstabs in Session 3).
+
 With grade_code(): 
 
 -	If the correct answer does not specify argument names, argument names are considered incorrect and vice versa. Note that the “mapping =” argument does not throw an error.

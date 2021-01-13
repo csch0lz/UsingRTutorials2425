@@ -211,7 +211,7 @@ For identifying types of cases, it is helpful to find the smallest set of variab
 
 Imagine that a data matrix contains only information about a person, such as the person's name, year of birth, address, social security number, and best friend's name. We only need the social security number to uniquely identify a person. If we know this number, we can look up a person's name, year of birth, and so on. 
 
-If we would have two cases with the same social security number, we suspect that there is an error in the data or that there is no unique row for a person. The latter situation arises if there are more types of cases in the data than just persons. An additional variable that we must add to the social security number for getting a primary key points us in the direction of other types of cases.
+If we would have two cases with the same social security number, we suspect that there is an error in the data or that there is no unique row for a person. The latter situation arises if there are more types of cases in the data than just persons. An additional variable that we must combine with the social security number for getting a primary key points us in the direction of other types of cases.
 
 <div class="tip" >
 __Tip__
@@ -764,7 +764,7 @@ gradethis::grade_result(
 
 Finally, variables sometimes contain more than one piece of information. If this is the case, we should split the variable.
 
-The Glasgow data only contain a rather trivial example. The `alcohol` and `cannabis` variables contain both a numeric code and a text label. For example: `1 none`. It can be easier just to work with the numeric codes, that is, as long as we recognize that the numbers stand for ordinal measurement level in this example.
+The Glasgow data set contains only a rather trivial example. The `alcohol` and `cannabis` variables contain both a numeric code and a text label. For example: `1 none`. It can be easier just to work with the numeric codes, that is, as long as we recognize that the numbers stand for ordinal measurement level in this example.
 
 <div class="question" >
 Write tidyverse code to split the `alcohol` variable in the `StudentWave` tibble into a numeric variable `alcohol_code` and a character variable `alcohol_label`.
@@ -926,15 +926,16 @@ knitr::include_graphics("images/Innerjoin.png")
 ```
     
 
-It does not happen with a left or right join with the order of tables reversed or a full join. Now, the students from the `Student` tibble that do not appear in the `StudentBestfriend` tibble are preserved.
+The resulting number of observations does not equal the number of observations in tibble `StudentBestfriend` with a left or right join with the order of tables reversed or a full join. Now, the students from the `Student` tibble that do not appear in the `StudentBestfriend` tibble are preserved. A full join, for example:
+
+- A full join that joins `StudentBestFriend` to `Student`:
+    `Student %>% full_join(StudentBestfriend, by = "student")`
 
 ```{r out.width="80%"}
 knitr::include_graphics("images/FullLeftjoin.png")
 ```
 
-Can you explain the number of cases if we use a full join on the tibbles `Student` and `StudentBestfriend`?
-
-This is not super simple.
+Can you explain the number of cases if we use a full join on the tibbles `Student` and `StudentBestfriend`? This is not always super simple.
 
 ### Joining on non-primary keys
 
@@ -991,7 +992,7 @@ __Programming Tip__
 
 If the join variable(s) is/are a primary key in both tibbles, there is a one-to-one relation. You should ask yourself: Why are the data in different tibbles?
 
-If the join variable(s) is/are a primary key in one of the two tibbles, there is a one-to-many relation. The number of observations in the joined tibble should be equal to the number of observations in the 'many' tibble (where the join key is not a primary key) or this number plus the number of observations in the 'one' tibble (where the join is on a primary key) that are not matched in the 'many' tibble. The latter situation arises in a full join and in a left or right join of the 'one' table is the first or second tibble respectively.
+If the join variable(s) is/are a primary key in one of the two tibbles, there is a one-to-many relation. The number of observations in the joined tibble should be equal to the number of observations in the 'many' tibble (where the join key is not a primary key) or this number plus the number of observations in the 'one' tibble (where the join is on a primary key) that are not matched in the 'many' tibble. The latter situation arises in a full join and in a left or right join if the 'one' table is the first or second tibble respectively.
 
 If the join variable(s) is/are not a primary key in both tibbles, there is a many-to-many relation. It is hard to predict the number of resulting observations except that this number is usually (much) larger than the largest tibble involved in the many-to-many relation.
     
