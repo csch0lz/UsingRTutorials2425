@@ -266,7 +266,7 @@ attributes(result_t$conf.int)$conf.level
 
 ```{r extractlevel-check}
 gradethis::grade_code(
-  correct = "We can use th dolar sign directly after the attributes() function. Isn't that nice?", 
+  correct = "We can use the dolar sign directly after the attributes() function. Isn't that nice?", 
   incorrect = "If you just get the number 0.95, you are fine. Probably, you used [[]] instead of $. If you get more than just the number, you have to go down one level in the list that `attributes()` generates."
   )
 ```
@@ -790,6 +790,25 @@ for (i in seq_along(ttests)) {
 
 Note: This exercise is difficult.
 
+```{r for2-setup} 
+# To have the t tests list available, recreate it.
+# Create a vector containing the four destinations.
+destinations <- c("BOS", "LAX", "MCO", "SFO")
+# Create an empty list to store the six results.
+ttests <- list()
+# Loop to calculate a t test for each pair of destinations.
+for (i in destinations) {
+  for (j in destinations) {
+    if (j < i) {
+      # Each pair of destinations is used once if j < i (or i < j)
+      ttests <- append(ttests, list(flights4 %>%
+        filter(dest %in% c(i, j)) %>%
+        t.test(arr_delay0 ~ dest, data = .)))
+    }
+  }
+}
+```
+
 ```{r for2, exercise = TRUE, exercise.setup = "for1", exercise.lines = 12}
 for (variable in vector) {
   
@@ -883,7 +902,7 @@ __Programming Tip__
 
 ## Data Project
 
-If you have code that you use several times, create a function for this code.
+If you have code that you use several times in your Data Project, create a function for this code.
 
 It is time to finish tidying your group's project data. You will need the remaining time to design and create your data visualization. So, get that data tidy. And use inline code to display important information about the data to the reader.
 
