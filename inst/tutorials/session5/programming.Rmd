@@ -790,7 +790,7 @@ for (i in seq_along(ttests)) {
 
 Note: This exercise is difficult.
 
-```{r for2-setup} 
+```{r for2-init} 
 # To have the t tests list available, recreate it.
 # Create a vector containing the four destinations.
 destinations <- c("BOS", "LAX", "MCO", "SFO")
@@ -809,7 +809,7 @@ for (i in destinations) {
 }
 ```
 
-```{r for2, exercise = TRUE, exercise.setup = "for1", exercise.lines = 12}
+```{r for2, exercise = TRUE, exercise.setup = "for2-init", exercise.lines = 12}
 for (variable in vector) {
   
 }
