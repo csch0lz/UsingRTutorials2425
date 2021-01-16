@@ -794,7 +794,13 @@ Apply the `plot()` function to the result of linear regression (`model_1a`).
 - Are these all plots that you can get with this function?
 </div>
 
-```{r lmplots, exercise = TRUE, exercise.setup = "texreg-init"}
+```{r lmplots-setup}
+model_1 <- lm(govact ~ age + negemot + partyid, data = glbwarm)
+model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
+```
+
+
+```{r lmplots, exercise = TRUE}
 
 ```
 
