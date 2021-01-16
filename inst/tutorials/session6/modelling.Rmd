@@ -16,12 +16,11 @@ library(learnr)
 library(gradethis)
 library(knitr)
 library(kableExtra)
-# New packages (must be installed before taking this tutorial)
-# library(haven) #For importing SPSS data files, part of tidyverse.
+library(haven) #For importing SPSS data files.
 library(car) #For ANOVA.  
-# If you want to create a regression table or moderation plot, install and load these packages.
 library(texreg) #For pretty regression results.
 library(effects) #For two-way interaction plots.
+library(broom) #For cleaning up statistical results.
 
 tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -47,7 +46,7 @@ glbwarm_spss <- UsingRTutorials::glbwarm_spss
 }
 </style>
 
-## Import SPSS Data
+## Importing SPSS Data
 
 ### 
 
@@ -60,18 +59,25 @@ Option 1. Export from SPSS to .csv and import .csv in R.
 - Export data from SPSS to a CSV file with value labels for categorical variables: _File > Export > CSV Data_ with _Save value labels where defined instead of data values_.
 - Use `read_csv()` (as you learned before) to import the CSV file. 
 
-The resulting R data set is available in this tutorial as `glbwarm`.
+The resulting R data object is available in this tutorial as `glbwarm`.
 
-<div class="question">
-Have a look at the imported CSV file. Any variables that had better become factors (and why)?
-</div>
-
-```{r importCSV, exercise = TRUE}
-
+```{r importCSV, exercise = TRUE, exercise.eval = TRUE}
+str(glbwarm)
 ```
 
-```{r importCSV-hint-1}
-str(glbwarm)
+```{r quiz}
+quiz(
+  caption = "",
+  question("Have a look at the imported CSV file (above). Which variables that had better become factors? Inspect frequency tables of the variables if you need more information.",
+    answer("govact"),
+    answer("posemot"),
+    answer("posemot"),
+    answer("ideology", correct = TRUE),
+    answer("age"),
+    answer("sex"),
+    answer("partyid", correct = TRUE)
+  )
+)
 ```
 
 ###
@@ -90,7 +96,7 @@ Have a look at the imported SPSS file. Use R code to retrieve the label of varia
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="importSPSS-hint">
-__Hint:__ You learned how to retrieve a label from a list in Session 5.
+__Hint:__ You learned how to retrieve a label of an attribute from a list in Session 5.
 </div>
 
 ```{r importSPSS-solution}
@@ -108,7 +114,7 @@ gradethis::grade_code(
 
 The numerical codes for categorical variables such as ideology in the SPSS file have been preserved. 
 
-R treats these variables as numerical. Maybe this is what you want in some instances. If you do not want this, you should change variables into factors. 
+R treats these variables as numerical. Maybe this is what you want in some instances. If you do not want this, you should change the variables into factors. 
 
 <div class="question">
 Use the `haven::as_factor()` function to add a variable named `sex_fct` to tibble `glbwarm_spss`.
@@ -118,13 +124,23 @@ Use the `haven::as_factor()` function to add a variable named `sex_fct` to tibbl
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="sex_fct-hint">
-__Hint:__ Both the `forcats` and `haven` package contain a function `as_factor()`, so it is recommended to specify the package when using this function.
-</div>
+```{r sex_fct-hint-1}
+# As you learned before, use mutate() to add a variable. 
+mutate()
+```
+
+```{r sex_fct-hint-2}
+# Of course, you use a pipe and overwrite the original data object. 
+glbwarm_spss <- glbwarm_spss %>% mutate()
+```
+
+```{r sex_fct-hint-3}
+# Both the `forcats` and `haven` package contain a function `as_factor()`, so it is recommended to specify the package when using this function.
+glbwarm_spss <- glbwarm_spss %>% mutate(sex_fct = haven::as_factor( ))
+```
 
 ```{r sex_fct-solution}
-glbwarm_spss <- glbwarm_spss %>% mutate(sex_fct = haven::as_factor(glbwarm$sex))
+glbwarm_spss <- glbwarm_spss %>% mutate(sex_fct = haven::as_factor(sex))
 ```
 
 ```{r sex_fct-check}
@@ -175,7 +191,7 @@ In contrast to SPSS, R only gives you what you ask for. If you ask for a t test,
 You may remember that the version of the independent samples t test that we must use depends on whether the population variances are equal for the two groups. 
 
 <div class="question">
-Use the function `var.test` to test if `govact` variances are equal for females and males in the population. Store the results as a data object named `vartest`.
+Use the function `var.test` to test if `govact` variances are equal for females and males in the population. Use the `glbwarm` data object and store the results as a new data object named `vartest`.
 </div>
 
 ```{r vartest1, exercise = TRUE}
@@ -216,7 +232,7 @@ Pull the p value from data object `vartest` that you have just created. Is the t
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="vartestp-hint">
-__Hint:__ Review Session 5 if you do not know how to do this.
+__Hint:__ Review Session 5 if you do not know how to do this. Remember: function `str()` is handy to see the contents (structure) of a list.
 </div>
 
 ```{r vartestp-solution}
@@ -225,14 +241,14 @@ vartest$p.value
 
 ```{r vartestp-check}
 gradethis::grade_code(
-  correct = "`e-08` means `* 10^-8` (scientific notation). Note that the results are stored as class htest, just like the results from `t.test()`.", 
+  correct = "`e-08`  (scientific notation) means `* 10^-8`, that is, divided by 10 to the power 8 (100,000,000). Note that the results are stored as class htest, just like the results from `t.test()`.", 
   incorrect = "Perhaps you used double square brackets instead of the dollar sign to pull out the p value. That's OK."
   )
 ```
 
 ###
 
-In the R code for an independent samples t test, the `var-equal` argument must be set to `TRUE` or `FALSE`. We can 
+In the R code for an independent samples t test, the `var-equal` argument must be set to `TRUE` or `FALSE`. We can use the p value provided by `var.test()` as the value of this argument, so we include the equal variances test in the t test.
 
 <div class="question">
 Integrate the F test on equal population variances in the t test, such that the t test automatically uses the correct version: with or without equal population variances assumed. Send the results to the screen (do not save it as a data object).
@@ -242,11 +258,24 @@ Integrate the F test on equal population variances in the t test, such that the 
 
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="ttest2-hint">
-__Hint:__ Arguments that are at their default values are not included in the answer that is used for checking.
-</div>
+```{r ttest2-hint-1}
+# You already executed the t test in this tutorial. Add the var.equal argument.
+t.test(govact ~ sex, data = glbwarm)
+```
 
+```{r ttest2-hint-2}
+# In the preceding exercise, you pulled the p value from the stored test result.
+vartest$p.value
+# Add it to the var.equal argument in such a way that a p value over .05 yields TRUE.
+# Note: This code won't work in this tutorial because it cannot find data object vartest.
+```
+
+```{r ttest2-hint-3}
+# Replace the stored test result by the test function.
+t.test(govact ~ sex, data = glbwarm, var.equal = vartest$p.value > 0.05)
+```
+
+<!-- To hide the solution, use a textual hint. -->
 ```{r ttest2-solution}
 t.test(govact ~ sex, data = glbwarm, var.equal = var.test(govact ~ sex, data = glbwarm)$p.value > 0.05)
 ```
@@ -279,7 +308,7 @@ Use `lm()` and tibble `glbwarm` to predict support for governmental action (`gov
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="lm1-hint">
-__Hint:__ Use a formula.
+__Hint:__ `lm()` is not a tidyverse function, so you have to use the `data =` argument.
 </div>
 
 ```{r lm1-solution}
@@ -289,7 +318,7 @@ model_1 <- lm(govact ~ age + negemot + partyid, data = glbwarm)
 ```{r lm1-check}
 gradethis::grade_code(
   correct = "", 
-  incorrect = ""
+  incorrect = "Perhaps, you used the independent variables in a different order within the formula. That is fine."
   )
 ```
 
@@ -302,7 +331,7 @@ Data objects for results of statistical analyses always have a summary() and pri
 Inspect the regression results with `summary()` and `print()`. What happened to the character variable?
 </div>
 
-```{r lm2, exercise = TRUE}
+```{r lm2, exercise = TRUE, exercise.setup = "lm1-solution"}
 
 ```
 
@@ -320,7 +349,7 @@ Add an interaction effect between negative emotions (numeric) and age (numeric, 
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="lm3-hint">
-__Hint:__ An interaction in a regression formula yields the partial effects of the individual variables and their interaction effect(s).
+__Hint:__ An interaction term (`var1*var2`) in a regression formula yields the partial effects of the individual variables and their interaction effect(s).
 </div>
 
 ```{r lm3-solution, exercise.setup = "lm1-solution"}
@@ -330,7 +359,7 @@ model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
 ```{r lm3-check}
 gradethis::grade_code(
   correct = "", 
-  incorrect = ""
+  incorrect = "Perhaps, you used the independent variables in a different order within the formula. That is fine."
   )
 ```
 
@@ -387,7 +416,7 @@ model_2 <- lm(govact ~ sex * partyid, data = glbwarm, contrasts=list(sex=contr.s
 
 ```{r anova1-check}
 gradethis::grade_code(
-  correct = "Have a look at the resuts.", 
+  correct = "Have a look at the results: send model_2 to the screen.", 
   incorrect = ""
   )
 ```
@@ -411,7 +440,7 @@ Use the `Anova()` function to show the sums of squares partition with associated
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="anova2-hint">
-__Hint:__ You may have to load the `car` package.
+__Hint:__ The `car` package has been loaded by the tutorial.
 </div>
 
 ```{r anova2-solution}
@@ -458,7 +487,7 @@ dt %>%
   knitr::kable(align = "llllll", escape = F) %>% #show with kable() from the knitr package
   kable_styling(full_width = T) %>%
   row_spec(0, font_size = 28) %>%
-  footnote(symbol = "Results of two of more models in one table.")
+  footnote(symbol = "Results of two or more models in one table.")
 ```
 
 ### Installing `papaja`
@@ -503,7 +532,13 @@ texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
 The above table is generated from the code below. What happens if you run the code?
 </div>
 
-```{r texreg, exercise = TRUE, exercise.setup = "lm3-solution"}
+```{r texreg-setup}
+model_1 <- lm(govact ~ age + negemot + partyid, data = glbwarm)
+model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
+```
+
+
+```{r texreg, exercise = TRUE}
 # Attach the texreg package.
 library(texreg)
 # Table for HTML output.
@@ -525,7 +560,7 @@ texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
 
 `htmlreg()` produces HTML code. This code should not be treated as ordinary text when the RMarkdown document is knitted. Instead, it must be used and formatted as HTML code. 
 
-The `results='asis'` code chunk option is needed to get html as html instead of html as text output from R. 
+The `results='asis'` code chunk option is needed to knit the html output of the code chunk as foratted text. 
 
 This is how the code looks in the RMarkdown document.
 
@@ -548,6 +583,26 @@ texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
 # Use Help to see more arguments.
 ```
 ````
+And this is how the kitted text looks like:
+
+```{r eval=TRUE, echo=FALSE, results='asis'}
+# Create regression data objects.
+model_1 <- lm(govact ~ age + negemot + partyid, data = glbwarm)
+model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
+# Attach the texreg package.
+library(texreg)
+# Table for HTML output.
+texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
+        single.row = T, #coefficient and standard error on the same row
+        star.symbol = "\\*", 
+        doctype = F, #better for Markdown document
+        html.tag = F, #better for Markdown document 
+        head.tag = F, #better for Markdown document
+        body.tag = F, #better for Markdown document 
+        caption = "", #no caption to save space on the slide
+        custom.coef.names = c(NA, "Age", "Negative emotions", "Independent", "Republican", "Age*Neg. emotions"),
+        vertical.align.px = 6)
+```
 
 ###
 
@@ -559,7 +614,7 @@ Note that the `texreg` package has different functions with partly different opt
 Find out what these functions do. Apply them to `model_1` and check out the options of these functions.
 </div>
 
-```{r lmfunctions, exercise = TRUE}
+```{r lmfunctions, exercise = TRUE, exercise.setup = "texreg-setup"}
 
 ```
 
@@ -575,10 +630,10 @@ If you want to have full control of your table, create it yourself with packages
 Step 1: Function `broom::tidy()` extracts relevant statistics from a statistical results object into a tibble.
 
 <div class="question">
-Use `broom` and data objext `model_1a` to create a tibble named `results_1` containing the regression coefficients with their standard errors, t values, p values, and 95% confidence intervals.
+Use `broom()` and data objext `model_1a` to see the regression coefficients with their standard errors, t values, p values, and 95% confidence intervals as a tibble.
 </div>
 
-```{r broom, exercise = TRUE}
+```{r broom, exercise = TRUE, exercise.setup = "texreg-setup"}
 
 ```
 
@@ -588,7 +643,7 @@ __Hint:__ Check out help on `broom::tide.lm()`. You are tidying the results of a
 </div>
 
 ```{r broom-solution}
-results_1 <- broom::tidy(model_1a, conf.int = TRUE, conf.level = 0.95)
+model_1a %>% tidy(conf.int = TRUE, conf.level = 0.95)
 ```
 
 ```{r broom-check}
@@ -605,26 +660,46 @@ gradethis::grade_code(
 Step 2: Select and adjust values to suit your needs.
 
 <div class="question">
-Change tibble `results_1` into tibble `results_2`, which contains the effect (variable) names, the unstandardized regression coefficients, p values, and the confidence intervals (named `CI`) in APA format (e.g., `[-0.56, 0.11]`).
+Complete the code below to show a tibble that contains the effect (variable) names, the unstandardized regression coefficients, p values, and the confidence intervals (named `CI`) in APA format (e.g., `[-0.56, 0.11]`).
 </div>
 
-```{r broom2, exercise = TRUE, exercise.setup = "broom-solution"}
-
+```{r broom2, exercise = TRUE, exercise.setup = "texreg-setup", exercise.lines = 6}
+model_1a %>% 
+  tidy(conf.int = TRUE, conf.level = 0.95) %>%
+  
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-<div id="broom2-hint">
-__Hint:__ Use your data wrangling skills. Use `paste0()` to get the confidence interval in the right format.
-</div>
+```{r broom2-hint-1}
+# Use mutate() to create the new CI variable and 
+# to change the number of decimal places for estimate and p value.
+mutate( estimate = , p.value = , CI = )
+# 3 decimals for p values, 2 decimals for other numerical values!
+```
 
-```{r broom2-solution, exercise.setup = "broom-solution"}
-results_2 <- results_1 %>% mutate(CI = paste0( "[", format( round(conf.low, digits = 2), nsmall = 2 ), ", ", format( round(conf.high, digits = 2), nsmall = 2 ), "]" )) %>% select(term, estimate, p.value, CI)
+```{r broom2-hint-2}
+# Remember format(), round(), and paste0()?
+mutate( 
+  estimate = format(round( ) ), 
+  p.value = format(round( ) ), 
+  CI = paste0( ))
+```
+
+```{r broom2-hint-3}
+# tidy() yields a tibble with variables conf.low and conf.high. Use these variables.
+mutate( 
+  estimate = format(round( ) ), 
+  p.value = format(round( ) ), 
+  CI = paste0( format(round(conf.low ) ), format(round(conf.high ) ) ))
+```
+
+```{r broom2-solution}
+model_1a %>% tidy(conf.int = TRUE, conf.level = 0.95) %>% mutate(estimate = format(round(estimate, digits = 2), nsmall = 2), p.value = format(round(p.value, digits = 3), nsmall = 3), CI = paste0( "[", format( round(conf.low, digits = 2), nsmall = 2 ), ", ", format( round(conf.high, digits = 2), nsmall = 2 ), "]" )) %>% select(term, estimate, p.value, CI)
 ```
 
 ```{r broom2-check}
 gradethis::grade_code(
   correct = "", 
-  incorrect = "Send the resulting tibble to the screen to check your results. Maybe it is OK, but you just used a different order for the commands."
+  incorrect = "Maybe your results are OK, but you just used a different order for the commands."
   )
 ```
 
@@ -633,10 +708,10 @@ gradethis::grade_code(
 If you want to use stars to mark the significance level of regression coefficients, you can add a new character variable showing the number of stars.
 
 <div class="question">
-Create a new character variable named `sig` that contains the number of stars indicating the significance level. Save the effect ame, regression coefficient, number of stars, and the confidence interval (in this order) in the data object `results_3`.
+Extend the code of the preceding exercise to include a new character variable named `sig` that contains the number of stars indicating the significance level.
 </div>
 
-```{r broom3, exercise = TRUE, exercise.setup = "broom2-solution"}
+```{r broom3, exercise = TRUE, exercise.setup = "texreg-setup"}
 
 ```
 
@@ -646,13 +721,13 @@ __Hint:__ Use `case_when()` and `p.value` to create the new `sig` variable.
 </div>
 
 ```{r broom3-solution }
-results_3 <- results_2 %>% mutate( sig = case_when( p.value < .001 ~ "***", p.value < .01 ~ "**", p.value < .05 ~ "*", TRUE ~ "" )) %>% select(term, estimate, sig, CI)
+model_1a %>% tidy(conf.int = TRUE, conf.level = 0.95) %>% mutate(estimate = format(round(estimate, digits = 2), nsmall = 2), p.value = format(round(p.value, digits = 3), nsmall = 3), sig = case_when( p.value < .001 ~ "***", p.value < .01 ~ "**", p.value < .05 ~ "*", TRUE ~ "" ), CI = paste0( "[", format( round(conf.low, digits = 2), nsmall = 2 ), ", ", format( round(conf.high, digits = 2), nsmall = 2 ), "]" )) %>% select(term, estimate, p.value, sig, CI)
 ```
 
 ```{r broom3-check}
 gradethis::grade_code(
   correct = "", 
-  incorrect = ""
+  incorrect = "Maybe your results are OK, but you just used a different order for the commands."
   )
 ```
 
@@ -666,31 +741,28 @@ With `knitr` and `kableExtra`, we can create a table including footnotes.
 Play around with the `kable` and `kableExtra` options to see what they do.
 </div>
 
-```{r kablehidden, eval=TRUE, echo=FALSE}
-# Ensure that results_3 exists.
-results_3 <- broom::tidy(model_1a, conf.int = TRUE, conf.level = 0.95) %>%
-  mutate(CI = paste0( "[", format( round(conf.low, digits = 2), nsmall = 2 ), ", ", format( round(conf.high, digits = 2), nsmall = 2 ), "]" )) %>%
-  select(term, estimate, p.value, CI) %>%
+```{r kable, exercise = TRUE, exercise.setup = "texreg-setup", exercise.eval = TRUE, exercise.lines = 17}
+model_1a %>% 
+  tidy(conf.int = TRUE, conf.level = 0.95) %>% 
   mutate(
-    sig = case_when(
-      p.value < .001 ~ "***",
-      p.value < .01 ~ "**",
-      p.value < .05 ~ "*",
-      TRUE ~ ""
-    )
-  )  %>%
-  select(term, estimate, sig, CI)
-```
-
-
-```{r kable, exercise = TRUE, exercise.eval = TRUE, exercise.lines = 17}
-results_3 %>% kable(digits = c(0, 2, 0, 0),
-  col.names = c("Parameter", "B", "", "95% CI"),
-  align = "lrlc",
-  caption = "Table 1. Predicting opinions about global warming.",
-  booktabs = TRUE, #nicer layout in PDF
-  escape = FALSE #pay attention to special characters
-  ) %>%
+    estimate = format(round(estimate, digits = 2), nsmall = 2), 
+    p.value = format(round(p.value, digits = 3), nsmall = 3), 
+    sig = case_when( 
+      p.value < .001 ~ "***", 
+      p.value < .01 ~ "**", 
+      p.value < .05 ~ "*", 
+      TRUE ~ "" ), 
+    CI = paste0( "[", format( round(conf.low, digits = 2), nsmall = 2 ), 
+      ", ", format( round(conf.high, digits = 2), nsmall = 2 ), "]" )
+    ) %>% 
+  select(term, estimate, sig, CI) %>% #p.value dropped
+  kable(digits = c(0, 2, 0, 0),
+    col.names = c("Parameter", "B", "", "95% CI"),
+    align = "lrlc",
+    caption = "Table 1. Predicting opinions about global warming.",
+    booktabs = TRUE, #nicer layout in PDF
+    escape = FALSE #pay attention to special characters
+    ) %>%
   kable_styling(full_width = FALSE) %>%
   row_spec(0, font_size = 16) %>%
   column_spec(1, width = "5cm") %>%
@@ -707,7 +779,7 @@ results_3 %>% kable(digits = c(0, 2, 0, 0),
 
 Some final points about tabulating results:
 
-- Special characters such as stars (`*`) and percentage signes (`%`) can be troublesome in tables. Sometimes, you have to escape them with one or more backslashes (`\\`).
+- Special characters such as stars (`*`) and percentage signes (`%`) can be troublesome in tables. You may have to escape them with one or more backslashes (`\\`).
 
 - PDF output has more formatting options than HTML (or Word).
 
@@ -742,7 +814,7 @@ There are many packages offering ready-to-use plots, for example:
 - `visreg`: plots regression lines (`ggplot2` plots).
 - `effects`: plots regression lines (not `ggplot2` plots).
 
-Note: `ggplot2` plots can be further customized: save the plot (e.g., `p`) and then add layers, themes, ... (e.g., `p + theme_bw()`). 
+Note that `ggplot2` plots created by such packages can be further customized: Save the plot (e.g., `p`) and then add layers, themes, ... (e.g., `p + theme_bw()`). 
 
 ### Interaction Plot with the `effects` Package
 
@@ -764,7 +836,7 @@ Note the `rug` on the horizontal axis, showing the age score of all cases within
 It is not so difficult to create this plot with `ggplot()`. If you do that, you can  control the classes on negative emotions that you want to use. For example, why does the plot from the `effects` package skip negative emotions around three?
   
 <div class="question" >
-Create a ggplot from `glbwarm` like the with a facets for negative emotions between 1 and 1.5 (labeled `1`), between 1.5 and 2.5 (labeled `2`), between 2.5 and 3.5 (labeled `3`), between 3.5 and 4.5 (labeled `4`), between 4.5 and 5.5 (labeled `5`), between 5.5 and 6 (labeled `6`). Name the new variable `negemot_bin`.
+Create a ggplot from `glbwarm` like the above effects plot with facets for negative emotions between 1 and 1.5 (labeled `1`), between 1.5 and 2.5 (labeled `2`), between 2.5 and 3.5 (labeled `3`), between 3.5 and 4.5 (labeled `4`), between 4.5 and 5.5 (labeled `5`), between 5.5 and 6 (labeled `6`). Name the new variable `negemot_bin`.
 </div>
 
 ```{r ggplot, exercise = TRUE, exercise.setup = "lm3-solution"}
@@ -787,15 +859,8 @@ glbwarm %>%
 ```
 
 ```{r ggplot-hint-2}
-# Use geom_rug() to represent all observations on the horizontal axis.
-```
-
-```{r ggplot-hint-3}
-# Use facet_wrap() on the binned negative emotions variable.
-```
-
-```{r ggplotresult, eval = TRUE, echo = FALSE}
-a <- glbwarm %>%
+# Pipe the tibble into ggplot() and use geom_smooth().
+glbwarm %>%
   mutate(negemot_bin = 
   case_when(
     negemot < 1.5 ~ 1,
@@ -806,10 +871,20 @@ a <- glbwarm %>%
     negemot >= 5.5 ~ 6
     )
   ) %>%
-  ggplot(aes(x = age)) +
-    geom_smooth(aes(y = govact), method = lm) +
-    geom_rug() +
-    facet_wrap(vars(negemot_bin))
+  ggplot( ) +
+    geom_smooth( )
+```
+
+```{r ggplot-hint-3}
+# Use geom_rug() to represent all observations on the horizontal axis.
+```
+
+```{r ggplot-hint-4}
+# Use facet_wrap() on the binned negative emotions variable.
+```
+
+```{r ggplot-solution}
+glbwarm %>% mutate(negemot_bin = case_when( negemot < 1.5 ~ 1, negemot < 2.5 ~ 2, negemot < 3.5 ~ 3, negemot < 4.5 ~ 4, negemot < 5.5 ~ 5, negemot >= 5.5 ~ 6)) %>% ggplot(aes(x = age)) + geom_smooth(aes(y = govact), method = lm) + geom_rug() + facet_wrap(vars(negemot_bin))
 ```
 
 Do you notice differences between your plot and the plot created with the `effects` package. Which plot do you trust more?
@@ -846,6 +921,7 @@ Use `gpglot()` to create the above means plot.
 
 ```{r anovaplot-hint-1}
 # First calculate the group means that must be shown.
+# Important: You plot summaries, not the original observations.
 ```
 
 ```{r anovaplot-hint-2}
@@ -862,12 +938,19 @@ Use `gpglot()` to create the above means plot.
 ```
 
 ```{r anovaplot-hint-5}
-# Use legend.position and legend.background within theme() for the fine details of the legend.
+# Use legend.position and legend.background within theme()
+# for the fine details of the legend.
 ```
+
+## Fancy Stuff
+
+If you can execute regression models in R, you can also execute them using Bayesian statistics instead of traditional (frequentist) statistics.
+
+The popularity of Bayesian statistics as an alternative to null hypothesis significance testing is growing. If you want to be among the first in your field going Bayesian, check out the short introduction provided in [Help, My Collaborator Goes Bayesian! Why And How To Apply Bayesian Data Analysis](https://wdenooy.github.io/Switch2Bayesian/index.html). Section 3.2 offers a shor tintorudcion on using the `rstanarm` package for Bayesian data analysis. 
 
 ## Data Project
 
-No fancy stuff in this tutorial. Work on your Data Project.
+Work on your Data Project.
 
 Statistical analyses are not necessary for the Data Project. The Data Project focuses on visualizations.
 
