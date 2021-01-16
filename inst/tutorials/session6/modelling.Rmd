@@ -794,7 +794,7 @@ Apply the `plot()` function to the result of linear regression (`model_1a`).
 - Are these all plots that you can get with this function?
 </div>
 
-```{r lmplots, exercise = TRUE}
+```{r lmplots, exercise = TRUE, exercise.setup = "texreg-init"}
 
 ```
 
@@ -910,7 +910,7 @@ glbwarm %>% group_by(partyid, sex) %>%
 ```
 
 <div class="question">
-Use `gpglot()` to create the above means plot.
+Use your data wrangling skills and `gglot()` to create the above means plot.
 </div>
 
 ```{r anovaplot, exercise = TRUE}
@@ -919,7 +919,9 @@ Use `gpglot()` to create the above means plot.
 
 ```{r anovaplot-hint-1}
 # First calculate the group means that must be shown.
-# Important: You plot summaries, not the original observations.
+glbwarm %>% group_by(partyid, sex) %>% 
+  summarise(avg_govact = mean(govact))
+# Important: You plot summaries now, not the original observations.
 ```
 
 ```{r anovaplot-hint-2}
