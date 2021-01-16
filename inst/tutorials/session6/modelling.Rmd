@@ -66,18 +66,16 @@ str(glbwarm)
 ```
 
 ```{r quiz}
-quiz(
-  caption = "",
-  question("Have a look at the imported CSV file (above). Which variables that had better become factors? Inspect frequency tables of the variables if you need more information.",
+question("Have a look at the imported CSV file (above). Which variables that had better become factors? Inspect frequency tables of the variables if you need more information.",
     answer("govact"),
     answer("posemot"),
-    answer("posemot"),
-    answer("ideology", correct = TRUE),
+    answer("negemot"),
+    answer("ideology", correct = TRUE, 
+           message = "The alphabetical order of the values does not match the scale. Use a factor to put the values in the correct order."),
     answer("age"),
     answer("sex"),
-    answer("partyid", correct = TRUE)
+    answer("partyid", message = "The alphabetical order of the values (Democrat - Independent - Republican) is acceptable, so a factor is not needed.")
   )
-)
 ```
 
 ###
