@@ -352,7 +352,7 @@ Add an interaction effect between negative emotions (numeric) and age (numeric, 
 __Hint:__ An interaction term (`var1*var2`) in a regression formula yields the partial effects of the individual variables and their interaction effect(s).
 </div>
 
-```{r lm3-solution, exercise.setup = "lm1-solution"}
+```{r lm3-solution}
 model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
 ```
 
@@ -486,7 +486,7 @@ names(dt)[5] <- paste0(names(dt)[5], footnote_marker_symbol(1))
 dt %>%
   knitr::kable(align = "llllll", escape = F) %>% #show with kable() from the knitr package
   kable_styling(full_width = T) %>%
-  row_spec(0, font_size = 28) %>%
+  row_spec(0, font_size = 18) %>%
   footnote(symbol = "Results of two or more models in one table.")
 ```
 
@@ -500,7 +500,7 @@ Install `papaja` from GitHub (you must have internet connection) in RStudio.
 
 ```{r papaja, echo = TRUE, eval=FALSE }
 # Execute this line of code in the RStudio console. 
-devtools::install_github("crsh/papaja")
+remotes::install_github("crsh/papaja")
 ```
 
 See https://crsh.github.io/papaja_man/ for a papaja manual.
@@ -532,13 +532,13 @@ texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
 The above table is generated from the code below. What happens if you run the code?
 </div>
 
-```{r texreg-setup}
+```{r texreg-init}
 model_1 <- lm(govact ~ age + negemot + partyid, data = glbwarm)
 model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
 ```
 
 
-```{r texreg, exercise = TRUE}
+```{r texreg, exercise = TRUE, exercise.setup = "texreg-init"}
 # Attach the texreg package.
 library(texreg)
 # Table for HTML output.
@@ -583,7 +583,7 @@ texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
 # Use Help to see more arguments.
 ```
 ````
-And this is how the kitted text looks like:
+And this is how the knitted text looks like:
 
 ```{r eval=TRUE, echo=FALSE, results='asis'}
 # Create regression data objects.
@@ -614,7 +614,7 @@ Note that the `texreg` package has different functions with partly different opt
 Find out what these functions do. Apply them to `model_1` and check out the options of these functions.
 </div>
 
-```{r lmfunctions, exercise = TRUE, exercise.setup = "texreg-setup"}
+```{r lmfunctions, exercise = TRUE, exercise.setup = "texreg-init"}
 
 ```
 
@@ -633,7 +633,7 @@ Step 1: Function `broom::tidy()` extracts relevant statistics from a statistical
 Use `broom()` and data objext `model_1a` to see the regression coefficients with their standard errors, t values, p values, and 95% confidence intervals as a tibble.
 </div>
 
-```{r broom, exercise = TRUE, exercise.setup = "texreg-setup"}
+```{r broom, exercise = TRUE, exercise.setup = "texreg-init"}
 
 ```
 
@@ -663,7 +663,7 @@ Step 2: Select and adjust values to suit your needs.
 Complete the code below to show a tibble that contains the effect (variable) names, the unstandardized regression coefficients, p values, and the confidence intervals (named `CI`) in APA format (e.g., `[-0.56, 0.11]`).
 </div>
 
-```{r broom2, exercise = TRUE, exercise.setup = "texreg-setup", exercise.lines = 6}
+```{r broom2, exercise = TRUE, exercise.setup = "texreg-init", exercise.lines = 6}
 model_1a %>% 
   tidy(conf.int = TRUE, conf.level = 0.95) %>%
   
@@ -711,7 +711,7 @@ If you want to use stars to mark the significance level of regression coefficien
 Extend the code of the preceding exercise to include a new character variable named `sig` that contains the number of stars indicating the significance level.
 </div>
 
-```{r broom3, exercise = TRUE, exercise.setup = "texreg-setup"}
+```{r broom3, exercise = TRUE, exercise.setup = "texreg-init"}
 
 ```
 
@@ -741,7 +741,7 @@ With `knitr` and `kableExtra`, we can create a table including footnotes.
 Play around with the `kable` and `kableExtra` options to see what they do.
 </div>
 
-```{r kable, exercise = TRUE, exercise.setup = "texreg-setup", exercise.eval = TRUE, exercise.lines = 17}
+```{r kable, exercise = TRUE, exercise.setup = "texreg-init", exercise.eval = TRUE, exercise.lines = 17}
 model_1a %>% 
   tidy(conf.int = TRUE, conf.level = 0.95) %>% 
   mutate(
