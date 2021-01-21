@@ -22,7 +22,7 @@ library(texreg) #For pretty regression results.
 library(effects) #For two-way interaction plots.
 library(broom) #For cleaning up statistical results.
 
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+tutorial_options(exercise.timelimit = 20, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
@@ -558,7 +558,7 @@ texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
 
 `htmlreg()` produces HTML code. This code should not be treated as ordinary text when the RMarkdown document is knitted. Instead, it must be used and formatted as HTML code. 
 
-The `results='asis'` code chunk option is needed to knit the html output of the code chunk as foratted text. 
+The `results='asis'` code chunk option is needed to knit the html output of the code chunk as formatted text. 
 
 This is how the code looks in the RMarkdown document.
 
@@ -785,7 +785,7 @@ Some final points about tabulating results:
 
 ## Results Plots
 
-A data object with statistical results usually has a `plot()` function. These plots are for quick inspection rather than final presentation. They can be very useful for checking assumtpions.
+A data object with statistical results usually has a `plot()` function. These plots are for quick inspection rather than final presentation. They can be very useful for checking assumptions.
 
 <div class="question">
 Apply the `plot()` function to the result of linear regression (`model_1a`). 
@@ -952,7 +952,7 @@ glbwarm %>% group_by(partyid, sex) %>%
 
 If you can execute regression models in R, you can also execute them using Bayesian statistics instead of traditional (frequentist) statistics.
 
-The popularity of Bayesian statistics as an alternative to null hypothesis significance testing is growing. If you want to be among the first in your field going Bayesian, check out the short introduction provided in [Help, My Collaborator Goes Bayesian! Why And How To Apply Bayesian Data Analysis](https://wdenooy.github.io/Switch2Bayesian/index.html). Section 3.2 offers a shor tintorudcion on using the `rstanarm` package for Bayesian data analysis. 
+The popularity of Bayesian statistics as an alternative to null hypothesis significance testing is growing. If you want to be among the first in your field going Bayesian, check out the short introduction provided in [Help, My Collaborator Goes Bayesian! Why And How To Apply Bayesian Data Analysis](https://wdenooy.github.io/Switch2Bayesian/index.html). Section 3.2 offers a short introduction to using the `rstanarm` package for Bayesian data analysis. 
 
 ## Data Project
 

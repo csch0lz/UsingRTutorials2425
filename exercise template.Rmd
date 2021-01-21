@@ -147,7 +147,7 @@ quiz(
 -	A data set imported/read in one exercise (code box) cannot be used in another code box and is not present in the RStudio environment.
 - It is not possible to run a shiny app from within the tutorial.
 -	I can’t make an external CSS file to work, so the (programming) tip style is defined in the tutorial.
-- Environment setups for exercises via exercise.setup referencing a solution to a preceding exercise, which references another preceding exercise, seem to work if the tutorial is run/knitted from RStudio but not if the tutorial is started from the installed package. Create a new code chunk that sets up the environment for the exercise and reference this chunk in the exercise.setup argument.
+- Environment setups for exercises via exercise.setup referencing a solution to a preceding exercise, which references another preceding exercise, seem to work if the tutorial is run/knitted from RStudio but not if the tutorial is started from the installed package. Create a new code chunk that sets up the environment for the exercise and reference this chunk in the exercise.setup argument. More generally, exercise setup code must be in the same section (## )? 
 
 IMPORTANT:
 

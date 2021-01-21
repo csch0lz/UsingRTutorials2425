@@ -240,7 +240,7 @@ GlasgowFriends %>%
 
 ```{r primarykey, exercise = TRUE}
 # Add the variables in the select() function that you think 
-# represent different types of units.
+# represent different types of cases (unit).
 GlasgowFriends %>% 
   select(  ) %>% 
   anyDuplicated()
@@ -288,7 +288,7 @@ GlasgowFriends %>%
 
 ### Finding the type of cases for a variable 
 
-Every variable in your primary key and every combination of these variables may represent a different type of cases. 
+Every variable in your primary key and every combination of these variables may represent a different type of cases (unit). 
 
 In case the primary key consists of the variables `student` and `wave`, the types of cases can be:
 
@@ -1383,9 +1383,9 @@ digraph database {
 
 For one or more of your complex data sets, ask yourself:
 
-1. Does the data set contain info on more than one type of unit?
+1. Does the data set contain info on more than one type of cases (unit)?
     Or: Are some variable combinations always the same?
-    If so, transfer the info on each type of unit to a separate tibble.
+    If so, transfer the info on each type of cases (unit) to a separate tibble.
 2. Do different variables address the same information?
     If so, gather repeated information into one variable.
 3. Is there a variable with values that should be variables by themselves?

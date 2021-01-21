@@ -1,0 +1,598 @@
+---
+title: 'Session 7: Communicating results'
+output:
+  learnr::tutorial:
+    progressive: yes
+    allow_skip: yes
+runtime: shiny_prerendered
+description: |
+  Let us have one more look at using RMarkdown and ggplot() before we submit our Data Project as a visualization in an RMarkdown document.
+---
+
+```{r setup, include=FALSE}
+# Ensure that libraries are loaded.
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(knitr)
+library(kableExtra)
+library(RColorBrewer)
+
+tutorial_options(exercise.timelimit = 20, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+# Note: A (new) RMarkdown document can be knitted while a learnr tutorial is
+# running both if the tutorial is started from the console and from the Tutorial
+# tab.
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+glbwarm <- UsingRTutorials::glbwarm
+```
+
+<!-- Define programming tip style -->
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+
+<!-- Define question style -->
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+
+## Report Layout With RMarkdown
+
+### 
+
+Let us explore the main features and options of RMarkdown step by step.
+
+<div class="question">
+In RStudio, open a new RMarkdown document and have a look at _Output Options..._ in the settings menu (see below image).
+</div> 
+
+```{r out.width="40%"}
+knitr::include_graphics("images/OutputOptions.png")
+```
+
+### 
+
+This menu allows you to change several features including:
+
+- Table of contents.
+- Section numbering.
+- Figure width and height.
+- Adding figure captions.
+
+<div class="question">
+Change the options. How does the YAML (first part of the R Markdown document) change? How does the knitted document change?
+</div> 
+
+<div class="tip" >
+__Tip__
+
+- Knit a document to HTML and check it before you knit to PDF or Word. HTML knitting is much faster.
+</div>
+
+###
+
+There are several more YAML options that can be set than the ones featured in the _Output Options..._ of the settings menu. The RMarkdown cheat sheet (page 2) lists all of them. It also shows for which output formats an option can be used.
+
+<div class="question">
+Change the YAML of the RMarkdown document such that a floating table of contents is shown if the document is knitted to HTML.
+</div> 
+
+<div class="tip" >
+__Programming Tip__
+
+- Mind the indentation and use of `:` in the YAML; RMarkdown is very strict here. Use menu _Output Options..._ whenever possible because it structures the YAML correctly. 
+</div>
+
+### References
+
+Scientific papers include references to the literature, which are usually presented in a format demanded by a journal or publisher. 
+
+To include references in an RMarkdown document, you need four things:
+
+1. A bibliography file containing the referenced literature, preferably in BibTex format named, for example, `references.bib`.
+2. A line in the YAML specifying the bibliography file(s) to use, for example, `bibliography: references.bib`.
+3. A line in the YAML specifying the format to be used for the references, for example, `csl: apa.csl`.
+4. A citation key in the text where you want to insert the reference, for example, "As argued by [@McQuail2005], Communication Science deals with ...".
+
+<div class="question">
+Download the file with the APA journal citation style `apa.csl` from [https://www.zotero.org/styles](https://www.zotero.org/styles) and save it in your working directory (where you also saved the RMarkdown file that you are working with now).
+</div> 
+
+### 
+
+It is good practice to acknowledge the authors of the R packages that you are using by referencing the packages.
+
+To this end, the `knitr` package includes the function `write_bib()`.
+
+<div class="question">
+Use function `write_bib()` to create a file named `Rrefs.bib` which contains bibliographic information for R packages `base`, `tidyverse`, `knitr`, and `kableExtra`.
+</div> 
+
+```{r rbib, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="rbib-hint">
+__Hint:__ Have a look at the Help page for this function.
+</div>
+
+```{r rbib-solution}
+write_bib(c("base", "tidyverse", "knitr", "kableExtra"), file = "Rrefs.bib")
+```
+
+```{r rbib-check}
+gradethis::grade_code(
+  correct = "If you want to see the contents of the file, run the command without the ile argument, so the results are shown on the screen", 
+  incorrect = "Perhaps, you have the package names in a different order. That is OK."
+  )
+```
+
+###
+
+Add the `write_bib()` code to the code chunk in the RMarkdown file where you load packages. This ensures that the bibliography file is created or updated every time the document is knitted.
+
+Now that you have the bibliography file, reference it in the YAML and also reference the APA journal citation style `apa.csl` in the YAML of the RMarkdown file you are working with.
+
+A footnote on the first page is a good place to cite the R packages that you have used. The citation key for an R package consists of `@R-` and the package name enclosed in square brackets, for example, `[@R-base]`
+
+<div class="question">
+Adjust your RMarkdown file such that the knitted document resembles the HTML document that you can [open here: example.html](www/example.html).
+</div>
+
+### 
+
+For literature references, the steps are the same. You have to create a (BibTeX) file containing literature references, for example, `bibliography.bib` and add this to the YAML, for example, `bibliography: [Rrefsbib.bib, bibliography.bib]`. Finally, you have to use the citation keys in your bibliography to add citations in the document. 
+
+The RStudio add-in `citr` is very useful here, especially if you are using Zotero:
+
+- It lets you select a reference from your Zotero database.
+- It adds the selected reference to your (BibTex) bibliography file.
+- And it inserts a citation (using the citation key) in your R Markdown document.
+
+<div class="question">
+Check out the description of `citr` on github: [https://github.com/crsh/citr/blob/master/README.md](https://github.com/crsh/citr/blob/master/README.md)
+</div> 
+
+### Figure code chunk options
+
+In a document, figures usually demand additional attention to ensure that they are not too small and not too large, have a caption, and are shown in the right place.
+
+You can display figure captions and set the default width of figures with _Output Options..._ in the knit settings menu. 
+
+If you want to adjust a single figure, use the code chunk options in the code chunk that creates the figure. The chunk options listed in the RMarkdown cheat sheet (p. 1, bottom) include several options that are relevant to displaying figures:
+
+- `fig.cap =` figure caption as string.
+- `fig.align =` 'left', 'right', or 'center'.
+- `out.width =` width of figure in output in percentage of line width (`"80%"`) or as a fixed width in pixels for HTML (`"300px"`) or inches, centimeters for PDF and Word (`"4.5in"`, `"6cm"`).
+- `fig.asp =` ratio of height to width.
+
+The text of a figure's caption is empty unless you add text to the `fig.cap =` option. Note that figure captions are numbered automatically only in PDF output.
+
+The recommended way to control figure size in the output: Combine `out.width` and `fig.asp`. Alternatives `fig.width` and `fig.height` specify the actual size (whatever that may be) of the figure instead of the output size.
+
+If the size of a figure in the document is too small, `knitr` may end with the error message that the margins are too large. This signals that there is no space left for the graph itself.  
+
+<div class="question">
+Reduce the size of the figure in the RMarkdown file to 50 percent (half the line width), make it square, and add the caption "Pressure at different temperature levels."
+</div> 
+
+### Cross-references with `bookdown::`
+
+Figures are not automatically numbered in HTML or Word output. To accomplish this, install and load the `bookdown::` package. This package numbers tables and figures and it allows you to use a reference to a table, figure, or section that automatically updates the number if new tables, figures, or sections are inserted in the RMarkdown document. If you use references, you never have to worry about using the correct table, figure, or section number.
+
+Follow these steps:
+
+1.   Install and load the `bookdown` package from CRAN.
+2.   In the YAML below `date:`, add the line `site: "bookdown::bookdown_site"`.
+3.   Under `output:` in YAML replace:
+      + `html_document` by `bookdown::html_document2`,
+      + `pdf_document` by `bookdown::pdf_document2`, and
+      +  `word_document` by `bookdown::word_document2`.
+4.   In the text, use the following code to refer to a
+      + section: `\@ref(<section ID>)` - Create Section ID: `{#label}`.
+      + table: `\@ref(tab:<chunk ID>)` - Chunk ID: chunk name.
+      + figure: `\@ref(fig:<chunk ID>)` - Chunk ID: chunk name.
+5.   Knit the document to html_document2, pdf_document2, or word_document2.
+
+<div class="question">
+- Add a section label to the __R Markdown__ Section in the RMarkdown file and use it to refer to this section in a sentence "As we have seen in Section 0.1, we can show statistical results in an RMarkdown document." that you add to the __Including Plots__ Section.
+- Add a sentence with a reference to the pressure plot: "Figure 1 is beautiful, isn't it?"
+</div> 
+
+<div class="tip" >
+__Programming Tip__
+
+- Don't use blanks in Section ID labels or names of code chunks that create a table or figure.
+</div>
+
+### Knitting Problems  
+
+Problems with knitting to HTML:
+
+- Probably errors in your code (also applies to Word and PDF).
+- Spot and fix them.
+- Use code chunk option `eval=FALSE` to see if a code chunk causes the problem.
+
+Problems with knitting to Word:
+
+- Functions for tables and figures may not work for Word.
+- Knit to HTML and import HTML in Word.
+
+Problems with knitting to PDF:
+
+- Special characters like `%`, `\`, `/` have special meaning in LaTeX, which is the language use to create the PDF.
+- Ensure that variable names or captions do not include them.
+
+
+## Polishing Your Graphics
+
+### Labels and legend position
+
+You may already have discovered the `labs()` layer for adding custom labels to a plot. In addition, the `theme()` layer is worth knowing because it allows many layout adjustments, among which setting the position of the legend. 
+
+```{r labelsshow}
+ggplot(data = glbwarm, mapping = 
+    aes(x = age, y = govact, 
+        color = partyid)) +
+  geom_jitter() +
+  labs(title = "Support for intervention by age", 
+    x = "Age", y = "Support for government intervention",
+    color = "Party identification"
+    ) +
+  theme(legend.position = "bottom")
+```
+
+<div class="question">
+Create the above plot using tibble `glbwarm`, which is available in this tutorial. Pay special attention to the labels and legend position.
+</div>
+
+```{r labels, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="labels-hint">
+__Hint:__ Remember that the answer checker checks the presence of all layers before it checks the contents of the layers, so first add all layers if you want to use the automatic feedback for building the plot.
+
+__Hint:__ Check out help on function `theme()` to find the argument that sets the position of the legend.
+</div>
+
+```{r labels-solution}
+ggplot(data = glbwarm, mapping = aes(x = age, y = govact, color = partyid)) + geom_jitter() + labs(title = "Support for intervention by age", x = "Age", y = "Support for government intervention", color = "Party identification") + theme(legend.position = "bottom")
+```
+
+```{r labels-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "You may have the layers in a different order, e.g., first theme() and then labs(). That is OK."
+  )
+```
+
+### Themes
+
+Some plot characteristics are combined into theme layers: `theme_bw(), theme_classic(), theme_dark(), theme_gray(), theme_light(), theme_linedraw(), theme_void(), theme_minimal()`.
+
+You can set some overall plot characteristics within these theme layers, notably arguments `base_size` (size of fonts used) and `base_family` (font type used: `"serif"`, `"sans"`, or `"mono"`).
+
+<div class="question">
+Experiment with `base_size` and `base_family` in the code below.
+</div> 
+
+```{r themes, exercise = TRUE}
+ggplot(data = glbwarm, mapping = 
+    aes(x = age, y = govact, 
+        color = partyid)) +
+  geom_jitter() +
+  labs(title = "Support for intervention by age", 
+    x = "Age", y = "Support for government intervention", 
+    color = "Party identification") +
+  theme_classic(base_size = 14, base_family = "sans") +
+  theme(legend.position = "bottom")
+```
+
+<div class="tip" >
+__Programming Tip__
+
+- Use `theme()` after, not before a theme type (such as `theme_bw()`), otherwise the theme type overrides the `theme()` settings.
+</div>
+
+###
+
+Argument `base_size` sets a base size for all texts displayed in a plot. If you want to set the size of a particular type of text within the plot, for example, the text values displayed in the legend, you can do that within a `theme()` layer. 
+
+First, you have to find the argument to the `theme()` layer. Use help on `theme`. Then, you have to find out how to specify text size for this argument. You will see that you have to use  a function.
+
+<div class="question">
+Complete the code below to set the size of the legend title to 10 and the size of the legend entries to 8.
+</div> 
+
+```{r legend, exercise = TRUE}
+ggplot(data = glbwarm, mapping = 
+    aes(x = age, y = govact, 
+        color = partyid)) +
+  geom_jitter() +
+  labs(title = "Support for intervention by age", 
+    x = "Age", y = "Support for government intervention", 
+    color = "Party identification") +
+  theme_classic(base_size = 14, base_family = "sans") +
+  theme(legend.position = "bottom",
+        legend.
+        legend.
+        )
+```
+
+```{r legend-hint-1}
+# The arguments to change legend title or legend entries are among the ones
+# starting with legend. ; makes sense, doesn't it?
+?theme
+```
+
+```{r legend-hint-2}
+# The arguments that address properties of the text, use function element_text(). Check out help on this function.
+?element_text
+```
+
+```{r legend-solution}
+ggplot(data = glbwarm, mapping = aes(x = age, y = govact, color = partyid)) + geom_jitter() + labs(title = "Support for intervention by age", x = "Age", y = "Support for government intervention", color = "Party identification") + theme_classic(base_size = 14, base_family = "sans") + theme(legend.position = "bottom", legend.title = element_text(size = 10), legend.text = element_text(size = 8))
+```
+
+```{r legend-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+### Custom colors
+
+For marking groups by colors in a plot, `ggplot()` uses a vector of colors, assigning the first group to the first color, and so on. If you want to determine the colors yourself, you have to create a vector of colors that matches the groups in your plot.
+
+The `RColorBrewer` offers color palettes ([book, p. 458](https://r4ds.had.co.nz/graphics-for-communication.html#replacing-a-scale)) that you can use to create vectors of colors using colors that 'belong together', that is, match nicely. Function `brewer.pal` in this package creates such a vector.
+
+Democrats should be blue, Republicans red, and let us use green for Independents. 
+
+<div class="question">
+Use the `scale_color_manual()` layer and the RColorBrewer `Accent` palette to assign the right colors to party identification in the plot.
+</div>
+
+```{r colors, exercise = TRUE}
+ggplot(data = glbwarm, mapping = 
+    aes(x = age, y = govact, 
+        color = partyid)) +
+  geom_jitter() +
+  labs(
+    title = "Support for intervention by age", 
+    x = "Age", 
+    y = "Support for government intervention",
+    color = "Party identification"
+    ) +
+  theme_classic(base_size = 14, base_family = "sans") +
+  theme(legend.position = "bottom") +
+  scale_color_manual()
+```
+
+```{r colors-hint-1}
+# Look up the Accent palette in the book or with the code below.
+display.brewer.pal(8, name = "Accent")
+# It has 8 colors ordered from green [1] to darkgrey [8].
+# Which entries do you need from this vector?
+```
+
+```{r colors-hint-2}
+# Extract the codes of the three desired colors from the palette.
+brewer.pal(8, "Accent")[c( )]
+# Note: 8 specifies the number of colors in this palette.
+```
+```{r colors-hint-3}
+# The `values =` argument in scale_color_manual() assigns colors to groups.
+scale_color_manual(values = brewer.pal(8, "Accent")[c(5, 1, 6)])
+```
+
+
+```{r colors-solution}
+ggplot(data = glbwarm, mapping = aes(x = age, y = govact, color = partyid)) +
+  geom_jitter() + labs(title = "Support for intervention by age", x = "Age", y = "Support for government intervention", color = "Party identification") + theme_classic(base_size = 14, base_family = "sans") + theme(legend.position = "bottom") + scale_color_manual(values = brewer.pal(8, "Accent")[c(5, 1, 6)])
+```
+
+```{r colors-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+<div class="tip" >
+__Programming Tip__
+
+- Discrete scales, for example, distinguishing between groups, are quite different from continuous scales. As a consequence, palettes for discrete scales do not work for continuous scales and the other way around.
+</div>
+
+### Scales and ticks
+
+If your plot's axis represents a continuous scale, you usually want to fine-tune the ticks (value labels) on the axes. Use layers `scale_x_continuous()` and `scale_y_continuous()` to set the breaks, minor breaks, limits, and, if you like, label of an axis.
+
+<div class="question">
+Adjust the plot axes such that the vertical axis shows a grid line and label for each possible value of the original 7-point scale (1 to 7) and the horizontal axis shows labels and grid lines for decades (20, 30, 40, ..., 90) and only a grid line for each 2.5 years within a decade starting at 15 (15, 17.5, 22.5, 25, ..., 87.5).
+</div>
+
+```{r ticks, exercise = TRUE, exercise.eval = TRUE}
+ggplot(data = glbwarm, mapping = 
+    aes(x = age, y = govact, color = partyid)) +
+  geom_jitter() +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") 
+```
+
+```{r ticks-hint-1}
+# Add the two layers.
+ggplot(data = glbwarm, mapping = 
+    aes(x = age, y = govact, color = partyid)) +
+  geom_jitter() +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  scale_y_continuous() +
+  scale_x_continuous()
+```
+
+```{r ticks-hint-2}
+# Use `breaks =` for labels with grid lines and `minor_breaks =` for grid lines only.
+ggplot(data = glbwarm, mapping = 
+    aes(x = age, y = govact, color = partyid)) +
+  geom_jitter() +
+  theme_bw(base_size = 14) +
+  theme(legend.position = "none") +
+  scale_y_continuous(breaks = , minor_breaks = ) +
+  scale_x_continuous(breaks = , minor_breaks = )
+```
+
+```{r ticks-hint-3}
+# Use an efficient way to get sequences of numbers for the axis values.
+1:7
+seq(from = 20, to = 90, by = 10)
+```
+
+```{r ticks-hint-4}
+# And don't forget to switch off minor breaks on the Y axis.
+minor_breaks = NULL
+```
+
+```{r ticks-solution}
+ggplot(data = glbwarm, mapping = aes(x = age, y = govact, color = partyid)) + geom_jitter() + theme_bw(base_size = 14) + theme(legend.position = "none") + scale_y_continuous(breaks = 1:7, minor_breaks = NULL) + scale_x_continuous(breaks =  seq(from = 20, to = 90, by = 10), minor_breaks = seq(from = 15, to = 87.5, by = 2.5))
+```
+
+```{r ticks-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Perhaps, you added the scale layers in a different order or in a different place. That is OK if you see the required axis values and grey lines."
+  )
+```
+
+### Manual additions
+
+Use graphical primitives and `geom_label()` or `geom_text()` to touch up a graphic.
+
+There are two ways of manually positioning graphical primitives within a plot
+
+- If the axes are numerical, use axis values as coordinates.
+- Otherwise, use a number between 0 and 1 as relative position.
+
+```{r additionsshow}
+ggplot(data = glbwarm, mapping = 
+    aes(x = age, y = govact, 
+        color = partyid)) +
+  scale_color_manual(values = 
+    brewer.pal(8, "Accent")[c(5, 1, 6)]) +
+  geom_jitter() +
+  geom_text(x = 90, y = 4, 
+    label = "Source: Global warming data set by Eric Nisbeth.
+    Author: Yah Tutor.",
+    angle = 90, size = 2.5,
+    color = "black") +
+  scale_x_continuous(limits = c(15, 90)) + 
+  theme_classic(base_size = 11) +
+  theme(legend.position = "bottom")
+```
+
+<div class="question">
+Use a text geom to add the source ("Source: Global warming data set by Eric Nisbeth.") and author ("Author: Yah Tutor.") to the plot as shown in the above figure.
+</div>
+
+```{r additions, exercise = TRUE}
+ggplot(data = glbwarm, mapping = 
+    aes(x = age, y = govact, 
+        color = partyid)) +
+  scale_color_manual(values = 
+    brewer.pal(8, "Accent")[c(5, 1, 6)]) +
+  geom_jitter() +
+  geom_text( ) +
+  scale_x_continuous(limits = c(15, 90)) + #ensures that the text fits within the plot
+  theme_classic(base_size = 11) +
+  theme(legend.position = "bottom")
+```
+
+```{r additions-hint-1}
+# Check out section Aesthetics in the help on geom_text() to find the
+# arguments that you need.
+```
+
+```{r additions-hint-2}
+# You are supposed to provide the coordinates manually in the ggplot code
+# (instead of calculating it from the data set.)
+# For this reason, do not put the coordinates within an aes() function.
+```
+
+```{r additions-hint-3}
+# Divide the label over two lines in your code to get the source and author on
+# different lines.
+label = "Source: Global warming data set by Eric Nisbeth.
+    Author: Yah Tutor."
+```
+
+```{r additions-solution}
+ggplot(data = glbwarm, mapping = aes(x = age, y = govact, color = partyid)) + scale_color_manual(values = brewer.pal(8, "Accent")[c(5, 1, 6)]) + geom_jitter() + geom_text(x = 90, y = 4, label = "Source: Global warming data set by Eric Nisbeth.
+    Author: Yah Tutor.", angle = 90, size = 2.5, color = "black") + scale_x_continuous(limits = c(15, 90)) +  theme_classic(base_size = 11) + theme(legend.position = "bottom")
+```
+
+```{r additions-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+
+## Fancy Stuff
+
+<div class="question">
+</div> 
+
+### APA6 format article with `papaja::`
+
+Instead of adapting a standard RMarkdown document, you can use the `papaja` package, which contains an APA6 article template. Once you have installed this package, an APA article template is available if you create a new RMarkdown file using the _From Template_ option (see figure).
+
+```{r out.width="60%"}
+knitr::include_graphics("images/template.png")
+```
+
+`papaja` uses `bookdown` but you do not have to load this package separately.
+
+<div class="question">
+- Create a new RMarkdown document from the APA journal template.
+- Inspect the contents of the template, check out the options.
+- Knit it to pdf (`output : papaja::apa6_pdf`) or Word (`output : papaja::apa6_word`) and inspect the knitted document.
+- Apply your skills for cross-referencing sections, tables, and figures.
+</div>
+
+A manual for `papaja` is available at https://crsh.github.io/papaja_man/ .
+
+### Templates for other journals
+
+The `rticles` package offers RMarkdown templates for several journals and some journal publishers.
+
+If you install this package, the journal or publisher templates are shown in the list of templates when you create a new RMarkdown document.
+
+### Dashboards
+
+A dashboard is used to show a group of related data visualizations. Below is a screen shot of an example created with package `flexdashboard`. It uses HTML widgets to show pop-ups when you hover over a graph (in the original dashboard, not in the screen shot below).
+
+```{r out.width="100%"}
+knitr::include_graphics("images/dashboard.png")
+```
+
+Read more about `flexdashboard` at https://rmarkdown.rstudio.com/flexdashboard/index.html .
+
+Another package is `shinydashboard`, which uses shiny to create interactive dashboards. See https://rstudio.github.io/shinydashboard/index.html for more information.
+
+## Data Project work
+
+Polish your group's RMarkdown file and your own visualization.
