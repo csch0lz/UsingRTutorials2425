@@ -230,7 +230,7 @@ Problems with knitting to Word:
 
 Problems with knitting to PDF:
 
-- Special characters like `%`, `\`, `/` have special meaning in LaTeX, which is the language use to create the PDF.
+- Characters like `%`, `\`, `/` have special meaning in LaTeX, which is the language used to create the PDF.
 - Ensure that variable names or captions do not include them.
 
 
