@@ -54,9 +54,8 @@ consumers <- UsingRTutorials::consumers #
 ## Overview
 
 -   Welcome and Course Organization
--   Working with R
+-   Coding in R
 -   Visual Exploration with ggplot::
--   Getting started with R and RStudio
 -   Collaboration on the Data Project
 
 ## Course Organization
