@@ -1,5 +1,5 @@
 ---
-title: "Session 1: Introduction"
+title: "Session 1: A New Way of Working"
 output: 
   learnr::tutorial:
     progressive: true
@@ -26,7 +26,8 @@ library(tidyverse)
 
 ```{r, context="data", include=FALSE}
 # Ensure that the data is loaded for the remainder of this tutorial.
-consumers <- UsingRTutorials::consumers #  # readr::read_csv("http://82.196.4.233:3838/www/consumers.csv") # readr::read_csv("data/consumers.csv")
+consumers <- UsingRTutorials::consumers #  
+# Alternatives: readr::read_csv("http://82.196.4.233:3838/www/consumers.csv") or readr::read_csv("data/consumers.csv")
 ```
 
 <!-- Define programming tip style -->
@@ -43,187 +44,259 @@ consumers <- UsingRTutorials::consumers #  # readr::read_csv("http://82.196.4.23
 }
 </style>
 
-## RStudio Interface
+<!-- Define emphasis style -->
+<style>
+.emphasis {
+  color: #e8301b;
+}
+</style>
 
-Let us briefly check that you know how to work with R and the RStudio interface.
+## Overview
 
-In this course, we use the _tidyverse_ approach, which means that we use a series of R packages with a similar philosophy. These packages must be installed once on your computer.
+-   Welcome and Course Organization
+-   Working with R
+-   Visual Exploration with ggplot::
+-   Getting started with R and RStudio
+-   Collaboration on the Data Project
 
-Let us use the RStudio interface to check whether the tidyverse package (and the series of packages that are part of it) are installed on the computer.
+## Course Organization
 
-```{r install, echo=FALSE}
-question(
-  "Which tab shows the packages that are currently installed?",
-  answer("Console", message = "No, this is where you can run an R command."),
-  answer("Terminal"),
-  answer("R Markdown"),
-  answer("Jobs"),
-  answer("Environment"),
-  answer("History"),
-  answer("Connections"),
-  answer("Tutorial"),
-  answer("Files"),
-  answer("Plots"),
-  answer("Packages", correct = TRUE, message = "All installed packages are listed here. Use the search field to find the tidyverse package quickly."),
-  answer("Help"),
-  answer("Viewer"),
-  allow_retry = TRUE
-)
-```
+### Lecturers
 
-If the tidyverse package is not installed, install it now. Use `Install Packages...` from the `Tools` menu or run the command `install.packages("tidyverse")` in the _Console_ tab of the RStudio interface. Note the quotes: _tidyverse_ is a name (of a file) here.
+Dr. Christin Scholz, c.scholz@uva.nl
 
-Tip: While installing a package, you may be asked if you want to install sources that need compilation. Answer __No__.
+Assistant Professor Health & Persuasive Communication
 
-### Load the tidyverse package
+ACHC Communication, Brain & Society Lab, www.cobras-lab.com
 
-We have to install a package only once, but we have to load it in our R session before we can use it. 
 
-<div class="question" >
-Load the most common tidyverse packages by loading the tidyverse package in RStudio.
+Dr. Wouter de Nooy
+
+Senior Lecturer Research Methods, w.denooy@uva.nl
+
+### Our expectations
+
+-   Willingness to dedicate time to learning R.
+-   Openness to learn new things and take on a challenge.
+
+### Who are you?
+
+Tell us about yourself: study programme and programming experience.
+
+### What should you expect?
+
+**At the end of this class, you will NOT know EVERYTHING about R.**
+
+We hope you will:
+
+-   Have a working knowledge of R essentials and be able to get started with
+your own data.  
+-   Understand why R is awesome!  
+-   Develop know-how to quickly find out what you don’t know.  
+
+### Materials
+
+Book:
+
+-   Hadley Wickham & Garrett Grolemund (2016). R for Data Science. O’Reilly.
+
+-   Online version: [http://r4ds.had.co.nz/](http://r4ds.had.co.nz/). Different chapter numbering!
+
+-   AFTER EXTENSIVE trial and error: online help is available for exercises
+(e.g. [https://jrnold.github.io/r4ds-exercise-solutions/](https://jrnold.github.io/r4ds-exercise-solutions/))
+
+Slides, data sets, and so on: Canvas.
+
+<div class="emphasis" >
+Study the syllabus (module guide) on Canvas!
 </div>
 
-You cannot load a package in the RStudio interface from this tutorial. Use the answer box below to test the command that you build. If you have the correct command, copy it to the RStudio Console and run it there by pressing Enter.
+### Topics
 
-```{r library, exercise=TRUE}
-
+```{r schedule, echo=FALSE}
+data.frame(Week = c(1, 1, 2, 2, 3, 3, 4, 4),
+           Date = c("Jan 10", "Jan 12", "Jan 17",
+                    "Jan 19", "Jan 24", "Jan 26",
+                    "Jan 31", "Fe b 2"),
+           Topics = c(
+             " A New Way of Working: Preface, Part I, Ch. 1-2 {1-4}",
+             " Descriptive Statistics and Reports: Ch. 3-6, 21 {5-8, 27}",
+             " Principles of Database Management: Ch. 7-10 {10-13}",
+             " Handling Special Types of Data: Ch. 11-13 {14-16}",
+             " Programming: Ch. Ch. 14-17 up to p. 322 {18-21 up to 21.3}",
+             " Modelling: Sections 3-4 in _Help, My Collaborator Uses R!_  instead of Ch. 18-20 {23-25}",
+             " Communicating results: Ch. (21) 22-24 {(27) 28-30}",
+             " Project presentation and final report submission"
+           )) %>%
+  knitr::kable(format = "html", col.names = c("Week", "Date", "Topics & Chapters"), align = c("l", "l", "l")) %>%
+  # kableExtra::kable_styling(font_size = 22) %>%
+  kableExtra::add_footnote(label = "{} = online chapter numbers",
+                          notation = "none")
 ```
 
-```{r library-hint-1}
-# The function that you need:
-library()
+### Session Organization
+
+Course Content (~1.5 hours) 
+
+-   Tue: Q&A on last week’s topics & problem sets (Submit questions on Canvas).
+-   Overview of new topic(s) & practice.
+
+Data Project Collaboration (~1.5 hours)
+
+-   Collaborate in analyzing & visualizing a complex data set.
+-   Project management with *SCRUM-light*.
+
+Thu: New problem set (due Sunday).
+
+Use your study buddy,come prepared, and bring questions.
+
+### Study Buddies
+
+…an optional source of knowledge, advice, and support.
+
+Why have a study buddy? 
+
+-   Peer learning is highly effective.
+-   R users form a community. Become part of it!
+-   Online learning requires moral support.
+
+Recommendations
+
+-   Meet at least 1x/week.
+-   Read before you meet.
+-   Discuss the course content, not the group project.
+-   Formulate questions for class.
+
+### Grading
+
+Final grade:  
+
+1.  Problem Sets (60%).  
+2.  Data Project: reproducible report with one data visualization per team member (40%). 
+
+### Problem Sets
+
+Selection of exercises like those in _R for Data Science_.  
+
+Assigned to student on Thursday as Canvas assignment.  
+
+Submission deadline: each following Sunday.  
+
+### Data Project: Tell a visual story
+
+-   Exploratory analysis of a complex data set: Showcase your R skills.
+-   Groups of circa 4 students.
+-   Group effort: Tidying the dataset.
+-   Individual effort: One data visualization per student.
+-   Reproducible: All steps from raw data to final results (R Markdown).
+-   *SCRUM-light* project management.
+
+### Visual story example
+
+```{r out.width="100%"}
+knitr::include_graphics("images/wolf.png")
 ```
+Source: [https://interaktiv.morgenpost.de/woelfe-in-deutschland/](https://interaktiv.morgenpost.de/woelfe-in-deutschland/)
 
-```{r library-hint-2}
-# If you run the library() function without package name, you will get a (long)
-# list of all installed packages. Supply a package name without quotes:
-# _tidyverse_ refers to an installed package now, not to a package file that
-# must be installed.
-```
 
-```{r library-solution}
-library(tidyverse)
-```
+A visualization requires a lot of data wrangling:
 
-```{r library-check}
-gradethis::grade_code()
-```
+-   Selection: Which info do we show?
+-   Styling: Do we simplify (model) data?
+-   Combining: Link data from different sources.
+-   Justification: How do we treat missing data?
 
-**Tip**: If a package is loaded, its box in the Packages panel is checked.
+### Get inspired...
 
-**Tip**: You can run a command by putting the cursor somewhere within the command and press Ctrl-Enter (Windows) or Cmd-Return (Mac).
+Some examples of data visualizations: 
 
-Come back to this tutorial when you have checked that the `tidyverse` package is loaded in RStudio.
+-   fivethirtyeight (https://fivethirtyeight.com/). Some data sets are available in fivethirtyeight R package.  
+-   Pew Research Center, e.g., https://www.pewresearch.org/fact-tank/2019/12/13/19-striking-findings-from-2019/.  
+-   Berliner Morgenpost (https://www.morgenpost.de/interaktiv/).  
 
-### Load and inspect data
+Books:
 
-The list of installed (and loaded) packages includes the `datasets` package, which contains data sets that can directly be used. Normally, however, we load our own data from a file.
+- Edward R. Tufte (1997), _Visual Explanations. Images and Quantities, Evidence and Narrative_. (A classic)  
+- Alberto Cairo (2016), _The Truthful Art. Data, Charts, and Maps for Communication_.  
 
-In the RStudio interface, load the data file named `http://82.196.4.233:3838/www/consumers.csv` directly from the internet into a data object called `consumers`. 
+### Teaming Up for the Data Project
 
-Use the tidyverse command, not the base R command!
+1. Alcohol Posts and Alcohol Use.  
+2. Dynamics and Performance of an IT Call Center.  
+3. Social Evolution.  
+4. Friends and Families.  
+5. German Chancellor Candidates Debate.
+6. EU 2014 elections.  
+7. Or your own... (See Canvas for requirements) 
 
-<div class="question" >
-Use the _Submit Answer_ button in the code box below to check that you have the correct command. 
+The Canvas [data project data sets module page](https://canvas.uva.nl/courses/32804/pages/data-project-data-sets?module_item_id=1317143) contains the data and data descriptions.
+
+Who will work on which complex dataset (and with whom)?
+
+<div class="emphasis">
+Submit a list of group members & a group name on the Canvas discussion board during the break.
 </div>
 
-```{r loadData, exercise=TRUE}
+### Questions about the Syllabus?
 
-```
+## Intermezzo: Tutorial Installation
 
-<div id="loadData-hint">
-**Hint:** Unsure about a function name? Start with inspecting the cheat sheets that are available from the RStudio's *Help > Cheat Sheets* submenu. If you cannot find the right cheat sheet here (you now need the *Data Import* cheat sheet), the *Browse Cheat Sheets* option in the submenu sends you to the web page with cheat sheets.
-</div>
+You installed the latest versions, didn’t you?
 
-```{r loadData-solution}
-consumers <- read_csv("http://82.196.4.233:3838/www/consumers.csv")
-```
+-   R: https://www.r-project.org/
+-   RStudio: http://www.rstudio.com/download
 
-```{r loadData-check} 
-#, warning=FALSE}
-gradethis::grade_code(
-  correct = "Note that tidyverse functions use an underscore (_) where base R functions use a dot (.). File names must always be in quotes."
-  )
-```
+In addition, install this tutorial:
 
-We want to inspect the data in the RStudio interface, so copy the correct command to the RStudio Console and run it there by pressing Enter. 
-
-Now, the data set is listed in the **Environment** tab of the RStudio interface.
+-   Install the `remotes` package: 
+    +   Type `install.packages("remotes")` in the RStudio console.
+    +   Execute the command by pressing *Enter/Return*.
+-   Install the `learnr` package: `install.packages("learnr")`
+-   Install the `gradethis` package: `remotes::install_github("rstudio-education/gradethis")`
+    +   This should also install the `learnr` package.
+    +   Be patient! Wait for the message `DONE (gradethis)`.
+-   Install the tutorials:  `remotes::install_github("WdeNooy/UsingRTutorials")`
+    +   Answer `no` to question `Do you want to install from sources the package which needs compilation?`.
+    +   Wait for the message `DONE (UsingRTutorials)`.
 
 ### 
 
-<div class="question" >
-Use the **Environment** tab in the RStudio interface to answer the following questions:
+### Start the tutorial
 
-How many variables does the data set contain?
-</div>
+Now you can start the first tutorial:
 
-```{r inspectData1, exercise = TRUE}
+-   Execute the command `learnr::run_tutorial("session1", "UsingRTutorials")` in the RStudio console.
 
-```
+Alternatively: 
 
-```{r inspectData1-check}
-gradethis::grade_result(
-  pass_if(5, "The row containing the consumers data set in the Environment tab says that there are 5 variables (columns) in the data set. The base R command `ncol()` would also give you this number."),
-  fail_if(~ TRUE, "Have a look at the row containing the consumers data set in the **Environment** tab.")
-)
-```
+-   Restart R (Session > Restart R) to show the tutorials in the RStudio _Tutorial_ tab.
+-   Click _Start Tutorial_ for tutorial __Session 1: Introduction__ in the _Tutorial_ tab. (Takes some time!)
+-   Show the tutorial in a new window with the <img src="images/ShowNewWindow.png" width="234px"> button.
+-   While you are working with the tutorial, you can also work in RStudio.  
 
-<div class="question" >
-How many numerical variables does the data set contain?
-</div>
+### Using a tutorial
 
-```{r inspectData2, exercise = TRUE}
+-   Tutorials instead of slides.
+-   Hands-on plenary or individual coding.
+-   Additional (non-mandatory) materials.
+-   Reviewing topics after class.
 
-```
+Your tutorial answers are saved until you press _Start Over_. 
 
-```{r inspectData2-check}
-gradethis::grade_result(
-  pass_if(2, "Variables ad_expo and brand_aw are marked as numerical (num). The play button in the RStudio Environment pane shows the information provided by the base R `str()` function."),
-  fail_if(~ TRUE, "Use the blue-and-white play button in the row of the Environment tab to get basic information abut the variables.")
-)
-```
+Use button <img src="stopButton.png"> to stop the tutorial. 
 
-<div class="question" >
-What are the first names of the first and twentieth person in the data set?
-</div>
+## Coding in R: Using functions
 
-```{r inspectData3, exercise = TRUE}
-"Enter the names as text (within these quotes): "
-```
+We use functions in R to accomplish something.
 
-<div id="inspectData3-hint">
-**Hint:** If you receive the error message _object not found_, the names are not entered as strings, that is, between quotes.
-</div>
+`funtion_name(argument_name = value, ...)`
 
-```{r inspectData3-check}
-#Note that entering names not as strings yields a parse error.
-gradethis::grade_result(
-  pass_if(
-    function(x) {stringr::str_detect(x, "Ashleigh") &
-        stringr::str_detect(x, "Thaamira")}, 
-    "The names are indeed Ashleigh and Thaamira."),
-  fail_if(function(x) {stringr::str_detect(x, "Ashleigh")}, 
-    "Ashleigh is correct, but the name of the twentieth person is missing or wrong. Use the spreadsheet button in the row of the Environment tab to view the data."),
-  fail_if(function(x) {stringr::str_detect(x, "Thaamira")}, 
-    "Thaamira is correct, but the name of the first person is missing or wrong. Use the spreadsheet button in the row of the Environment tab to view the data."),
-  fail_if(~ TRUE, "Use the spreadsheet button in the row of the Environment tab to view the data.")
-)
-```
+Function arguments specify the input for a function: 
 
-### End of RStudio interface exercises
+-   Named arguments (more typing, less confusion): `seq(from = 1, to = 5)`.
+-   Unnamed (less typing, more confusion): `seq(1, 5)`. 
 
-In the remainder of this tutorial, you will execute your R code within this tutorial instead of copying it into RStudio. 
-
-The code boxes in the tutorial work in the same way as the RStudio console. Anything you learn to do in a tutorial code box, you can also do in RStudio, for example, when you are working on your data project. Remember that.
-
-## Functions
-
-We use functions in R to accomplish something. Let us review the main characteristics of functions in R.
-
-### Function arguments
-
-Function arguments specify the input for a function. Arguments can be named (more typing, less confusion) and unnamed (less typing, more confusion). The tutorials expect you to name the arguments. 
+We recommend named arguments. 
 
 <div class="question" >
 What does the command (below) do? Add the argument names to the arguments in the function.
@@ -235,7 +308,7 @@ seq(1, 15, 2)
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="argumentsNamed1-hint">
-__Hint:__ Use the Help page for this function (`?seq`). The help will show in the _Help_ tab in RStudio.
+__Hint:__ Use the Help page for this function (`?seq`). The help page will open in a browser window. If you use the help funstion in RStudio, the help page opens in the _Help_ tab.
 </div>
 
 ```{r argumentsNamed1-solution}
@@ -282,7 +355,13 @@ seq(10, 1, 1)
 __Hint:__ What does the error message say if you run the code?
 </div>
 
-### Function output
+### Where do the results go?
+
+If left-hand data object:
+
+-   does not exist: new data object created.
+-   exists: data object overwritten.
+-   is not named: output to screen (console or plot area).
 
 In the previous exercises, the function results were send to the screen. 
 
@@ -317,7 +396,7 @@ gradethis::grade_code()
 What does the data object `my_output` contain? Enter the value(s) below.
 </div>
 
-```{r cleanUp2, exercise = TRUE, exercise.setup = "output1-solution"}
+```{r cleanUp2, exercise = TRUE, exercise.setup = "output1"}
 
 ```
 
@@ -352,7 +431,7 @@ rm()
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="cleanUp-hint">
-__Hint:__ Do not include the same data object name more than once.
+__Hint:__ Separate data objects with commas. Do not include the same data object name more than once.
 </div>
 
 ```{r cleanUp-solution}
@@ -365,11 +444,46 @@ gradethis::grade_code(
   )
 ```
 
-## Plots with `ggplot()`
+## Visual Exploration
 
-The Grammar of Graphics approach implemented in the tidyverse package `ggplot()` is becoming a standard. An increasing number of packages produce ggplots, can use them as input, or extend the approach to other types of graphics. Therefore, it is important to master this package well.
+The trend is towards visualizing data properties rather than tabulating them.
 
-We will use the consumers data, loaded in a previous step of this tutorial. It contains fake data about awareness about a particular brand and exposure to an advertising campaign for the brand. These are the variables:
+```{r summary, echo=FALSE, out.width="60%"}
+# Summary of brand awareness by gender and wom.
+means <- consumers %>% group_by(`Gender` = gender, `Word of mouth` = wom) %>%
+  summarise(`Average brand awareness` = round(mean(brand_aw), digits = 1)) 
+# Numeric summary.
+knitr::kable(means, "html") %>%
+  kableExtra::kable_styling(font_size = 16, full_width = FALSE, position = "left")
+```
+
+```{r echo=FALSE, fig.asp=0.6}
+means %>% 
+  ggplot() +
+  geom_bar(aes(x = `Word of mouth`, y = `Average brand awareness`, fill = Gender), stat = "identity", position = "dodge") +
+  theme_bw(base_size = 12) +
+  scale_x_discrete(name = "Heard of brand by word of mouth") +
+  scale_fill_discrete(name = "") +
+  theme(legend.position = "top",
+        plot.background = element_blank()) #see ggplot book
+rm(means)
+```
+
+### 
+
+### Plots with `ggplot()`
+
+Philosophy: Grammar of Graphics (Leland Wilkinson)
+  
+-   Build graph in layers.
+-   Graphic properties: X, Y, color, size, shape, transparency.
+-   Each graphic property may express a variable.
+-   Additional features: statistics, position adjustment, coordinate system,
+faceting.
+
+### Recreate a plot in steps
+
+We will use some (fake) `consumers` data about a particular brand and exposure to an advertising campaign for the brand. These are the variables:
 
 ```{r variableDesc}
 tibble::tibble(
@@ -379,13 +493,7 @@ tibble::tibble(
   knitr::kable(booktabs = TRUE)
 ```
 
-<div class="question" >
-Use the consumers data file to create the plot shown below. Mind the details! 
-</div>
-
-Use the [Data Visualization Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) if you want to look up options, for example, which layer to use for setting the title and axis labels.
-
-```{r plot-recreate, exercise=FALSE, message=FALSE, warning=FALSE}
+```{r plot-recreate1, exercise=FALSE, message=FALSE, warning=FALSE}
 # Standard ggplot plot with title and axis labels.
 ggplot2::ggplot(
   data = consumers,
@@ -410,20 +518,48 @@ ggplot2::ggplot(
     )
 ```
 
-```{r ggplotBasics, exercise = TRUE, message=FALSE, warning=FALSE}
-ggplot() +
-  geom_point() +
-  geom_smooth() +
-  labs()
+We are going to recreate the above plot in steps.
+
+### Step 1: Aesthetics: the plane
+
+-   x: horizontal axis (always required).
+-   y: vertical axis.
+
+<div class="question" >
+Add the points to the plot.
+</div>
+
+```{r ggplotPlane, exercise = TRUE, exercise.lines = 8, message=FALSE, warning=FALSE}
+ggplot(
+  data = consumers
+  )
 ```
 
 <!-- To hide the solution, use a textual hint. -->
-<div id="ggplotBasics-hint">
-__Hint:__ The answer checker will first check if all layers are included. If a layer is missing, it will report "I expected you to call + where you called ggplot()". Next, it will check the details within each layer. For optimal use of the checker, follow this approach. In addition, it is more efficient to set the x and y aesthetics in the `ggplot()` function than in the separate geoms, if several geoms use the same x and y aesthetics.
+<div id="ggplotPlane-hint">
+__Hint:__ Use the *Data Visualization with ggplot cheat sheet* (available from the RStudion *Help > Cheat Sheets* menu) if you cannot remember the geom that you need.
+It is usually better to specify the x and y coordinates of the plane in the `ggplot()` function than in a geom.
 </div>
 
-```{r ggplotBasics-solution}
+```{r ggplotPlane-solution}
 ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point()
+```
+
+```{r ggplotPlane-check}
+gradethis::grade_code()
+```
+
+### Step 2 - Aesthetics: Attributes
+
+```{r plot-recreate2, exercise=FALSE, message=FALSE, warning=FALSE}
+# Standard ggplot plot with title and axis labels.
+ggplot2::ggplot(
   data = consumers,
   mapping =
     aes(x = ad_expo,
@@ -431,6 +567,173 @@ ggplot(
   )+
   geom_point(
     mapping = aes(color = gender, shape = wom),
+    size = 4
+    ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~x,
+    se = FALSE,
+    color = "black"
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+<div class="question" >
+Set the colour and size of the dots.
+</div>
+
+```{r ggplotDotcolor, exercise = TRUE, exercise.lines = 10, message=FALSE, warning=FALSE}
+# Copy the solution to the preceding exercise here as your starting point.
+ggplot(
+  data = consumers
+  )
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="ggplotDotcolor-hint">
+__Hint:__ An aesthetic, such as colour or size, must be included in the `aes()` function if it must be linked to a variable. Each group on the variable then receives its own color.
+</div>
+
+```{r ggplotDotcolor-solution}
+ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    )
+```
+
+```{r ggplotDotcolor-check}
+gradethis::grade_code(
+   correct = "Dot colour is linked to a variable, so it must be inside an aes() function. In contrast, dot size is constant (one value for all dots), so it must be outside an aes() function."
+)
+```
+
+### Step 3 - Additional layers
+
+```{r plot-recreate3, exercise=FALSE, message=FALSE, warning=FALSE}
+# Standard ggplot plot with title and axis labels.
+ggplot2::ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(color = gender, shape = wom),
+    size = 4
+    ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~x,
+    se = FALSE,
+    color = "black"
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+<div class="question" >
+Add the linear regression line to the plot.
+</div>
+
+```{r ggplotRegression, exercise = TRUE, exercise.lines = 15, message=FALSE, warning=FALSE}
+# Copy the solution to the preceding exercise here as your starting point.
+ggplot(
+  data = consumers
+  )
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="ggplotRegression-hint">
+__Hint:__ Mind the details of the regresison line.
+</div>
+
+```{r ggplotRegression-solution}
+ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "black"
+    )
+```
+
+```{r ggplotRegression-check}
+gradethis::grade_code()
+```
+
+### Step 4 - Labels
+
+```{r plot-recreate4, exercise=FALSE, message=FALSE, warning=FALSE}
+# Standard ggplot plot with title and axis labels.
+ggplot2::ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(color = gender, shape = wom),
+    size = 4
+    ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~x,
+    se = FALSE,
+    color = "black"
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+<div class="question" >
+Add the labels to the plot or change the labels. Mind the details.
+</div>
+
+```{r ggplotLabels, exercise = TRUE, exercise.lines = 20, message=FALSE, warning=FALSE}
+# Copy the solution to the preceding exercise here as your starting point.
+ggplot(
+  data = consumers
+  )
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="ggplotLabels-hint">
+__Hint:__ Mind the details of the regression line.
+</div>
+
+```{r ggplotLabels-solution}
+ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
     size = 4
     ) +
   geom_smooth(
@@ -445,38 +748,27 @@ ggplot(
     )
 ```
 
-```{r ggplotBasics-check}
-gradethis::grade_code(
-  correct = "Was it difficult? The devil is in the details."
-  )
+```{r ggplotLabels-check}
+gradethis::grade_code()
 ```
 
-### Aesthetic versus constant
+### Facetting
 
-Does gender moderate the effect of exposure on brand awareness? In other words, do females and males have different regression lines?
+Different graphs for different groups of observations.
 
-<div class="question" >
-* Create separate regression lines of different colors for females and males.
-</div>
+-   facet_wrap(~ x): one grouping variable
+-   facet_grid(y ~ x): two grouping variables
 
-```{r plot_adapt, exercise=TRUE, warning=FALSE, message=FALSE}
-
-```
-
-<div id="plot_adapt-hint">
-__Hint:__ As a starting point, copy the code from the preceding question into the code box. Use the [Data Visualization Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
-</div>
-
-```{r plot_adapt-solution}
-# Adaptation: swap color and shape, line color as aesthetic.
+```{r plot_facet_example, exercise=FALSE, message=FALSE, warning=FALSE}
+# Adaptation: word of mouth as facets instead of shape.
 ggplot(
   data = consumers,
   mapping = 
     aes(x = ad_expo,
-        y = brand_aw)
+        y =brand_aw)
   )+
   geom_point(
-    mapping = aes(shape = wom, color = gender),
+    mapping = aes(color = gender),
     size = 4
     ) +
   geom_smooth(
@@ -489,29 +781,21 @@ ggplot(
     title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    )
+    ) +
+  facet_wrap(vars(wom))
 ```
-
-```{r plot_adapt-check}
-gradethis::grade_code(
-  correct = "Within the `aes()` function, we can link a variable to a particular aesthetic, in this example, to color. Each group then receives its own color and its own regression line. Now, we use color as an aesthetic, not as a constant ('black')."
-  )
-```
-
-### Facetting
-
-Instead of using vertex shapes for respondents who heard about the brand by word of mouth and those who did not, we can create separate plots. 
 
 <div class="question" >
 Create the two plots in one row.
 </div>
 
-```{r plot_facet, exercise=TRUE}
-
+```{r plot_facet, exercise=TRUE, exercise.lines = 20, warning=FALSE, message=FALSE }
+# Copy the solution to the preceding exercise here as your starting point.
+ggplot()
 ```
 
 <div id="plot_facet-hint">
-__Hint:__ As a starting point, copy the code from the preceding question into the code box. Use the [Data Visualization Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).
+__Hint:__ You must use the vars() function to identify the variable that is used to create facets.
 </div>
 
 ```{r plot_facet-solution}
@@ -541,9 +825,7 @@ ggplot(
 ```
 
 ```{r plot_facet-check}
-gradethis::grade_code(
-  correct = "If we create different facets for groups on one variable, `facet_wrap()` is the preferred function."
-)
+gradethis::grade_code()
 ```
 
 ### Adding labels (advanced)
@@ -584,7 +866,7 @@ ggplot2::ggplot(
 Create this graph yourself.
 </div>
 
-```{r plot_label, exercise=TRUE, warning=FALSE, message=FALSE}
+```{r plot_label, exercise=TRUE, exercise.lines = 20, warning=FALSE, message=FALSE}
 ggplot(
   data = consumers,
   mapping = 
@@ -688,7 +970,7 @@ ggplot2::ggplot(
   )
 ```
 
-```{r plot_primitives, exercise=TRUE}
+```{r plot_primitives, exercise=TRUE, exercise.lines = 20}
 ggplot(
   data = consumers,
   mapping = 
@@ -881,7 +1163,23 @@ output$regPlot <- renderPlot({
 })
 ```
 
-## Debugging
+## Additional materials
+
+Book on ggplot2:
+
+-   Hadley Wickham (2016), ggplot2. Elegant Graphics for Data Analysis. Springer.
+https://www.springer.com/gp/book/9783319242750 or build it yourself on
+github: https://github.com/hadley/ggplot2-book
+
+Interactive training:
+
+-   https://www.datacamp.com/courses/data-visualization-with-ggplot2-1
+
+## Questions about Exercises?
+
+Exercises 6:4 {3.2.4:4}, 12:1,3 {3.3.1:1,3}, 15:3 {3.5.1:3}, 21:6 {3.6.1:6}, 26:5 {3.7.1:5}, 31:1 {3.8.1:1}, 40:2 {4.4:2}.
+
+## Debugging (advanced)
 
 Your friend tried to create a non-stacked bar chart showing the proportion of females in the consumers data set who heard by word of mouth against the proportion who did not, as well as the proportion of males who heard and who did not hear by word of mouth.
 
@@ -1235,7 +1533,37 @@ If you want to create a Shiny app, first create your plot with `ggplot()`, then 
 
 ## Data Project
 
-Plots are very useful for getting a first idea of your data. With the members of your group, use `ggplot` plots to describe individual variables and relations between variables in (one of) your Data Project file(s). 
+Plots are very useful for getting a first idea of your data. 
+
+As a first step, use `ggplot` plots to describe individual variables and relations between variables in (one of) your Data Project file(s).
+
+### 
+
+### The tidyverse approach.
+
+We use the tidyverse approach to R programming.
+
+```{r out.width="50%"}
+knitr::include_graphics("images/tidyverse2.png")
+```
+
+
+Source: [https://r-unimelb.gitbook.io/rbook/into-the-tidyverse/the-tidyverse](https://r-unimelb.gitbook.io/rbook/into-the-tidyverse/the-tidyverse)
+
+tidyverse suite of packages:
+
+-   data import: readr::
+-   visualization: ggplot2::
+-   data wrangling: dplyr::, tidyr::
+-   replicable research: R Markdown
+
+Cheat sheets!
+
+NOTE: The tidyverse package(s) are loaded in the tutorials, so they can be used.
+
+### Load and inspect one of your Data Project data files
+
+Time to start exploring (visualizing) your Data Project data,
 
 <div class="question" >
 If you haven't done so previously, download the Data Project data file(s) from Canvas to a directory that you create for your Data Project.
@@ -1243,9 +1571,9 @@ If you haven't done so previously, download the Data Project data file(s) from C
 
 The tutorial must be able to find this data set, so you have to make the Data Project directory your working directory:
 
-* In RStudio, use the _Session_ menu, _Set Working Directory_, _Choose Directory_ option.
-* In the dialog screen, find the Data Project directory that you created and press _Open_.
-* Copy the `setwd()` command from the RStudio console to the below code box. Now, you can work with the data set within this code box.
+-   In RStudio, use the _Session_ menu, _Set Working Directory_, _Choose Directory_ option.
+-   In the dialog screen, find the Data Project directory that you created and press _Open_.
+-   Copy the `setwd()` command from the RStudio console to the below code box. Now, you can work with the data set within this code box.
 
 <div class="question" >
 Use the below code box to import your data set, inspect it, and create plots. 
@@ -1256,7 +1584,7 @@ Use the below code box to import your data set, inspect it, and create plots.
 # (Copy the setwd() command from RStudio here.)
 
 # Load your data in the object myData.
-myData <- read_csv()
+myData <- read_csv("filename.csv")
 
 # Have a look at the variables in your data.
 str(myData)
@@ -1274,12 +1602,8 @@ ggplot()
 <div class="tip" >
 __Programming Tips__
 
+- Build up plots in steps, from simple to complex.
 - Use lots of comments to explain what you are trying to do. Your team mates and your future self would like to know.
-- Don't delete plots that turn out to be useless. Comment them out (add # to each line start) and add a comment explaining why they are useless. Otherwise, someone else is going to redo your work.
 </div>
 
 Note: As long as you do not press the *Start Over* button, the code (and plots) are preserved in this tutorial, so you can use the code later. 
-
-
-
-
