@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ```{r, context="data", include=FALSE}
 # Ensure that the data is loaded for the remainder of this tutorial.
-GlasgowFriends <- UsingRTutorials::GlasgowFriends
+GlasgowFriends <- UsingRTutorials::GlasgowFriends # readr::read_csv("data/GlasgowFriends.csv")
 # Create the Student table.
 # It is not used in grade_result(), so it may already be around.
 Student <- GlasgowFriends %>% select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) %>% distinct()
@@ -660,7 +660,7 @@ The `gather()` and `spread()` functions are being replaced by the `pivot_longer(
 
 ```{r createGlasgowWide}
 # create a tibble with waves as different columns
-GlasgowWide <- UsingRTutorials::Glasgow %>%
+GlasgowWide <- readr::read_csv("data/Glasgow.csv") %>% # UsingRTutorials::Glasgow %>%
   pivot_wider(id_cols = student:smoking_siblings, names_from = wave, values_from = alcohol:friendships)
 ```
 

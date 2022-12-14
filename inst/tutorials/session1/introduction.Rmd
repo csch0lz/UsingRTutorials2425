@@ -16,7 +16,8 @@ library(learnr)
 library(gradethis)
 library(knitr)
 
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+gradethis::gradethis_setup()
+tutorial_options(exercise.timelimit = 60)
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 # Ensure that library is loaded.
@@ -25,7 +26,7 @@ library(tidyverse)
 
 ```{r, context="data", include=FALSE}
 # Ensure that the data is loaded for the remainder of this tutorial.
-consumers <- readr::read_csv("http://82.196.4.233:3838/www/consumers.csv")
+consumers <- UsingRTutorials::consumers #  # readr::read_csv("http://82.196.4.233:3838/www/consumers.csv") # readr::read_csv("data/consumers.csv")
 ```
 
 <!-- Define programming tip style -->
@@ -131,7 +132,7 @@ Use the _Submit Answer_ button in the code box below to check that you have the 
 ```
 
 <div id="loadData-hint">
-**Hint:** Use the [Data Import Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf) to find the function to read a CSV data file.
+**Hint:** Unsure about a function name? Start with inspecting the cheat sheets that are available from the RStudio's *Help > Cheat Sheets* submenu. If you cannot find the right cheat sheet here (you now need the *Data Import* cheat sheet), the *Browse Cheat Sheets* option in the submenu sends you to the web page with cheat sheets.
 </div>
 
 ```{r loadData-solution}
@@ -144,8 +145,6 @@ gradethis::grade_code(
   correct = "Note that tidyverse functions use an underscore (_) where base R functions use a dot (.). File names must always be in quotes."
   )
 ```
-
-Never mind if you see the message _Last value being used to check answer is invisible._
 
 We want to inspect the data in the RStudio interface, so copy the correct command to the RStudio Console and run it there by pressing Enter. 
 
@@ -283,14 +282,6 @@ seq(10, 1, 1)
 __Hint:__ What does the error message say if you run the code?
 </div>
 
-```{r argumentsNamed3-solution}
-seq(from = 10, to = 1, by = -1)
-```
-
-```{r argumentsNamed3-check}
-gradethis::grade_code()
-```
-
 ### Function output
 
 In the previous exercises, the function results were send to the screen. 
@@ -307,7 +298,7 @@ seq(from = 10, to = 10, by = 1)
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="output1-hint">
-__Hint:__ Spell names correctly. R is case-sensitive: lower case is different from uppercase.
+__Hint:__ Use the <- operator to store results. Spell names correctly. R is case-sensitive: lower case is different from uppercase.
 </div>
 
 ```{r output1-solution}
@@ -326,7 +317,7 @@ gradethis::grade_code()
 What does the data object `my_output` contain? Enter the value(s) below.
 </div>
 
-```{r cleanUp2, exercise = TRUE}
+```{r cleanUp2, exercise = TRUE, exercise.setup = "output1-solution"}
 
 ```
 
@@ -383,7 +374,7 @@ We will use the consumers data, loaded in a previous step of this tutorial. It c
 ```{r variableDesc}
 tibble::tibble(
   `Variable name` = c("ad_expo", "wom", "gender", "brand_aw", "firstname"),
-  `Variable Label` = c("Exposure to the advertisement", "Heard about the brand through word of mouth", "Gender of the respondent", "Awareness of the brand", "Respondent's first name"),
+  `Variable Label` = c("Exposure to the campaign", "Heard about the brand through word of mouth", "Gender of the respondent", "Awareness of the brand", "Respondent's first name"),
   `Value Labels`= c("1 = No exposure; 10 = Max exposure", "yes, no", "female, male", "1 = Not aware; 10 = Max aware", "")) %>%
   knitr::kable(booktabs = TRUE)
 ```
@@ -403,7 +394,7 @@ ggplot2::ggplot(
         y = brand_aw)
   )+
   geom_point(
-    mapping = aes(color = wom, shape = gender),
+    mapping = aes(color = gender, shape = wom),
     size = 4
     ) +
   geom_smooth(
@@ -420,7 +411,10 @@ ggplot2::ggplot(
 ```
 
 ```{r ggplotBasics, exercise = TRUE, message=FALSE, warning=FALSE}
-ggplot()
+ggplot() +
+  geom_point() +
+  geom_smooth() +
+  labs()
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -436,7 +430,7 @@ ggplot(
         y = brand_aw)
   )+
   geom_point(
-    mapping = aes(color = wom, shape = gender),
+    mapping = aes(color = gender, shape = wom),
     size = 4
     ) +
   geom_smooth(
@@ -462,9 +456,7 @@ gradethis::grade_code(
 Does gender moderate the effect of exposure on brand awareness? In other words, do females and males have different regression lines?
 
 <div class="question" >
-* Create separate regression lines of different colors for females and males. 
-* Ensure that dots for females and males have different colors.
-* Use shape (instead of color) to distinguish between respondents who heard about the brand by word of mouth and those who did not.
+* Create separate regression lines of different colors for females and males.
 </div>
 
 ```{r plot_adapt, exercise=TRUE, warning=FALSE, message=FALSE}
@@ -554,118 +546,9 @@ gradethis::grade_code(
 )
 ```
 
-### Geom choice
-
-Use the [Data Visualization Cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) (or use the _Help_ > _Cheatsheets_ menu in RStudio) to find the geoms that are appropriate for the following plots of the `consumers` data.
-
-```{r geomquiz}
-quiz(caption = "Select appropriate geoms",
-  question("A plot of brand awareness by word of mouth.",
-    answer("geom_area", correct = FALSE, message = ""),
-    answer("geom_bar", correct = FALSE, message = ""),
-    answer("geom_bin2d", correct = FALSE, message = ""),
-    answer("geom_boxplot", correct = TRUE, message = ""),
-    answer("geom_col", correct = TRUE, message = ""),
-    answer("geom_contour", correct = FALSE, message = ""),
-    answer("geom_count", correct = FALSE, message = ""),
-    answer("geom_density", correct = FALSE, message = ""),
-    answer("geom_density2d", correct = FALSE, message = ""),
-    answer("geom_dotplot", correct = TRUE, message = ""),
-    answer("geom_freqpoly", correct = FALSE, message = ""),
-    answer("geom_hex", correct = FALSE, message = ""),
-    answer("geom_histogram", correct = FALSE, message = ""),
-    answer("geom_jitter", correct = FALSE, message = ""),
-    answer("geom_point", correct = FALSE, message = ""),
-    answer("geom_qq", correct = FALSE, message = ""),
-    answer("geom_quantile", correct = FALSE, message = ""),
-    answer("geom_raster", correct = FALSE, message = ""),
-    answer("geom_rug", correct = FALSE, message = ""),
-    answer("geom_smooth", correct = FALSE, message = ""),
-    answer("geom_tile", correct = FALSE, message = ""),
-    answer("geom_violin", correct = TRUE, message = ""),
-    incorrect = "As always in statistics, it is about the number and types (discrete vs. continuous) of variables involved."
-  ),
-  question("A plot of gender by word of mouth.",
-    answer("geom_area", correct = FALSE, message = ""),
-    answer("geom_bar", correct = FALSE, message = ""),
-    answer("geom_bin2d", correct = FALSE, message = ""),
-    answer("geom_boxplot", correct = FALSE, message = ""),
-    answer("geom_col", correct = FALSE, message = ""),
-    answer("geom_contour", correct = FALSE, message = ""),
-    answer("geom_count", correct = TRUE, message = ""),
-    answer("geom_density", correct = FALSE, message = ""),
-    answer("geom_density2d", correct = FALSE, message = ""),
-    answer("geom_dotplot", correct = FALSE, message = ""),
-    answer("geom_freqpoly", correct = FALSE, message = ""),
-    answer("geom_hex", correct = FALSE, message = ""),
-    answer("geom_histogram", correct = FALSE, message = ""),
-    answer("geom_jitter", correct = FALSE, message = ""),
-    answer("geom_point", correct = FALSE, message = ""),
-    answer("geom_qq", correct = FALSE, message = ""),
-    answer("geom_quantile", correct = FALSE, message = ""),
-    answer("geom_raster", correct = FALSE, message = ""),
-    answer("geom_rug", correct = FALSE, message = ""),
-    answer("geom_smooth", correct = FALSE, message = ""),
-    answer("geom_tile", correct = FALSE, message = ""),
-    answer("geom_violin", correct = FALSE, message = ""),
-    incorrect = "As always in statistics, it is about the number and types (discrete vs. continuous) of variables involved."
-  ),
-  question("A plot of brand awareness.",
-    answer("geom_area", correct = TRUE, message = ""),
-    answer("geom_bar", correct = FALSE, message = ""),
-    answer("geom_bin2d", correct = FALSE, message = ""),
-    answer("geom_boxplot", correct = FALSE, message = ""),
-    answer("geom_col", correct = FALSE, message = ""),
-    answer("geom_contour", correct = FALSE, message = ""),
-    answer("geom_count", correct = FALSE, message = ""),
-    answer("geom_density", correct = TRUE, message = ""),
-    answer("geom_density2d", correct = FALSE, message = ""),
-    answer("geom_dotplot", correct = TRUE, message = ""),
-    answer("geom_freqpoly", correct = TRUE, message = ""),
-    answer("geom_hex", correct = FALSE, message = ""),
-    answer("geom_histogram", correct = TRUE, message = ""),
-    answer("geom_jitter", correct = FALSE, message = ""),
-    answer("geom_point", correct = FALSE, message = ""),
-    answer("geom_qq", correct = TRUE, message = ""),
-    answer("geom_quantile", correct = FALSE, message = ""),
-    answer("geom_raster", correct = FALSE, message = ""),
-    answer("geom_rug", correct = FALSE, message = ""),
-    answer("geom_smooth", correct = FALSE, message = ""),
-    answer("geom_tile", correct = FALSE, message = ""),
-    answer("geom_violin", correct = FALSE, message = ""),
-    incorrect = "As always in statistics, it is about the number and types (discrete vs. continuous) of variables involved."
-  ),
-  question("A plot of brand awareness by exposure.",
-    answer("geom_area", correct = FALSE, message = ""),
-    answer("geom_bar", correct = FALSE, message = ""),
-    answer("geom_bin2d", correct = TRUE, message = ""),
-    answer("geom_boxplot", correct = FALSE, message = ""),
-    answer("geom_col", correct = FALSE, message = ""),
-    answer("geom_contour", correct = FALSE, message = ""),
-    answer("geom_count", correct = FALSE, message = ""),
-    answer("geom_density", correct = FALSE, message = ""),
-    answer("geom_density2d", correct = TRUE, message = ""),
-    answer("geom_dotplot", correct = FALSE, message = ""),
-    answer("geom_freqpoly", correct = FALSE, message = ""),
-    answer("geom_hex", correct = TRUE, message = ""),
-    answer("geom_histogram", correct = FALSE, message = ""),
-    answer("geom_jitter", correct = TRUE, message = ""),
-    answer("geom_point", correct = TRUE, message = ""),
-    answer("geom_qq", correct = FALSE, message = ""),
-    answer("geom_quantile", correct = TRUE, message = ""),
-    answer("geom_raster", correct = FALSE, message = ""),
-    answer("geom_rug", correct = TRUE, message = ""),
-    answer("geom_smooth", correct = TRUE, message = ""),
-    answer("geom_tile", correct = FALSE, message = ""),
-    answer("geom_violin", correct = FALSE, message = ""),
-    incorrect = "As always in statistics, it is about the number and types (discrete vs. continuous) of variables involved."
-  )
-)
-```
-
 ### Adding labels (advanced)
 
-We may want to know who is the outlier in the plot, having an exceptionally low exposure score. Use a geom to add the first names to the plot, as shown below. Carefully inspect the arguments for this geom.
+We may want to know who is the outlier in the plot, having an exceptionally low exposure score. Use `geom_text()` to add the participants' first names to the plot, as shown below. Carefully inspect the arguments for this geom.
 
 ```{r plot_label_show, echo=FALSE, warning=FALSE, message=FALSE}
 # Adaptation: add firstname as label.
@@ -702,11 +585,32 @@ Create this graph yourself.
 </div>
 
 ```{r plot_label, exercise=TRUE, warning=FALSE, message=FALSE}
-
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE,
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
+  geom_text()
 ```
 
 <div id="plot_label-hint">
-__Hint:__ As a starting point, copy the code from a preceding question into the code box. Use the cheat sheet to find the geom.
+__Hint:__ Use help on this geom to get more information about the arguments of this geom.
 </div>
 
 ```{r plot_label-solution}
@@ -727,15 +631,15 @@ ggplot(
     method = "lm",
     se = FALSE,
     ) +
-  geom_text(
-    aes(label = firstname),
-    nudge_y = 0.4,
-    check_overlap = TRUE
-    ) +
   labs(
     title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
+    ) +
+  geom_text(
+    aes(label = firstname),
+    nudge_y = 0.4,
+    check_overlap = TRUE
     )
 ```
 
@@ -769,7 +673,7 @@ ggplot2::ggplot(
     mapping = 
     aes(color = gender),
     method = "lm",
-    se = FALSE,
+    se = FALSE
     ) +
   labs(
     title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
@@ -785,7 +689,28 @@ ggplot2::ggplot(
 ```
 
 ```{r plot_primitives, exercise=TRUE}
-
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
+  geom_segment()
 ```
 
 <div id="plot_primitives-hint">
@@ -808,19 +733,19 @@ ggplot(
     mapping = 
     aes(color = gender),
     method = "lm",
-    se = FALSE,
+    se = FALSE
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
     ) +
   geom_segment(
     x = 1, xend = 1, y = 4, yend = 2,
     arrow = arrow(
       type = "closed"
     )
-  ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    )
+  )
 ```
 
 ```{r plot_primitives-check}
@@ -845,8 +770,9 @@ We will use the following criteria in this course:
 
 If you see a plot (or any other graphic):
 
-* Close your eyes after a few seconds. Try to formulate your first impression of the plot, both in terms of the information it gives (What stands out in the plot?) and the (dis)pleasure it gives you. 
-* Inspect the plot more closely. Where do your eyes go and which information do you collect during the process of looking at the plot.
+* Have a close look at a plot. What does it tell you?
+* When the plot disappears, try to formulate your first impression of the plot, both in terms of the information it gives (What stands out in the plot?) and the (dis)pleasure it gives you. 
+* When the plot reappears, inspect it more closely. Where do your eyes go and which information do you collect during the process of looking at the plot.
 
 <div class="question" >
 Practice with the plots below. Use the checkboxes to show plots, which will first be shown for a few seconds and, a bit later, for a longer time.
@@ -1138,7 +1064,7 @@ p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
   geom_point(aes(size = pop, frame = year, ids = country)) +
   scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
 
-ggplotly(p, tooltip = c("country"))
+ggplotly(p, tooltip = "country")
 ```
 
 ```{r plotly2-check}

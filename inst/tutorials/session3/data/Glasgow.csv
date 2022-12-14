@@ -1,0 +1,481 @@
+student,age,sex,smoking_at_home,smoking_parents,smoking_siblings,wave,alcohol,cannabis,tobacco,money,romantic,friendships
+s009,13.1,girl,yes,yes,no,t2,NA,NA,NA,-1,NA,0
+s009,13.1,girl,yes,yes,no,t3,NA,NA,NA,-1,NA,0
+s017,13.7,girl,yes,yes,yes,t3,NA,NA,NA,-1,NA,0
+s024,13.7,boy,yes,yes,no,t3,NA,NA,NA,-1,NA,0
+s025,13.4,girl,yes,yes,no,t2,NA,NA,NA,-1,NA,0
+s025,13.4,girl,yes,yes,no,t3,NA,NA,NA,-1,NA,0
+s030,13.7,girl,yes,yes,no,t2,NA,NA,NA,-1,NA,0
+s031,13.7,girl,no,no,no,t3,NA,NA,NA,-1,NA,0
+s040,13.7,girl,yes,yes,no,t3,NA,NA,NA,-1,NA,0
+s067,13.1,boy,yes,yes,yes,t3,NA,NA,NA,-1,NA,0
+s094,13.5,boy,no,no,no,t3,NA,NA,NA,-1,NA,0
+s096,13.2,boy,yes,yes,no,t3,NA,NA,NA,-1,NA,0
+s102,13.6,boy,yes,no,no,t2,NA,NA,NA,-1,NA,0
+s102,13.6,boy,yes,no,no,t3,NA,NA,NA,-1,NA,0
+s103,13.4,boy,yes,yes,no,t2,NA,NA,NA,-1,NA,0
+s103,13.4,boy,yes,yes,no,t3,NA,NA,NA,-1,NA,0
+s104,13.7,girl,yes,yes,no,t3,NA,NA,NA,-1,NA,0
+s119,13.5,girl,no,no,no,t3,NA,NA,NA,-1,NA,0
+s124,NA,boy,yes,yes,no,t2,NA,NA,NA,-1,NA,0
+s124,NA,boy,yes,yes,no,t3,NA,NA,NA,-1,NA,0
+s128,14.2,girl,yes,yes,yes,t3,NA,NA,NA,-1,NA,0
+s129,14.6,boy,no,no,no,t3,NA,NA,NA,-1,NA,0
+s133,13.1,girl,no,no,no,t3,NA,NA,NA,-1,NA,0
+s145,13.6,girl,no,no,no,t2,NA,NA,NA,-1,NA,0
+s145,13.6,girl,no,no,no,t3,NA,NA,NA,-1,NA,0
+s153,13.2,boy,yes,no,NA,t1,NA,NA,NA,-1,NA,0
+s154,13.6,girl,no,no,NA,t1,NA,NA,NA,-1,NA,0
+s155,13.1,girl,yes,yes,NA,t1,NA,NA,NA,-1,NA,0
+s155,13.1,girl,yes,yes,NA,t3,NA,NA,NA,-1,NA,0
+s156,12.9,girl,yes,yes,NA,t1,NA,NA,NA,-1,NA,0
+s156,12.9,girl,yes,yes,NA,t3,NA,NA,NA,-1,NA,0
+s158,12.4,girl,no,no,NA,t1,NA,NA,NA,-1,NA,0
+s158,12.4,girl,no,no,NA,t3,NA,NA,NA,-1,NA,0
+s159,13.8,girl,yes,yes,NA,t1,NA,NA,NA,-1,NA,0
+s159,13.8,girl,yes,yes,NA,t2,NA,NA,NA,-1,NA,0
+s160,13.7,girl,no,no,NA,t1,NA,NA,NA,-1,NA,0
+s160,13.7,girl,no,no,NA,t2,NA,NA,NA,-1,NA,0
+s021,13.5,boy,no,no,no,t1,NA,1 none,1 none,-1,no,1
+s053,13.4,boy,yes,yes,no,t2,4 once a week,1 none,1 none,-1,no,1
+s063,13.5,girl,yes,yes,yes,t3,NA,NA,NA,-1,NA,1
+s094,13.5,boy,no,no,no,t2,NA,NA,NA,-1,NA,1
+s104,13.7,girl,yes,yes,no,t2,NA,NA,NA,-1,NA,1
+s133,13.1,girl,no,no,no,t2,NA,NA,NA,-1,NA,1
+s153,13.2,boy,yes,no,NA,t3,NA,NA,NA,-1,NA,1
+s016,13.7,girl,yes,yes,no,t2,NA,NA,NA,-1,NA,2
+s017,13.7,girl,yes,yes,yes,t2,2 once or twice a year,1 none,1 none,-1,yes,2
+s043,12.9,girl,yes,yes,no,t3,4 once a week,2 tried once,2 occasional,-1,yes,2
+s048,12.9,boy,yes,yes,NA,t1,NA,NA,NA,-1,NA,2
+s063,13.5,girl,yes,yes,yes,t2,NA,NA,NA,-1,NA,2
+s136,13.7,boy,yes,yes,NA,t1,NA,NA,NA,-1,NA,2
+s157,13.1,girl,yes,yes,NA,t1,NA,NA,NA,-1,NA,2
+s157,13.1,girl,yes,yes,NA,t3,5 more than once a week,4 regular,3 regular,-1,no,2
+s134,13.1,girl,no,no,no,t1,2 once or twice a year,1 none,1 none,-1,no,4
+s011,13.4,girl,no,no,no,t3,2 once or twice a year,1 none,1 none,-1,no,5
+s059,13.4,girl,yes,yes,no,t1,3 once a month,1 none,1 none,-1,no,8
+s020,13.5,boy,no,no,no,t3,2 once or twice a year,1 none,1 none,0,no,1
+s021,13.5,boy,no,no,no,t3,NA,1 none,1 none,0,no,2
+s020,13.5,boy,no,no,no,t2,2 once or twice a year,1 none,1 none,0,no,3
+s021,13.5,boy,no,no,no,t2,NA,1 none,1 none,0,no,4
+s134,13.1,girl,no,no,no,t2,2 once or twice a year,1 none,1 none,0,no,5
+s011,13.4,girl,no,no,no,t2,3 once a month,1 none,1 none,0,no,6
+s092,13.4,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,0.5,yes,2
+s020,13.5,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,1,no,1
+s090,13.2,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,1,no,2
+s019,13.1,girl,yes,no,yes,t1,4 once a week,3 occasional,3 regular,1,no,3
+s068,13.1,boy,no,no,no,t1,NA,1 none,1 none,1,no,4
+s018,13.6,boy,yes,yes,yes,t1,2 once or twice a year,1 none,1 none,1,no,5
+s017,13.7,girl,yes,yes,yes,t1,3 once a month,1 none,1 none,1.5,no,4
+s145,13.6,girl,no,no,no,t1,2 once or twice a year,1 none,1 none,2,no,1
+s130,13.6,boy,no,no,no,t1,3 once a month,1 none,2 occasional,2,no,2
+s023,13.1,boy,yes,yes,no,t2,NA,1 none,1 none,2,no,3
+s043,12.9,girl,yes,yes,no,t1,2 once or twice a year,1 none,1 none,2,no,3
+s083,13.5,boy,no,no,no,t1,NA,1 none,1 none,2,no,3
+s100,13.6,boy,yes,yes,no,t1,3 once a month,2 tried once,1 none,2.5,no,1
+s009,13.1,girl,yes,yes,no,t1,4 once a week,1 none,1 none,2.5,no,3
+s112,13.5,girl,no,no,no,t1,2 once or twice a year,1 none,1 none,2.5,no,3
+s039,13.7,boy,no,no,no,t1,NA,1 none,1 none,2.5,no,6
+s106,13.8,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,2.5,no,6
+s106,13.8,boy,no,no,no,t2,3 once a month,3 occasional,1 none,2.5,no,6
+s039,13.7,boy,no,no,no,t2,2 once or twice a year,1 none,1 none,2.5,no,7
+s047,14.3,boy,yes,yes,no,t1,1 none,1 none,2 occasional,3,no,1
+s092,13.4,boy,yes,yes,no,t2,NA,1 none,1 none,3,no,2
+s031,13.7,girl,no,no,no,t2,2 once or twice a year,1 none,2 occasional,3,no,3
+s040,13.7,girl,yes,yes,no,t1,3 once a month,1 none,1 none,3,no,3
+s040,13.7,girl,yes,yes,no,t2,3 once a month,1 none,1 none,3,no,3
+s110,13.6,boy,no,no,no,t3,3 once a month,1 none,1 none,3,no,3
+s112,13.5,girl,no,no,no,t2,NA,1 none,1 none,3,no,3
+s005,13.6,boy,no,no,no,t2,3 once a month,1 none,1 none,3,yes,4
+s068,13.1,boy,no,no,no,t3,NA,1 none,1 none,3,no,4
+s099,13.8,girl,yes,yes,no,t2,3 once a month,2 tried once,1 none,3,no,5
+s108,12.8,boy,no,no,no,t3,2 once or twice a year,2 tried once,1 none,3,no,5
+s051,13.4,boy,yes,yes,yes,t1,3 once a month,3 occasional,1 none,3,no,7
+s061,13,boy,yes,yes,no,t1,NA,1 none,1 none,3,yes,7
+s068,13.1,boy,no,no,no,t2,NA,1 none,1 none,3,no,8
+s102,13.6,boy,yes,no,no,t1,4 once a week,2 tried once,3 regular,3.4,yes,0
+s011,13.4,girl,no,no,no,t1,2 once or twice a year,1 none,1 none,3.5,no,1
+s073,12.8,girl,no,no,no,t1,2 once or twice a year,1 none,1 none,3.5,no,1
+s097,13.3,girl,no,no,no,t1,2 once or twice a year,1 none,1 none,3.5,no,2
+s005,13.6,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,3.5,yes,3
+s069,13.4,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,3.5,no,6
+s108,12.8,boy,no,no,no,t2,NA,1 none,1 none,4,no,0
+s055,12.9,girl,yes,yes,no,t2,NA,1 none,1 none,4,yes,1
+s099,13.8,girl,yes,yes,no,t1,3 once a month,2 tried once,1 none,4,yes,3
+s113,12.8,boy,yes,yes,no,t2,3 once a month,2 tried once,3 regular,4,no,4
+s094,13.5,boy,no,no,no,t1,4 once a week,1 none,1 none,4,yes,5
+s113,12.8,boy,yes,yes,no,t1,2 once or twice a year,2 tried once,1 none,4,no,6
+s002,13.3,boy,no,no,no,t1,NA,1 none,1 none,4,no,7
+s088,13.2,girl,yes,yes,no,t1,4 once a week,1 none,1 none,4,yes,7
+s081,13.3,boy,no,no,no,t2,2 once or twice a year,3 occasional,3 regular,4.5,no,1
+s062,13.1,boy,no,no,no,t1,3 once a month,1 none,1 none,4.5,no,2
+s054,13.2,girl,yes,yes,yes,t1,2 once or twice a year,1 none,1 none,5,no,0
+s054,13.2,girl,yes,yes,yes,t3,3 once a month,1 none,1 none,5,no,0
+s110,13.6,boy,no,no,no,t2,3 once a month,1 none,1 none,5,no,0
+s124,NA,boy,yes,yes,no,t1,2 once or twice a year,2 tried once,1 none,5,no,0
+s013,13.6,girl,no,no,no,t3,4 once a week,1 none,3 regular,5,no,1
+s069,13.4,boy,yes,yes,no,t2,2 once or twice a year,3 occasional,1 none,5,no,1
+s081,13.3,boy,no,no,no,t1,2 once or twice a year,3 occasional,2 occasional,5,yes,1
+s082,13,girl,no,no,no,t1,2 once or twice a year,1 none,1 none,5,no,1
+s111,13,boy,yes,yes,no,t2,3 once a month,2 tried once,3 regular,5,yes,1
+s118,13.6,girl,no,no,no,t1,2 once or twice a year,1 none,1 none,5,yes,1
+s157,13.1,girl,yes,yes,NA,t2,4 once a week,3 occasional,3 regular,5,no,1
+s006,13.8,boy,yes,no,yes,t1,3 once a month,3 occasional,3 regular,5,no,2
+s013,13.6,girl,no,no,no,t2,4 once a week,1 none,1 none,5,no,2
+s033,13.5,girl,no,no,no,t2,4 once a week,1 none,2 occasional,5,no,2
+s038,13.5,boy,no,no,no,t1,NA,1 none,1 none,5,no,2
+s085,13.5,boy,yes,yes,no,t2,2 once or twice a year,2 tried once,1 none,5,no,2
+s097,13.3,girl,no,no,no,t2,2 once or twice a year,1 none,1 none,5,no,2
+s109,13,boy,yes,yes,no,t2,3 once a month,2 tried once,1 none,5,yes,2
+s110,13.6,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,5,yes,2
+s111,13,boy,yes,yes,no,t3,4 once a week,4 regular,3 regular,5,yes,2
+s114,13.2,girl,yes,yes,no,t3,4 once a week,3 occasional,1 none,5,yes,2
+s121,13.5,girl,no,no,no,t1,1 none,1 none,1 none,5,no,2
+s127,13.5,girl,yes,yes,no,t1,2 once or twice a year,1 none,1 none,5,yes,2
+s128,14.2,girl,yes,yes,yes,t1,5 more than once a week,4 regular,3 regular,5,yes,2
+s132,13.3,girl,yes,yes,yes,t1,NA,1 none,1 none,5,no,2
+s141,13.2,boy,yes,yes,no,t2,2 once or twice a year,1 none,1 none,5,no,2
+s142,12.9,boy,no,no,no,t2,2 once or twice a year,1 none,1 none,5,no,2
+s001,13.3,girl,no,no,no,t2,1 none,1 none,1 none,5,no,3
+s023,13.1,boy,yes,yes,no,t3,NA,1 none,1 none,5,no,3
+s057,13.7,boy,no,no,no,t1,4 once a week,1 none,2 occasional,5,yes,3
+s070,13.6,girl,yes,yes,no,t1,3 once a month,1 none,1 none,5,no,3
+s077,13.2,boy,yes,yes,no,t3,4 once a week,1 none,1 none,5,no,3
+s118,13.6,girl,no,no,no,t3,3 once a month,NA,1 none,5,no,3
+s139,13.4,girl,no,no,no,t1,2 once or twice a year,1 none,1 none,5,no,3
+s139,13.4,girl,no,no,no,t2,2 once or twice a year,1 none,1 none,5,no,3
+s141,13.2,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,5,no,3
+s143,13.3,girl,yes,yes,no,t2,3 once a month,1 none,1 none,5,no,3
+s146,12.9,boy,no,no,no,t2,4 once a week,2 tried once,1 none,5,no,3
+s147,13.2,girl,no,no,no,t1,1 none,1 none,1 none,5,no,3
+s147,13.2,girl,no,no,no,t2,2 once or twice a year,1 none,1 none,5,no,3
+s147,13.2,girl,no,no,no,t3,3 once a month,1 none,1 none,5,no,3
+s010,12.9,boy,no,no,no,t1,NA,2 tried once,1 none,5,no,4
+s013,13.6,girl,no,no,no,t1,4 once a week,1 none,1 none,5,no,4
+s023,13.1,boy,yes,yes,no,t1,NA,1 none,1 none,5,no,4
+s062,13.1,boy,no,no,no,t2,3 once a month,1 none,1 none,5,no,4
+s080,13.3,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,5,no,4
+s088,13.2,girl,yes,yes,no,t2,4 once a week,1 none,1 none,5,yes,4
+s113,12.8,boy,yes,yes,no,t3,4 once a week,3 occasional,1 none,5,no,4
+s123,13.2,girl,no,no,no,t2,3 once a month,1 none,1 none,5,no,4
+s146,12.9,boy,no,no,no,t1,5 more than once a week,1 none,1 none,5,yes,4
+s007,13.5,girl,yes,yes,no,t1,2 once or twice a year,1 none,1 none,5,no,5
+s007,13.5,girl,yes,yes,no,t2,3 once a month,1 none,1 none,5,no,5
+s007,13.5,girl,yes,yes,no,t3,3 once a month,1 none,1 none,5,no,5
+s038,13.5,boy,no,no,no,t2,NA,1 none,1 none,5,no,5
+s069,13.4,boy,yes,yes,no,t3,3 once a month,3 occasional,1 none,5,yes,5
+s101,13.4,boy,yes,yes,yes,t1,2 once or twice a year,2 tried once,1 none,5,no,5
+s073,12.8,girl,no,no,no,t3,3 once a month,1 none,1 none,5,yes,6
+s083,13.5,boy,no,no,no,t2,NA,1 none,1 none,5,no,6
+s118,13.6,girl,no,no,no,t2,2 once or twice a year,1 none,1 none,5,no,6
+s146,12.9,boy,no,no,no,t3,3 once a month,2 tried once,1 none,5,yes,6
+s149,13.5,boy,yes,yes,no,t1,1 none,2 tried once,1 none,5,no,6
+s002,13.3,boy,no,no,no,t2,NA,1 none,1 none,5,no,7
+s083,13.5,boy,no,no,no,t3,NA,1 none,1 none,5,no,7
+s091,13,boy,yes,yes,no,t3,2 once or twice a year,1 none,1 none,5,no,7
+s106,13.8,boy,no,no,no,t3,4 once a week,3 occasional,3 regular,5,no,7
+s151,13.4,boy,yes,yes,yes,t1,3 once a month,1 none,1 none,5,no,7
+s085,13.5,boy,yes,yes,no,t3,4 once a week,2 tried once,1 none,5,no,8
+s004,12.9,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,5,no,9
+s004,12.9,boy,no,no,no,t2,2 once or twice a year,1 none,1 none,5,no,10
+s044,13.6,boy,no,no,no,t1,3 once a month,3 occasional,1 none,5,no,10
+s044,13.6,boy,no,no,no,t2,3 once a month,2 tried once,1 none,5,no,11
+s055,12.9,girl,yes,yes,no,t1,NA,1 none,1 none,5.5,no,2
+s150,13.4,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,5.5,no,3
+s092,13.4,boy,yes,yes,no,t3,2 once or twice a year,1 none,1 none,5.5,no,4
+s073,12.8,girl,no,no,no,t2,2 once or twice a year,1 none,2 occasional,5.7,no,2
+s108,12.8,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,5.75,no,2
+s105,12.9,girl,yes,yes,no,t2,2 once or twice a year,1 none,1 none,6,no,1
+s033,13.5,girl,no,no,no,t1,3 once a month,1 none,1 none,6,no,2
+s035,13.2,boy,no,no,no,t3,2 once or twice a year,2 tried once,1 none,6,no,2
+s122,13.7,boy,yes,yes,no,t2,2 once or twice a year,1 none,1 none,6,no,2
+s105,12.9,girl,yes,yes,no,t1,2 once or twice a year,1 none,1 none,6,no,4
+s140,13,boy,yes,yes,yes,t1,2 once or twice a year,1 none,1 none,6,no,4
+s095,13,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,6,no,5
+s012,13,girl,no,no,no,t1,3 once a month,1 none,1 none,6,no,6
+s120,13,boy,yes,yes,no,t1,NA,1 none,1 none,6,no,7
+s067,13.1,boy,yes,yes,yes,t1,4 once a week,2 tried once,1 none,6,yes,8
+s056,13.2,girl,yes,yes,no,t1,1 none,1 none,1 none,6,yes,10
+s001,13.3,girl,no,no,no,t1,3 once a month,1 none,2 occasional,6.2,no,2
+s109,13,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,6.5,yes,3
+s122,13.7,boy,yes,yes,no,t1,4 once a week,2 tried once,1 none,6.5,yes,3
+s070,13.6,girl,yes,yes,no,t2,4 once a week,1 none,1 none,6.75,no,1
+s026,13.5,girl,yes,yes,no,t3,2 once or twice a year,1 none,1 none,7,no,1
+s105,12.9,girl,yes,yes,no,t3,4 once a week,1 none,1 none,7,no,3
+s012,13,girl,no,no,no,t2,3 once a month,2 tried once,1 none,7,yes,4
+s018,13.6,boy,yes,yes,yes,t3,2 once or twice a year,1 none,1 none,7,no,4
+s036,13.3,boy,no,no,no,t1,3 once a month,2 tried once,1 none,7,no,4
+s057,13.7,boy,no,no,no,t2,4 once a week,1 none,3 regular,7,no,4
+s095,13,boy,yes,yes,no,t2,2 once or twice a year,1 none,1 none,7,no,4
+s026,13.5,girl,yes,yes,no,t1,2 once or twice a year,1 none,1 none,7,yes,5
+s037,13.8,boy,no,no,no,t1,NA,1 none,1 none,7,no,5
+s107,13.2,girl,yes,yes,no,t3,4 once a week,3 occasional,3 regular,7,no,5
+s044,13.6,boy,no,no,no,t3,5 more than once a week,3 occasional,3 regular,7,yes,6
+s051,13.4,boy,yes,yes,yes,t3,3 once a month,4 regular,1 none,7,no,6
+s004,12.9,boy,no,no,no,t3,3 once a month,1 none,1 none,7,no,7
+s091,13,boy,yes,yes,no,t2,NA,1 none,1 none,7,no,7
+s015,12.9,girl,yes,yes,no,t1,2 once or twice a year,1 none,1 none,7,yes,8
+s061,13,boy,yes,yes,no,t2,NA,1 none,1 none,7,yes,9
+s047,14.3,boy,yes,yes,no,t3,4 once a week,2 tried once,3 regular,7.5,no,0
+s041,13,girl,yes,yes,no,t2,5 more than once a week,3 occasional,3 regular,7.5,yes,3
+s045,13.8,girl,no,no,no,t1,3 once a month,3 occasional,3 regular,7.5,yes,3
+s132,13.3,girl,yes,yes,yes,t2,NA,1 none,1 none,7.5,no,3
+s041,13,girl,yes,yes,no,t1,4 once a week,2 tried once,2 occasional,7.5,yes,4
+s066,13.1,girl,yes,yes,no,t1,3 once a month,1 none,1 none,7.5,no,4
+s076,12.9,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,7.5,no,4
+s091,13,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,7.5,yes,4
+s121,13.5,girl,no,no,no,t2,NA,1 none,1 none,7.5,no,5
+s039,13.7,boy,no,no,no,t3,2 once or twice a year,1 none,1 none,7.5,no,6
+s049,13.1,boy,yes,yes,no,t1,3 once a month,1 none,1 none,7.5,no,7
+s006,13.8,boy,yes,no,yes,t2,2 once or twice a year,3 occasional,3 regular,8,no,0
+s097,13.3,girl,no,no,no,t3,2 once or twice a year,1 none,1 none,8,no,0
+s010,12.9,boy,no,no,no,t2,3 once a month,2 tried once,1 none,8,no,1
+s003,13.7,girl,yes,yes,no,t1,2 once or twice a year,2 tried once,3 regular,8,yes,2
+s132,13.3,girl,yes,yes,yes,t3,2 once or twice a year,1 none,1 none,8,no,2
+s056,13.2,girl,yes,yes,no,t2,1 none,1 none,1 none,8,yes,4
+s043,12.9,girl,yes,yes,no,t2,4 once a week,1 none,2 occasional,8,yes,5
+s117,13.7,boy,yes,yes,no,t2,2 once or twice a year,2 tried once,1 none,8,no,5
+s127,13.5,girl,yes,yes,no,t2,2 once or twice a year,1 none,1 none,8,no,6
+s028,13.5,girl,yes,yes,no,t1,5 more than once a week,2 tried once,3 regular,8,yes,12
+s130,13.6,boy,no,no,no,t2,2 once or twice a year,1 none,1 none,8.08,no,3
+s026,13.5,girl,yes,yes,no,t2,NA,1 none,1 none,8.5,no,3
+s137,13.4,boy,no,no,no,t2,NA,1 none,1 none,8.5,no,5
+s008,13.4,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,8.5,yes,7
+s045,13.8,girl,no,no,no,t2,3 once a month,3 occasional,3 regular,9.5,no,4
+s014,13.5,boy,yes,yes,no,t2,3 once a month,2 tried once,1 none,10,no,0
+s030,13.7,girl,yes,yes,no,t3,2 once or twice a year,3 occasional,1 none,10,yes,0
+s047,14.3,boy,yes,yes,no,t2,1 none,3 occasional,3 regular,10,yes,0
+s054,13.2,girl,yes,yes,yes,t2,3 once a month,1 none,1 none,10,yes,0
+s159,13.8,girl,yes,yes,NA,t3,5 more than once a week,2 tried once,1 none,10,no,0
+s014,13.5,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,10,no,1
+s018,13.6,boy,yes,yes,yes,t2,NA,1 none,1 none,10,no,1
+s019,13.1,girl,yes,no,yes,t2,5 more than once a week,2 tried once,3 regular,10,no,1
+s030,13.7,girl,yes,yes,no,t1,3 once a month,3 occasional,1 none,10,yes,1
+s064,13.2,girl,yes,yes,yes,t2,4 once a week,3 occasional,3 regular,10,yes,1
+s081,13.3,boy,no,no,no,t3,4 once a week,4 regular,3 regular,10,yes,1
+s100,13.6,boy,yes,yes,no,t2,2 once or twice a year,1 none,1 none,10,no,1
+s128,14.2,girl,yes,yes,yes,t2,5 more than once a week,3 occasional,3 regular,10,no,1
+s135,12.9,girl,yes,yes,no,t2,2 once or twice a year,1 none,1 none,10,no,1
+s135,12.9,girl,yes,yes,no,t3,3 once a month,1 none,1 none,10,NA,1
+s141,13.2,boy,yes,yes,no,t3,2 once or twice a year,1 none,1 none,10,no,1
+s142,12.9,boy,no,no,no,t3,4 once a week,2 tried once,1 none,10,no,1
+s152,13,girl,yes,yes,no,t1,1 none,2 tried once,1 none,10,no,1
+s153,13.2,boy,yes,no,NA,t2,5 more than once a week,4 regular,1 none,10,no,1
+s010,12.9,boy,no,no,no,t3,3 once a month,3 occasional,1 none,10,no,2
+s028,13.5,girl,yes,yes,no,t2,5 more than once a week,2 tried once,2 occasional,10,no,2
+s053,13.4,boy,yes,yes,no,t3,3 once a month,1 none,1 none,10,no,2
+s070,13.6,girl,yes,yes,no,t3,4 once a week,1 none,1 none,10,no,2
+s075,13.1,boy,no,no,no,t2,5 more than once a week,3 occasional,3 regular,10,no,2
+s080,13.3,boy,no,no,no,t2,3 once a month,1 none,3 regular,10,no,2
+s084,12.9,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,10,no,2
+s086,13.6,girl,yes,yes,no,t2,3 once a month,2 tried once,1 none,10,no,2
+s107,13.2,girl,yes,yes,no,t1,4 once a week,1 none,1 none,10,no,2
+s109,13,boy,yes,yes,no,t3,4 once a week,3 occasional,3 regular,10,yes,2
+s119,13.5,girl,no,no,no,t1,1 none,1 none,1 none,10,yes,2
+s152,13,girl,yes,yes,no,t2,2 once or twice a year,2 tried once,3 regular,10,no,2
+s152,13,girl,yes,yes,no,t3,3 once a month,3 occasional,3 regular,10,no,2
+s005,13.6,boy,no,no,no,t3,3 once a month,1 none,1 none,10,no,3
+s032,13,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,10,no,3
+s033,13.5,girl,no,no,no,t3,3 once a month,1 none,3 regular,10,no,3
+s035,13.2,boy,no,no,no,t2,3 once a month,2 tried once,1 none,10,no,3
+s048,12.9,boy,yes,yes,NA,t3,3 once a month,2 tried once,1 none,10,no,3
+s050,13.3,boy,yes,yes,no,t2,4 once a week,1 none,1 none,10,no,3
+s060,13.4,boy,no,no,no,t2,3 once a month,1 none,1 none,10,no,3
+s063,13.5,girl,yes,yes,yes,t1,4 once a week,3 occasional,2 occasional,10,yes,3
+s084,12.9,boy,no,no,no,t2,NA,1 none,1 none,10,no,3
+s085,13.5,boy,yes,yes,no,t1,2 once or twice a year,2 tried once,1 none,10,no,3
+s086,13.6,girl,yes,yes,no,t3,3 once a month,1 none,1 none,10,no,3
+s088,13.2,girl,yes,yes,no,t3,4 once a week,1 none,1 none,10,no,3
+s107,13.2,girl,yes,yes,no,t2,4 once a week,1 none,1 none,10,no,3
+s114,13.2,girl,yes,yes,no,t2,3 once a month,1 none,1 none,10,yes,3
+s116,13,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,10,no,3
+s129,14.6,boy,no,no,no,t1,4 once a week,3 occasional,1 none,10,no,3
+s129,14.6,boy,no,no,no,t2,4 once a week,2 tried once,1 none,10,yes,3
+s135,12.9,girl,yes,yes,no,t1,3 once a month,1 none,1 none,10,no,3
+s032,13,boy,yes,yes,no,t3,3 once a month,3 occasional,1 none,10,no,4
+s048,12.9,boy,yes,yes,NA,t2,NA,1 none,1 none,10,no,4
+s050,13.3,boy,yes,yes,no,t1,NA,1 none,1 none,10,no,4
+s052,13.8,girl,no,no,no,t1,3 once a month,1 none,1 none,10,no,4
+s056,13.2,girl,yes,yes,no,t3,3 once a month,1 none,1 none,10,no,4
+s059,13.4,girl,yes,yes,no,t2,2 once or twice a year,1 none,1 none,10,no,4
+s061,13,boy,yes,yes,no,t3,4 once a week,1 none,1 none,10,yes,4
+s066,13.1,girl,yes,yes,no,t2,3 once a month,1 none,1 none,10,no,4
+s072,13.6,girl,yes,no,yes,t1,4 once a week,3 occasional,3 regular,10,yes,4
+s082,13,girl,no,no,no,t2,2 once or twice a year,1 none,1 none,10,no,4
+s082,13,girl,no,no,no,t3,4 once a week,1 none,1 none,10,yes,4
+s086,13.6,girl,yes,yes,no,t1,3 once a month,2 tried once,1 none,10,no,4
+s103,13.4,boy,yes,yes,no,t1,3 once a month,1 none,1 none,10,yes,4
+s114,13.2,girl,yes,yes,no,t1,3 once a month,1 none,1 none,10,yes,4
+s122,13.7,boy,yes,yes,no,t3,4 once a week,2 tried once,1 none,10,no,4
+s148,13.4,boy,yes,yes,yes,t2,4 once a week,1 none,1 none,10,no,4
+s031,13.7,girl,no,no,no,t1,1 none,1 none,1 none,10,yes,5
+s062,13.1,boy,no,no,no,t3,4 once a week,3 occasional,1 none,10,no,5
+s071,13.1,boy,no,no,no,t1,4 once a week,3 occasional,1 none,10,yes,5
+s075,13.1,boy,no,no,no,t1,2 once or twice a year,2 tried once,1 none,10,no,5
+s087,13.7,girl,yes,no,yes,t3,4 once a week,3 occasional,3 regular,10,no,5
+s116,13,boy,yes,yes,no,t2,2 once or twice a year,1 none,1 none,10,no,5
+s127,13.5,girl,yes,yes,no,t3,4 once a week,2 tried once,1 none,10,yes,5
+s139,13.4,girl,no,no,no,t3,2 once or twice a year,1 none,1 none,10,no,5
+s140,13,boy,yes,yes,yes,t2,4 once a week,1 none,1 none,10,no,5
+s148,13.4,boy,yes,yes,yes,t1,2 once or twice a year,1 none,1 none,10,no,5
+s016,13.7,girl,yes,yes,no,t1,4 once a week,3 occasional,1 none,10,yes,6
+s035,13.2,boy,no,no,no,t1,2 once or twice a year,2 tried once,1 none,10,no,6
+s046,13.7,girl,yes,no,yes,t1,4 once a week,1 none,1 none,10,yes,6
+s117,13.7,boy,yes,yes,no,t3,3 once a month,2 tried once,1 none,10,no,6
+s150,13.4,boy,yes,yes,no,t2,3 once a month,1 none,1 none,10,no,6
+s015,12.9,girl,yes,yes,no,t2,3 once a month,1 none,2 occasional,10,yes,7
+s049,13.1,boy,yes,yes,no,t2,4 once a week,1 none,1 none,10,no,7
+s052,13.8,girl,no,no,no,t2,5 more than once a week,3 occasional,3 regular,10,no,7
+s065,13.6,girl,yes,yes,yes,t2,5 more than once a week,3 occasional,3 regular,10,yes,7
+s074,13.7,boy,no,no,no,t1,3 once a month,3 occasional,1 none,10,no,7
+s087,13.7,girl,yes,no,yes,t2,3 once a month,1 none,1 none,10,no,7
+s095,13,boy,yes,yes,no,t3,2 once or twice a year,1 none,1 none,10,no,7
+s089,13.1,girl,no,no,no,t1,4 once a week,1 none,1 none,10,no,8
+s104,13.7,girl,yes,yes,no,t1,3 once a month,1 none,1 none,10,yes,8
+s096,13.2,boy,yes,yes,no,t1,3 once a month,1 none,1 none,10.5,no,0
+s096,13.2,boy,yes,yes,no,t2,3 once a month,1 none,3 regular,10.5,yes,0
+s144,12.9,boy,yes,no,yes,t3,5 more than once a week,3 occasional,3 regular,10.5,yes,1
+s119,13.5,girl,no,no,no,t2,NA,1 none,1 none,10.5,no,2
+s041,13,girl,yes,yes,no,t3,4 once a week,2 tried once,3 regular,10.5,yes,3
+s060,13.4,boy,no,no,no,t1,3 once a month,2 tried once,1 none,10.5,yes,3
+s138,12.9,boy,yes,yes,no,t1,2 once or twice a year,1 none,1 none,10.5,no,5
+s008,13.4,boy,no,no,no,t2,2 once or twice a year,1 none,1 none,10.5,no,7
+s072,13.6,girl,yes,no,yes,t2,4 once a week,3 occasional,3 regular,10.5,yes,7
+s142,12.9,boy,no,no,no,t1,3 once a month,1 none,1 none,11,yes,2
+s008,13.4,boy,no,no,no,t3,2 once or twice a year,1 none,1 none,11,no,7
+s001,13.3,girl,no,no,no,t3,3 once a month,1 none,1 none,12,yes,3
+s117,13.7,boy,yes,yes,no,t1,3 once a month,1 none,1 none,12,no,3
+s015,12.9,girl,yes,yes,no,t3,3 once a month,2 tried once,3 regular,12,yes,4
+s002,13.3,boy,no,no,no,t3,NA,1 none,1 none,12,no,5
+s057,13.7,boy,no,no,no,t3,3 once a month,3 occasional,1 none,12,no,7
+s036,13.3,boy,no,no,no,t2,3 once a month,3 occasional,1 none,12,no,8
+s024,13.7,boy,yes,yes,no,t2,3 once a month,1 none,1 none,12.5,no,0
+s137,13.4,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,12.5,no,1
+s137,13.4,boy,no,no,no,t3,3 once a month,1 none,1 none,12.5,no,1
+s053,13.4,boy,yes,yes,no,t1,3 once a month,1 none,1 none,12.5,no,2
+s125,12.9,girl,yes,yes,no,t1,NA,1 none,1 none,12.5,yes,2
+s022,13.1,boy,no,no,no,t1,NA,1 none,1 none,12.5,no,3
+s076,12.9,boy,yes,yes,no,t3,3 once a month,2 tried once,1 none,12.5,no,5
+s143,13.3,girl,yes,yes,no,t1,2 once or twice a year,1 none,1 none,13,no,2
+s075,13.1,boy,no,no,no,t3,3 once a month,4 regular,3 regular,13,no,5
+s058,13.2,boy,yes,no,no,t1,4 once a week,2 tried once,1 none,13.5,yes,10
+s130,13.6,boy,no,no,no,t3,2 once or twice a year,1 none,1 none,15,no,0
+s042,13.8,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,15,no,1
+s138,12.9,boy,yes,yes,no,t2,2 once or twice a year,1 none,1 none,15,no,1
+s160,13.7,girl,no,no,NA,t3,2 once or twice a year,2 tried once,3 regular,15,no,1
+s024,13.7,boy,yes,yes,no,t1,3 once a month,1 none,1 none,15,no,2
+s099,13.8,girl,yes,yes,no,t3,4 once a week,3 occasional,1 none,15,yes,2
+s022,13.1,boy,no,no,no,t2,2 once or twice a year,1 none,1 none,15,no,3
+s112,13.5,girl,no,no,no,t3,3 once a month,1 none,1 none,15,no,3
+s143,13.3,girl,yes,yes,no,t3,4 once a week,1 none,1 none,15,no,3
+s038,13.5,boy,no,no,no,t3,2 once or twice a year,1 none,1 none,15,no,4
+s064,13.2,girl,yes,yes,yes,t1,4 once a week,4 regular,3 regular,15,yes,4
+s065,13.6,girl,yes,yes,yes,t3,3 once a month,4 regular,3 regular,15,yes,4
+s066,13.1,girl,yes,yes,no,t3,3 once a month,2 tried once,1 none,15,no,5
+s032,13,boy,yes,yes,no,t2,3 once a month,1 none,1 none,15,no,6
+s074,13.7,boy,no,no,no,t2,4 once a week,4 regular,3 regular,15,no,6
+s115,13.5,girl,yes,yes,no,t2,4 once a week,1 none,1 none,15,no,6
+s148,13.4,boy,yes,yes,yes,t3,2 once or twice a year,1 none,1 none,15,no,6
+s120,13,boy,yes,yes,no,t2,NA,1 none,1 none,15,no,7
+s050,13.3,boy,yes,yes,no,t3,4 once a week,3 occasional,1 none,15,no,8
+s058,13.2,boy,yes,no,no,t2,3 once a month,2 tried once,1 none,15,yes,9
+s126,13.7,girl,no,no,no,t1,4 once a week,3 occasional,3 regular,15.5,no,4
+s055,12.9,girl,yes,yes,no,t3,1 none,1 none,1 none,15.53,yes,1
+s034,13.6,girl,yes,yes,no,t1,4 once a week,1 none,2 occasional,16,no,3
+s121,13.5,girl,no,no,no,t3,NA,1 none,1 none,16,yes,7
+s125,12.9,girl,yes,yes,no,t2,NA,1 none,1 none,16.5,no,3
+s158,12.4,girl,no,no,NA,t2,2 once or twice a year,1 none,1 none,17,yes,0
+s003,13.7,girl,yes,yes,no,t3,2 once or twice a year,3 occasional,3 regular,17,yes,2
+s078,13.7,boy,yes,yes,no,t2,1 none,2 tried once,1 none,17,yes,3
+s037,13.8,boy,no,no,no,t2,2 once or twice a year,1 none,1 none,17,no,4
+s071,13.1,boy,no,no,no,t3,5 more than once a week,2 tried once,1 none,17.5,no,1
+s090,13.2,boy,no,no,no,t3,2 once or twice a year,2 tried once,1 none,18,no,0
+s029,13.6,girl,yes,yes,yes,t1,5 more than once a week,3 occasional,3 regular,20,no,0
+s046,13.7,girl,yes,no,yes,t2,3 once a month,1 none,3 regular,20,yes,0
+s116,13,boy,yes,yes,no,t3,NA,1 none,1 none,20,no,0
+s019,13.1,girl,yes,no,yes,t3,4 once a week,3 occasional,3 regular,20,no,1
+s042,13.8,boy,no,no,no,t2,2 once or twice a year,1 none,1 none,20,no,1
+s131,12.9,girl,yes,yes,no,t2,5 more than once a week,3 occasional,1 none,20,yes,1
+s079,13.7,boy,no,no,no,t3,4 once a week,2 tried once,1 none,20,yes,2
+s140,13,boy,yes,yes,yes,t3,4 once a week,2 tried once,1 none,20,no,2
+s012,13,girl,no,no,no,t3,4 once a week,3 occasional,1 none,20,no,3
+s045,13.8,girl,no,no,no,t3,4 once a week,3 occasional,2 occasional,20,no,3
+s093,13,girl,yes,yes,no,t2,4 once a week,1 none,1 none,20,no,3
+s123,13.2,girl,no,no,no,t1,4 once a week,1 none,2 occasional,20,no,3
+s125,12.9,girl,yes,yes,no,t3,2 once or twice a year,1 none,1 none,20,no,3
+s131,12.9,girl,yes,yes,no,t3,5 more than once a week,3 occasional,1 none,20,yes,3
+s144,12.9,boy,yes,no,yes,t2,5 more than once a week,3 occasional,3 regular,20,no,3
+s016,13.7,girl,yes,yes,no,t3,3 once a month,2 tried once,3 regular,20,yes,4
+s025,13.4,girl,yes,yes,no,t1,3 once a month,1 none,1 none,20,no,4
+s027,13.1,girl,no,no,no,t2,5 more than once a week,1 none,2 occasional,20,no,4
+s060,13.4,boy,no,no,no,t3,3 once a month,2 tried once,1 none,20,no,4
+s072,13.6,girl,yes,no,yes,t3,3 once a month,3 occasional,3 regular,20,yes,4
+s022,13.1,boy,no,no,no,t3,2 once or twice a year,1 none,1 none,20,no,5
+s071,13.1,boy,no,no,no,t2,4 once a week,2 tried once,1 none,20,no,5
+s087,13.7,girl,yes,no,yes,t1,1 none,1 none,1 none,20,no,5
+s133,13.1,girl,no,no,no,t1,4 once a week,2 tried once,1 none,20,yes,5
+s136,13.7,boy,yes,yes,NA,t3,5 more than once a week,2 tried once,1 none,20,yes,5
+s115,13.5,girl,yes,yes,no,t3,4 once a week,3 occasional,3 regular,20,no,6
+s089,13.1,girl,no,no,no,t2,2 once or twice a year,1 none,1 none,20,no,7
+s131,12.9,girl,yes,yes,no,t1,5 more than once a week,3 occasional,2 occasional,20,no,7
+s155,13.1,girl,yes,yes,NA,t2,3 once a month,4 regular,3 regular,20,yes,7
+s049,13.1,boy,yes,yes,no,t3,4 once a week,3 occasional,2 occasional,20,no,10
+s065,13.6,girl,yes,yes,yes,t1,4 once a week,3 occasional,2 occasional,20,no,11
+s080,13.3,boy,no,no,no,t3,2 once or twice a year,4 regular,3 regular,20.01,yes,2
+s076,12.9,boy,yes,yes,no,t2,3 once a month,1 none,1 none,20.5,no,3
+s077,13.2,boy,yes,yes,no,t1,4 once a week,1 none,1 none,21,no,2
+s090,13.2,boy,no,no,no,t2,2 once or twice a year,1 none,1 none,22.5,no,0
+s037,13.8,boy,no,no,no,t3,3 once a month,1 none,1 none,22.5,no,5
+s003,13.7,girl,yes,yes,no,t2,2 once or twice a year,3 occasional,3 regular,25,yes,0
+s029,13.6,girl,yes,yes,yes,t2,5 more than once a week,3 occasional,2 occasional,25,yes,0
+s046,13.7,girl,yes,no,yes,t3,3 once a month,2 tried once,1 none,25,yes,0
+s136,13.7,boy,yes,yes,NA,t2,2 once or twice a year,1 none,1 none,25,no,1
+s078,13.7,boy,yes,yes,no,t3,3 once a month,2 tried once,1 none,25,yes,3
+s079,13.7,boy,no,no,no,t1,2 once or twice a year,1 none,1 none,25,no,3
+s144,12.9,boy,yes,no,yes,t1,5 more than once a week,4 regular,3 regular,25,yes,3
+s027,13.1,girl,no,no,no,t3,4 once a week,1 none,2 occasional,25,yes,4
+s034,13.6,girl,yes,yes,no,t2,4 once a week,2 tried once,2 occasional,25,no,4
+s098,13.5,boy,no,no,no,t1,4 once a week,3 occasional,1 none,25,no,4
+s149,13.5,boy,yes,yes,no,t2,3 once a month,3 occasional,1 none,25,no,4
+s034,13.6,girl,yes,yes,no,t3,5 more than once a week,3 occasional,3 regular,25,no,5
+s126,13.7,girl,no,no,no,t2,5 more than once a week,3 occasional,3 regular,25,yes,5
+s138,12.9,boy,yes,yes,no,t3,2 once or twice a year,1 none,1 none,25,yes,5
+s036,13.3,boy,no,no,no,t3,4 once a week,3 occasional,1 none,25,no,6
+s058,13.2,boy,yes,no,no,t3,5 more than once a week,3 occasional,1 none,25,no,6
+s098,13.5,boy,no,no,no,t2,4 once a week,3 occasional,1 none,25,no,6
+s151,13.4,boy,yes,yes,yes,t3,3 once a month,1 none,1 none,25,no,7
+s151,13.4,boy,yes,yes,yes,t2,3 once a month,2 tried once,1 none,25,no,8
+s079,13.7,boy,no,no,no,t2,4 once a week,1 none,1 none,25.5,no,2
+s027,13.1,girl,no,no,no,t1,4 once a week,1 none,1 none,27,no,4
+s014,13.5,boy,yes,yes,no,t3,2 once or twice a year,1 none,1 none,30,no,1
+s064,13.2,girl,yes,yes,yes,t3,2 once or twice a year,3 occasional,3 regular,30,no,1
+s154,13.6,girl,no,no,NA,t2,3 once a month,2 tried once,1 none,30,yes,1
+s154,13.6,girl,no,no,NA,t3,2 once or twice a year,3 occasional,1 none,30,yes,1
+s029,13.6,girl,yes,yes,yes,t3,5 more than once a week,3 occasional,3 regular,30,yes,2
+s006,13.8,boy,yes,no,yes,t3,5 more than once a week,4 regular,3 regular,30,no,3
+s093,13,girl,yes,yes,no,t1,3 once a month,1 none,1 none,30,yes,3
+s101,13.4,boy,yes,yes,yes,t2,2 once or twice a year,2 tried once,1 none,30,yes,3
+s150,13.4,boy,yes,yes,no,t3,4 once a week,3 occasional,1 none,30,yes,3
+s126,13.7,girl,no,no,no,t3,5 more than once a week,3 occasional,3 regular,30,no,4
+s089,13.1,girl,no,no,no,t3,4 once a week,1 none,1 none,30,no,5
+s067,13.1,boy,yes,yes,yes,t2,3 once a month,3 occasional,1 none,30,no,6
+s078,13.7,boy,yes,yes,no,t1,1 none,2 tried once,1 none,30,no,7
+s093,13,girl,yes,yes,no,t3,3 once a month,1 none,3 regular,30,yes,7
+s074,13.7,boy,no,no,no,t3,4 once a week,4 regular,3 regular,30,no,8
+s115,13.5,girl,yes,yes,no,t1,4 once a week,1 none,1 none,30,yes,10
+s123,13.2,girl,no,no,no,t3,4 once a week,3 occasional,3 regular,30.35,yes,4
+s156,12.9,girl,yes,yes,NA,t2,1 none,1 none,1 none,35,no,2
+s098,13.5,boy,no,no,no,t3,4 once a week,3 occasional,2 occasional,35,yes,3
+s052,13.8,girl,no,no,no,t3,5 more than once a week,3 occasional,3 regular,35,yes,4
+s101,13.4,boy,yes,yes,yes,t3,3 once a month,4 regular,2 occasional,35,no,6
+s042,13.8,boy,no,no,no,t3,4 once a week,4 regular,1 none,40,no,3
+s077,13.2,boy,yes,yes,no,t2,4 once a week,1 none,1 none,40,no,3
+s084,12.9,boy,no,no,no,t3,2 once or twice a year,1 none,1 none,40,yes,3
+s028,13.5,girl,yes,yes,no,t3,5 more than once a week,2 tried once,1 none,40,no,4
+s111,13,boy,yes,yes,no,t1,3 once a month,1 none,1 none,40,yes,4
+s149,13.5,boy,yes,yes,no,t3,3 once a month,3 occasional,1 none,40,no,4
+s051,13.4,boy,yes,yes,yes,t2,3 once a month,3 occasional,1 none,50,no,3
+s100,13.6,boy,yes,yes,no,t3,4 once a week,2 tried once,1 none,50,no,3
+s120,13,boy,yes,yes,no,t3,NA,1 none,1 none,70,no,7
+s059,13.4,girl,yes,yes,no,t3,3 once a month,1 none,1 none,99.99,no,2
+s134,13.1,girl,no,no,no,t3,2 once or twice a year,1 none,1 none,99.99,no,7

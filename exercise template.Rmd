@@ -54,7 +54,7 @@ __Programming Tip__
 <div class="question" >
 </div>
 
-```{r exerciselabel, exercise = TRUE}
+```{r exerciselabel, exercise = TRUE, exercise.lines = 8}
 
 ```
 
