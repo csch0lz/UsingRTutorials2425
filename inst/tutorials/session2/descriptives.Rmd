@@ -124,7 +124,9 @@ data.frame(
 
 Or, visually:
 
-![](images/mainwrangling.png)
+```{r, out.width="50%"}
+knitr::include_graphics("images/mainwrangling.png")
+```
 
 ### 
 
