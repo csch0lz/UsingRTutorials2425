@@ -1,7 +1,7 @@
 Package: UsingRTutorials
 Type: Package
 Title: Provides learnr Tutorials for a Using R Course
-Version: 0.2.1
+Version: 0.2.2
 Author: Wouter de Nooy [aut, cre]
 Date: 2020-07-07
 Maintainer: Wouter de Nooy <w.denooy@uva.nl>
