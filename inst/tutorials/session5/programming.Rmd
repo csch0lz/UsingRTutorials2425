@@ -29,9 +29,9 @@ flights4 <- UsingRTutorials::flights4
 result_t <- flights4 %>% t.test(arr_delay0 ~ origin, data = ., na.action = "na.omit")
 # Ensure that the final function report_ttest() is available in the tutorial.
 report_ttest <- function(result_t) { 
-  if (is.null(result_t) || class(result_t) != "htest") { 
-    return("#### Input is not a result of t.test()! ######") 
-  } else { 
+  # if (is.null(result_t) || class(result_t) != "htest") { 
+  #   return("#### Input is not a result of t.test()! ######") 
+  # } else { 
       paste0("*t* (", format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
              format(round(result_t$statistic, digits = 2), nsmall = 2), ", *p* ", 
              ifelse(result_t$p.value >= 0.0005, 
@@ -39,7 +39,7 @@ report_ttest <- function(result_t) {
                     "< 0.001"), 
              ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2), 
              ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]") 
-  } 
+  # } 
 }
 ```
 
@@ -610,8 +610,9 @@ __Hint:__ Carefully compare the results. Note that `result_t` is present in the 
 What is the input for the dots in the last line of code and what does the function do with this input?
 </div>
 
-```{r APA3dotdotdot, exercise = TRUE, exercise.lines = 10}
+```{r APA3dotdotdot, exercise = TRUE, exercise.lines = 11}
 report_ttest <- function(x, ...) {
+  print(paste(...))
   paste0("*t* (", format(round(x$parameter, digits = 2), nsmall = 2), ") = ",
     format(round(x$statistic, digits = 2), nsmall = 2), ", *p* ", 
     ifelse(x$p.value >= 0.0005, 
@@ -646,7 +647,7 @@ report_ttest(result_t, digits = 5)
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="APA3-hint">
-__Hint:__ The name of the new argument must be used within the function everywhere the number of digits should follow the choice of the programmer.
+__Hint:__ The name of the new argument must be used within the function everywhere the number of digits should follow the choice of the user.
 </div>
 
 ```{r APA3-solution}
@@ -674,13 +675,13 @@ Inline code:
 -   R results displayed within text for report reader. 
 -   Calculated during document knitting: always up-to-date.
 
-Example R Markdown code:
+Example R Markdown text with inline code:
 
 ```{r, eval=FALSE, echo=TRUE}
 There is a statistically significant difference in average delay between the two airports, `r report_ttest(result_t)`.  
 ```
 
-The knitted R Markdown text shown above if the document is knitted: 
+The R Markdown text shown above if the document is knitted: 
 
 > There is a statistically significant difference in average delay between the two airports, `r report_ttest(result_t)`.  
 
@@ -807,7 +808,7 @@ How can we ensure that `report_ttest()` does not report _F_ test results?
 Explain how the code below excludes _F_ test results. What does `||` mean?
 </div>
 
-```{r logical, exercise = TRUE, exercise.lines = 13}
+```{r logical, exercise = TRUE, exercise.lines = 17}
 report_ttest <- function(x) { 
   if (class(x) != "htest" || x$method == "F test to compare two variances") { 
     return("#### Input is not a result of at.test()! ######") 
@@ -825,7 +826,6 @@ report_ttest <- function(x) {
 report_ttest(result_t)
 # Applied to F test results.
 flights4 %>% var.test(arr_delay0 ~ origin, data = .) %>% report_ttest()
-
 ```
 
 ###
