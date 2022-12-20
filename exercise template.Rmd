@@ -24,6 +24,12 @@ knitr::opts_chunk$set(echo = TRUE)
 }
 </style>
 
+<!-- Define emphasis style -->
+<style>
+.emphasis {
+  color: #e8301b;
+}
+</style>
 
 ## Code hint
 
@@ -96,7 +102,9 @@ gradethis::grade_result_strict(
 __Hint:__ hinttext.
 </div>
 
-```{r exerciselabel-solution}
+Or add `, exercise.reveal_solution = FALSE` to the solution chunk options:
+
+```{r exerciselabel-solution, exercise.reveal_solution = FALSE}
 "replace this by the correct code (pipe as one line)"
 ```
 

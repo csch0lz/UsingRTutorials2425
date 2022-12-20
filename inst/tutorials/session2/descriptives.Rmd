@@ -184,7 +184,7 @@ Glasgow %>%
 # You can now finish this pipe on your own, right?
 ```
 
-```{r pipe-solution}
+```{r pipe-solution, exercise.reveal_solution = FALSE}
 Glasgow %>% filter(money >= 0) %>% group_by(sex, student) %>% summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) %>% count(sex, n_rom)
 ```
 
@@ -359,7 +359,7 @@ Glasgow %>% mutate(money_class = ??? )
 # Which of the recoding and grouping functions should you use?
 ```
 
-```{r binning-solution}
+```{r binning-solution, exercise.reveal_solution = FALSE}
 Glasgow %>% mutate(money_class = ntile(x = money, n = 3))
 ```
 
@@ -427,7 +427,7 @@ Glasgow %>% mutate(
 )
 ```
 
-```{r recodemoney-solution}
+```{r recodemoney-solution, exercise.reveal_solution = FALSE}
 Glasgow %>% mutate(money_class2 = case_when( money == 0 ~ 0, money > 0 & money <= 10 ~ 1, money > 10 ~ 2))
 ```
 
@@ -463,7 +463,7 @@ Glasgow %>% mutate(
 # Check out the help for this function to see which arguments you have to use.
 ```
 
-```{r recodemissing-solution}
+```{r recodemissing-solution, exercise.reveal_solution = FALSE}
 Glasgow %>% mutate(money = na_if(x = money, y = -1))
 ```
 
@@ -1279,6 +1279,7 @@ Start working on the R Markdown document for your Data Project in RStudio.
 ## Plenary updates Sprint 1 SCRUM masters
 
 Last 15 minutes of the session.
+
 
 ## Reminders
 

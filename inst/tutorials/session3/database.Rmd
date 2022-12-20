@@ -195,6 +195,10 @@ GlasgowFriends %>%
   anyDuplicated()
 ```
 
+<div id="primarykey-hint">
+__Hint:__ Add the variables in the select() function that you think represent different types of cases (unit).
+</div>
+
 ```{r primarykey-solution}
 GlasgowFriends %>% select(student, wave, bestfriend, bfperiod) %>% anyDuplicated()
 ```
@@ -560,6 +564,10 @@ StudentWaveFriend <- StudentWave %>%
 StudentWaveFriend
 ```
 
+<div id="gatherfriends-hint">
+__Hint:__ Use help on the gather() function   .
+</div>
+
 ```{r gatherfriends-solution}
 StudentWaveFriend <- StudentWave %>% gather(key = "friendnumber", value = "friend", friend_1:friend_6, na.rm = TRUE) %>% select(student, wave, friend)
 ```
@@ -584,6 +592,10 @@ Oh, and remove the friendship data from tibble `StudentWave`.
 StudentWave <- StudentWave %>% 
   ???
 ```
+
+<div id="gatherfriends-hint">
+__Hint:__ How about the select() function?
+</div>
 
 ```{r gatherfriends2-solution, eval=FALSE}
 StudentWave <- StudentWave %>% select(student:romantic)
@@ -623,10 +635,9 @@ GlasgowWide
 
 ```
 
-```{r pivotlonger-hint-1}
-# Read the vignette: Issue the R command `vignette("pivot")`. 
-# Look for the part on multiple observations per row.
-```
+<div id="pivotlonger-hint">
+__Hint:__ Read the vignette: Issue the R command `vignette("pivot")`. Look for the part on multiple observations per row.
+</div>
 
 ```{r pivotlonger-solution}
 GlasgowWide %>% pivot_longer(cols = alcohol_t2:friendships_t1, names_to = c(".value", "wave"), names_sep = "_")
@@ -706,7 +717,7 @@ StudentBestfriend <- StudentBestfriend %>%
 StudentBestfriend
 ```
 
-```{r gatherBestfriend-solution}
+```{r gatherBestfriend-solution, exercise.reveal_solution = FALSE}
 StudentBestfriend <- StudentBestfriend %>% filter(!is.na(bestfriend)) %>% pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
 ```
 
@@ -753,7 +764,7 @@ StudentWave %>%
   separate()
 ```
 
-```{r separate-solution}
+```{r separate-solution, exercise.reveal_solution = FALSE}
 StudentWave %>% separate(col = alcohol, into = c("alcohol_code", "alcohol_label"), sep = 2)
 ```
 
