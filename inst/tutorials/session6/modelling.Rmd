@@ -46,111 +46,26 @@ glbwarm_spss <- UsingRTutorials::glbwarm_spss
 }
 </style>
 
-## Importing SPSS Data
+<!-- Define emphasis style -->
+<style>
+.emphasis {
+  color: #e8301b;
+}
+</style>
 
-### 
+##  Overview
 
-SPSS data files have a complicated setup with variable labels and value labels. R data frames do not have such labels. 
+Course Content
 
-Let us have a look at two options for importing SPSS data into R.
+-   Basic Statistical Models
+-   Print-Quality Results Tables
+-   Results Plots
 
-Option 1. Export from SPSS to .csv and import .csv in R.
+Data Project
 
-- Export data from SPSS to a CSV file with value labels for categorical variables: _File > Export > CSV Data_ with _Save value labels where defined instead of data values_.
-- Use `read_csv()` (as you learned before) to import the CSV file. 
-
-The resulting R data object is available in this tutorial as `glbwarm`.
-
-```{r importCSV, exercise = TRUE, exercise.eval = TRUE}
-str(glbwarm)
-```
-
-```{r quiz}
-question("Have a look at the imported CSV file (above). Which variables that had better become factors? Inspect frequency tables of the variables if you need more information.",
-    answer("govact"),
-    answer("posemot"),
-    answer("negemot"),
-    answer("ideology", correct = TRUE, 
-           message = "The alphabetical order of the values does not match the scale. Use a factor to put the values in the correct order."),
-    answer("age"),
-    answer("sex"),
-    answer("partyid", message = "The alphabetical order of the values (Democrat - Independent - Republican) is acceptable, so a factor is not needed.")
-  )
-```
-
-###
-
-Option 2. Import SPSS .sav file directly with tidyverse package `haven`.
-
-The resulting R data set is available in this tutorial as `glbwarm_spss`.
-
-<div class="question">
-Have a look at the imported SPSS file. Use R code to retrieve the label of variable `govact`.
-</div>
-
-```{r importSPSS, exercise = TRUE}
-
-```
-
-<!-- To hide the solution, use a textual hint. -->
-<div id="importSPSS-hint">
-__Hint:__ You learned how to retrieve a label of an attribute from a list in Session 5.
-</div>
-
-```{r importSPSS-solution}
-attributes(glbwarm_spss$govact)$label
-```
-
-```{r importSPSS-check}
-gradethis::grade_code(
-  correct = "", 
-  incorrect = ""
-  )
-```
-
-###
-
-The numerical codes for categorical variables such as ideology in the SPSS file have been preserved. 
-
-R treats these variables as numerical. Maybe this is what you want in some instances. If you do not want this, you should change the variables into factors. 
-
-<div class="question">
-Use the `haven::as_factor()` function to add a variable named `sex_fct` to tibble `glbwarm_spss`.
-</div>
-
-```{r sex_fct, exercise = TRUE}
-
-```
-
-```{r sex_fct-hint-1}
-# As you learned before, use mutate() to add a variable. 
-mutate()
-```
-
-```{r sex_fct-hint-2}
-# Of course, you use a pipe and overwrite the original data object. 
-glbwarm_spss <- glbwarm_spss %>% mutate()
-```
-
-```{r sex_fct-hint-3}
-# Both the `forcats` and `haven` package contain a function `as_factor()`, so it is recommended to specify the package when using this function.
-glbwarm_spss <- glbwarm_spss %>% mutate(sex_fct = haven::as_factor( ))
-```
-
-```{r sex_fct-solution}
-glbwarm_spss <- glbwarm_spss %>% mutate(sex_fct = haven::as_factor(sex))
-```
-
-```{r sex_fct-check}
-gradethis::grade_code(
-  correct = "message", 
-  incorrect = "message"
-  )
-```
-
-###
-
-Note that passing the entire tibble `glbwarm_spss` to `haven::as_factor()` will change all labelled variables into factors. I am not sure this is what you want here. Perhaps you would like to use the `ideology` variable as a seven-point scale.
+-   Finish Sprint 3
+-   Plan the last Sprint
+-   Updates of the SCRUM masters
 
 ## Basic Statistical Models
 
@@ -158,9 +73,9 @@ Let us practice with some of the most common statistical analyses in R.
 
 If you need help, consult Sections 3 and 4 in [_Help, My Collaborator Uses R! An Introduction to Reproducible Statistical Analyses in R_](https://wdenooy.github.io/Switch2R/index.html) and R help on the functions that we use.
 
-### t Test: `t.test()`
+### _t_ test: `t.test()`
 
-You already know how to execute an independent-samples t test (Session 5). There are different versions of the same function for different t tests.
+You already know how to execute an independent-samples _t_ test (Session 5). There are different versions of the same function for different _t_ tests.
 
 Vignette: 
 
@@ -178,15 +93,15 @@ t.test(x, y = NULL,
 t.test(formula, data, subset, na.action, ...)
 ```
 
-- the function with just `x` is for a one sample t test: specify the hypothesized population mean with argument `mu =`.  
-- the function with `x, y` is for paired samples t tests.  
-- the function with a formula is for two samples t tests; `y` must be a variable with two categories.  
+- the function with just `x` is for a one sample _t_ test: specify the hypothesized population mean with argument `mu =`.  
+- the function with `x, y` is for paired samples _t_ tests.  
+- the function with a formula is for two samples _t_ tests; `y` must be a variable with two categories.  
 
 ### F test on Two Variances: `var.test()`  
 
-In contrast to SPSS, R only gives you what you ask for. If you ask for a t test, you get a t test but not checks on assumptions. You have to apply those checks yourself.
+In contrast to SPSS, R only gives you what you ask for. If you ask for a _t_ test, you get a _t_ test but not checks on assumptions. You have to apply those checks yourself.
 
-You may remember that the version of the independent samples t test that we must use depends on whether the population variances are equal for the two groups. 
+You may remember that the version of the independent samples _t_ test that we must use depends on whether the population variances are equal for the two groups. 
 
 <div class="question">
 Use the function `var.test` to test if `govact` variances are equal for females and males in the population. Use the `glbwarm` data object and store the results as a new data object named `vartest`.
@@ -246,10 +161,10 @@ gradethis::grade_code(
 
 ###
 
-In the R code for an independent samples t test, the `var-equal` argument must be set to `TRUE` or `FALSE`. We can use the p value provided by `var.test()` as the value of this argument, so we include the equal variances test in the t test.
+In the R code for an independent samples _t_ test, the `var-equal` argument must be set to `TRUE` or `FALSE`. We can use the p value provided by `var.test()` as the value of this argument, so we include the equal variances test in the _t_ test.
 
 <div class="question">
-Integrate the F test on equal population variances in the t test, such that the t test automatically uses the correct version: with or without equal population variances assumed. Send the results to the screen (do not save it as a data object).
+Integrate the F test on equal population variances in the _t_ test, such that the _t_ test automatically uses the correct version: with or without equal population variances assumed. Send the results to the screen (do not save it as a data object).
 </div>
 
 ```{r ttest2, exercise = TRUE}
@@ -273,8 +188,7 @@ vartest$p.value
 t.test(govact ~ sex, data = glbwarm, var.equal = vartest$p.value > 0.05)
 ```
 
-<!-- To hide the solution, use a textual hint. -->
-```{r ttest2-solution}
+```{r ttest2-solution, exercise.reveal_solution = FALSE}
 t.test(govact ~ sex, data = glbwarm, var.equal = var.test(govact ~ sex, data = glbwarm)$p.value > 0.05)
 ```
 
@@ -560,28 +474,13 @@ texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
 
 The `results='asis'` code chunk option is needed to knit the html output of the code chunk as formatted text. 
 
-This is how the code looks in the RMarkdown document.
+The code chunk in the RMarkdown document:
 
-````markdown
-`r ''````{r eval=TRUE, echo=FALSE, results='asis'}
-# Attach the texreg package.
-library(texreg)
-# Table for HTML output.
-texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
-        single.row = T, #coefficient and standard error on the same row
-        star.symbol = "\\*", 
-        doctype = F, #better for Markdown document
-        html.tag = F, #better for Markdown document 
-        head.tag = F, #better for Markdown document
-        body.tag = F, #better for Markdown document 
-        caption = "", #no caption to save space on the slide
-        custom.coef.names = c(NA, "Age", "Negative emotions", "Independent", "Republican", "Age*Neg. emotions"),
-        vertical.align.px = 6)
-# For PDF output, use the texreg() function, with slightly different arguments (options).
-# Use Help to see more arguments.
+```{r, out.width="70%"}
+knitr::include_graphics("images/asis.png")
 ```
-````
-And this is how the knitted text looks like:
+
+And this is what the knitted text looks like:
 
 ```{r eval=TRUE, echo=FALSE, results='asis'}
 # Create regression data objects.
@@ -690,7 +589,7 @@ mutate(
   CI = paste0( format(round(conf.low ) ), format(round(conf.high ) ) ))
 ```
 
-```{r broom2-solution}
+```{r broom2-solution, exercise.reveal_solution = FALSE}
 model_1a %>% tidy(conf.int = TRUE, conf.level = 0.95) %>% mutate(estimate = format(round(estimate, digits = 2), nsmall = 2), p.value = format(round(p.value, digits = 3), nsmall = 3), CI = paste0( "[", format( round(conf.low, digits = 2), nsmall = 2 ), ", ", format( round(conf.high, digits = 2), nsmall = 2 ), "]" )) %>% select(term, estimate, p.value, CI)
 ```
 
@@ -784,6 +683,8 @@ Some final points about tabulating results:
 - `kable()` does not knit nicely to Word. Knit to HTML and import HTML in Word.
 
 ## Results Plots
+
+### 
 
 A data object with statistical results usually has a `plot()` function. These plots are for quick inspection rather than final presentation. They can be very useful for checking assumptions.
 
@@ -887,7 +788,7 @@ glbwarm %>%
 # Use facet_wrap() on the binned negative emotions variable.
 ```
 
-```{r ggplot-solution}
+```{r ggplot-solution, exercise.reveal_solution = FALSE}
 glbwarm %>% mutate(negemot_bin = case_when( negemot < 1.5 ~ 1, negemot < 2.5 ~ 2, negemot < 3.5 ~ 3, negemot < 4.5 ~ 4, negemot < 5.5 ~ 5, negemot >= 5.5 ~ 6)) %>% ggplot(aes(x = age)) + geom_smooth(aes(y = govact), method = lm) + geom_rug() + facet_wrap(vars(negemot_bin))
 ```
 
@@ -948,11 +849,94 @@ glbwarm %>% group_by(partyid, sex) %>%
 # for the fine details of the legend.
 ```
 
+## (Reference) Importing SPSS Data
+
+### 
+
+In case you later have SPSS data that you want to analyze in R: Two options for importing SPSS data.
+
+SPSS data files have a complicated setup with variable labels and value labels. 
+
+R data frames or tibbles do not have such labels. 
+
+Let us have a look at two options for importing SPSS data into R.
+
+### Option 1. Export from SPSS to .csv and import .csv in R.
+
+- Export data from SPSS to a CSV file with value labels for categorical variables: _File > Export > CSV Data_ with _Save value labels where defined instead of data values_.
+- Use `read_csv()` (as you learned before) to import the CSV file. 
+
+```{r importCSV, exercise = TRUE, exercise.eval = TRUE}
+# The CSV is available in the data directory of this tutorial.
+glbwarm <- read_csv("data/glbwarm.csv")
+# Inspect the variables.
+str(glbwarm)
+```
+
+### Option 2. Import SPSS .sav file directly with tidyverse package `haven`.
+
+The resulting R data set is available in this tutorial as `glbwarm_spss`.
+
+<div class="question">
+Import the SPSS file and have a look at it.
+</div>
+
+```{r importSPSS, exercise = TRUE}
+# The SPSS system is available in the data directory of this tutorial.
+glbwarm_spss <- haven::read_sav("data/glbwarm.sav")
+# Inspect the variables.
+str(glbwarm)
+```
+
+###
+
+The numerical codes for categorical variables such as ideology in the SPSS file have been preserved. 
+
+R treats these variables as numerical. Maybe this is what you want in some instances. If you do not want this, you should change the variables into factors. 
+
+<div class="question">
+Use the `haven::as_factor()` function to add a variable named `sex_fct` to tibble `glbwarm_spss`.
+</div>
+
+```{r sex_fct, exercise = TRUE}
+
+```
+
+```{r sex_fct-hint-1}
+# As you learned before, use mutate() to add a variable. 
+mutate()
+```
+
+```{r sex_fct-hint-2}
+# Of course, you use a pipe and overwrite the original data object. 
+glbwarm_spss <- glbwarm_spss %>% mutate()
+```
+
+```{r sex_fct-hint-3}
+# Both the `forcats` and `haven` package contain a function `as_factor()`, so it is recommended to specify the package when using this function.
+glbwarm_spss <- glbwarm_spss %>% mutate(sex_fct = haven::as_factor( ))
+```
+
+```{r sex_fct-solution, exercise.reveal_solution = FALSE}
+glbwarm_spss <- glbwarm_spss %>% mutate(sex_fct = haven::as_factor(sex))
+```
+
+```{r sex_fct-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+###
+
+Note that passing the entire tibble `glbwarm_spss` to `haven::as_factor()` will change all labelled variables into factors. I am not sure this is what you want here. Perhaps you would like to use the `ideology` variable as a seven-point scale.
+
 ## Fancy Stuff
 
-If you can execute regression models in R, you can also execute them using Bayesian statistics instead of traditional (frequentist) statistics.
+If you can execute regression models in R, you can also execute these using Bayesian statistics instead of traditional (frequentist) statistics.
 
-The popularity of Bayesian statistics as an alternative to null hypothesis significance testing is growing. If you want to be among the first in your field going Bayesian, check out the short introduction provided in [Help, My Collaborator Goes Bayesian! Why And How To Apply Bayesian Data Analysis](https://wdenooy.github.io/Switch2Bayesian/index.html). Section 3.2 offers a short introduction to using the `rstanarm` package for Bayesian data analysis. 
+The popularity of Bayesian statistics as an alternative to null hypothesis significance testing is growing. If you want to be among the first in your field going Bayesian, check out the short introduction provided in [Help, My Collaborator Goes Bayesian! Why And How To Apply Bayesian Data Analysis](https://wdenooy.github.io/Switch2Bayesian/index.html). Section 3.2 of the document offers a short introduction to using the `rstanarm` package for Bayesian data analysis. 
 
 ## Data Project
 
