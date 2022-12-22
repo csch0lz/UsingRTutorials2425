@@ -29,6 +29,7 @@ Imports:
     nycflights13,
     plotly,
     RColorBrewer,
+    rstanarm,
     shiny, 
     texreg,
     tm,

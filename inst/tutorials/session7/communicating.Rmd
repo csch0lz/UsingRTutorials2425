@@ -556,7 +556,7 @@ gradethis::grade_code(
 <div class="question">
 </div> 
 
-### APA6 format article with `papaja::`
+### APA format article with `papaja::`
 
 Instead of adapting a standard RMarkdown document, you can use the `papaja` package, which contains an APA6 article template. Once you have installed this package, an APA article template is available if you create a new RMarkdown file using the _From Template_ option (see figure).
 
