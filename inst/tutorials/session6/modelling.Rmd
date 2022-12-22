@@ -1078,13 +1078,18 @@ The popularity of Bayesian statistics as an alternative to null hypothesis signi
 
 The below code estimates a regression model predicting support for governmental action (`govact`) from age, negative emotions and party identification, with an interaction effect of age with negative emotions.
 
-```{r}
+```{r rstanarm, echo=TRUE, eval=FALSE}
 # Load the rstanarm package.
 library(rstanarm)
 # Estimate the regression model with rstanarm.
 model_1aBayes <- rstanarm::stan_glm(govact ~ age * negemot + partyid,
                                     data = glbwarm)
 # Standard output to screen.
+print(model_1aBayes)
+```
+
+```{r rstanarm2, echo=FALSE, eval=TRUE}
+# Shows only the output of print.
 print(model_1aBayes)
 ```
 
@@ -1097,8 +1102,8 @@ It is easy to get the posterior distributions as a data frame or tibble, so you 
 ```{r posterior1, exercise = TRUE, exercise.eval = TRUE}
 # Extract the posteriors from the fitted model to a tibble.
 posteriors <- as_tibble(model_1aBayes)
-# Summarize the posteriors.
-summary(posteriors)
+# Overview of variables in posteriors: each independent variable and the error term (sigma).
+str(posteriors)
 # Calculate the probability that the effect of negemot is larger than 0 in the population.
 prob <- posteriors %>%
   summarize(b_negemot = mean(negemot > 0))
@@ -1113,6 +1118,13 @@ posteriors %>%
       show.legend = FALSE
       ) +
     geom_text(aes(label = prob$b_negemot, x = 0.15, y = 100))
+```
+
+The function `launch_shinystan()` in the `shinystan::` package (automatically loaded by package `rstanarm::`) offers an interactive overview of estimation and model checks and results.
+
+```{r shinystan, echo = TRUE, eval=FALSE}
+shinystan::launch_shinystan(model_1aBayes)
+# Note: This function does not work from within a tutorial.
 ```
 
 ## Data Project
