@@ -66,7 +66,7 @@ Course Content
 Let us explore the main features and options of R Markdown step by step.
 
 <div class="question">
-In RStudio, open a new R Markdown document and have a look at _Output Options..._ in the settings menu (see below image).
+-   In RStudio, open a new R Markdown document and have a look at _Output Options..._ in the settings menu (see below image).
 </div> 
 
 ```{r out.width="40%"}
@@ -102,7 +102,7 @@ Many more YAML options can be set manually:
 -   See the R Markdown Cheat Sheet (page 2).
 
 <div class="question">
-Change the YAML of the R Markdown document such that a floating table of contents is shown if the document is knitted to HTML.
+-   Change the YAML of the R Markdown document such that a floating table of contents is shown if the document is knitted to HTML.
 </div> 
 
 <div class="tip" >
@@ -209,7 +209,7 @@ Note:
 -   If the size of a figure in the document is too small, `knitr` may end with the error message that the margins are too large.
 
 <div class="question">
-Reduce the size of the figure in the R Markdown file to 50 percent (half the line width), make it square, and add the caption "Pressure at different temperature levels."
+-   Reduce the size of the figure in the R Markdown file to 50 percent (half the line width), make it square, and add the caption "Pressure at different temperature levels."
 </div> 
 
 ### Custom tables
@@ -318,7 +318,7 @@ ggplot(data = glbwarm, mapping =
 ```
 
 <div class="question">
-Create the above plot using tibble `glbwarm`, which is available in this tutorial. Pay special attention to the labels and legend position.
+-   Create the above plot using tibble `glbwarm`, which is available in this tutorial. Pay special attention to the labels and legend position.
 </div>
 
 ```{r labels, exercise = TRUE}
@@ -359,7 +359,7 @@ You can set some overall plot characteristics within these theme layers, e.g.:
 -   `base_family` (font type used: `"serif"`, `"sans"`, or `"mono"`).
 
 <div class="question">
-Experiment with `base_size` and `base_family` in the code below.
+-   Experiment with `base_size` and `base_family` in the code below.
 </div> 
 
 ```{r themes, exercise = TRUE}
@@ -387,7 +387,7 @@ Argument `base_size` sets a base size for all texts displayed in a plot.
 If you want to set the size of a particular type of text within the plot, for example, the text values displayed in the legend, you can do that within a `theme()` layer. 
 
 <div class="question">
-Complete the code below to set the size of the legend title to 10 and the size of the legend entries to 8.
+-   Complete the code below to set the size of the legend title to 10 and the size of the legend entries to 8.
 </div> 
 
 ```{r legend, exercise = TRUE}
@@ -440,7 +440,7 @@ Custom colors:
 Democrats should be blue, Republicans red, and let us use green for Independents. 
 
 <div class="question">
-Use the `scale_color_manual()` layer and the RColorBrewer `Accent` palette to assign the right colors to party identification in the plot.
+-   Use the `scale_color_manual()` layer and the RColorBrewer `Accent` palette to assign the right colors to party identification in the plot.
 </div>
 
 ```{r colors, exercise = TRUE}
@@ -503,7 +503,7 @@ Fine-tuning the ticks (value labels) on axes:
 -   to set the breaks, minor breaks, limits, and, if you like, axis label.
 
 <div class="question">
-Adjust the plot axes such that the vertical axis shows a grid line and label for each possible value of the original 7-point scale (1 to 7) and the horizontal axis shows labels and grid lines for decades (20, 30, 40, ..., 90) and only a grid line for each 2.5 years within a decade starting at 15 (15, 17.5, 22.5, 25, ..., 87.5).
+-   Adjust the plot axes such that the vertical axis shows a grid line and label for each possible value of the original 7-point scale (1 to 7) and the horizontal axis shows labels and grid lines for decades (20, 30, 40, ..., 90) and only a grid line for each 2.5 years within a decade starting at 15 (15, 17.5, 22.5, 25, ..., 87.5).
 </div>
 
 ```{r ticks, exercise = TRUE, exercise.eval = TRUE}
@@ -585,7 +585,7 @@ ggplot(data = glbwarm, mapping =
 ```
 
 <div class="question">
-Use a text geom to add the source ("Source: Global warming data set by Eric Nisbeth.") and author ("Author: Yah Tutor.") to the plot as shown in the above figure.
+-   Use a text geom to add the source ("Source: Global warming data set by Eric Nisbeth.") and author ("Author: Yah Tutor.") to the plot as shown in the above figure.
 </div>
 
 ```{r additions, exercise = TRUE}
@@ -633,9 +633,6 @@ gradethis::grade_code(
 
 
 ## Fancy Stuff
-
-<div class="question">
-</div> 
 
 ### APA format article with `papaja::`
 
