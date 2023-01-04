@@ -6,7 +6,7 @@ output:
     allow_skip: yes
 runtime: shiny_prerendered
 description: |
-  Let us have one more look at using RMarkdown and ggplot() before we submit our Data Project as a visualization in an RMarkdown document.
+  Let us have one more look at using R Markdown and ggplot() before we submit our Data Project as a visualization in an R Markdown document.
 ---
 
 ```{r setup, include=FALSE}
@@ -21,9 +21,8 @@ library(RColorBrewer)
 tutorial_options(exercise.timelimit = 20, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
-# Note: A (new) RMarkdown document can be knitted while a learnr tutorial is
-# running both if the tutorial is started from the console and from the Tutorial
-# tab.
+# Note: A (new) R Markdown document can be knitted while a learnr tutorial is
+# running both if the tutorial is started from the console and from the Tutorial tab.
 ```
 
 ```{r, context="data", include=FALSE}
@@ -45,23 +44,38 @@ glbwarm <- UsingRTutorials::glbwarm
 }
 </style>
 
-## Report Layout With RMarkdown
+<!-- Define emphasis style -->
+<style>
+.emphasis {
+  color: #e8301b;
+}
+</style>
+
+##  Overview
+
+Course Content
+
+-   Report Layout.  
+-   Polishing Your Graphics.
+-   Finalizing the Group Project.
+
+## Report Layout With R Markdown
 
 ### 
 
-Let us explore the main features and options of RMarkdown step by step.
+Let us explore the main features and options of R Markdown step by step.
 
 <div class="question">
-In RStudio, open a new RMarkdown document and have a look at _Output Options..._ in the settings menu (see below image).
+In RStudio, open a new R Markdown document and have a look at _Output Options..._ in the settings menu (see below image).
 </div> 
 
 ```{r out.width="40%"}
 knitr::include_graphics("images/OutputOptions.png")
 ```
 
-### 
+### YAML
 
-This menu allows you to change several features including:
+In this menu you can change several features including:
 
 - Table of contents.
 - Section numbering.
@@ -69,7 +83,10 @@ This menu allows you to change several features including:
 - Adding figure captions.
 
 <div class="question">
-Change the options. How does the YAML (first part of the R Markdown document) change? How does the knitted document change?
+Change the options. 
+
+-   How does the YAML (first part of the R Markdown document) change? 
+-   How does the knitted document change?
 </div> 
 
 <div class="tip" >
@@ -80,115 +97,158 @@ __Tip__
 
 ###
 
-There are several more YAML options that can be set than the ones featured in the _Output Options..._ of the settings menu. The RMarkdown cheat sheet (page 2) lists all of them. It also shows for which output formats an option can be used.
+Many more YAML options can be set manually:
+
+-   See the R Markdown Cheat Sheet (page 2).
 
 <div class="question">
-Change the YAML of the RMarkdown document such that a floating table of contents is shown if the document is knitted to HTML.
+Change the YAML of the R Markdown document such that a floating table of contents is shown if the document is knitted to HTML.
 </div> 
 
 <div class="tip" >
 __Programming Tip__
 
-- Mind the indentation and use of `:` in the YAML; RMarkdown is very strict here. Use menu _Output Options..._ whenever possible because it structures the YAML correctly. 
+- Mind the indentation and use of `:` in the YAML; R Markdown is very strict here. Use menu _Output Options..._ whenever possible because it structures the YAML correctly. 
 </div>
+
+### Visual editor
+
+```{r out.width="80%"}
+knitr::include_graphics("images/VisualEditor.png")
+```
+
+Use the visual editor for easy:
+
+-   Text formatting.
+-   Table and figure insertion.
+-   Table formatting.
+-   Insertion of footnotes.
+-   Insertion of references.
 
 ### References
 
-Scientific papers include references to the literature, which are usually presented in a format demanded by a journal or publisher. 
+To include literature references in an R Markdown document, you need four things:
 
-To include references in an RMarkdown document, you need four things:
-
-1. A bibliography file containing the referenced literature, preferably in BibTex format named, for example, `references.bib`.
+1. A bibliography file containing the referenced literature, preferably in BibTex format: `references.bib`.
 2. A line in the YAML specifying the bibliography file(s) to use, for example, `bibliography: references.bib`.
 3. A line in the YAML specifying the format to be used for the references, for example, `csl: apa.csl`.
 4. A citation key in the text where you want to insert the reference, for example, "As argued by [@McQuail2005], Communication Science deals with ...".
 
-<div class="question">
-Download the file with the APA journal citation style `apa.csl` from [https://www.zotero.org/styles](https://www.zotero.org/styles) and save it in your working directory (where you also saved the RMarkdown file that you are working with now).
-</div> 
-
 ### 
 
-It is good practice to acknowledge the authors of the R packages that you are using by referencing the packages.
+```{r out.width="90%"}
+knitr::include_graphics("images/InsertCitation.png")
+```
 
-To this end, the `knitr` package includes the function `write_bib()`.
+Adding a reference within the visual editor:
+
+-   Put the cursor where you want the reference.
+-   Select _Citation_ from the _Insert_ menu.
+    1.   Select your reference software (if any) to select a reference.
+    2.   Or select the R packages that you are using, to acknowledge the work of the authors.
+    3.   The default file name of the references file is `references.bib`.
+    4.   Insert the selected references in the R Markdown document.
+    
+###
+
+RStudio then:
+
+1.   Inserts the reference in the document.
+2.   Creates or expands the file `references.bib`.
+3.   Adds this file to the YAML, so a list of references is created when you knit the document.
 
 <div class="question">
-Use function `write_bib()` to create a file named `Rrefs.bib` which contains bibliographic information for R packages `base`, `tidyverse`, `knitr`, and `kableExtra`.
+-   Add a footnote on the first page to cite the following R packages: `base`, `tidyverse`, `knitr`, and `kableExtra`.
 </div> 
-
-```{r rbib, exercise = TRUE}
-
-```
-
-<!-- To hide the solution, use a textual hint. -->
-<div id="rbib-hint">
-__Hint:__ Have a look at the Help page for this function.
-</div>
-
-```{r rbib-solution}
-write_bib(c("base", "tidyverse", "knitr", "kableExtra"), file = "Rrefs.bib")
-```
-
-```{r rbib-check}
-gradethis::grade_code(
-  correct = "If you want to see the contents of the file, run the command without the ile argument, so the results are shown on the screen", 
-  incorrect = "Perhaps, you have the package names in a different order. That is OK."
-  )
-```
 
 ###
 
-Add the `write_bib()` code to the code chunk in the RMarkdown file where you load packages. This ensures that the bibliography file is created or updated every time the document is knitted.
-
-Now that you have the bibliography file, reference it in the YAML and also reference the APA journal citation style `apa.csl` in the YAML of the RMarkdown file you are working with.
-
-A footnote on the first page is a good place to cite the R packages that you have used. The citation key for an R package consists of `@R-` and the package name enclosed in square brackets, for example, `[@R-base]`
+To get the literature references in APA style, we need a citation style file.
 
 <div class="question">
-Adjust your RMarkdown file such that the knitted document resembles the HTML document that you can [open here: example.html](www/example.html).
-</div>
-
-### 
-
-For literature references, the steps are the same. You have to create a (BibTeX) file containing literature references, for example, `bibliography.bib` and add this to the YAML, for example, `bibliography: [Rrefsbib.bib, bibliography.bib]`. Finally, you have to use the citation keys in your bibliography to add citations in the document. 
-
-The RStudio add-in `citr` is very useful here, especially if you are using Zotero:
-
-- It lets you select a reference from your Zotero database.
-- It adds the selected reference to your (BibTex) bibliography file.
-- And it inserts a citation (using the citation key) in your R Markdown document.
-
-<div class="question">
-Check out the description of `citr` on github: [https://github.com/crsh/citr/blob/master/README.md](https://github.com/crsh/citr/blob/master/README.md)
+-   Download the file with the APA journal citation style `apa.csl` from [https://www.zotero.org/styles](https://www.zotero.org/styles). 
+-   Save it in your working directory.
+-   Reference the APA journal citation style `apa.csl` in the YAML of the R Markdown file. Add the line: `csl: apa.csl`
+-   Knit the document to HTML and inspect the references. All okay?
 </div> 
+
+<!-- Define emphasis style -->
+<style>
+.emphasis {
+  color: #e8301b;
+}
+Ensure that the references and citation style files are saved in the working directory!
+</style>
 
 ### Figure code chunk options
 
-In a document, figures usually demand additional attention to ensure that they are not too small and not too large, have a caption, and are shown in the right place.
+Figures usually demand additional attention:
 
-You can display figure captions and set the default width of figures with _Output Options..._ in the knit settings menu. 
+-   not too small and not too large, 
+-   have a caption, 
+-   are shown in the right place.
 
-If you want to adjust a single figure, use the code chunk options in the code chunk that creates the figure. The chunk options listed in the RMarkdown cheat sheet (p. 1, bottom) include several options that are relevant to displaying figures:
+_Output Options..._ sets for all figures:
+
+-   Whether they have captions. Note that figure captions are numbered automatically only in PDF output.
+-   Default width. 
+
+Adjust a single figure with code chunk options (R Markdown Cheat Sheet, p. 1, bottom):
 
 - `fig.cap =` figure caption as string.
 - `fig.align =` 'left', 'right', or 'center'.
 - `out.width =` width of figure in output in percentage of line width (`"80%"`) or as a fixed width in pixels for HTML (`"300px"`) or inches, centimeters for PDF and Word (`"4.5in"`, `"6cm"`).
 - `fig.asp =` ratio of height to width.
 
-The text of a figure's caption is empty unless you add text to the `fig.cap =` option. Note that figure captions are numbered automatically only in PDF output.
+Don't use:
 
-The recommended way to control figure size in the output: Combine `out.width` and `fig.asp`. Alternatives `fig.width` and `fig.height` specify the actual size (whatever that may be) of the figure instead of the output size.
+-   `fig.width` and `fig.height`: specify the actual size (whatever that may be) of the figure instead of the output size.
 
-If the size of a figure in the document is too small, `knitr` may end with the error message that the margins are too large. This signals that there is no space left for the graph itself.  
+Note:
+
+-   If the size of a figure in the document is too small, `knitr` may end with the error message that the margins are too large.
 
 <div class="question">
-Reduce the size of the figure in the RMarkdown file to 50 percent (half the line width), make it square, and add the caption "Pressure at different temperature levels."
+Reduce the size of the figure in the R Markdown file to 50 percent (half the line width), make it square, and add the caption "Pressure at different temperature levels."
 </div> 
+
+### Custom tables
+
+Table menu in visual editor:
+
+-   Helps including a table that you type from scratch.
+-   Only use for a diagram.
+-   Never use for R results!
+
+### 
+
+Present summary results as a table with `knitr::kable()` in a code chunk.
+
+<div class="question" >
+-   Make sense of the below pipe (add comments).
+</div>
+
+```{r resultstable, exercise = TRUE, exercise.lines = 8, exercise.eval = TRUE}
+glbwarm %>% 
+  group_by(sex) %>% 
+  summarise(sex_mean = round(mean(govact), digits=2), 
+            sex_sd = round(sd(govact), digits=2)) %>%
+  kable(col.names = c("Sex", "Average Score", "Standard Deviation"),
+        caption = "Table: Support for government intervention across the sexes.")
+```
+
+###
+
+For additional table layout options: 
+
+-   Package `kableExtra::`
+-   Documentation: []().
 
 ### Cross-references with `bookdown::`
 
-Figures are not automatically numbered in HTML or Word output. To accomplish this, install and load the `bookdown::` package. This package numbers tables and figures and it allows you to use a reference to a table, figure, or section that automatically updates the number if new tables, figures, or sections are inserted in the RMarkdown document. If you use references, you never have to worry about using the correct table, figure, or section number.
+Figures are not automatically numbered in HTML or Word output. 
+
+To accomplish this, you need the `bookdown::` package. 
 
 Follow these steps:
 
@@ -205,7 +265,7 @@ Follow these steps:
 5.   Knit the document to html_document2, pdf_document2, or word_document2.
 
 <div class="question">
-- Add a section label to the __R Markdown__ Section in the RMarkdown file and use it to refer to this section in a sentence "As we have seen in Section 0.1, we can show statistical results in an RMarkdown document." that you add to the __Including Plots__ Section.
+- Add a section label to the __R Markdown__ Section in the R Markdown file and use it to refer to this section in a sentence "As we have seen in Section 0.1, we can show statistical results in an R Markdown document." that you add to the __Including Plots__ Section.
 - Add a sentence with a reference to the pressure plot: "Figure 1 is beautiful, isn't it?"
 </div> 
 
@@ -233,12 +293,17 @@ Problems with knitting to PDF:
 - Characters like `%`, `\`, `/` have special meaning in LaTeX, which is the language used to create the PDF.
 - Ensure that variable names or captions do not include them.
 
-
 ## Polishing Your Graphics
 
 ### Labels and legend position
 
-You may already have discovered the `labs()` layer for adding custom labels to a plot. In addition, the `theme()` layer is worth knowing because it allows many layout adjustments, among which setting the position of the legend. 
+Setting plot labels:
+
+-   `labs()` layer: basic adjustments.
+-   `theme()` layer: fine tuning of all details, including the legend. __Note__: features of graphical elements are specified with functions (with their own help page):
+  +   `element_text()`, e.g., `theme(plot.title = element_text(size = 10))`
+  +   `element_rect()`, e.g., `theme(plot.background = element_rect(fill = "green"))`
+  +   `element_line()`, e.g., `theme(axis.line = element_line(linewidth = 3, colour = "grey80"))`
 
 ```{r labelsshow}
 ggplot(data = glbwarm, mapping = 
@@ -280,9 +345,18 @@ gradethis::grade_code(
 
 ### Themes
 
-Some plot characteristics are combined into theme layers: `theme_bw(), theme_classic(), theme_dark(), theme_gray(), theme_light(), theme_linedraw(), theme_void(), theme_minimal()`.
+Some plot characteristics are combined into theme types, e.g.: 
 
-You can set some overall plot characteristics within these theme layers, notably arguments `base_size` (size of fonts used) and `base_family` (font type used: `"serif"`, `"sans"`, or `"mono"`).
+-   `theme_bw()`, 
+-   `theme_classic()`, 
+-   `theme_dark()`, 
+-   `theme_void()`, 
+-   `theme_minimal()`.
+
+You can set some overall plot characteristics within these theme layers, e.g.: 
+
+-   `base_size` (size of fonts used) 
+-   `base_family` (font type used: `"serif"`, `"sans"`, or `"mono"`).
 
 <div class="question">
 Experiment with `base_size` and `base_family` in the code below.
@@ -308,9 +382,9 @@ __Programming Tip__
 
 ###
 
-Argument `base_size` sets a base size for all texts displayed in a plot. If you want to set the size of a particular type of text within the plot, for example, the text values displayed in the legend, you can do that within a `theme()` layer. 
+Argument `base_size` sets a base size for all texts displayed in a plot. 
 
-First, you have to find the argument to the `theme()` layer. Use help on `theme`. Then, you have to find out how to specify text size for this argument. You will see that you have to use  a function.
+If you want to set the size of a particular type of text within the plot, for example, the text values displayed in the legend, you can do that within a `theme()` layer. 
 
 <div class="question">
 Complete the code below to set the size of the legend title to 10 and the size of the legend entries to 8.
@@ -355,9 +429,13 @@ gradethis::grade_code(
 
 ### Custom colors
 
-For marking groups by colors in a plot, `ggplot()` uses a vector of colors, assigning the first group to the first color, and so on. If you want to determine the colors yourself, you have to create a vector of colors that matches the groups in your plot.
+For marking groups by colors , `ggplot()` uses a vector of colors, assigning the first group to the first color, and so on. 
 
-The `RColorBrewer` offers color palettes ([book, p. 458](https://r4ds.had.co.nz/graphics-for-communication.html#replacing-a-scale)) that you can use to create vectors of colors using colors that 'belong together', that is, match nicely. Function `brewer.pal` in this package creates such a vector.
+Custom colors:
+
+-   Create a vector of colors that matches (number and order) the groups in your plot.
+-   `RColorBrewer` offers nice color palettes ([book, p. 458](https://r4ds.had.co.nz/graphics-for-communication.html#replacing-a-scale)). 
+-   Function `brewer.pal` in this package creates such a vector.
 
 Democrats should be blue, Republicans red, and let us use green for Independents. 
 
@@ -419,7 +497,10 @@ __Programming Tip__
 
 ### Scales and ticks
 
-If your plot's axis represents a continuous scale, you usually want to fine-tune the ticks (value labels) on the axes. Use layers `scale_x_continuous()` and `scale_y_continuous()` to set the breaks, minor breaks, limits, and, if you like, label of an axis.
+Fine-tuning the ticks (value labels) on axes:
+
+-   Use layers `scale_x_continuous()` and `scale_y_continuous()`,
+-   to set the breaks, minor breaks, limits, and, if you like, axis label.
 
 <div class="question">
 Adjust the plot axes such that the vertical axis shows a grid line and label for each possible value of the original 7-point scale (1 to 7) and the horizontal axis shows labels and grid lines for decades (20, 30, 40, ..., 90) and only a grid line for each 2.5 years within a decade starting at 15 (15, 17.5, 22.5, 25, ..., 87.5).
@@ -558,16 +639,18 @@ gradethis::grade_code(
 
 ### APA format article with `papaja::`
 
-Instead of adapting a standard RMarkdown document, you can use the `papaja` package, which contains an APA6 article template. Once you have installed this package, an APA article template is available if you create a new RMarkdown file using the _From Template_ option (see figure).
+Instead of adapting a standard R Markdown document, you can use the `papaja` package, which contains an APA6 article template. Once you have installed this package, an APA article template is available if you create a new R Markdown file using the _From Template_ option (see figure).
 
 ```{r out.width="60%"}
 knitr::include_graphics("images/template.png")
 ```
 
+If you didn't do so, install `papaja`. Run the command `remotes::install_github("crsh/papaja")` from the RStudio console.
+
 `papaja` uses `bookdown` but you do not have to load this package separately.
 
 <div class="question">
-- Create a new RMarkdown document from the APA journal template.
+- Create a new R Markdown document from the APA journal template.
 - Inspect the contents of the template, check out the options.
 - Knit it to pdf (`output : papaja::apa6_pdf`) or Word (`output : papaja::apa6_word`) and inspect the knitted document.
 - Apply your skills for cross-referencing sections, tables, and figures.
@@ -577,9 +660,9 @@ A manual for `papaja` is available at https://crsh.github.io/papaja_man/ .
 
 ### Templates for other journals
 
-The `rticles` package offers RMarkdown templates for several journals and some journal publishers.
+The `rticles` package offers R Markdown templates for several journals and some journal publishers.
 
-If you install this package, the journal or publisher templates are shown in the list of templates when you create a new RMarkdown document.
+If you install this package, the journal or publisher templates are shown in the list of templates when you create a new R Markdown document.
 
 ### Dashboards
 
@@ -589,10 +672,23 @@ A dashboard is used to show a group of related data visualizations. Below is a s
 knitr::include_graphics("images/dashboard.png")
 ```
 
-Read more about `flexdashboard` at https://rmarkdown.rstudio.com/flexdashboard/index.html .
+Read more about `flexdashboard` at https://RMarkdown.rstudio.com/flexdashboard/index.html .
 
 Another package is `shinydashboard`, which uses shiny to create interactive dashboards. See https://rstudio.github.io/shinydashboard/index.html for more information.
 
-## Data Project work
+## Finalizing the Group Project
 
-Polish your group's RMarkdown file and your own visualization.
+### What to submit
+
+Report:
+
+-   Submit knitted R Markdown document (HTML, PDF, or Word) & R Markdown file via Canvas.
+-   Knitted file must be reproducible from the R Markdown file.
+
+Presentation (15 or 20 minutes per group, not necessarily in R Markdown):
+
+-   Brief description of the data set.
+-   Each group member presents a draft of their graph.
+-   Goal: get feedback from the group.
+
+### Group work on the project
