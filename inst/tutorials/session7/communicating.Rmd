@@ -242,7 +242,7 @@ glbwarm %>%
 For additional table layout options: 
 
 -   Package `kableExtra::`
--   Documentation: []().
+-   Documentation: [kableExtra vignette](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
 
 ### Cross-references with `bookdown::`
 
