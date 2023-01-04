@@ -1,9 +1,9 @@
 Package: UsingRTutorials
 Type: Package
 Title: Provides learnr Tutorials for a Using R Course
-Version: 0.2.6
+Version: 0.2.7
 Author: Wouter de Nooy [aut, cre]
-Date: 2020-07-07
+Date: 2022-01-04
 Maintainer: Wouter de Nooy <w.denooy@uva.nl>
 Description: This package contains tutorials for the course Using R for Data Wrangling, Analysis, and Visualization.
     There is one tutorial for each session in the course.
