@@ -789,9 +789,42 @@ gradethis::grade_code(
 
 This concludes data tidying.
 
-## Become an Expert: Evaluate Your Complex Data
+## Meet the Experts
 
-For your complex datasets, ask yourself one of the following:
+###
+
+-   You need to know about and apply all tidy data principles. 
+-   To help you get there, we will engage in peer-learning.
+
+<div class="emphasis">
+HOMEWORK BEFORE SESSION 4: Become an expert in 1 out of the 4 tidy data principles.
+</div>
+
+“Becoming an expert" means:
+
+-   Re-visit the tidy data principle in the book and course materials.
+-   Apply it to your own dataset. 
+-   Produce 2 PowerPoint slides (use the template in Session 4 module on Canvas).
+
+###
+
+Slide 1: explain the tidy data principle in your own words, using 3 questions:
+
+-   WHAT type of data structure the tidy data principle refers to (What does untidy and what does tidy data look like?) 
+-   HOW the tidy data principle can be implemented using R code.
+-   WHY the tidy data principle creates tidy data that is easier to work with than untidy data.
+
+### 
+
+Slide 2: visualize the application of the tidy data principle to your Data Project dataset:
+
+-   Include a screenshot of the data (only relevant variables) in it’s untidy form.
+-   Include a screenshot of the data in it’s tidy form.
+-   Include the R code you used to tidy the data.
+
+### Assigning students to tidy data principles
+
+For your complex data sets, ask yourself one of the following:
 
 1.    Does the data set contain info on more than one type of unit?
       +   Or: Is the same information repeated in different rows?

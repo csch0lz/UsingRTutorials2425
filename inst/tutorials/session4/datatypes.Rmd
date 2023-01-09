@@ -1246,6 +1246,13 @@ docs %>%
 
 Well, what's the difference between the two topics? Note that the results may change dramatically from one run to the next. Perhaps, there is just one story.
 
+## Tidy Data Experts Meeting
+
+- Experts for the same tidy data principle: sit together.
+- Follow the instructions in the _Expert Meeting Instructions_ document (attached to Session 4 module on Canvas.)
+
+-   Duration: 20 minutes.
+
 ## Data Project: To Do
 
 -   Sprint 2: Retrospective & Review.
