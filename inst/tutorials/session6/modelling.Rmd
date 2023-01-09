@@ -1127,19 +1127,21 @@ shinystan::launch_shinystan(model_1aBayes)
 # Note: This function does not work from within a tutorial.
 ```
 
-## Data Project
+## Data Project: To Do
 
-### What’s Next?
+### 
 
-Today:
--   Finish Sprint 3 (Review & Retrospective)
--   Plan (the last) Sprint 4
-
-Remember:
--   Thu: Presentation of ideas for the visualization (Goal: Get feedback)
+-   Sprint 3: Retrospective & Review.
+-   Sprint 4: Planning, Update Project Backlog.
+-   Remaining time: Work on the Sprint 3 Backlog.
 
 ### Note
 
 Statistical analyses are not necessary for the Data Project. The Data Project focuses on visualizations.
 
 You can, however, use statistical analysis to detect patterns in your data that you then try to visualize. If you do that, do not use off-the-shelf plots. Show that you can create a plot that hopefully is more attractive and more informative than off-the-shelf statistical plots.
+
+## Plenary updates Sprint 3 SCRUM masters
+
+Last 15 minutes of the session.
+

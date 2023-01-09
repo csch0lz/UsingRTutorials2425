@@ -1623,10 +1623,18 @@ __Programming Tips__
 
 Note: As long as you do not press the *Start Over* button, the code (and plots) are preserved in this tutorial, so you can use the code later. 
 
+### Planning of Sprint 1
+
+-   Take some time to complete planning of Sprint 1.
+-   Start working on Sprint 1 tasks.
+
+### SCRUM masters update
+
+-   Use 1-2 minutes (per project group) to update the other groups on your first Sprint plan.
+
 ### We’ve made a start!
 
 -   Contact your buddy.
 -   Study the assigned book chapters before the next session.
 -   Submit questions about the course material on Canvas.
--   SCRUM masters: Make sure your teams are organized to complete Sprint 1
-by Thursday.
+-   SCRUM masters: Make sure your teams are organized to complete Sprint 1 by Thursday.

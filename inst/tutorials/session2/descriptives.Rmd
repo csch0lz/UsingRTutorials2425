@@ -9,7 +9,7 @@ description: >
     Organize your work, check your understanding of the basic tidyverse data wrangling 
     functions, learn how to wrangle in steps and check each step,
     and start working on your first reproducible research: your
-    Data Project as RMarkdown file.
+    Data Project as R Markdown file.
 ---
 
 ```{r setup, include=FALSE}
@@ -931,7 +931,7 @@ __Programming Tip__
 
 R has several packages for creating tabular output. In a later session, we will discuss some packages for tabulating statistical output.
 
-Here, we present a function (`kable()`) in a basic package for tabular output (`knitr`), which works very well with piping and RMarkdown (discussed later in this tutorial). In addition, we use the `kableExtra` function to fine-tune tables created with `kable()`.
+Here, we present a function (`kable()`) in a basic package for tabular output (`knitr`), which works very well with piping and R Markdown (discussed later in this tutorial). In addition, we use the `kableExtra` function to fine-tune tables created with `kable()`.
 
 ### 
 
@@ -1072,13 +1072,13 @@ So, adjust the global settings of RStudio:
 -   A file with extension `.R`, containing R code.
 -   Similar to answer boxes in this tutorial.
 
-We are not going to use script files because we embed all our code within the RMarkdown document (next topic).
+We are not going to use script files because we embed all our code within the R Markdown document (next topic).
 
-## RMarkdown: Reproducible Research
+## R Markdown: Reproducible Research
 
-For both the weekly problem sets and your Data Project, you will be working with RMarkdown.
+For both the weekly problem sets and your Data Project, you will be working with R Markdown.
 
-An RMarkdown file contains all steps from data to results:
+An R Markdown file contains all steps from data to results:
 
 -   Commands to clean and analyze data.
 -   Comments to explain steps in data cleaning and analysis.
@@ -1088,10 +1088,10 @@ An RMarkdown file contains all steps from data to results:
 Eve`R`ything in one place!
 </div>
 
-### RMarkdown YAML
+### R Markdown YAML
 
 <div class="question" >
-Open a new RMarkdown document in RStudio.
+Open a new R Markdown document in RStudio.
 
 Adjust the first part of the document, called YAML (title, authors, date) and add a table of contents. 
 </div>
@@ -1113,20 +1113,20 @@ Good practice:
     +   Recommended global settings for (knitting/rendering) code chunks: `knitr::opts_chunk$set(eval = TRUE, echo = FALSE, warning = FALSE, message = FALSE)`
 
 <div class="question" >
-Adjust the settings in your RMarkdown document and load the tidyverse package.
+Adjust the settings in your R Markdown document and load the tidyverse package.
 </div>
 
 More info on the meaning of code chunk settings:
 
--   RMarkdown cheat sheet (`RStudio: Help > Cheat Sheets > R Markdown Cheat Sheet`) or at the [`knitr` web page](https://yihui.org/knitr/options/#chunk-options).
+-   R Markdown cheat sheet (`RStudio: Help > Cheat Sheets > R Markdown Cheat Sheet`) or at the [`knitr` web page](https://yihui.org/knitr/options/#chunk-options).
 
 ### Code chunk names
 
 A code chunk may have a name (label), e.g., `setup` in the pic below):
 
 -   May not contain a space.
--   May only occur once in an RMarkdown document.
--   Informative chunk names are handy: quickly navigate via RStudio's code outline (button at the bottom left of the RMarkdown screen). 
+-   May only occur once in an R Markdown document.
+-   Informative chunk names are handy: quickly navigate via RStudio's code outline (button at the bottom left of the R Markdown screen). 
 
 ![](images/outline.png)
 
@@ -1140,9 +1140,9 @@ To work with your data, they must be loaded.
 
 <div class="question" >
 -   Download the Data Project data file marked for initial practice from Canvas to your project directory. Or: Each team member downloads a different Data Project data file.
--   Get rid of the text and code chunks from the standard Rmarkdown document.
+-   Get rid of the text and code chunks from the standard R Markdown document.
 -   Add a header to start the section on data description.
--   Add your first code chunk (use the _Insert_ button at the top of the RMarkdown screen).
+-   Add your first code chunk (use the _Insert_ button at the top of the R Markdown screen).
 </div>
 
 All Data Project data sets are in `csv` format.
@@ -1182,7 +1182,7 @@ __Programming Tips__
 - In a code chunk, press Ctr/Cmd-Enter to run the command in which your cursor is positioned.
 </div>
 
-### RMarkdown plot
+### R Markdown plot
 
 Code chunks that produce a plot will show a plot in a knitted document.
 
@@ -1202,7 +1202,7 @@ Main options for a code chunk creating a plot (book p. 465-467, {28.7.1, 28.7.2}
 <div class="tip" >
 __Programming Tips__
 
-- Carefully inspect a knitted RMarkdown document for the presence and layout of plots and tables and for unwanted code or R messages.
+- Carefully inspect a knitted R Markdown document for the presence and layout of plots and tables and for unwanted code or R messages.
 - Don't worry about code or output created by code that you may not need in the end. It is easy to skip a code chunk and not displaying its results by setting the code chunk option `eval=` to `FALSE`. Preserving (but hiding) unnecessary code prevents you from creating the code again later on.
 </div>
 
@@ -1212,9 +1212,9 @@ __Programming Tips__
 Now, add a description of the plot or data file for the reader of the document.
 </div>
 
-Use RMarkdown text formatting options if needed, see _Help>Markdown Quick Reference_ in RStudio for the main options.
+Use R Markdown text formatting options if needed, see _Help>Markdown Quick Reference_ in RStudio for the main options.
 
-Some often used text formatting in RMarkdown.
+Some often used text formatting in R Markdown.
 
 ```{r eval=FALSE, echo=TRUE}
 -   Headers: #, ##, ###
@@ -1229,7 +1229,7 @@ Some often used text formatting in RMarkdown.
 
 ### Knitting to PDF
 
-Knit (render) an RMarkdown with the knit button.
+Knit (render) an R Markdown with the knit button.
 
 ```{r knitpic, out.width="30%"}
 knitr::include_graphics("images/Knit.png")
@@ -1244,10 +1244,10 @@ Knitting to a paper document:
 
 -   Knit to PDF or Word. 
 -   PDF output is supported better than Word, 
--   but requires the installation of a TeX package (see the [online book on RMarkdown](https://bookdown.org/yihui/rmarkdown/installation.html)). 
+-   but requires the installation of a TeX package (see the [online book on R Markdown](https://bookdown.org/yihui/rmarkdown/installation.html)). 
 
 <div class="question" >
-Knit your RMarkdown document to PDF to check that it works and LaTeX package is correctly installed. 
+Knit your R Markdown document to PDF to check that it works and LaTeX package is correctly installed. 
 </div>
 
 ### 
@@ -1268,13 +1268,10 @@ YAML option `keep_tex: TRUE` saves the TeX file (extension `.tex`), which you ca
 
 Start working on the R Markdown document for your Data Project in RStudio. 
 
--   Decide how you are going to collaborate on one RMarkdown document.
+-   Decide how you are going to collaborate on one R Markdown document.
 -   Sprint 1 Review & Sprint 1 Retrospective.
 -   Sprint 2 Planning.
-    +   Describe your complex data set with `filter()`, `arrange()`, `select()`, `group_by()`, `mutate()`, and `summarise()` functions. For example, check for missing values, inspect frequency distributions.
-    +   Put and run the code in code chunks within your R Markdown document. Add plenty of comments to your code.
-    +   Use `ggplot()` to visualize the remarkable features.
-    +   Describe remarkable features of your data in the R Markdown document (outside the code chunks: for the reader). 
+-   Remaining time: Work on the Sprint 2 Backlog.
 
 ## Plenary updates Sprint 1 SCRUM masters
 

@@ -1248,9 +1248,9 @@ Well, what's the difference between the two topics? Note that the results may ch
 
 ## Data Project: To Do
 
--   Sprint 2: Retrospective & Review
--   Sprint 3: Planning, Update Project Backlog
--   Last 15 Minutes: Updates of the Sprint 2 Scrum-Masters
+-   Sprint 2: Retrospective & Review.
+-   Sprint 3: Planning, Update Project Backlog.
+-   Remaining time: Work on the Sprint 2 Backlog.
 
 <div class="tip" >
 __Programming Tip__
