@@ -76,7 +76,7 @@ Senior Lecturer Research Methods, w.denooy@uva.nl
 ### Our expectations
 
 -   Willingness to dedicate time to learning R.
--   Openness to learn new things and take on a challenge.
+-   Openness to learning new things and take on a challenge.
 
 ### Who are you?
 
@@ -104,7 +104,7 @@ Book:
 -   AFTER EXTENSIVE trial and error: online help is available for exercises
 (e.g. [https://jrnold.github.io/r4ds-exercise-solutions/](https://jrnold.github.io/r4ds-exercise-solutions/))
 
-Slides, data sets, and so on: Canvas.
+Additional materials: Canvas.
 
 <div class="emphasis" >
 Study the syllabus (module guide) on Canvas!
@@ -122,7 +122,7 @@ data.frame(Week = c(1, 1, 2, 2, 3, 3, 4, 4),
              " Descriptive Statistics and Reports: Ch. 3-6, 21 {5-8, 27}",
              " Principles of Database Management: Ch. 7-10 {10-13}",
              " Handling Special Types of Data: Ch. 11-13 {14-16}",
-             " Programming: Ch. Ch. 14-17 up to p. 322 {18-21 up to 21.3}",
+             " Programming: Ch. 14-17 up to p. 322 {18-21 up to 21.3}",
              " Modelling: Sections 3-4 in _Help, My Collaborator Uses R!_  instead of Ch. 18-20 {23-25}",
              " Communicating results: Ch. (21) 22-24 {(27) 28-30}",
              " Project presentation and final report submission"
@@ -147,7 +147,7 @@ Data Project Collaboration (~1.5 hours)
 
 Thu: New problem set (due Sunday).
 
-Use your study buddy,come prepared, and bring questions.
+Use your study buddy, come prepared, and bring questions.
 
 ### Study Buddies
 
@@ -157,7 +157,7 @@ Why have a study buddy?
 
 -   Peer learning is highly effective.
 -   R users form a community. Become part of it!
--   Online learning requires moral support.
+-   Learning to program requires moral support.
 
 Recommendations
 
@@ -165,6 +165,8 @@ Recommendations
 -   Read before you meet.
 -   Discuss the course content, not the group project.
 -   Formulate questions for class.
+
+We will assign a study buddy to you.
 
 ### Grading
 
@@ -179,7 +181,7 @@ Selection of exercises like those in _R for Data Science_.
 
 Assigned to student on Thursday as Canvas assignment.  
 
-Submission deadline: each following Sunday.  
+Submission deadline: following Sunday.  
 
 ### Data Project: Tell a visual story
 
@@ -197,6 +199,7 @@ knitr::include_graphics("images/wolf.png")
 ```
 Source: [https://interaktiv.morgenpost.de/woelfe-in-deutschland/](https://interaktiv.morgenpost.de/woelfe-in-deutschland/)
 
+### 
 
 A visualization requires a lot of data wrangling:
 
@@ -250,7 +253,7 @@ The Canvas [data project data sets module page](https://canvas.uva.nl/courses/32
 Who will work on which complex dataset (and with whom)?
 
 <div class="emphasis">
-Submit a list of group members & a group name on the Canvas discussion board during the break.
+Submit a list of (3-4) team members & a team name on the Canvas discussion board during the break.
 </div>
 
 ### Questions about the Syllabus?
@@ -286,7 +289,7 @@ Now you can start the first tutorial:
 Alternatively: 
 
 -   Restart R (Session > Restart R) to show the tutorials in the RStudio _Tutorial_ tab.
--   Click _Start Tutorial_ for tutorial __Session 1: Introduction__ in the _Tutorial_ tab. (Takes some time!)
+-   Click _Start Tutorial_ for tutorial __Session 1: A New Way of Working__ in the _Tutorial_ tab. (Takes some time!)
 -   Show the tutorial in a new window with the <img src="images/ShowNewWindow.png" width="234px"> button.
 -   While you are working with the tutorial, you can also work in RStudio.  
 
@@ -302,6 +305,8 @@ Your tutorial answers are saved until you press _Start Over_.
 Use button <img src="images/stopButton.png"> to stop the tutorial. 
 
 ## Coding in R: Using functions
+
+### 
 
 We use functions in R to accomplish something.
 
@@ -372,6 +377,10 @@ __Hint:__ What does the error message say if you run the code?
 </div>
 
 ### Where do the results go?
+
+We can assign the results of a function to a data object:
+
+`left_hand_object <- funtion_name(argument_name = value, ...)`
 
 If left-hand data object:
 
@@ -509,6 +518,7 @@ tibble::tibble(
   knitr::kable(booktabs = TRUE)
 ```
 
+
 ```{r plot-recreate1, exercise=FALSE, message=FALSE, warning=FALSE}
 # Standard ggplot plot with title and axis labels.
 ggplot2::ggplot(
@@ -599,7 +609,7 @@ ggplot2::ggplot(
 ```
 
 <div class="question" >
-Set the colour and size of the dots.
+Set the colour, shape, and size of the dots.
 </div>
 
 ```{r ggplotDotcolor, exercise = TRUE, exercise.lines = 10, message=FALSE, warning=FALSE}
@@ -629,7 +639,7 @@ ggplot(
 
 ```{r ggplotDotcolor-check}
 gradethis::grade_code(
-   correct = "Dot colour is linked to a variable, so it must be inside an aes() function. In contrast, dot size is constant (one value for all dots), so it must be outside an aes() function."
+   correct = "Dot colour and shape are linked to a variable, so they must be inside an aes() function. In contrast, dot size is constant (one value for all dots), so it must be outside an aes() function."
 )
 ```
 
@@ -837,11 +847,13 @@ ggplot(
     x = "Exposure to the campaign",
     y = "Brand awareness"
     ) +
-  facet_wrap(vars(wom))
+  facet_wrap(~wom)
 ```
 
 ```{r plot_facet-check}
-gradethis::grade_code()
+gradethis::grade_code(
+  correct = "You can also use facet_wrap(vars(wom))."
+)
 ```
 
 ### Adding labels (advanced)
@@ -1052,7 +1064,7 @@ gradethis::grade_code(
 )
 ```
 
-## Evaluating a plot
+## Evaluating a Plot
 
 Once you master the `ggplot2` package and other packages for creating plots (see the __Fancy stuff__ part of this tutorial), you should start thinking about what you want to convey with a plot and whether the plot conveys your message in a clear and attractive way.
 
@@ -1179,7 +1191,7 @@ output$regPlot <- renderPlot({
 })
 ```
 
-## Additional materials
+## Additional Materials
 
 Book on ggplot2:
 
@@ -1190,10 +1202,6 @@ github: https://github.com/hadley/ggplot2-book
 Interactive training:
 
 -   https://www.datacamp.com/courses/data-visualization-with-ggplot2-1
-
-## Questions about Exercises?
-
-Exercises 6:4 {3.2.4:4}, 12:1,3 {3.3.1:1,3}, 15:3 {3.5.1:3}, 21:6 {3.6.1:6}, 26:5 {3.7.1:5}, 31:1 {3.8.1:1}, 40:2 {4.4:2}.
 
 ## Debugging (advanced)
 
@@ -1249,7 +1257,7 @@ __Programming Tips__
 - Check intermediate results regularly by running the code and inspecting the results.
 </div>
 
-## Fancy stuff
+## Fancy Stuff
 
 ### `gganimate` package
 
