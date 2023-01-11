@@ -98,6 +98,8 @@ The `tidyverse` approach to data wrangling can be summarized as follows:
 - Breakdown transformations into logical steps.
 - Chain transformations into a pipe `%>%`): Use resulting data of previous step as input data of next step.
 
+### 
+
 ```{r}
 data.frame(
   Function = c("filter(): select cases", 
@@ -121,6 +123,8 @@ data.frame(
     bootstrap_options = "striped"
     )
 ```
+
+### 
 
 Or, visually:
 
@@ -194,6 +198,8 @@ gradethis::grade_code(
 )
 ```
 
+### 
+
 <div class="tip" >
 __Programming Tip__
 
@@ -234,7 +240,7 @@ Glasgow %>%
 ```
 
 <div class="question" >
-Create the above table with the absolute frequencies (raw counts), relative frequencies (percentages), and cumulative relative frequencies of the number of friendships per student in the `Glasgow` data set.
+Create the above table with the absolute frequencies (raw counts) and relative frequencies (percentages) of the number of friendships per student in the `Glasgow` data set.
 </div>
 
 As always, use tidyverse functions and join all functions in one pipe.
@@ -270,10 +276,6 @@ Glasgow %>%
     Perc = ??? / nrow(Glasgow)
   )
 # Note that we can use the data set again within a pipe step!
-```
-
-```{r summary1-hint-4}
-# With the preceding two hints, you should be able to get the correct code.
 ```
 
 ```{r summary1-check}
