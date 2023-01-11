@@ -343,6 +343,8 @@ Glasgow %>%
   mutate(friends_nonmissing = na_if(friendships, -1))
 ```
 
+### 
+
 Now, do it yourself.
 
 <div class="question" >
@@ -372,11 +374,12 @@ gradethis::grade_code(
   )
 ```
 
-###
+### 
 
 <div class="question" >
 Create a new variable `money_class2` with the following groups for the Glasgow students' pocket money: 
 
+- group -1: values below 0 (negative pocket money?),
 - group 0: 0 (no pocket money), 
 - group 1: 1 - 10, 
 - group 2: more than 10 pounds per month.
@@ -403,42 +406,67 @@ Glasgow %>% mutate(
     
   )
 )
-# Which of the recoding and grouping functions should you use?
+# How do you specify the conditions and new values?
 ```
 
 ```{r recodemoney-hint-3}
+# What is the condition for groups -1 (negative pocket money) and 0 (no pocket money)? 
+# Use __==__, __>__, or __<__ for "equals", "larger than", and "smaller than".
+Glasgow %>% mutate(
+  money_class2 = case_when(
+    money ?? ~ -1,
+    money ?? ~ 0
+  )
+)
+```
+
+```{r recodemoney-hint-4}
 # What is the condition for group 1: 1 - 10? 
 # Use __>=__ and __<=__ for "larger or equal" and "smaller or equal".
 Glasgow %>% mutate(
   money_class2 = case_when(
+    money < 0 ~ -1,
     money == 0 ~ 0,
     ??? ~ 1
   )
 )
 ```
 
-```{r recodemoney-hint-4}
+```{r recodemoney-hint-5}
 # What is the condition for group 2: more than 10 pounds per month? 
-# Use __>=__ and __<=__ for "larger or equal" and "smaller or equal".
+# You can assign all remaining cases to this group.
 Glasgow %>% mutate(
   money_class2 = case_when(
+    money < 0 ~ -1,
     money == 0 ~ 0,
-    money > 0 & money <= 10 ~ 1,
+    money <= 10 ~ 1,
     ??? ~ 2
   )
 )
 ```
 
 ```{r recodemoney-solution, exercise.reveal_solution = FALSE}
-Glasgow %>% mutate(money_class2 = case_when( money == 0 ~ 0, money > 0 & money <= 10 ~ 1, money > 10 ~ 2))
+Glasgow %>% mutate(money_class2 = case_when(money < 0 ~ -1, money == 0 ~ 0, money <= 10 ~ 1, TRUE ~ 2))
 ```
 
 ```{r recodemoney-check}
 gradethis::grade_code(
-  correct = "You correctly delimited the classes. Because negative values are not covered by the classes, they are automatically set to missing (__NA__).", 
-  incorrect = "Values outside the groups are automatically set to, so you don't have to treat them in a special way."
+  correct = "You correctly delimited the classes.", 
+  incorrect = "It is OK if you used: money > 10 ~ 2 instead of TRUE ~ 2 or if you used money < 1 ~ 0 instead of money == 0 ~ 0."
   )
 ```
+
+### 
+
+<div class="tip" >
+__Programming Tip__
+
+-   Use `count()` (which is equal to `group_by()` %>% `summarise(n = n())`) to better understand a variable or a combination of two or more variables.
+-   Check a recoded variable: Pipe the original and recoded variable into the count() function.
+-   Example: %>% count(money_class2, money)
+-   Browse the frequency table: are the original values linked to the correct groups on the new variable?
+-   Pay special attention to (combinations that involve) missing values. Missing values may create more missing values in data transformation steps because every transformation involving a missing value results in a missing value.
+</div>
 
 ###
 
@@ -477,6 +505,8 @@ gradethis::grade_code(
 ```
 
 ## Missing Values
+
+### 
 
 In R, missing values are indicate by `NA`.
 
@@ -562,122 +592,6 @@ It is very easy to mix up __=__ and __==__.
 - __==__ means "is equal to". __y == 0__ checks if __y__ equals zero, which is either true or false.
 </div>
 
-## New Variables from Equations
-
-A previous exercise contained this code: `Glasgow %>% summarise(no_alcohol = sum(alcohol == "1 none"))`. 
-
-The part `sum(alcohol == "1 none")` is weird, isn't it? How can we sum an equation?
-
-<div class="question" >
-Instead of summarizing, use `mutate()` to create a variable named `whats_this` that is the equation `(alcohol == "1 none")`. Only retain the old variable `alcohol` and the new variable `whats_this` and sort on both variables. Then scroll through the result: What is the relation between `whats_this` and `alcohol`? 
-</div>
-
-```{r conditions1, exercise = TRUE}
-Glasgow %>% 
-  select(alcohol) %>%
-  mutate( ____ ) %>%
-  count(alcohol, whats_this)
-```
-
-```{r eval=FALSE}
-# correct code
-h <- Glasgow %>% 
-  select(alcohol) %>%
-  mutate(whats_this = (alcohol == "1 none")) %>%
-  count(alcohol, whats_this)
-```
-
-```{r conditions1-check}
-gradethis::grade_result(
-  pass_if(~ 
-    { ncol(.result) == 3 &&
-      nrow(.result) == 6 &&
-      "alcohol" %in% names(.result) && "whats_this" %in% names(.result)
-    }, "You have correctly created a new variable."),
-  # too many variables
-  fail_if(~ ncol(.result) != 3, "Select only the requested variables."),
-  # wrong variable selected or wrong name for new variable
-  fail_if(~ !("alcohol" %in% names(.result) && "whats_this" %in% names(.result)), "Select the requested variables and use the suggested variable name.")
-)
-```
-
-<div class="tip" >
-__Programming Tip__
-
-- If you want to understand code, split the code in the smallest steps and inspect the results of each step.
-- Send the results to the screen or (especially in RStudio) pipe them into the `View()` command (note the first capital letter).
-</div>
-
-###
-
-In the original example, `sum(alcohol == "1 none")` does two things: 
-
--   it creates a new variable with `(alcohol == "1 none")`, which has `TRUE` or `FALSE` as values;
--   it sums the values of this variable. 
-
-### Counting combinations
-
-For results checking, scrolling through an entire data set is not ideal, especially not if the data set is large. 
-
-For understanding the relation between the old (`alcohol`) and new variable (`whats_this`), we only have to see all combinations of values on the two variables that occur. 
-
-<div class="question" >
-So, let us present one row per combination and count the number of times each combination occurs. Use the `count()` function.
-</div>
-
-```{r eval=FALSE}
-# correct code
-Glasgow %>% 
-  select(alcohol) %>%
-  mutate(whats_this = (alcohol == "1 none")) %>%
-  group_by(alcohol, whats_this) %>%
-  summarise(n = n())
-# shorter code
-Glasgow %>% 
-  mutate(whats_this = (alcohol == "1 none")) %>%
-  count(alcohol, whats_this)
-```
-
-```{r conditions2, exercise = TRUE}
-
-```
-
-```{r conditions2-check}
-gradethis::grade_result(
-  pass_if(~ 
-    { ncol(.result) == 3 &&
-      nrow(.result) == 6 &&
-      "alcohol" %in% names(.result) && "whats_this" %in% names(.result) &&
-        "n" %in% names(.result) &&
-      .result$whats_this[[1]] == TRUE &&
-      .result$n[[1]] == 16
-    }, "You have correctly counted each combination of the alcohol and whats_this variables."),
-  # too many (or) few cases
-  fail_if(~ nrow(.result) != 6, "You have to retain one row for each alcohol-whats_this combination. Use `count()` or `summarise()`."),
-  # too many variables
-  fail_if(~ ncol(.result) != 3, "Did you forget to calculate the whats_this variable or `count()`or `summarise()` the data?"),
-  # wrong variable selected or wrong names for new variables
-  fail_if(~ !("alcohol" %in% names(.result) && "whats_this" %in% names(.result) && "n" %in% names(.result)), "Use the suggested variable names."),
-  # new variable not correctly calculated
-  fail_if(~ .result$whats_this[[1]] != TRUE, "The whats_this variable was not correctly calculated. Use the code in the above question."),
-# new variable not correctly calculated
-  fail_if(~ .result$n[[1]] != 16, "The count variable was not correctly calculated.")
-)
-```
-
-<div class="question" >
-Which name did `count()` give to the variable counting the number of times a combination of values occurs?
-
-In which situations does count assign a missing value (`NA`) to the new variable `whats_this`? Is this as you want it to be?
-</div>
-
-<div class="tip" >
-__Programming Tips__
-
-- Use `count()` (which is equal to `group_by()` and `summarise(n = n())`) to better understand a variable or a combination of two or more variables.
-- Pay special attention to (combinations that involve) missing values. Missing values may create more missing values in data transformation steps because every transformation involving a missing value results in a missing value.
-</div>
-
 ### Mock test data
 
 Finally, how does R treat a logical variable if we `sum()` it? 
@@ -719,13 +633,19 @@ __Programming Tip__
 
 ## Multi-Case Functions
 
+### 
+
 *Ordinary use* of `mutate()`: Calculate a new variable value for each case from the case's  'own' value on one or more variables. *Example: grouping a variable*.
 
-*Special use* of `mutate()`: Calculate a new variable value for each case from the values on a variables *for other cases*; `dplyr` cheat sheet:
+*Special use* of `mutate()`: Calculate a new variable value for each case from the values on a variable *for other cases*. 
+
+`dplyr` cheat sheet:
 
 -   **OFFSETS**: use values from a preceding (`lag()`) or successive (`lead()`) case in the data frame;
 -   **CUMULATIVE AGGREGATES**: compute the sum (etc.) of all preceding cases;
 -   **RANKINGS**: assign rank to value in comparison to all other values.
+
+### 
 
 What if we use these function with:
 
@@ -829,6 +749,8 @@ What happens if you use the multi-case function without grouping? Comment out th
 
 ## Missing Observations
 
+### 
+
 What if we calculate the change in friendships for a student missing an observation for a wave? 
 
 <div class="question" >
@@ -845,8 +767,6 @@ data.frame(
   knitr::kable(booktab = TRUE) %>% 
   kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
 ```
-
-### 
 
 ### 
 
@@ -882,7 +802,7 @@ Glasgow %>%
   filter( n_obs != 3 | n_dist != 3)
 ```
 
-```{r missingObs, exercise = TRUE, exercise.lines = 7}
+```{r missingObs, exercise = TRUE, exercise.lines = 13}
 Glasgow %>%
   group_by(student) %>%
   summarise(
@@ -1023,7 +943,7 @@ From this point on in this tutorial, you are supposed to work in RStudio.
 An R Project keeps everything in the same place.
 
 <div class="question">
--   Create a new project for today’s coursework: *File>New Project…*
+-   Create a new project for your Data Project: *File>New Project…*
     +   **New Directory**. Start a project in a brand new working directory; or
     +   **Existing Directory**. Create a new project in an existing directory.
     +   Select a suitable directory name (which is also the project name.)
@@ -1056,6 +976,8 @@ And loaded:
 -   R command: `load("filename.RData")`).
 -   An R work space has file name extension `.RData`.
 
+### 
+
 RStudio's standard settings save and load the workspace when you close and open a project. This is risky. It is better to have a clean, reproducible workspace without data from previous runs.
 
 <div class="question" >
@@ -1077,6 +999,8 @@ So, adjust the global settings of RStudio:
 We are not going to use script files because we embed all our code within the R Markdown document (next topic).
 
 ## R Markdown: Reproducible Research
+
+### 
 
 For both the weekly problem sets and your Data Project, you will be working with R Markdown.
 
@@ -1147,6 +1071,8 @@ To work with your data, they must be loaded.
 -   Add your first code chunk (use the _Insert_ button at the top of the R Markdown screen).
 </div>
 
+### 
+
 All Data Project data sets are in `csv` format.
 
 <div class="question" >
@@ -1169,12 +1095,12 @@ We don't like guesses; we want to be sure that the variable type is correct.
 
 <div class="question" >
 -   Check the variable types reported when the data was read against the original data set. 
--   Add the `col_types` argument to your `read_csv()` command with the right variable types. 
+-   Add the `col_types` argument to your `read_csv()` command  and copy the reported (guessed) variable types (`cols( ... )`) behind the equals sign. 
 </div>
 
 Now, you are sure that the data will be read in the right way.
 
-__Hint:__ Add the `col_types =` argument to the `read_csv()` function and copy the reported (guessed) variable types (`cols( ... )`) behind the equals sign.
+### 
 
 <div class="tip" >
 __Programming Tips__
@@ -1200,6 +1126,8 @@ Main options for a code chunk creating a plot (book p. 465-467, {28.7.1, 28.7.2}
 -   Add one of the plots created in the Data Project part of the previous session in a separate code chunk.
 -   Add a caption to the plot and change the plot to a square layout. Knit the document to check the results.
 </div>
+
+### 
 
 <div class="tip" >
 __Programming Tips__
