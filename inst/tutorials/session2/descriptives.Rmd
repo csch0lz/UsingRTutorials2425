@@ -60,7 +60,7 @@ Glasgow <- UsingRTutorials::Glasgow
 
 -   Second 1.5 hours: Data project
     +   Finish Sprint #1, plan and start Sprint #2
-    +   Plenary updates of the SCRUM masters
+    +   Plenary updates by the SCRUM masters
 
 ## Q&A
 
@@ -69,6 +69,21 @@ Glasgow <- UsingRTutorials::Glasgow
 -   Any new topics that must receive attention today?
 
 ## Data Wrangling with `dplyr::`
+
+### 
+
+Data wrangling: Transforming (raw) data into (useful) information.
+
+<div class="tip" >
+__Programming Tip__
+
+-   You are responsible that the transformations are correct.
+-   So __check__ every transformation step.
+</div>
+
+
+
+### 
 
 Today, we use a data set containing information about friendships, tobacco, alcohol, and substance use among 160 students, who were followed over their second, third and fourth year at a secondary school in Glasgow (*Teenage Friends and Lifestyle Study* research project).
 
@@ -87,8 +102,6 @@ The data set, named `Glasgow`, is available within this tutorial, so you do not 
 -    **money**: respondent's pocket money per month, in British pounds.
 -    **romantic**: whether the student had a romantic relation, yes or no.
 -    **friendships**: number of friendship nominations received by other respondents.
-
-### 
 
 ### Piping
 
@@ -449,13 +462,6 @@ Glasgow %>% mutate(
 Glasgow %>% mutate(money_class2 = case_when(money < 0 ~ -1, money == 0 ~ 0, money <= 10 ~ 1, TRUE ~ 2))
 ```
 
-```{r recodemoney-check}
-gradethis::grade_code(
-  correct = "You correctly delimited the classes.", 
-  incorrect = "It is OK if you used: money > 10 ~ 2 instead of TRUE ~ 2 or if you used money < 1 ~ 0 instead of money == 0 ~ 0."
-  )
-```
-
 ### 
 
 <div class="tip" >
@@ -635,9 +641,10 @@ __Programming Tip__
 
 ### 
 
-*Ordinary use* of `mutate()`: Calculate a new variable value for each case from the case's  'own' value on one or more variables. *Example: grouping a variable*.
+`mutate()`
+-   __Ordinary use__: Calculate a new variable value for each case from the case's 'own' value on one or more variables. *Example: grouping a variable*.
 
-*Special use* of `mutate()`: Calculate a new variable value for each case from the values on a variable *for other cases*. 
+-   __Special use__: Calculate a new variable value for each case from the values on a variable *for other cases*. 
 
 `dplyr` cheat sheet:
 
