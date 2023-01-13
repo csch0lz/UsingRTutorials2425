@@ -117,6 +117,7 @@ Inspect the `GlasgowFriends` tibble or use help on it to identify different type
 </div>
 
 ```{r GlasgowFriends, exercise = TRUE}
+str(GlasgowFriends)
 ?GlasgowFriends
 ```
 
@@ -126,7 +127,7 @@ Inspect the `GlasgowFriends` tibble or use help on it to identify different type
 
 Potential types of cases in `GlasgowFriends`:
 
--   __student__: has an age, sex, an be a friend, and so on.
+-   __student__: has an age, sex, can be a friend, and so on.
 -   __neighbourhood__: has a name, a distance from school.
 -   __wave__:  characteristic of neither a student nor a neighbourhood.
 
@@ -171,36 +172,35 @@ Find the primary key of a data frame to understand the type(s) of cases.
 Identifying the primary key of a data frame:
 
 1.    From the data description, chose variables that you think identify types of cases.
-2.    Select these variables with `select()`.
-3.    Use the function `anyDuplicated()` to check if there is a case (row) with the same values on the selected variables as a preceding case.
-      + If there is a duplicate, it is not a pruimary key; add a variable to the key (go to Step 1).
-      + If there are no duplicates, see if you can remove a variable and still have no duplicates (and go to Step 2).
-
+2.    Count each unique combination of values on these variables with `count()`.
+3.    Check if there are combinations of values that appear more then once with `filter(n > 1)`.
+      + If at least one combination of values appears more than once, this set of variables is not a primary key; add a variable to the key (go to Step 1).
+      + If no combination of values appears more than once, you may have more variables than the primary key. See if you can remove a variable and still have a unique key (go to Step 2).
 
 <div class="question" >
 Write code that identifies the primary key of tibble `GlasgowFriends`. You may have to try out different combinations of variables; submit only the final code for checking. </div>
 
 ```{r primarykeyhidden, eval=FALSE}
 # primary key: this seems to be the only option with four variables
-GlasgowFriends %>%
-  select(student, wave, bestfriend, bfperiod) %>%
-  anyDuplicated()
+GlasgowFriends %>% 
+  count( student, wave, bestfriend, bfperiod ) %>% 
+  filter(n > 1)
 ```
 
 ```{r primarykey, exercise = TRUE}
-# Add the variables in the select() function that you think 
+# Add the variables in the count() function that you think 
 # represent different types of cases (unit).
 GlasgowFriends %>% 
-  select(  ) %>% 
-  anyDuplicated()
+  count( ____ ) %>% 
+  filter(n > 1)
 ```
 
 <div id="primarykey-hint">
-__Hint:__ Add the variables in the select() function that you think represent different types of cases (unit).
+__Hint:__ Add the variables in the count() function that you think represent different types of cases (unit).
 </div>
 
 ```{r primarykey-solution}
-GlasgowFriends %>% select(student, wave, bestfriend, bfperiod) %>% anyDuplicated()
+GlasgowFriends %>% count( student, wave, bestfriend, bfperiod ) %>% filter(n > 1)
 ```
 
 ```{r primarykey-check}
@@ -227,13 +227,13 @@ If you are unsure which variable to add to find the primary key:
 # Display cases with the same provisional primary key as consecutive cases.
 GlasgowFriends %>%
   # (ADD HERE) for each combination of selected primary key variables...
-  group_by( student, wave ) %>%
+  group_by( student, wave, ____ ) %>%
   # ...calculate and add the number of cases with the same values
   mutate(n_identical = n()) %>%
   # retain only cases that are not unique on the selected variables
   filter(n_identical > 1) %>%
   # (ALSO ADD HERE) sort the cases, so duplicates are next to each other
-  arrange( student, wave ) %>% 
+  arrange( student, wave, ____ ) %>% 
   # show only the first two cases that are duplicates
   ungroup() %>%
   slice(1:2)
@@ -247,7 +247,7 @@ Example: A primary key consisting of the variables `student` and `wave`.
 
 ```{r}
 data.frame(
-  `Case type` = c("Student/person", "Wave", "Student per wave wave per student"),
+  `Case type` = c("Student/person", "Wave", "Student per wave / wave per student"),
   Variables = c("student, neighbourhood, age, sex, ...", "wave ID", "alcohol, cannabis, tobacco, ..."),
   Notes = c("Fixed student characteristics", "Wave characteristics", "Student characteristics that may change between waves"),
   `Split tibble?` = c("yes", "no (only wave ID)", "yes")
@@ -257,6 +257,8 @@ data.frame(
                ) %>% 
   kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
 ```
+
+### 
 
 <div class="tip" >
 __Tip__
@@ -314,6 +316,8 @@ GlasgowFriends %>%
 # In the output of this code, 'n_distinct' gives the number of different ages encountered per student. Column 'n' gives the number (frequency) of students.
 ```
 
+### 
+
 <div class="tip" >
 __Programming Tip__
 
@@ -339,20 +343,21 @@ This way, each piece of information is stored only once:
 - Information is stored by type of cases: easier to find.
 - Any multilevel structure of the data (for statistical analysis) is clear from the presence of different tibbles.
 
+### 
+
 <div class="question" >
 Use your data wrangling skills from Session 2 and the data transformation with dplyr cheat sheet to create a tibble for each type of case in `GlasgowFriends`:
 
 1. Student.
 </div>
 
-```{r studenttable, exercise = TRUE, exercise.lines = 8}
+```{r studenttable, exercise = TRUE, exercise.lines = 6}
 # Your code to create a tibble for student information without duplicates.
 Student <- GlasgowFriends %>% 
   # select the relevant variables
-  select() %>% 
+  select( ____ ) %>% 
   # only keep cases that are distinct (not identical)
   distinct()
-# Use View() within the pipe if you want to view the contents of the tibble that you created.
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -365,24 +370,26 @@ Student <- GlasgowFriends %>% select(student, neighbourhood, schooldist, hoodnam
 ```
 
 ```{r studenttable-check}
-gradethis::grade_code(
-  correct = "", 
-  incorrect = " However, if you selected 9 variables and the new tibble contains 160 rows, your code is fine. You probably selected the variables in a different order."
-  )
+gradethis::grade_result(
+  pass_if(~ {nrow(.result) == 160 && ncol(.result) == 9 }, "Indeed, student, bestfriend, bfperiod, and bfwave belong together in this tibble."),
+  fail_if(~ nrow(.result) != 160, "The number of cases in the new tibble is not correct. You did not select the correct variables."),
+  fail_if(~ ncol(.result) != 9, "The number of variables in the new tibble is not correct. You did not select (all) correct variables.")
+)
 ```
+
+### 
 
 <div class="question" >
 2. StudentWave.
 </div>
 
-```{r studentwavetable, exercise = TRUE, exercise.lines = 8}
+```{r studentwavetable, exercise = TRUE, exercise.lines = 6}
 # Your code to create a tibble for student per wave information without duplicates.
 StudentWave <- GlasgowFriends %>% 
   # select the relevant variables
-  select() %>% 
+  select( ____ ) %>% 
   # only keep cases that are distinct (not identical)
   distinct()
-# Use View() within the pipe if you want to view the contents of the tibble that you created.
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -395,24 +402,26 @@ StudentWave <- GlasgowFriends %>% select(student, wave, alcohol, cannabis, money
 ```
 
 ```{r studentwavetable-check}
-gradethis::grade_code(
-  correct = "", 
-  incorrect = " However, if you selected 12 variables and the new tibble contains 480 rows, your code is fine. You probably selected the variables in a different order."
-  )
+gradethis::grade_result(
+  pass_if(~ {nrow(.result) == 480 && ncol(.result) == 12 }, "Indeed, student, bestfriend, bfperiod, and bfwave belong together in this tibble."),
+  fail_if(~ nrow(.result) != 480, "The number of cases in the new tibble is not correct. You did not select the correct variables."),
+  fail_if(~ ncol(.result) != 12, "The number of variables in the new tibble is not correct. You did not select (all) correct variables.")
+)
 ```
+
+### 
 
 <div class="question">
 3. StudentBestfriend.
 </div>
 
-```{r bestfriendstable, exercise = TRUE, exercise.lines = 8}
+```{r bestfriendstable, exercise = TRUE, exercise.lines = 6}
 # Your code to create a tibble for best friends information without duplicates.
 StudentBestfriend <- GlasgowFriends %>% 
   # select the relevant variables
-  select() %>% 
+  select( ____ ) %>% 
   # only keep cases that are distinct (not identical)
   distinct()
-# Use View() within the pipe if you want to view the contents of the tibble that you created.
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -425,10 +434,11 @@ StudentBestfriend <- GlasgowFriends %>% select(student, bestfriend, bfperiod, bf
 ```
 
 ```{r bestfriendstable-check}
-gradethis::grade_code(
-  correct = "", 
-  incorrect = " However, if you selected 4 variables and the new tibble contains 519 rows, your code is fine. You probably selected the variables in a different order."
-  )
+gradethis::grade_result(
+  pass_if(~ {nrow(.result) == 519 && ncol(.result) == 4 }, "Indeed, student, bestfriend, bfperiod, and bfwave belong together in this tibble."),
+  fail_if(~ nrow(.result) != 519, "The number of cases in the new tibble is not correct. You did not select the correct variables."),
+  fail_if(~ ncol(.result) != 4, "The number of variables in the new tibble is not correct. You did not select (all) correct variables.")
+)
 ```
 
 ### 
@@ -537,7 +547,7 @@ Problems:
 
 The tidy solution:
 
--   Gather (stack) repeated information. 
+-   Stack repeated information. 
 -   Yields one row (observation) per student per wave per nominated friend.
 
 ```{r showfriendsgathered}
@@ -553,32 +563,31 @@ GlasgowFriends %>%
 ```
 
 <div class="question" >
-Use the tidyverse `gather()` function to create a new tibble named `StudentWaveFriend` containing one row (observation) per student per wave per nominated friend. The tibble should only contain these three variables.
+Use the tidyverse `pivot_longer()` function to create a new tibble named `StudentWaveFriend` containing one row (observation) per student per wave per nominated friend. The tibble should only contain the same variables as in the above table.
 </div>
 
 ```{r gatherfriends, exercise = TRUE, exercise.setup = "studentwavetable-solution"}
 StudentWaveFriend <- StudentWave %>% 
-  gather() %>%
+  pivot_longer( ____ ) %>%
   select()
 #Show result.
 StudentWaveFriend
 ```
 
 <div id="gatherfriends-hint">
-__Hint:__ Use help on the gather() function   .
+__Hint:__ Use help on the pivot_longer() function   .
 </div>
 
 ```{r gatherfriends-solution}
-StudentWaveFriend <- StudentWave %>% gather(key = "friendnumber", value = "friend", friend_1:friend_6, na.rm = TRUE) %>% select(student, wave, friend)
+StudentWaveFriend <- StudentWave %>% pivot_longer( friend_1:friend_6, names_to = "friendnumber", values_to = "friend", values_drop_na = TRUE ) %>% select( student, wave, friendnumber, friend )
 ```
 
 ```{r gatherfriends-check}
 gradethis::grade_result(
   fail_if(~ nrow(StudentWaveFriend) > 1600, "Did you remove the rows with missing values for the friend variable? These rows are superfluous. Use an argument in the `gather()` function to remove the rows."),
   fail_if(~ ("alcohol" %in% names(StudentWaveFriend)) | ("cannabis" %in% names(StudentWaveFriend)) | ("money" %in% names(StudentWaveFriend)) | ("romantic" %in% names(StudentWaveFriend)), "Drop the student characteristics that have only one value per student per wave: alcohol, cannabis, and so on. Why are they untidy in the new tibble?"),
-  fail_if(~ ncol(StudentWaveFriend) > 3, "Function `gather()` creates two new variables: key and value. One of the two is pretty useless in this particular case. Drop it."),
-  fail_if(~ ncol(StudentWaveFriend) < 3, "Did you select the relevant variables in the end: student, wave, and friend?"),
-  pass_if(~ TRUE, "You only retained the three variables that matter: the student who nominated a friend, the wave at which the nomination was made, and the student code of the nominated friend. And you dropped missing values, which reduces the number of rows considerably.")
+  fail_if(~ ncol(StudentWaveFriend) < 4, "Did you select the relevant variables in the end: student, wave, and friend?"),
+  pass_if(~ TRUE, "You retained the cases and variables that matter.")
 )
 ```
 
@@ -594,7 +603,7 @@ StudentWave <- StudentWave %>%
 ```
 
 <div id="gatherfriends-hint">
-__Hint:__ How about the select() function?
+__Hint:__ How about using the select() function?
 </div>
 
 ```{r gatherfriends2-solution, eval=FALSE}
@@ -608,14 +617,9 @@ gradethis::grade_result(
 )
 ```
 
-###
+### Optional: `pivot_longer()` exercise
 
--   `gather()`: 
-    +   New function `pivot_longer()`.
-    +   Can spread more than one variable (often in panel survey data).
--   `spread()`: New function `pivot_wider()`.
-
-```{r createGlasgowWide}
+```{r pivotlonger-setup}
 # create a tibble with waves as different columns
 GlasgowWide <- UsingRTutorials::Glasgow %>%
   pivot_wider(id_cols = student:smoking_siblings, names_from = wave, values_from = alcohol:friendships)
@@ -650,13 +654,9 @@ gradethis::grade_code(
   )
 ```
 
-<div class="tip" >
-__Programming Tip__
-
-- Use `pivot_longer()` and `pivot_wider()` rather than `gather()` and `spread()`.
-</div>
-
 ## 3. Each variable must have its own column.  
+
+### 
 
 Inspect the tibble `StudentBestfriend` that you created previously. 
 
@@ -673,8 +673,6 @@ GlasgowFriends %>%
   kableExtra::kable_classic(full_width = FALSE)
 ```
 
-###
-
 ### 
 
 Values in variable `bfperiod` are variable names:
@@ -686,6 +684,8 @@ Values in variable `bfperiod` are variable names:
 <div class="emphasis" >
 Tidy Rule 3. Each variable must have its own column.
 </div>
+
+###
 
 Tidy data: tibble with variables `from`and `to` instead of `bfperiod` and `bfwave`.
 
@@ -704,7 +704,7 @@ GlasgowFriends %>%
 ```
 
 <div class="question" >
-Replace the `StudentBestfriend` tibble by a tibble with variables `from`and `to` instead of `bfperiod` and `bfwave`.
+Replace the `StudentBestfriend` tibble by a tibble with variables `from` and `to` instead of `bfperiod` and `bfwave`.
 </div>
 
 ```{r gatherBestfriend, exercise = TRUE, eval=FALSE, exercise.setup = "bestfriendstable-solution"}
@@ -803,7 +803,7 @@ HOMEWORK BEFORE SESSION 4: Become an expert in 1 out of the 4 tidy data principl
 “Becoming an expert" means:
 
 -   Re-visit the tidy data principle in the book and course materials.
--   Apply it to your own dataset. 
+-   Apply it to one of your Data Project data sets. 
 -   Produce 2 PowerPoint slides (use the template in Session 4 module on Canvas).
 
 ###
@@ -841,6 +841,8 @@ For your complex data sets, ask yourself one of the following:
       
 ## Relational Database Principles
 
+### 
+
 As a result of tidying the `GlasgowFriends` tibble, we now have several tibbles:
 
 -   `Student`, 
@@ -850,6 +852,8 @@ As a result of tidying the `GlasgowFriends` tibble, we now have several tibbles:
 -   `Neighbourhood`.
 
 Every piece of information is now stored in just one spot, which is efficient and least error prone.
+
+### 
 
 However, when we want to analyze data, we may need information from different tibbles. To this end, tidyverse offers us four join functions:
 
@@ -867,6 +871,8 @@ Student %>% inner_join(StudentBestfriend, by = "student")
 StudentBestfriend %>% inner_join(Student, by = "student")
 Student %>% full_join(StudentBestfriend, by = "student")
 ```
+
+### 
 
 <div class="question" >
 Use the below code box to join the `Student` and `StudentBestfriend` tibbles with each of the four joins. 
@@ -898,8 +904,6 @@ Student %>%
 # Start, for example, with a left join:
 Student %>% left_join(StudentBestfriend, by = "student")
 ```
-
-### 
 
 ###
 
@@ -946,39 +950,59 @@ knitr::include_graphics("images/Fulljoin.png")
 
 -   All rows of both tibbles are preserved.
 
-###
+### Check the join results
 
-A joined tibble has more cases than the largest tibble used for the join, if:
+A.    Determine the primary key of the joined tibble. What are you counting when you count cases?  
 
-A.    The key used to join the tibbles is _not_ a primary key in _both_ tibbles.  
-B.    The join key has missing values in at least one tibble.  
-C.    Not every value of the join key in one tibble appears in the other tibble.  
+B.    Did you have missing values on key variables used for the join? Do you want these cases in the joined tibble?  
 
-Check if these circumstances apply to the tibbles that you want to join. 
+C.    Which cases from the original tibbles are NOT included in the joined tibble. Is this as you want it to be?  
 
--   If not, the join should create a tibble with as many rows as one of the tibbles that were joined. 
--   Else, the joined tibble may contain (many) more rows than any of the two original tibbles.
+### Ad A. Determining the primary key.
 
-### Ad A. Checking if the key is primary
+You have learned this earlier in this tutorial.
 
-You have learned earlier in this tutorial how to see if a key is a primary key. 
+Does the primary key make sense? Do you understand what you are counting?
 
 ### Ad B. Checking for missing values on a join key
 
+Missing values on a variable used as join key may yield many new cases or missing values in the joined tibble.
+
 ```{r join1b-setup}
-# Create the definitive StudentBestfriend tibble.
-StudentBestfriend <- GlasgowFriends %>% 
+# Create the StudentBestfriend tibble with some missing values for bestfriend.
+StudentBestfriend2 <- GlasgowFriends %>% 
   select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
-  filter(!is.na(bestfriend)) %>% 
+#  filter(!is.na(bestfriend)) %>% 
   pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
+
+# Create the StudentWave tibble.
+StudentWave <- GlasgowFriends %>% select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% distinct()
 ```
 
 <div class="question" >
-Count the number of missing values in the primary key variables (`student` and `bestfriend`) of tibble *StudentBestfriend*.
+Count the number of missing values on variable `bestfriend` in the tibble *StudentBestfriend2* and in the tibble *AlcoholComparison*. What has happened and why?
 </div>
 
-```{r join1b, exercise = TRUE}
-
+```{r join1b, exercise = TRUE, exercise.lines = 19}
+# Count the number of missing values on join key variable bestfriend 
+# in the StudentBestfriend tibble.
+StudentBestfriend2 %>% 
+  summarise( ____ )
+# Join StudentBestFriend with StudentWave to compare alcohol use 
+# of a student to their best friends' alcohol use.
+AlcoholComparison <- StudentBestfriend2 %>%
+  # add alcohol use for the friendship nominator
+  left_join(StudentWave, by = "student") %>%
+  # just keep the alcohol use and wave info
+  select( student:to, studentWave = wave, studentAlcohol = alcohol) %>%
+  # same for nominate best friend
+  left_join(StudentWave, by = c("bestfriend" = "student")) %>%
+  # just keep the alcohol use and wave info
+  select( student:studentAlcohol, friendWave = wave, friendAlcohol = alcohol)
+# Count the number of missing values on join key variable bestfriend 
+# in the StudentBestfriend tibble.
+AlcoholComparison %>% 
+  summarise( ____ )
 ```
 
 ```{r join1b-hint-1}
@@ -987,33 +1011,20 @@ Count the number of missing values in the primary key variables (`student` and `
 ```
 
 ```{r join1b-hint-2}
-# For the StudentBestfriend tibble, replace .key. by one the join key variable(s).
-StudentBestfriend %>% 
+# For the StudentBestfriend tibble, replace ____ by one the join key variable(s).
+StudentBestfriend2 %>% 
   summarise(
-    n_missing_student = sum(is.na( .key. )),
-    n_missing_bestfriend = sum(is.na( .key. ))
+    n_missing_bestfriend = sum(is.na( ____ ))
     )
 ```
 
 ```{r join1b-hint-3}
-# It is best to count the cases where at least one of the two primary key variables is missing.
-# You can do this with logical or (|).
+# Have a look at the cases with a missing value on `bestfriend` in the joined table to understand what has happened.
 ```
 
 ### Ad C. Checking join key overlap: `anti_join()`
 
-`inner_join()` may yield fewer cases than in either of the joined tibbles:
-
--   If not every value of the join key in one tibble appears in the other tibble.
--   Example: Not all students appear in tibble `StudentBestfriend` if some students did not mention a best friend.
-
-```{r antijoin, eval=FALSE}
-# Checking join key overlap.
-# Not all student IDs in tibble `Student` appear in tibble `StudentBestfriend`.
-Student %>% anti_join(StudentBestfriend, by = "student") %>% nrow()
-# But all student IDs in tibble `StudentBestfriend` appear in tibble `Student`.
-StudentBestfriend %>% anti_join(Student, by = "student") %>% nrow()
-```
+Which cases from the original tibbles are NOT included in the joined tibble. Is this as you want it to be?
 
 ```{r join2-setup}
 # Create the definitive StudentBestfriend tibble.
@@ -1021,74 +1032,63 @@ StudentBestfriend <- GlasgowFriends %>%
   select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
   filter(!is.na(bestfriend)) %>% 
   pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
+
+# Create the StudentWave tibble.
+StudentWave <- GlasgowFriends %>% select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% distinct()
 ```
 
+For example, are all students from the *Student* tibble included in the joined tibble comparing a student's alcohol use with their best friends' alcohol use?
+
 <div class="question">
-Use the `anti_join()` function to find the students registered in tibble *Student* but not in tibble *StudentBestfriend* or the other way around.
+Use the `anti_join()` function to find the students registered in tibble *Student* but not in tibble *AlcoholComparison* or the other way around.
 
 How many student are missing in one of the two tibbles?
 </div>
 
 ```{r join2, exercise = TRUE}
-
+# Join StudentBestFriend with StudentWave to compare alcohol use 
+# of a student to their best friends' alcohol use.
+AlcoholComparison <- StudentBestfriend %>%
+  # add alcohol use for the friendship nominator
+  left_join(StudentWave, by = "student") %>%
+  # just keep the alcohol use and wave info
+  select( student:to, studentWave = wave, studentAlcohol = alcohol) %>%
+  # same for nominate best friend
+  left_join(StudentWave, by = c("bestfriend" = "student")) %>%
+  # just keep the alcohol use and wave info
+  select( student:studentAlcohol, friendWave = wave, friendAlcohol = alcohol) %>%
+  # (NEW) only keep alcohol use in the same wave
+  filter(studentWave == friendWave)
+# Select cases that appear in one table but not the other.
+____ %>% anti_join( ____ , by = "____" )
 ```
 
 <!-- To hide the solution, use a textual hint. -->
 <div id="join2-hint">
-__Hint:__ The order of tibbles in the anti_join() function matters. Try both orders: matching `Student` to `StudentBestfriend` and the other way around. 
+__Hint:__ The order of tibbles in the anti_join() function matters. Try both orders: matching `Student` to `AlcoholComparison` and the other way around. 
 </div>
 
 ```{r join2-solution}
-Student %>% anti_join(StudentBestfriend, by = "student")
+AlcoholComparison <- StudentBestfriend %>%
+  # add alcohol use for the friendship nominator
+  left_join(StudentWave, by = "student") %>%
+  # just keep the alcohol use and wave info
+  select( student:to, studentWave = wave, studentAlcohol = alcohol) %>%
+  # same for nominate best friend
+  left_join(StudentWave, by = c("bestfriend" = "student")) %>%
+  # just keep the alcohol use and wave info
+  select( student:studentAlcohol, friendWave = wave, friendAlcohol = alcohol) %>%
+  # (NEW) only keep alcohol use in the same wave
+  filter(studentWave == friendWave)
+Student %>% anti_join(AlcoholComparison, by = "student")
 ```
 
 ```{r join2-check}
 gradethis::grade_code(
-  correct = "All students in tibble `StudentBestfriend` appear in tibble `Student`, but not the other way around.", 
+  correct = "All students in tibble `AlcoholComparison` appear in tibble `Student`, but not the other way around.", 
   incorrect = "Swap the order of tibbles. Perhaps that may work."
   )
 ```
-
-### Joining on non-primary keys
-
-If the join key is not a primary key in both tibbles:
-
--   The number of cases in the resulting tibble is larger than the number of cases in any of the two original tibbles;
--   The number of cases can blow up enormously.
-
-```{r out.width="80%"}
-knitr::include_graphics("images/ManyManyJoin.png")
-```
-
-<div class="question" >
-How many rows (observations) do we get when we (left) join the `StudentBestfriend` tibble to the `StudentWave` tibble? Can you explain this number?
-</div>
-
-```{r joinnonprimary, exercise = TRUE, exercise.setup = "bestfriendstable-solution"}
-# Send the result to the screen, so you can view it.
-```
-
-```{r joinnonprimary-hint-1}
-# Start with piping the StudentWave tibble into the left_join() function.
-StudentWave %>%
-  left_join()
-```
-
-```{r joinnonprimary-hint-2}
-# Join with the StudentBestfriend tibble. Figure out by which key variable.
-StudentWave %>%
-  left_join(StudentBestfriend, by = )
-```
-
-### Checking the join afterwards
-
-Did the join do what you wanted it to do?
-
--   Check the number of rows and try to explain this number. Should it be smaller, equal, or larger than the number of rows in the original tibbles?
--   Check what happened to observations that have no match in the other tibble.
--   Compare some special cases in the joined tibble with their rows in the original tibbles:
-    +   Cases with a missing value on a primary key variable. Each missing value is liked to each missing value on the key variable in the other tibble!
-    +   Primary key values that are duplicated (several times) in the joined tibble.
 
 ### Recognizing untidy data tidying
 
@@ -1277,6 +1277,8 @@ shape = 'record'
 }
 ")
 ```
+
+### 
 
 With this concise definition of the tables, it is not possible to change the background colour of a the first table row indicating the table name or use underlining to mark the variables that constitute the primary key of a table.
 

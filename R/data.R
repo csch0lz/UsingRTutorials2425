@@ -9,7 +9,7 @@
 #' university of Glasgow. The data have been joined and simplified for
 #' practicing purposes.
 #'
-#' @format A data frame with thirteen variables: 
+#' @format A data frame with twenty-four variables: 
 #' \describe{
 #'   \item{student}{respondent ID, as a character string}
 #'   \item{age}{respondent age, in years with one decimal digit}
@@ -31,7 +31,7 @@
 #'
 #' The data derive from the same source as the Glasgow data. 
 #' The data have been joined and simplified for practicing purposes.
-#' A rough classification according of students according to their home 
+#' A rough classification of students according to their home 
 #' neighbourhood was derived from the distances among students.
 #' This data file is very untidy!
 #'
@@ -60,7 +60,7 @@
 #'   \item{friend_6}{code of a sixth student nominated as a friend by the respondent}
 #'   \item{bestfriend}{code of a student nominated as a/the best friend by the respondent}
 #'   \item{bfperiod}{phase in the period of best friendship}
-#'   \item{bfperiod}{wave for the phase in the period of best friendship}
+#'   \item{bfwave}{wave for the phase in the period of best friendship}
 #' }
 "GlasgowFriends"
 
