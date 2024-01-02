@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 GlasgowFriends <- UsingRTutorials::GlasgowFriends # readr::read_csv("data/GlasgowFriends.csv")
 # Create the Student table.
 # It is not used in grade_result(), so it may already be around.
-Student <- GlasgowFriends %>% select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) %>% distinct()
+Student <- GlasgowFriends |> select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) |> distinct()
 ```
 
 <!-- Define programming tip style -->
@@ -137,8 +137,8 @@ data.frame(
   student = c("s001", "s002", "s003", "s004"),
   age = c(13.3, 14.2, 13.5, 13.7),
   friendships = c(4, 2, 3, 6)
-  ) %>%
-  knitr::kable(booktab = TRUE) %>% 
+  ) |>
+  knitr::kable(booktab = TRUE) |> 
   kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
 ```
 
@@ -156,8 +156,8 @@ data.frame(
   student = c("s001", "s002", "s002", "s003"),
   age = c(13.3, 13.5, 14.2, 13.7),
   friendships = c(4, 2, 3, 6)
-  ) %>%
-  knitr::kable(booktab = TRUE) %>% 
+  ) |>
+  knitr::kable(booktab = TRUE) |> 
   kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
 ```
 
@@ -182,16 +182,16 @@ Write code that identifies the primary key of tibble `GlasgowFriends`. You may h
 
 ```{r primarykeyhidden, eval=FALSE}
 # primary key: this seems to be the only option with four variables
-GlasgowFriends %>% 
-  count( student, wave, bestfriend, bfperiod ) %>% 
+GlasgowFriends |> 
+  count( student, wave, bestfriend, bfperiod ) |> 
   filter(n > 1)
 ```
 
 ```{r primarykey, exercise = TRUE}
 # Add the variables in the count() function that you think 
 # represent different types of cases (unit).
-GlasgowFriends %>% 
-  count( ____ ) %>% 
+GlasgowFriends |> 
+  count( ____ ) |> 
   filter(n > 1)
 ```
 
@@ -200,7 +200,7 @@ __Hint:__ Add the variables in the count() function that you think represent dif
 </div>
 
 ```{r primarykey-solution}
-GlasgowFriends %>% count( student, wave, bestfriend, bfperiod ) %>% filter(n > 1)
+GlasgowFriends |> count( student, wave, bestfriend, bfperiod ) |> filter(n > 1)
 ```
 
 ```{r primarykey-check}
@@ -225,17 +225,17 @@ If you are unsure which variable to add to find the primary key:
 
 ```{r primarykey2, exercise = TRUE}
 # Display cases with the same provisional primary key as consecutive cases.
-GlasgowFriends %>%
+GlasgowFriends |>
   # (ADD HERE) for each combination of selected primary key variables...
-  group_by( student, wave, ____ ) %>%
+  group_by( student, wave, ____ ) |>
   # ...calculate and add the number of cases with the same values
-  mutate(n_identical = n()) %>%
+  mutate(n_identical = n()) |>
   # retain only cases that are not unique on the selected variables
-  filter(n_identical > 1) %>%
+  filter(n_identical > 1) |>
   # (ALSO ADD HERE) sort the cases, so duplicates are next to each other
-  arrange( student, wave, ____ ) %>% 
+  arrange( student, wave, ____ ) |> 
   # show only the first two cases that are duplicates
-  ungroup() %>%
+  ungroup() |>
   slice(1:2)
 ```
 
@@ -251,10 +251,10 @@ data.frame(
   Variables = c("student, neighbourhood, age, sex, ...", "wave ID", "alcohol, cannabis, tobacco, ..."),
   Notes = c("Fixed student characteristics", "Wave characteristics", "Student characteristics that may change between waves"),
   `Split tibble?` = c("yes", "no (only wave ID)", "yes")
-  ) %>%
+  ) |>
   knitr::kable(booktab = TRUE,
                col.names = c("Case type", "Variables", "Notes", "Separate tibble?")
-               ) %>% 
+               ) |> 
   kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
 ```
 
@@ -278,11 +278,11 @@ For each variable in `GlasgowFriends` determine to which type of case it belongs
 # Code to check that a variable .var. always has the same value for each value
 # of the selected type of case .type. . Replace .var. by a variable name and
 # replace .type. by the variable(s) that define the type of case.
-GlasgowFriends %>%
+GlasgowFriends |>
   # For each value of the selected type of case...
-  group_by( .type. ) %>%
+  group_by( .type. ) |>
   # ... calculate the number of distinct values of the selected variable.
-  summarise(n_distinct = n_distinct( .var. ), .groups = "drop") %>%
+  summarise(n_distinct = n_distinct( .var. ), .groups = "drop") |>
   # Count number of distinct variable values per type of case: 
   # If 1, then variable has unique value for each case.
   count(n_distinct)
@@ -290,11 +290,11 @@ GlasgowFriends %>%
 
 ```{r casetype-hint-1}
 # Example: Checking that variable age is unique for each student-wave combination.
-GlasgowFriends %>%
+GlasgowFriends |>
   # For each value of the selected type of case...
-  group_by( student, wave ) %>%
+  group_by( student, wave ) |>
   # ... calculate the number of distinct values of the selected variable.
-  summarise(n_distinct = n_distinct( age ), .groups = "drop") %>%
+  summarise(n_distinct = n_distinct( age ), .groups = "drop") |>
   # Count number of distinct variable values per type of case (grouping has been
   # dropped): should always be 1.
   count(n_distinct)
@@ -306,11 +306,11 @@ GlasgowFriends %>%
 ```{r casetype-hint-2}
 # If 'age' is unique for each student-wave combination, it can also be unique for each student. If so, 'age' belongs to the student type of case, not the student per wave type of case.
 # Example: Checking that variable age is unique for each student-wave combination.
-GlasgowFriends %>%
+GlasgowFriends |>
   # For each value of the selected type of case...
-  group_by( student ) %>%
+  group_by( student ) |>
   # ... calculate the number of distinct values of the selected variable.
-  summarise(n_distinct = n_distinct( age ), .groups = "drop") %>%
+  summarise(n_distinct = n_distinct( age ), .groups = "drop") |>
   # Count number of distinct variable values per type of case (grouping has been dropped): should always be 1.
   count(n_distinct)
 # In the output of this code, 'n_distinct' gives the number of different ages encountered per student. Column 'n' gives the number (frequency) of students.
@@ -353,9 +353,9 @@ Use your data wrangling skills from Session 2 and the data transformation with d
 
 ```{r studenttable, exercise = TRUE, exercise.lines = 6}
 # Your code to create a tibble for student information without duplicates.
-Student <- GlasgowFriends %>% 
+Student <- GlasgowFriends |> 
   # select the relevant variables
-  select( ____ ) %>% 
+  select( ____ ) |> 
   # only keep cases that are distinct (not identical)
   distinct()
 ```
@@ -366,7 +366,7 @@ __Hint:__ For now, include the neighbourhood variables in the Student tibble.
 </div>
 
 ```{r studenttable-solution}
-Student <- GlasgowFriends %>% select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) %>% distinct()
+Student <- GlasgowFriends |> select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) |> distinct()
 ```
 
 ```{r studenttable-check}
@@ -385,9 +385,9 @@ gradethis::grade_result(
 
 ```{r studentwavetable, exercise = TRUE, exercise.lines = 6}
 # Your code to create a tibble for student per wave information without duplicates.
-StudentWave <- GlasgowFriends %>% 
+StudentWave <- GlasgowFriends |> 
   # select the relevant variables
-  select( ____ ) %>% 
+  select( ____ ) |> 
   # only keep cases that are distinct (not identical)
   distinct()
 ```
@@ -398,7 +398,7 @@ __Hint:__ It is a good custom to use the primary key variables as the first vari
 </div>
 
 ```{r studentwavetable-solution}
-StudentWave <- GlasgowFriends %>% select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% distinct()
+StudentWave <- GlasgowFriends |> select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) |> distinct()
 ```
 
 ```{r studentwavetable-check}
@@ -417,9 +417,9 @@ gradethis::grade_result(
 
 ```{r bestfriendstable, exercise = TRUE, exercise.lines = 6}
 # Your code to create a tibble for best friends information without duplicates.
-StudentBestfriend <- GlasgowFriends %>% 
+StudentBestfriend <- GlasgowFriends |> 
   # select the relevant variables
-  select( ____ ) %>% 
+  select( ____ ) |> 
   # only keep cases that are distinct (not identical)
   distinct()
 ```
@@ -430,7 +430,7 @@ __Hint:__ Include the `student` variable, otherwise we don't know who nominated 
 </div>
 
 ```{r bestfriendstable-solution, exercise.setup = "studentwavetable-solution"}
-StudentBestfriend <- GlasgowFriends %>% select(student, bestfriend, bfperiod, bfwave ) %>% distinct()
+StudentBestfriend <- GlasgowFriends |> select(student, bestfriend, bfperiod, bfwave ) |> distinct()
 ```
 
 ```{r bestfriendstable-check}
@@ -525,13 +525,13 @@ Not every many-to-many relation is picked up by the primary key (see next topic)
 For each student in each wave, up to six friends could be mentioned. 
 
 ```{r showfriends}
-GlasgowFriends %>% 
-  select(student, wave, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% 
-  distinct() %>%
-  slice(1:6) %>%
-  kable(booktabs = TRUE) %>%
-  kableExtra::kable_classic(full_width = FALSE) %>%
-  kableExtra::column_spec(4, color = c("red", "black", "black", "red", "black", "black")) %>%
+GlasgowFriends |> 
+  select(student, wave, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) |> 
+  distinct() |>
+  slice(1:6) |>
+  kable(booktabs = TRUE) |>
+  kableExtra::kable_classic(full_width = FALSE) |>
+  kableExtra::column_spec(4, color = c("red", "black", "black", "red", "black", "black")) |>
   kableExtra::column_spec(5, color = c("black", "black", "red", "black", "black", "black"))
 ```
 
@@ -551,14 +551,14 @@ The tidy solution:
 -   Yields one row (observation) per student per wave per nominated friend.
 
 ```{r showfriendsgathered}
-GlasgowFriends %>% 
-  select(student, wave, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>%
-  gather(key = "friendnumber", value = "friend", friend_1:friend_6, na.rm = TRUE) %>%
-  distinct() %>%
-  arrange(student, wave, friendnumber) %>%
-  slice(1:6) %>%
-  kable(booktabs = TRUE) %>%
-  kableExtra::kable_classic(full_width = FALSE) %>%
+GlasgowFriends |> 
+  select(student, wave, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) |>
+  gather(key = "friendnumber", value = "friend", friend_1:friend_6, na.rm = TRUE) |>
+  distinct() |>
+  arrange(student, wave, friendnumber) |>
+  slice(1:6) |>
+  kable(booktabs = TRUE) |>
+  kableExtra::kable_classic(full_width = FALSE) |>
   kableExtra::column_spec(4, color = c("black", "red", "black", "black", "black", "black"))
 ```
 
@@ -567,8 +567,8 @@ Use the tidyverse `pivot_longer()` function to create a new tibble named `Studen
 </div>
 
 ```{r gatherfriends, exercise = TRUE, exercise.setup = "studentwavetable-solution"}
-StudentWaveFriend <- StudentWave %>% 
-  pivot_longer( ____ ) %>%
+StudentWaveFriend <- StudentWave |> 
+  pivot_longer( ____ ) |>
   select()
 #Show result.
 StudentWaveFriend
@@ -579,7 +579,7 @@ __Hint:__ Use help on the pivot_longer() function   .
 </div>
 
 ```{r gatherfriends-solution}
-StudentWaveFriend <- StudentWave %>% pivot_longer( friend_1:friend_6, names_to = "friendnumber", values_to = "friend", values_drop_na = TRUE ) %>% select( student, wave, friendnumber, friend )
+StudentWaveFriend <- StudentWave |> pivot_longer( friend_1:friend_6, names_to = "friendnumber", values_to = "friend", values_drop_na = TRUE ) |> select( student, wave, friendnumber, friend )
 ```
 
 ```{r gatherfriends-check}
@@ -598,7 +598,7 @@ Oh, and remove the friendship data from tibble `StudentWave`.
 </div>
 
 ```{r gatherfriends2, exercise = TRUE, exercise.setup = "studentwavetable-solution"}
-StudentWave <- StudentWave %>% 
+StudentWave <- StudentWave |> 
   ???
 ```
 
@@ -607,7 +607,7 @@ __Hint:__ How about using the select() function?
 </div>
 
 ```{r gatherfriends2-solution, eval=FALSE}
-StudentWave <- StudentWave %>% select(student:romantic)
+StudentWave <- StudentWave |> select(student:romantic)
 ```
 
 ```{r gatherfriends2-check}
@@ -621,7 +621,7 @@ gradethis::grade_result(
 
 ```{r pivotlonger-setup}
 # create a tibble with waves as different columns
-GlasgowWide <- UsingRTutorials::Glasgow %>%
+GlasgowWide <- UsingRTutorials::Glasgow |>
   pivot_wider(id_cols = student:smoking_siblings, names_from = wave, values_from = alcohol:friendships)
 ```
 
@@ -644,7 +644,7 @@ __Hint:__ Read the vignette: Issue the R command `vignette("pivot")`. Look for t
 </div>
 
 ```{r pivotlonger-solution}
-GlasgowWide %>% pivot_longer(cols = alcohol_t2:friendships_t1, names_to = c(".value", "wave"), names_sep = "_")
+GlasgowWide |> pivot_longer(cols = alcohol_t2:friendships_t1, names_to = c(".value", "wave"), names_sep = "_")
 ```
 
 ```{r pivotlonger-check}
@@ -665,11 +665,11 @@ Is there a variable with values that should be variables by themselves?
 </div>
 
 ```{r owncolumn, eval = TRUE, echo = FALSE}
-GlasgowFriends %>% 
-  select(student, bestfriend, bfperiod, bfwave ) %>% 
-  distinct()%>%
-  slice(1:10) %>%
-  kable(booktabs = TRUE) %>%
+GlasgowFriends |> 
+  select(student, bestfriend, bfperiod, bfwave ) |> 
+  distinct()|>
+  slice(1:10) |>
+  kable(booktabs = TRUE) |>
   kableExtra::kable_classic(full_width = FALSE)
 ```
 
@@ -690,16 +690,16 @@ Tidy Rule 3. Each variable must have its own column.
 Tidy data: tibble with variables `from`and `to` instead of `bfperiod` and `bfwave`.
 
 ```{r owncolumn2, eval = TRUE, echo = FALSE}
-GlasgowFriends %>% 
-  select(student, bestfriend, bfperiod, bfwave ) %>% 
-  distinct()%>%
+GlasgowFriends |> 
+  select(student, bestfriend, bfperiod, bfwave ) |> 
+  distinct()|>
   # students without best friend are dropped
-  filter(!is.na(bestfriend)) %>%
+  filter(!is.na(bestfriend)) |>
   # spread the bfperiod values into new variables
-  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave) %>%
-  arrange(student, bestfriend) %>%
-  slice(1:6) %>%
-  kable(booktabs = TRUE) %>%
+  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave) |>
+  arrange(student, bestfriend) |>
+  slice(1:6) |>
+  kable(booktabs = TRUE) |>
   kableExtra::kable_classic(full_width = FALSE)
 ```
 
@@ -708,9 +708,9 @@ Replace the `StudentBestfriend` tibble by a tibble with variables `from` and `to
 </div>
 
 ```{r gatherBestfriend, exercise = TRUE, eval=FALSE, exercise.setup = "bestfriendstable-solution"}
-StudentBestfriend <- StudentBestfriend %>%
+StudentBestfriend <- StudentBestfriend |>
   # students without best friend are dropped
-  ____( ____ ) %>%
+  ____( ____ ) |>
   # spread the bfperiod values into new variables
   pivot_wider( ____ )
 # Show result.
@@ -718,7 +718,7 @@ StudentBestfriend
 ```
 
 ```{r gatherBestfriend-solution, exercise.reveal_solution = FALSE}
-StudentBestfriend <- StudentBestfriend %>% filter(!is.na(bestfriend)) %>% pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
+StudentBestfriend <- StudentBestfriend |> filter(!is.na(bestfriend)) |> pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
 ```
 
 ```{r gatherBestfriend-hint-1}
@@ -760,12 +760,12 @@ Write tidyverse code to split the `alcohol` variable in the `StudentWave` tibble
 Note: Send the results to the screen, do not store it in a new data object (so the code checker can do its work).
 
 ```{r separate, exercise = TRUE, exercise.setup = "studentwavetable-solution"}
-StudentWave %>% 
+StudentWave |> 
   separate()
 ```
 
 ```{r separate-solution, exercise.reveal_solution = FALSE}
-StudentWave %>% separate(col = alcohol, into = c("alcohol_code", "alcohol_label"), sep = 2)
+StudentWave |> separate(col = alcohol, into = c("alcohol_code", "alcohol_label"), sep = 2)
 ```
 
 ```{r separate-hint-1}
@@ -865,11 +865,11 @@ However, when we want to analyze data, we may need information from different ti
 These functions may yield different results, most notably, different numbers of cases. 
 
 ```{r eval=FALSE}
-Student %>% left_join(StudentBestfriend, by = "student")
-Student %>% right_join(StudentBestfriend, by = "student")
-Student %>% inner_join(StudentBestfriend, by = "student")
-StudentBestfriend %>% inner_join(Student, by = "student")
-Student %>% full_join(StudentBestfriend, by = "student")
+Student |> left_join(StudentBestfriend, by = "student")
+Student |> right_join(StudentBestfriend, by = "student")
+Student |> inner_join(StudentBestfriend, by = "student")
+StudentBestfriend |> inner_join(Student, by = "student")
+Student |> full_join(StudentBestfriend, by = "student")
 ```
 
 ### 
@@ -878,23 +878,23 @@ Student %>% full_join(StudentBestfriend, by = "student")
 Use the below code box to join the `Student` and `StudentBestfriend` tibbles with each of the four joins. 
 
 * Do you get the same number of cases (rows) with all joins?
-* Compare the number of cases with those of the `Student` tibble (`r nrow(Student)` rows) and the `StudentBestfriend` tibble (`r GlasgowFriends %>% 
-  select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
-  filter(!is.na(bestfriend)) %>% 
-  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave) %>% nrow()` rows). Why is it equal, larger, or smaller than in the original tables?
+* Compare the number of cases with those of the `Student` tibble (`r nrow(Student)` rows) and the `StudentBestfriend` tibble (`r GlasgowFriends |> 
+  select(student, bestfriend, bfperiod, bfwave ) |> distinct() |>
+  filter(!is.na(bestfriend)) |> 
+  pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave) |> nrow()` rows). Why is it equal, larger, or smaller than in the original tables?
 </div>
 
 ```{r join1-setup}
 # Create the definitive StudentBestfriend tibble.
-StudentBestfriend <- GlasgowFriends %>% 
-  select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
-  filter(!is.na(bestfriend)) %>% 
+StudentBestfriend <- GlasgowFriends |> 
+  select(student, bestfriend, bfperiod, bfwave ) |> distinct() |>
+  filter(!is.na(bestfriend)) |> 
   pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
 ```
 
 ```{r join1, exercise = TRUE}
 # Select different join types. Also switch the two tibbles.
-Student %>%
+Student |>
   left_join(StudentBestfriend, by = "student")
 # Note the resulting number of cases in the bottom-left of the table.
 ```
@@ -902,7 +902,7 @@ Student %>%
 ```{r join1-hint-1}
 # Join the two tibbles, using `student` as key.
 # Start, for example, with a left join:
-Student %>% left_join(StudentBestfriend, by = "student")
+Student |> left_join(StudentBestfriend, by = "student")
 ```
 
 ###
@@ -910,7 +910,7 @@ Student %>% left_join(StudentBestfriend, by = "student")
 Graphical examples of what happens with the four different joins:
 
 - A left join that joins `StudentBestFriend` to `Student`:
-    `Student %>% left_join(StudentBestfriend, by = "student")`
+    `Student |> left_join(StudentBestfriend, by = "student")`
 ```{r out.width="80%"}
 knitr::include_graphics("images/Leftjoin.png")
 ```
@@ -921,7 +921,7 @@ knitr::include_graphics("images/Leftjoin.png")
 ### 
 
 - A right join that joins `StudentBestFriend` to `Student`:
-    `Student %>% right_join(StudentBestfriend, by = "student")`
+    `Student |> right_join(StudentBestfriend, by = "student")`
 ```{r out.width="80%"}
 knitr::include_graphics("images/Rightjoin.png")
 ```
@@ -931,8 +931,8 @@ knitr::include_graphics("images/Rightjoin.png")
 ### 
 
 - An inner join that joins `StudentBestFriend` to `Student` or the other way around:
-    `Student %>% inner_join(StudentBestfriend, by = "student")`
-    `StudentBestfriend %>% inner_join(Student, by = "student")`
+    `Student |> inner_join(StudentBestfriend, by = "student")`
+    `StudentBestfriend |> inner_join(Student, by = "student")`
 ```{r out.width="80%"}
 knitr::include_graphics("images/Innerjoin.png")
 ```
@@ -942,7 +942,7 @@ knitr::include_graphics("images/Innerjoin.png")
 ### 
 
 - A full join that joins `StudentBestFriend` to `Student`:
-    `Student %>% full_join(StudentBestfriend, by = "student")`
+    `Student |> full_join(StudentBestfriend, by = "student")`
 
 ```{r out.width="80%"}
 knitr::include_graphics("images/Fulljoin.png")
@@ -970,13 +970,13 @@ Missing values on a variable used as join key may yield many new cases or missin
 
 ```{r join1b-setup}
 # Create the StudentBestfriend tibble with some missing values for bestfriend.
-StudentBestfriend2 <- GlasgowFriends %>% 
-  select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
-#  filter(!is.na(bestfriend)) %>% 
+StudentBestfriend2 <- GlasgowFriends |> 
+  select(student, bestfriend, bfperiod, bfwave ) |> distinct() |>
+#  filter(!is.na(bestfriend)) |> 
   pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
 
 # Create the StudentWave tibble.
-StudentWave <- GlasgowFriends %>% select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% distinct()
+StudentWave <- GlasgowFriends |> select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) |> distinct()
 ```
 
 <div class="question" >
@@ -986,22 +986,22 @@ Count the number of missing values on variable `bestfriend` in the tibble *Stude
 ```{r join1b, exercise = TRUE, exercise.lines = 19}
 # Count the number of missing values on join key variable bestfriend 
 # in the StudentBestfriend tibble.
-StudentBestfriend2 %>% 
+StudentBestfriend2 |> 
   summarise( ____ )
 # Join StudentBestFriend with StudentWave to compare alcohol use 
 # of a student to their best friends' alcohol use.
-AlcoholComparison <- StudentBestfriend2 %>%
+AlcoholComparison <- StudentBestfriend2 |>
   # add alcohol use for the friendship nominator
-  left_join(StudentWave, by = "student") %>%
+  left_join(StudentWave, by = "student") |>
   # just keep the alcohol use and wave info
-  select( student:to, studentWave = wave, studentAlcohol = alcohol) %>%
+  select( student:to, studentWave = wave, studentAlcohol = alcohol) |>
   # same for nominate best friend
-  left_join(StudentWave, by = c("bestfriend" = "student")) %>%
+  left_join(StudentWave, by = c("bestfriend" = "student")) |>
   # just keep the alcohol use and wave info
   select( student:studentAlcohol, friendWave = wave, friendAlcohol = alcohol)
 # Count the number of missing values on join key variable bestfriend 
 # in the StudentBestfriend tibble.
-AlcoholComparison %>% 
+AlcoholComparison |> 
   summarise( ____ )
 ```
 
@@ -1012,7 +1012,7 @@ AlcoholComparison %>%
 
 ```{r join1b-hint-2}
 # For the StudentBestfriend tibble, replace ____ by one the join key variable(s).
-StudentBestfriend2 %>% 
+StudentBestfriend2 |> 
   summarise(
     n_missing_bestfriend = sum(is.na( ____ ))
     )
@@ -1028,13 +1028,13 @@ Which cases from the original tibbles are NOT included in the joined tibble. Is 
 
 ```{r join2-setup}
 # Create the definitive StudentBestfriend tibble.
-StudentBestfriend <- GlasgowFriends %>% 
-  select(student, bestfriend, bfperiod, bfwave ) %>% distinct() %>%
-  filter(!is.na(bestfriend)) %>% 
+StudentBestfriend <- GlasgowFriends |> 
+  select(student, bestfriend, bfperiod, bfwave ) |> distinct() |>
+  filter(!is.na(bestfriend)) |> 
   pivot_wider(id_cols = student:bestfriend, names_from = bfperiod, values_from = bfwave)
 
 # Create the StudentWave tibble.
-StudentWave <- GlasgowFriends %>% select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% distinct()
+StudentWave <- GlasgowFriends |> select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) |> distinct()
 ```
 
 For example, are all students from the *Student* tibble included in the joined tibble comparing a student's alcohol use with their best friends' alcohol use?
@@ -1048,19 +1048,19 @@ How many student are missing in one of the two tibbles?
 ```{r join2, exercise = TRUE}
 # Join StudentBestFriend with StudentWave to compare alcohol use 
 # of a student to their best friends' alcohol use.
-AlcoholComparison <- StudentBestfriend %>%
+AlcoholComparison <- StudentBestfriend |>
   # add alcohol use for the friendship nominator
-  left_join(StudentWave, by = "student") %>%
+  left_join(StudentWave, by = "student") |>
   # just keep the alcohol use and wave info
-  select( student:to, studentWave = wave, studentAlcohol = alcohol) %>%
+  select( student:to, studentWave = wave, studentAlcohol = alcohol) |>
   # same for nominate best friend
-  left_join(StudentWave, by = c("bestfriend" = "student")) %>%
+  left_join(StudentWave, by = c("bestfriend" = "student")) |>
   # just keep the alcohol use and wave info
-  select( student:studentAlcohol, friendWave = wave, friendAlcohol = alcohol) %>%
+  select( student:studentAlcohol, friendWave = wave, friendAlcohol = alcohol) |>
   # (NEW) only keep alcohol use in the same wave
   filter(studentWave == friendWave)
 # Select cases that appear in one table but not the other.
-____ %>% anti_join( ____ , by = "____" )
+____ |> anti_join( ____ , by = "____" )
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -1069,18 +1069,18 @@ __Hint:__ The order of tibbles in the anti_join() function matters. Try both ord
 </div>
 
 ```{r join2-solution}
-AlcoholComparison <- StudentBestfriend %>%
+AlcoholComparison <- StudentBestfriend |>
   # add alcohol use for the friendship nominator
-  left_join(StudentWave, by = "student") %>%
+  left_join(StudentWave, by = "student") |>
   # just keep the alcohol use and wave info
-  select( student:to, studentWave = wave, studentAlcohol = alcohol) %>%
+  select( student:to, studentWave = wave, studentAlcohol = alcohol) |>
   # same for nominate best friend
-  left_join(StudentWave, by = c("bestfriend" = "student")) %>%
+  left_join(StudentWave, by = c("bestfriend" = "student")) |>
   # just keep the alcohol use and wave info
-  select( student:studentAlcohol, friendWave = wave, friendAlcohol = alcohol) %>%
+  select( student:studentAlcohol, friendWave = wave, friendAlcohol = alcohol) |>
   # (NEW) only keep alcohol use in the same wave
   filter(studentWave == friendWave)
-Student %>% anti_join(AlcoholComparison, by = "student")
+Student |> anti_join(AlcoholComparison, by = "student")
 ```
 
 ```{r join2-check}
@@ -1110,21 +1110,21 @@ Add comments to the code explaining each step of the pipe.
 </div>
 
 ```{r crosstabs1-setup}
-Student <- GlasgowFriends %>% 
-  select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) %>% 
+Student <- GlasgowFriends |> 
+  select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) |> 
   distinct()
-StudentWave <- GlasgowFriends %>% 
-  select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% 
+StudentWave <- GlasgowFriends |> 
+  select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) |> 
   distinct()
 ```
 
 ```{r crosstabs1, exercise = TRUE, exercise.eval = TRUE}
 # alcohol use by wave crosstabs from original dataset
-GlasgowFriends %>%
-  distinct(student, wave, alcohol) %>%
-  count( wave, alcohol ) %>%
-  pivot_wider(names_from = wave, values_from = n) %>%
-  knitr::kable(booktab = FALSE) %>%
+GlasgowFriends |>
+  distinct(student, wave, alcohol) |>
+  count( wave, alcohol ) |>
+  pivot_wider(names_from = wave, values_from = n) |>
+  knitr::kable(booktab = FALSE) |>
   kableExtra::kable_styling(full_width = FALSE)
 ```
 
@@ -1141,21 +1141,21 @@ Play around with (more) `kableExtra` settings.
 </div>
 
 ```{r crosstabs2-setup}
-Student <- GlasgowFriends %>% 
-  select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) %>% 
+Student <- GlasgowFriends |> 
+  select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) |> 
   distinct()
-StudentWave <- GlasgowFriends %>% 
-  select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% 
+StudentWave <- GlasgowFriends |> 
+  select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) |> 
   distinct()
 ```
 
 ```{r crosstabs2, exercise = TRUE, exercise.eval = TRUE}
-StudentWave %>% 
-  left_join(Student, by = "student") %>% 
-  count( sex, wave, alcohol ) %>% 
-  pivot_wider(names_from = c(sex, wave), values_from = n, values_fill = 0) %>% 
-  kable(booktab = TRUE, col.names = c("Alcohol Usage", "wave 1", "wave 2", "wave 3", "wave 1", "wave 2", "wave 3")) %>% 
-  add_header_above(c(" " = 1, "Boys" = 3, "Girls" = 3)) %>% 
+StudentWave |> 
+  left_join(Student, by = "student") |> 
+  count( sex, wave, alcohol ) |> 
+  pivot_wider(names_from = c(sex, wave), values_from = n, values_fill = 0) |> 
+  kable(booktab = TRUE, col.names = c("Alcohol Usage", "wave 1", "wave 2", "wave 3", "wave 1", "wave 2", "wave 3")) |> 
+  add_header_above(c(" " = 1, "Boys" = 3, "Girls" = 3)) |> 
   kable_paper(full_width = FALSE)
 ```
 
@@ -1185,10 +1185,10 @@ Use the tutorial referenced above and the `igraph` documentation to play around 
 
 ```{r network1-setup}
 #preparing data tibbles for network
-Student <- GlasgowFriends %>% select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) %>% distinct()
-StudentWave <- GlasgowFriends %>% select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) %>% distinct()
-StudentWaveFriend <- StudentWave %>% 
-  gather(key = "friendnumber", value = "friend", friend_1:friend_6, na.rm = TRUE) %>%
+Student <- GlasgowFriends |> select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) |> distinct()
+StudentWave <- GlasgowFriends |> select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) |> distinct()
+StudentWaveFriend <- StudentWave |> 
+  gather(key = "friendnumber", value = "friend", friend_1:friend_6, na.rm = TRUE) |>
   select(student, wave, friend)
 ```
 
@@ -1200,11 +1200,11 @@ StudentWaveFriend <- StudentWave %>%
 library(igraph)
 # Retrieve the friendship nominations in the first wave and ensure that the
 # first two columns are the sender and receiver of the nomination.
-arrows_wave1 <- StudentWaveFriend %>%
-  filter(wave == "t1") %>%
+arrows_wave1 <- StudentWaveFriend |>
+  filter(wave == "t1") |>
   select(student, friend)
 #add color variable for sexes
-nodes_wave1 <- Student %>%
+nodes_wave1 <- Student |>
   mutate(sex_color = ifelse(sex == "boy", "steelblue1", "tomato1"))
 # Create an igraph object: a list of nodes (=vertices) combined with a list of lines/arrows.
 net_wave1 <- igraph::graph_from_data_frame(d=arrows_wave1, vertices=nodes_wave1, directed=TRUE)
@@ -1355,15 +1355,15 @@ For example, the flights to/from NY City in the `nycflights13::` (example data i
 # Load the nycflights13 package.
 library(nycflights13)
 # Connect the flights (origin & destination) and airports tables (airport coordinates).
-flights %>% #use the flights tibble in the nycflights13 package
+flights |> #use the flights tibble in the nycflights13 package
   #add coordinates to airport where flight originates
   inner_join(select(airports, origin = faa, origin_lat = lat, origin_lon = lon), 
-             by = "origin") %>%
+             by = "origin") |>
   #add coordinates to destination airport
   inner_join(select(airports, dest = faa, dest_lat = lat, dest_lon = lon), by = "dest"
-  ) %>%
+  ) |>
   # select the first 100 flights for illustrative purposes
-  slice(1:100) %>%
+  slice(1:100) |>
   # pipe the data into ggplot()
   ggplot(aes(
     x = origin_lon, xend = dest_lon,
