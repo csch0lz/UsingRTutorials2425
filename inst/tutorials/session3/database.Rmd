@@ -59,7 +59,7 @@ Problem sets discussion
 First two hours: Course content
 
 -   Tidy data  
--   Relational data
+-   Joins (Relational data)
 
 Third hour: Data project
 
@@ -839,7 +839,7 @@ For your complex data sets, ask yourself one of the following:
 4.    Does a variable contain more than one piece of information?
       +   If so, separate the pieces into different variables.
       
-## Relational Database Principles
+## Joins (relational Database) Principles
 
 ### 
 
@@ -1229,7 +1229,7 @@ plot(net_wave1,
 legend("topleft", c("Boys", "Girls"), pch=21, col="#777777", pt.bg=c("steelblue1", "tomato1"), pt.cex=2, cex=.8, bty="n", ncol=1)
 ```
 
-### Relational database diagram
+### Joins (Relational) database diagram
 
 Talking about networks: A relational database is a network of tables (tibbles) and joins between tables. To the best of my knowledge, packages for network analysis cannot display tables. The R package `DiagrammeR`, which uses [graphviz](http://www.graphviz.org/), can do this.
 
