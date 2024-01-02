@@ -109,7 +109,7 @@ The `tidyverse` approach to data wrangling can be summarized as follows:
 
 - Transform data with functions: data frame → new data frame.
 - Breakdown transformations into logical steps.
-- Chain transformations into a pipe `%>%`): Use resulting data of previous step as input data of next step.
+- Chain transformations into a pipe ` |> `): Use resulting data of previous step as input data of next step.
 
 ### 
 
