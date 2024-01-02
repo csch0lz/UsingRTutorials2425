@@ -221,9 +221,9 @@ For readability, formulate a comment explaining what each step in the pipe does 
 For example:
 
 ```{r, eval=FALSE, echo=TRUE}
-myData %>% 
+myData  |>  
   #we only want to look at girls in the first wave
-  filter(sex == "girl" & wave == "t1") %>%
+  filter(sex == "girl" & wave == "t1")  |> 
   #for whom we want to know the average number of friends (but missings may appear!)
   summarise(avg_friends = mean(friendships, na.rm = TRUE))
 ```
