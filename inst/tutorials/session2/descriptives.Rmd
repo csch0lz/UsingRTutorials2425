@@ -127,11 +127,11 @@ data.frame(
            "I want to change variables.", 
            "I want summary statistics.", 
            "I want summaries or changed variables for each group.")
-  ) %>%
+  ) |>
   knitr::kable(
     caption = "Main data transformation functions",
     booktab = TRUE
-    ) %>% 
+    ) |> 
   kableExtra::kable_styling(
     bootstrap_options = "striped"
     )
@@ -167,21 +167,21 @@ count(helpData3, sex, n_rom)
 
 ```{r pipe-hint-2}
 # A pipe for the first function:
-Glasgow %>% 
+Glasgow |> 
   filter(money >= 0)
 ```
 
 ```{r pipe-hint-3}
 # Have a look at the result of this pipe with View().
-Glasgow %>% 
-  filter(money >= 0) %>% View()
+Glasgow |> 
+  filter(money >= 0) |> View()
 # Note that the View window may be hidden behind your RStudio screen.
 ```
 
 ```{r pipe-hint-4}
 # A pipe for the first two functions:
-Glasgow %>% 
-  filter(money >= 0) %>%
+Glasgow |> 
+  filter(money >= 0) |>
   group_by(sex, student)
 # Note that group_by() does not change the result.
 # It's effect is that subsequent functions are applied to each group 
@@ -190,10 +190,10 @@ Glasgow %>%
 
 ```{r pipe-hint-5}
 # See the impact of group_by on the summarise() function:
-Glasgow %>% 
-  filter(money >= 0) %>%
-  group_by(sex, student) %>% 
-  summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) %>% View()
+Glasgow |> 
+  filter(money >= 0) |>
+  group_by(sex, student) |> 
+  summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) |> View()
 # Run the code also without group_by() to see the difference.
 ```
 
@@ -202,7 +202,7 @@ Glasgow %>%
 ```
 
 ```{r pipe-solution, exercise.reveal_solution = FALSE}
-Glasgow %>% filter(money >= 0) %>% group_by(sex, student) %>% summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) %>% count(sex, n_rom)
+Glasgow |> filter(money >= 0) |> group_by(sex, student) |> summarise(n_rom = sum(romantic == "yes", na.rm = TRUE)) |> count(sex, n_rom)
 ```
 
 ```{r pipe-check}
@@ -241,10 +241,10 @@ Frequency tables count how often values appear in the data: counts per group.
 A count is a summary: We replace all cases within a group by one case containing the number of cases in that group.
 
 ```{r summary1-shown}
-Glasgow %>%
+Glasgow |>
   # we need summarizing numbers for each number of friendships, so group first
   # grouping automatically sorts on the variable, so the cumulation works fine
-  group_by(friendships) %>%
+  group_by(friendships) |>
   # summary statistics: note that a new variable can be used immediately
   summarise(
     Freq = n(),
@@ -264,7 +264,7 @@ As always, use tidyverse functions and join all functions in one pipe.
 
 ```{r summary1-hint-1}
 # You must group the data before you summarise.
-Glasgow %>%
+Glasgow |>
   group_by( ??? )
 # Which variable provides the groups?
 # In other words: The values of which variable are counted?
@@ -272,8 +272,8 @@ Glasgow %>%
 
 ```{r summary1-hint-2}
 # Use summarise() with the n() function to count the number of cases per group. 
-Glasgow %>%
-  group_by( ??? ) %>%
+Glasgow |>
+  group_by( ??? ) |>
   summarise(
     Freq = n()
   )
@@ -282,8 +282,8 @@ Glasgow %>%
 
 ```{r summary1-hint-3}
 # For relative frequencies, divide the raw counts by the number of cases. 
-Glasgow %>%
-  group_by( ??? ) %>%
+Glasgow |>
+  group_by( ??? ) |>
   summarise(
     Freq = n(),
     Perc = ??? / nrow(Glasgow)
@@ -319,7 +319,7 @@ Some useful functions for recoding or grouping variables have been added to `tid
 
 ```{r eval=FALSE, echo=TRUE}
 # School year instead of wave indicator.
-Glasgow %>% mutate(schoolyear = 
+Glasgow |> mutate(schoolyear = 
     recode(wave,  "t1" = 2,
                   "t2" = 3,
                   "t3" = 4))
@@ -330,7 +330,7 @@ Glasgow %>% mutate(schoolyear =
 
 ```{r eval=FALSE, echo=TRUE}
 # Group number of friends.
-Glasgow %>% 
+Glasgow  |>  
   mutate(friends_class = case_when(
     friendships == 0 ~ "No friends", 
     friendships < 5 ~ "1 - 4 friends", 
@@ -344,7 +344,7 @@ Glasgow %>%
 
 ```{r eval=FALSE, echo=TRUE}
 # Group number of friends in three (more or less) equally large groups.
-Glasgow %>% 
+Glasgow |> 
   mutate(friends_bin = ntile(friendships, 3))
 ```
 
@@ -352,7 +352,7 @@ Glasgow %>%
 
 ```{r eval=FALSE, echo=TRUE}
 # Set -1 friends to missing.
-Glasgow %>% 
+Glasgow |> 
   mutate(friends_nonmissing = na_if(friendships, -1))
 ```
 
@@ -372,12 +372,12 @@ Send the results to the screen.
 
 ```{r binning-hint-1}
 # Use __mutate()__ to create the new variable.
-Glasgow %>% mutate(money_class = ??? )
+Glasgow |> mutate(money_class = ??? )
 # Which of the recoding and grouping functions should you use?
 ```
 
 ```{r binning-solution, exercise.reveal_solution = FALSE}
-Glasgow %>% mutate(money_class = ntile(x = money, n = 3))
+Glasgow |> mutate(money_class = ntile(x = money, n = 3))
 ```
 
 ```{r binning-check}
@@ -406,7 +406,7 @@ Send the results to the screen.
 
 ```{r recodemoney-hint-1}
 # Use mutate().
-Glasgow %>% mutate(
+Glasgow |> mutate(
   money_class2 = ???()
 )
 # Which of the recoding and grouping functions should you use?
@@ -414,7 +414,7 @@ Glasgow %>% mutate(
 
 ```{r recodemoney-hint-2}
 # Indeed, use case_when().
-Glasgow %>% mutate(
+Glasgow |> mutate(
   money_class2 = case_when(
     
   )
@@ -425,7 +425,7 @@ Glasgow %>% mutate(
 ```{r recodemoney-hint-3}
 # What is the condition for groups -1 (negative pocket money) and 0 (no pocket money)? 
 # Use __==__, __>__, or __<__ for "equals", "larger than", and "smaller than".
-Glasgow %>% mutate(
+Glasgow |> mutate(
   money_class2 = case_when(
     money ?? ~ -1,
     money ?? ~ 0
@@ -436,7 +436,7 @@ Glasgow %>% mutate(
 ```{r recodemoney-hint-4}
 # What is the condition for group 1: 1 - 10? 
 # Use __>=__ and __<=__ for "larger or equal" and "smaller or equal".
-Glasgow %>% mutate(
+Glasgow |> mutate(
   money_class2 = case_when(
     money < 0 ~ -1,
     money == 0 ~ 0,
@@ -448,7 +448,7 @@ Glasgow %>% mutate(
 ```{r recodemoney-hint-5}
 # What is the condition for group 2: more than 10 pounds per month? 
 # You can assign all remaining cases to this group.
-Glasgow %>% mutate(
+Glasgow |> mutate(
   money_class2 = case_when(
     money < 0 ~ -1,
     money == 0 ~ 0,
@@ -459,7 +459,7 @@ Glasgow %>% mutate(
 ```
 
 ```{r recodemoney-solution, exercise.reveal_solution = FALSE}
-Glasgow %>% mutate(money_class2 = case_when(money < 0 ~ -1, money == 0 ~ 0, money <= 10 ~ 1, TRUE ~ 2))
+Glasgow |> mutate(money_class2 = case_when(money < 0 ~ -1, money == 0 ~ 0, money <= 10 ~ 1, TRUE ~ 2))
 ```
 
 ### 
@@ -467,9 +467,9 @@ Glasgow %>% mutate(money_class2 = case_when(money < 0 ~ -1, money == 0 ~ 0, mone
 <div class="tip" >
 __Programming Tip__
 
--   Use `count()` (which is equal to `group_by()` %>% `summarise(n = n())`) to better understand a variable or a combination of two or more variables.
+-   Use `count()` (which is equal to `group_by()` |> `summarise(n = n())`) to better understand a variable or a combination of two or more variables.
 -   Check a recoded variable: Pipe the original and recoded variable into the count() function.
--   Example: %>% count(money_class2, money)
+-   Example: |> count(money_class2, money)
 -   Browse the frequency table: are the original values linked to the correct groups on the new variable?
 -   Pay special attention to (combinations that involve) missing values. Missing values may create more missing values in data transformation steps because every transformation involving a missing value results in a missing value.
 </div>
@@ -488,7 +488,7 @@ Send the results to the screen.
 
 ```{r recodemissing-hint-1}
 # Use mutate().
-Glasgow %>% mutate(
+Glasgow |> mutate(
   money = ???()
 )
 # Which of the recoding and grouping functions should you use?
@@ -500,7 +500,7 @@ Glasgow %>% mutate(
 ```
 
 ```{r recodemissing-solution, exercise.reveal_solution = FALSE}
-Glasgow %>% mutate(money = na_if(x = money, y = -1))
+Glasgow |> mutate(money = na_if(x = money, y = -1))
 ```
 
 ```{r recodemissing-check}
@@ -527,22 +527,22 @@ What happens with the missing values in the following commands?
 ```{r quizNA}
 quiz(
   caption = "",
-  question("`Glasgow %>% filter(alcohol == \"1 none\")`",
+  question("`Glasgow |> filter(alcohol == \"1 none\")`",
     answer("Missing values are included."),
     answer("Missing values are ignored.", correct = TRUE),
     answer("The result is a missing value.")
   ),
-  question("`Glasgow %>% select(alcohol)`",
+  question("`Glasgow |> select(alcohol)`",
     answer("Missing values are included.", correct = TRUE),
     answer("Missing values are ignored."),
     answer("The result is a missing value.")
   ),
-  question("`Glasgow %>% summarise(no_alcohol = sum(alcohol == \"1 none\"))`",
+  question("`Glasgow |> summarise(no_alcohol = sum(alcohol == \"1 none\"))`",
     answer("Missing values are included."),
     answer("Missing values are ignored."),
     answer("The result is a missing value.", correct = TRUE)
   ),
-  question("`Glasgow %>% summarise(no_alcohol = sum(alcohol == \"1 none\", na.rm = TRUE))`",
+  question("`Glasgow |> summarise(no_alcohol = sum(alcohol == \"1 none\", na.rm = TRUE))`",
     answer("Missing values are included."),
     answer("Missing values are ignored.", correct = TRUE),
     answer("The result is a missing value.")
@@ -671,32 +671,32 @@ Retain only the variables `student`, `wave`, `friendships`, `prev_friendships`, 
 </div>
 
 ```{r change, exercise = TRUE}
-Glasgow %>%
+Glasgow |>
   #sort on student and wave within student
-  arrange( ____ ) %>%
+  arrange( ____ ) |>
   #group by student, so data for the same student is used only
-  group_by( ____ ) %>%
+  group_by( ____ ) |>
   #use a special function to calculate the difference
   mutate( 
     prev_friendships = ____(____), #number of friendships in the preceding wave (if any)
     change = ____ #difference: later minus earlier
-    ) %>%
+    ) |>
   select( _____ )
 
 ```
 
 ```{r eval=FALSE}
 # correct code
-Glasgow %>%
+Glasgow |>
   #sort on student and wave within student
-  arrange(student, wave) %>%
+  arrange(student, wave) |>
   #group by student, so data for the same student is used only
-  group_by(student) %>%
+  group_by(student) |>
   #use lag() to calculate the difference
   mutate( 
     prev_friendships = lag(friendships), #number of friendships in the preceding wave (if any); this command can be included in the next
     change = friendships - prev_friendships #difference: later minus earlier
-    ) %>%
+    ) |>
   select(student, wave, friendships, prev_friendships, change)
 ```
 
@@ -770,8 +770,8 @@ data.frame(
   student = c("s997", "s998", "s998", "s999"),
   wave = c("t3", "t1", "t3", "t1"),
   friendships = c(4, 2, 3, 6)
-  ) %>%
-  knitr::kable(booktab = TRUE) %>% 
+  ) |>
+  knitr::kable(booktab = TRUE) |> 
   kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
 ```
 
@@ -797,25 +797,25 @@ Step 2 - Translate the conditions into R code.
 
 ```{r eval=FALSE}
 # correct code
-Glasgow %>%
+Glasgow |>
   #for each student...
-  group_by(student) %>%
+  group_by(student) |>
   #count the number of different waves in the data
   summarise(
     n_obs = n(),
     n_dist = n_distinct(wave)
-    ) %>%
+    ) |>
   #filter cases with n_obs != 3 or n_dist != 3
   filter( n_obs != 3 | n_dist != 3)
 ```
 
 ```{r missingObs, exercise = TRUE, exercise.lines = 13}
-Glasgow %>%
-  group_by(student) %>%
+Glasgow |>
+  group_by(student) |>
   summarise(
     n_obs = n(),
     n_dist = n_distinct(wave)
-    ) %>%
+    ) |>
   filter( n_obs != 3 | n_dist != 3)
 ```
 
@@ -827,7 +827,7 @@ __Hint:__ Group by student before you summarize. Use function __n()__ to count t
 
 ```{r eval=FALSE}
 # correct code
-Glasgow %>%
+Glasgow |>
   #count the different waves in the data
   count(wave)
 ```
@@ -871,11 +871,11 @@ Make sense of the code below; add comments explaining every step. What happens i
 </div>
 
 ```{r kable, exercise = TRUE, exercise.eval = TRUE}
-Glasgow %>%
-  group_by(sex, wave) %>%
-  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) %>%
-  ungroup() %>%
-  select(-sex) %>% 
+Glasgow |>
+  group_by(sex, wave) |>
+  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) |>
+  ungroup() |>
+  select(-sex) |> 
   kable(
     digits = 2,
     col.names = c("Wave", "Proportion using tobacco"),
@@ -894,19 +894,19 @@ The above table is not particularly pretty, so let us improve it with the help o
 
 ```{r tableExampleExtra, exercise=TRUE, exercise.eval=TRUE}
 library(kableExtra)
-Glasgow %>%
-  group_by(sex, wave) %>%
-  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) %>%
-  ungroup() %>%
-  select(-sex) %>% 
+Glasgow |>
+  group_by(sex, wave) |>
+  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) |>
+  ungroup() |>
+  select(-sex) |> 
   kable(
     digits = 2,
     col.names = c("Wave", "Proportion using tobacco"),
     align = "lcc",
     caption = "Proportion of Glasgow students using tobacco."
-  ) %>%
-  kableExtra::kable_classic(full_width = FALSE) %>%
-  kableExtra::pack_rows("Boys", 1, 3) %>%
+  ) |>
+  kableExtra::kable_classic(full_width = FALSE) |>
+  kableExtra::pack_rows("Boys", 1, 3) |>
   kableExtra::pack_rows("Girls", 4, 6)
 ```
 
@@ -922,9 +922,9 @@ The below graph, for example, shows the number of friendships for boys and girls
 
 ```{r summaryPlot, exercise = TRUE, exercise.eval = TRUE}
 #Calculate and save average number of friends.
-averages <- Glasgow %>%
+averages <- Glasgow |>
   #group waves by sex
-  group_by(sex, wave) %>%
+  group_by(sex, wave) |>
   #calculate mean, ignoring missing values
   summarise(mean_friends = mean(friendships, na.rm = TRUE))
 #Create plot
