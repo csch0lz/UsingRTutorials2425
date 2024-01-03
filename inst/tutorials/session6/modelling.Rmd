@@ -530,10 +530,10 @@ dt <- data.frame(
   stringsAsFactors = FALSE
   )
 names(dt)[5] <- paste0(names(dt)[5], footnote_marker_symbol(1))
-dt %>%
-  knitr::kable(align = "llllll", escape = F) %>% #show with kable() from the knitr package
-  kable_styling(full_width = T) %>%
-  row_spec(0, font_size = 18) %>%
+dt |>
+  knitr::kable(align = "llllll", escape = F) |> #show with kable() from the knitr package
+  kable_styling(full_width = T) |>
+  row_spec(0, font_size = 18) |>
   footnote(symbol = "Results of two or more models in one table.")
 ```
 
@@ -723,7 +723,7 @@ __Hint:__ Check out help on `tidy.lm`. You are tidying the results of a linear m
 </div>
 
 ```{r broom-solution}
-model_1a %>% tidy(conf.int = TRUE, conf.level = 0.95)
+model_1a |> tidy(conf.int = TRUE, conf.level = 0.95)
 ```
 
 ```{r broom-check}
@@ -742,13 +742,13 @@ Explain the code below. If you are unsure about a code element, change it and se
 </div>
 
 ```{r broom2, exercise = TRUE, exercise.setup = "texreg-init", exercise.lines = 12}
-model_1a %>% 
-  tidy(conf.int = TRUE, conf.level = 0.95) %>% 
+model_1a |> 
+  tidy(conf.int = TRUE, conf.level = 0.95) |> 
   mutate(
     estimate = format(round(estimate, digits = 2), nsmall = 2), 
     p.value = format(round(p.value, digits = 3), nsmall = 3), 
     CI = paste0( "[", format( round(conf.low, digits = 2), nsmall = 2 ), ", ", format( round(conf.high, digits = 2), nsmall = 2 ), "]" )
-    ) %>%
+    ) |>
   select(term, estimate, p.value, CI)
 ```
 
@@ -761,14 +761,14 @@ Find and explain the line of code that adds stars indicating the significance le
 </div>
 
 ```{r broom3, exercise = TRUE, exercise.setup = "texreg-init"}
-model_1a %>% 
-  tidy(conf.int = TRUE, conf.level = 0.95) %>% 
+model_1a |> 
+  tidy(conf.int = TRUE, conf.level = 0.95) |> 
   mutate(
     estimate = format(round(estimate, digits = 2), nsmall = 2), 
     p.value = format(round(p.value, digits = 3), nsmall = 3),
     sig = case_when( p.value < .001 ~ "***", p.value < .01 ~ "**", p.value < .05 ~ "*", TRUE ~ "" ), 
     CI = paste0( "[", format( round(conf.low, digits = 2), nsmall = 2 ), ", ", format( round(conf.high, digits = 2), nsmall = 2 ), "]" )
-    ) %>%
+    ) |>
   select(term, estimate, p.value, CI)
 
 ```
@@ -783,8 +783,8 @@ Play around with the `kable` and `kableExtra` options to see what they do.
 </div>
 
 ```{r kable, exercise = TRUE, exercise.setup = "texreg-init", exercise.eval = TRUE, exercise.lines = 17}
-model_1a %>% 
-  tidy(conf.int = TRUE, conf.level = 0.95) %>% 
+model_1a |> 
+  tidy(conf.int = TRUE, conf.level = 0.95) |> 
   mutate(
     estimate = format(round(estimate, digits = 2), nsmall = 2), 
     p.value = format(round(p.value, digits = 3), nsmall = 3), 
@@ -795,21 +795,21 @@ model_1a %>%
       TRUE ~ "" ), 
     CI = paste0( "[", format( round(conf.low, digits = 2), nsmall = 2 ), 
       ", ", format( round(conf.high, digits = 2), nsmall = 2 ), "]" )
-    ) %>% 
-  select(term, estimate, sig, CI) %>% #p.value dropped
+    ) |> 
+  select(term, estimate, sig, CI) |> #p.value dropped
   kable(digits = c(0, 2, 0, 0),
     col.names = c("Parameter", "B", "", "95% CI"),
     align = "lrlc",
     caption = "Table 1. Predicting opinions about global warming.",
     booktabs = TRUE, #nicer layout in PDF
     escape = FALSE #pay attention to special characters
-    ) %>%
-  kable_styling(full_width = FALSE) %>%
-  row_spec(0, font_size = 16) %>%
-  column_spec(1, width = "5cm") %>%
-  column_spec(2, width = "3cm") %>%
-  column_spec(3, width = "0.5cm") %>%
-  column_spec(4, width = "5cm") %>%
+    ) |>
+  kable_styling(full_width = FALSE) |>
+  row_spec(0, font_size = 16) |>
+  column_spec(1, width = "5cm") |>
+  column_spec(2, width = "3cm") |>
+  column_spec(3, width = "0.5cm") |>
+  column_spec(4, width = "5cm") |>
   footnote(
     general_title = "",
     general = "   * p < .05. ** p < .01. *** p < .001."
@@ -899,7 +899,7 @@ Create a ggplot from `glbwarm` like the above effects plot with facets for negat
 
 ```{r ggplot-hint-1}
 # Create the binned negative emotions variable.
-glbwarm %>%
+glbwarm |>
   mutate(negemot_bin = 
   case_when(
     negemot < 1.5 ~ 1,
@@ -914,7 +914,7 @@ glbwarm %>%
 
 ```{r ggplot-hint-2}
 # Pipe the tibble into ggplot() and use geom_smooth().
-glbwarm %>%
+glbwarm |>
   mutate(negemot_bin = 
   case_when(
     negemot < 1.5 ~ 1,
@@ -924,7 +924,7 @@ glbwarm %>%
     negemot < 5.5 ~ 5,
     negemot >= 5.5 ~ 6
     )
-  ) %>%
+  ) |>
   ggplot( ) +
     geom_smooth( )
 ```
@@ -938,7 +938,7 @@ glbwarm %>%
 ```
 
 ```{r ggplot-solution, exercise.reveal_solution = FALSE}
-glbwarm %>% mutate(negemot_bin = case_when( negemot < 1.5 ~ 1, negemot < 2.5 ~ 2, negemot < 3.5 ~ 3, negemot < 4.5 ~ 4, negemot < 5.5 ~ 5, negemot >= 5.5 ~ 6)) %>% ggplot(aes(x = age)) + geom_smooth(aes(y = govact), method = lm) + geom_rug() + facet_wrap(vars(negemot_bin))
+glbwarm |> mutate(negemot_bin = case_when( negemot < 1.5 ~ 1, negemot < 2.5 ~ 2, negemot < 3.5 ~ 3, negemot < 4.5 ~ 4, negemot < 5.5 ~ 5, negemot >= 5.5 ~ 6)) |> ggplot(aes(x = age)) + geom_smooth(aes(y = govact), method = lm) + geom_rug() + facet_wrap(vars(negemot_bin))
 ```
 
 Do you notice differences between your plot and the plot created with the `effects` package?
@@ -950,8 +950,8 @@ Which plot do you trust more?
 It is not that difficult to create a means plot showing the results of analysis of variance.
 
 ```{r anovaplothidden, eval=TRUE, echo=FALSE}
-glbwarm %>% group_by(partyid, sex) %>% 
-  summarise(avg_govact = mean(govact)) %>% 
+glbwarm |> group_by(partyid, sex) |> 
+  summarise(avg_govact = mean(govact)) |> 
   ggplot(aes(x = partyid, y = avg_govact, 
              color = sex)) + 
     geom_line(aes(group = sex)) + 
@@ -972,14 +972,14 @@ Use your data wrangling skills and `gglot()` to create the above means plot.
 </div>
 
 ```{r anovaplot, exercise = TRUE}
-glbwarm %>% group_by(partyid, sex) %>% 
-  summarise(avg_govact = mean(govact)) %>% 
+glbwarm |> group_by(partyid, sex) |> 
+  summarise(avg_govact = mean(govact)) |> 
   ggplot( ____ )
 ```
 
 ```{r anovaplot-hint-1}
 # First calculate the group means that must be shown.
-glbwarm %>% group_by(partyid, sex) %>% 
+glbwarm |> group_by(partyid, sex) |> 
   summarise(avg_govact = mean(govact))
 # Important: You plot summaries now, not the original observations.
 ```
@@ -1058,10 +1058,10 @@ Use the `haven::as_factor()` function to add a variable named `sex_fct` to tibbl
 
 ```{r sex_fct, exercise = TRUE}
 # Add sex as a factor to the tibble.
-glbwarm_spss <- glbwarm_spss %>% 
+glbwarm_spss <- glbwarm_spss |> 
   mutate(sex_fct = haven::as_factor(sex))
 # Inspect the original and new variable.
-glbwarm_spss %>% count(sex, sex_fct)
+glbwarm_spss |> count(sex, sex_fct)
 ```
 
 ###
@@ -1105,11 +1105,11 @@ posteriors <- as_tibble(model_1aBayes)
 # Overview of variables in posteriors: each independent variable and the error term (sigma).
 str(posteriors)
 # Calculate the probability that the effect of negemot is larger than 0 in the population.
-prob <- posteriors %>%
+prob <- posteriors |>
   summarize(b_negemot = mean(negemot > 0))
 # Plot the probability distribution and display this information.
-posteriors %>% 
-  mutate(positive = negemot > 0) %>%
+posteriors |> 
+  mutate(positive = negemot > 0) |>
   ggplot(mapping = aes(x = negemot)) +
     geom_histogram(
       aes(fill = positive),
