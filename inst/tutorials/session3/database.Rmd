@@ -1377,13 +1377,13 @@ flights |> #use the flights tibble in the nycflights13 package
 
 ## Thursday Reading
 
-Chapter 11 {14}: Strings. Read to see the possibilities, so you know where to
+Chapter 14,15: Strings. Read to see the possibilities, so you know where to
 find commands that are relevant to your Data Project.
 
-Chapter 12 {15}: Factors. Study carefully. Categorical variables are used as
+Chapter 16: Factors. Study carefully. Categorical variables are used as
 factors in statistical analyses.
 
-Chapter 13 {16}: Dates and Times. Study carefully, especially if your complex
+Chapter 17: Dates and Times. Study carefully, especially if your complex
 data contain dates/times.
 
 ## Data Project
