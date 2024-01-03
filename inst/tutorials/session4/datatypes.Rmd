@@ -137,7 +137,7 @@ count()
 ```
 
 ```{r freqtable-solution, exercise.reveal_solution = FALSE}
-Brexit %>% count(category)
+Brexit |> count(category)
 ```
 
 ```{r freqtable-check}
@@ -162,11 +162,11 @@ Below are the results of a regression model predicting the number of votes for a
 
 ```{r regression, exercise = TRUE, exercise.eval = TRUE}
 # Linear regression: more in Session 6.
-lm(votes ~ category, data = Brexit) %>%
-  broom::tidy() %>% #retrieving the main results
+lm(votes ~ category, data = Brexit) |>
+  broom::tidy() |> #retrieving the main results
   kable(digits = c(0,2,2,2,3),
                col.names = c("Parameter", "b", "SE", "t", "p"),
-               align = "lrrrr") %>%
+               align = "lrrrr") |>
   kableExtra::kable_classic(full_width = FALSE)
 ```
 
@@ -200,12 +200,12 @@ Create a factor called `cat_fact` from the variable `category` and add it to tib
 </div>
 
 ```{r factor, exercise = TRUE}
-Brexit <- Brexit %>% 
+Brexit <- Brexit |> 
 ```
 
 ```{r factor-hint-1}
 # Use mutate().
-Brexit <- Brexit %>% mutate()
+Brexit <- Brexit |> mutate()
 ```
 
 ```{r factor-hint-2}
@@ -214,7 +214,7 @@ factor(x = )
 ```
 
 ```{r factor-solution, exercise.reveal_solution = FALSE}
-Brexit <- Brexit %>% mutate(cat_fact = factor(x = category))
+Brexit <- Brexit |> mutate(cat_fact = factor(x = category))
 ```
 
 ```{r factor-check}
@@ -257,12 +257,12 @@ fct_relevel()
 
 ```{r relevel-hint-2}
 # Oh yes, use mutate() again. You should know that by now.
-Brexit <- Brexit %>% 
+Brexit <- Brexit |> 
   mutate()
 ```
 
 ```{r relevel-solution, exercise.reveal_solution = FALSE}
-Brexit <- Brexit %>% mutate(cat_new = fct_relevel(cat_fact, "Economie"))
+Brexit <- Brexit |> mutate(cat_new = fct_relevel(cat_fact, "Economie"))
 ```
 
 ```{r relevel-check}
@@ -279,7 +279,7 @@ Now check that `Economie` is the reference category in a regression model.
 </div>
 
 ```{r relevelmodel-init}
-Brexit <- Brexit %>% 
+Brexit <- Brexit |> 
   mutate(cat_fact = factor(x = category), 
          cat_new = fct_relevel(cat_fact, "Economie")
          )
@@ -333,7 +333,7 @@ mutate(cat_fact2 = fct_recode(cat_fact, ))
 ```
 
 ```{r recodefactor-solution, exercise.reveal_solution = FALSE}
-Brexit <- Brexit %>% mutate(cat_fact2 = fct_recode(cat_fact, Algemeen = "Media", Algemeen = "Overig", Algemeen = "Showbizz", Algemeen = "Wetenschap"))
+Brexit <- Brexit |> mutate(cat_fact2 = fct_recode(cat_fact, Algemeen = "Media", Algemeen = "Overig", Algemeen = "Showbizz", Algemeen = "Wetenschap"))
 ```
 
 ```{r recodefactor-check}
@@ -357,8 +357,8 @@ Use function `parse_number()` to create a new numeric variable `react_num` in ti
 
 ```{r groupreactions1, exercise = TRUE}
 # 
-Brexit <- Brexit %>% mutate( ____ )
-Brexit %>% count()
+Brexit <- Brexit |> mutate( ____ )
+Brexit |> count()
 ```
 
 ```{r groupreactions1-hint-1}
@@ -377,8 +377,8 @@ mutate(new_var = function(old_var))
 ```
 
 ```{r groupreactions1-solution, exercise.reveal_solution = FALSE}
-Brexit <- Brexit %>% mutate(react_num = parse_number(reactions))
-Brexit %>% count(reactions, react_num)
+Brexit <- Brexit |> mutate(react_num = parse_number(reactions))
+Brexit |> count(reactions, react_num)
 ```
 
 ```{r groupreactions1-check}
@@ -414,7 +414,7 @@ mutate(
 ```
 
 ```{r orderedfactor-solution, exercise.reveal_solution = FALSE}
-Brexit <- Brexit %>% mutate(react_cat = ntile(react_num, 3), react_cat = factor(react_cat, levels = c(1, 2, 3), labels = c("low", "medium", "high")))
+Brexit <- Brexit |> mutate(react_cat = ntile(react_num, 3), react_cat = factor(react_cat, levels = c(1, 2, 3), labels = c("low", "medium", "high")))
 ```
 
 ```{r orderedfactor-check}
@@ -433,7 +433,7 @@ Plot a bar chart of the factor representing the reactions bins. Are the bins in 
 </div>
 
 ```{r binplot-ini, exercise.setup = "groupreactions1-solution"}
-Brexit <- Brexit %>% mutate(react_cat = ntile(parse_number(reactions), 3), react_cat = factor(react_cat, levels = c(1, 2, 3), labels = c("low", "medium", "high")))
+Brexit <- Brexit |> mutate(react_cat = ntile(parse_number(reactions), 3), react_cat = factor(react_cat, levels = c(1, 2, 3), labels = c("low", "medium", "high")))
 ```
 
 
@@ -489,9 +489,9 @@ Create a date-time variable `pubDateTime` in tibble `Brexit` using a parse funct
 
 ```{r pubDate1, exercise = TRUE}
 # Create and add the date-time variable.
-Brexit <- Brexit %>% ____
+Brexit <- Brexit |> ____
 # Check the results
-Brexit %>% _____
+Brexit |> _____
 ```
 
 ```{r pubDate1-hint-1}
@@ -505,8 +505,8 @@ parse_datetime(pubDate, format = "")
 ```
 
 ```{r pubDate1-solution, exercise.reveal_solution = FALSE}
-Brexit <- Brexit %>% mutate(pubDateTime = parse_datetime(pubDate, format = "%B %d, %Y %H:%M:%S"))
-Brexit %>% count(pubDate, pubDateTime)
+Brexit <- Brexit |> mutate(pubDateTime = parse_datetime(pubDate, format = "%B %d, %Y %H:%M:%S"))
+Brexit |> count(pubDate, pubDateTime)
 ```
 
 ```{r pubDate1-check}
@@ -520,7 +520,7 @@ Now do the same with the `lubridate` package (p. 239 {Ch. 16.2.1}), storing the 
 </div>
 
 ```{r pubDate2, exercise = TRUE}
-Brexit <- Brexit %>% 
+Brexit <- Brexit |> 
   mutate(____)
 ```
 
@@ -529,7 +529,7 @@ Brexit <- Brexit %>%
 ```
 
 ```{r pubDate2-solution, exercise.reveal_solution = FALSE}
-Brexit <- Brexit %>% mutate(pubDateTime2 = mdy_hms(pubDate))
+Brexit <- Brexit |> mutate(pubDateTime2 = mdy_hms(pubDate))
 ```
 
 ```{r pubDate2-check}
@@ -557,7 +557,7 @@ Add a variable `date` to the `Brexit` tibble; derive it from the recently create
 </div>
 
 ```{r Date, exercise = TRUE, exercise.setup = "pubDate1-solution"}
-Brexit <- Brexit %>% 
+Brexit <- Brexit |> 
   mutate(____)
 ```
 
@@ -566,7 +566,7 @@ Brexit <- Brexit %>%
 ```
 
 ```{r Date-solution, exercise.reveal_solution = FALSE}
-Brexit <- Brexit %>% mutate(date = date(pubDateTime))
+Brexit <- Brexit |> mutate(date = date(pubDateTime))
 ```
 
 ```{r Date-check}
@@ -583,7 +583,7 @@ Inspect the dates of the posts with a frequency polygon.
 </div>
 
 ```{r datePlot-init}
-Brexit <- Brexit %>% mutate(date = date(parse_datetime(pubDate, format = "%B %d, %Y %H:%M:%S")))
+Brexit <- Brexit |> mutate(date = date(parse_datetime(pubDate, format = "%B %d, %Y %H:%M:%S")))
 ```
 
 
@@ -598,7 +598,7 @@ Brexit <- Brexit %>% mutate(date = date(parse_datetime(pubDate, format = "%B %d,
 ```
 
 ```{r datePlot-solution, exercise.reveal_solution = FALSE}
-Brexit %>% ggplot(aes(x = date)) + geom_freqpoly(stat = "count")
+Brexit |> ggplot(aes(x = date)) + geom_freqpoly(stat = "count")
 ```
 
 ```{r datePlot-check}
@@ -632,7 +632,7 @@ __Hint:__ How about the `wday()` function?
 </div>
 
 ```{r weekday-solution}
-Brexit %>% mutate(weekday = wday(pubDateTime, label=TRUE)) %>% select(weekday)
+Brexit |> mutate(weekday = wday(pubDateTime, label=TRUE)) |> select(weekday)
 ```
 
 ```{r weekday-check}
@@ -645,7 +645,7 @@ gradethis::grade_code(
 ###
 
 ```{r plotweekday, echo=FALSE}
-Brexit  %>% mutate(weekday = lubridate::wday(parse_datetime(pubDate, "%B %d, %Y %H:%M:%S"), label=TRUE)) %>% ggplot(aes(weekday)) + geom_bar()
+Brexit  |> mutate(weekday = lubridate::wday(parse_datetime(pubDate, "%B %d, %Y %H:%M:%S"), label=TRUE)) |> ggplot(aes(weekday)) + geom_bar()
 ```
 
 Variable `weekday` must be a factor. How can you tell?
@@ -660,8 +660,8 @@ Apply this trick to the `pubDateTime` variable in tibble `Brexit` to create a va
 </div>
 
 ```{r time, exercise = TRUE, exercise.setup = "pubDate1-solution"}
-Brexit %>% 
-  mutate(____) %>%
+Brexit |> 
+  mutate(____) |>
   ggplot(____)
 ```
 
@@ -684,7 +684,7 @@ ggplot(aes(time))
 ```
 
 ```{r time-solution, exercise.reveal_solution = FALSE}
-Brexit %>% mutate(time = update(pubDateTime, yday = 1)) %>% ggplot(aes(time)) + geom_area(stat = "bin", bins = 30) + scale_x_datetime(date_labels = "%H")
+Brexit |> mutate(time = update(pubDateTime, yday = 1)) |> ggplot(aes(time)) + geom_area(stat = "bin", bins = 30) + scale_x_datetime(date_labels = "%H")
 ```
 
 ```{r time-check}
@@ -704,8 +704,8 @@ Subtract the `pubDateTime` of the previous post from the `pubDateTime` of the cu
 </div>
 
 ```{r timelapse, exercise = TRUE, exercise.setup = "pubDate1-solution"}
-Brexit <- Brexit %>% 
-  arrange(____) %>%
+Brexit <- Brexit |> 
+  arrange(____) |>
   mutate(____)
 ```
 
@@ -720,7 +720,7 @@ lag()
 ```
 
 ```{r timelapse-solution, exercise.reveal_solution = FALSE}
-Brexit <- Brexit %>% arrange(pubDateTime) %>% mutate(lapse = pubDateTime - lag(pubDateTime, n = 1L))
+Brexit <- Brexit |> arrange(pubDateTime) |> mutate(lapse = pubDateTime - lag(pubDateTime, n = 1L))
 ```
 
 ```{r timelapse-check}
@@ -734,10 +734,10 @@ gradethis::grade_code(
 
 ```{r timelapseplot, echo=FALSE}
 #Show publication date-time and lapse for first few observations.
-Brexit %>% 
-  mutate(pubDateTime = parse_datetime(pubDate, "%B %d, %Y %H:%M:%S")) %>%
-  arrange(pubDateTime) %>% mutate(lapse = pubDateTime - lag(pubDateTime, n = 1L)) %>% 
-  select(pubDateTime, lapse) %>%
+Brexit |> 
+  mutate(pubDateTime = parse_datetime(pubDate, "%B %d, %Y %H:%M:%S")) |>
+  arrange(pubDateTime) |> mutate(lapse = pubDateTime - lag(pubDateTime, n = 1L)) |> 
+  select(pubDateTime, lapse) |>
   slice(1:6)
 ```
 
@@ -749,10 +749,10 @@ Show the difference in days (dates) between subsequent posts (new variable `laps
 </div>
 
 ```{r daylapse, exercise = TRUE, exercise.setup = "datePlot-init"}
-Brexit %>% 
-  arrange(____) %>% 
-  mutate(____) %>% 
-  select(___) %>% 
+Brexit |> 
+  arrange(____) |> 
+  mutate(____) |> 
+  select(___) |> 
   ____(____)
 ```
 
@@ -769,7 +769,7 @@ Brexit %>%
 ```
 
 ```{r daylapse-solution, exercise.reveal_solution = FALSE}
-Brexit %>% arrange(date) %>% mutate(lapse2 = date - lag(date, n = 1L)) %>% select(date, lapse2) %>% slice(1:6)
+Brexit |> arrange(date) |> mutate(lapse2 = date - lag(date, n = 1L)) |> select(date, lapse2) |> slice(1:6)
 ```
 
 ```{r daylapse-check}
@@ -1078,11 +1078,11 @@ Inspect the results of each step in the pipe with `View()`. Note that the View w
 
 ```{r separate, exercise = TRUE, exercise.lines = 12}
 #tidyverse requires a data frame
-varnames <- tibble(name = names(surveyweek1)[4:10]) %>%
+varnames <- tibble(name = names(surveyweek1)[4:10]) |>
   #split each name into three parts
-  separate(name, into = c("humbug", "date", "topic"), sep = " - ") %>%
+  separate(name, into = c("humbug", "date", "topic"), sep = " - ") |>
   #split the date into weekday and date
-  separate(date, into = c("weekday", "date"), sep = ", ") %>%
+  separate(date, into = c("weekday", "date"), sep = ", ") |>
   #extract the date variable as a vector
   pull(date)
 # Replace variable names in tibble.
@@ -1117,17 +1117,17 @@ library(tm)
 library(wordcloud)
 library(RColorBrewer)
 # Create a corpus for the headings (titles) of the Brexit articles.
-docs <- Brexit %>%
+docs <- Brexit |>
   # extract the titles as a vector
-  pull(title) %>%
+  pull(title) |>
   # use tm functions to create a corpus
-  tm::VectorSource() %>%
-  tm::Corpus() %>%
+  tm::VectorSource() |>
+  tm::Corpus() |>
   # use tm functions to clean the data
-  tm::tm_map(removeNumbers) %>% #remove numbers (assuming they are not informative)
-  tm::tm_map(removePunctuation) %>% #remove punctuation (assuming they are not informative)
-  tm::tm_map(stripWhitespace) %>% #remove blanks
-  tm::tm_map(content_transformer(tolower)) %>% #only lower case letters
+  tm::tm_map(removeNumbers) |> #remove numbers (assuming they are not informative)
+  tm::tm_map(removePunctuation) |> #remove punctuation (assuming they are not informative)
+  tm::tm_map(stripWhitespace) |> #remove blanks
+  tm::tm_map(content_transformer(tolower)) |> #only lower case letters
   tm::tm_map(removeWords, stopwords("dutch")) #remove Duch stopwords
 # Create our first wordcloud.
 wordcloud::wordcloud(
@@ -1149,25 +1149,25 @@ Play around with the selection of words and the arguments of the `wordcloud()` f
 
 ```{r prepare-doc}
 # Create a corpus for the headings (titles) of the Brexit articles.
-docs <- Brexit %>%
+docs <- Brexit |>
   # extract the titles as a vector
-  pull(title) %>%
+  pull(title) |>
   # use tm functions to create a corpus
-  tm::VectorSource() %>%
-  tm::Corpus() %>%
+  tm::VectorSource() |>
+  tm::Corpus() |>
   # use tm functions to clean the data
-  tm::tm_map(removeNumbers) %>% #remove numbers (assuming they are not informative)
-  tm::tm_map(removePunctuation) %>% #remove punctuation (assuming they are not informative)
-  tm::tm_map(stripWhitespace) %>% #remove blanks
-  tm::tm_map(content_transformer(tolower)) %>% #only lower case letters
+  tm::tm_map(removeNumbers) |> #remove numbers (assuming they are not informative)
+  tm::tm_map(removePunctuation) |> #remove punctuation (assuming they are not informative)
+  tm::tm_map(stripWhitespace) |> #remove blanks
+  tm::tm_map(content_transformer(tolower)) |> #only lower case letters
   tm::tm_map(removeWords, stopwords("dutch")) #remove Duch stopwords
 ```
 
 
 ```{r wordcloud2, exercise = TRUE, exercise.eval = TRUE, exercise.setup = "prepare-doc"}
-docs %>% 
+docs |> 
   #remove word "brexit"
-  tm::tm_map(removeWords, c("brexit")) %>%
+  tm::tm_map(removeWords, c("brexit")) |>
   #create wordcloud
   wordcloud::wordcloud(
     random.order = FALSE,
@@ -1203,26 +1203,26 @@ pred = topicmodels::posterior(lda,dtm)
 
 # Show word clouds of terms that are more strongly related to one topic than to the other.
 # First, create a tibble with the ratio of the probability that a term links with Topic 2 over the probability that a term links with Topic 1.
-probRatio <- pred$terms %>% as_tibble() %>%
-  rownames_to_column(var = "topic") %>% #preserve topic number as variable
+probRatio <- pred$terms |> as_tibble() |>
+  rownames_to_column(var = "topic") |> #preserve topic number as variable
   #turn term variables into one variable
-  pivot_longer(!topic, names_to = "term", values_to = "prob") %>% 
+  pivot_longer(!topic, names_to = "term", values_to = "prob") |> 
   #calculate the probability ration
-  group_by(term) %>%
-  arrange(term, topic) %>%
-  mutate(pratio = prob / lag(prob, n = 1L)) %>%
+  group_by(term) |>
+  arrange(term, topic) |>
+  mutate(pratio = prob / lag(prob, n = 1L)) |>
   #only retain the rows with a valid probability ratio (namely, topic 2)
   filter(topic == 2)
 
 # Show two plots side by side.
 par(mar = c(0, 0, 0, 0), mfcol = c(1, 2))
 # Wordcloud Topic 1: terms that are at least 5 times more likely for topic 1.
-nottopic1 <- probRatio %>%
-  filter(pratio > 0.2) %>%
+nottopic1 <- probRatio |>
+  filter(pratio > 0.2) |>
   pull(term) #we need a vector for the removeWords() function
-docs %>% 
+docs |> 
   #remove word "brexit"
-  tm::tm_map(removeWords, nottopic1) %>%
+  tm::tm_map(removeWords, nottopic1) |>
   #create wordcloud
   wordcloud::wordcloud(
     random.order = FALSE,
@@ -1230,12 +1230,12 @@ docs %>%
     min.freq = 2
   )
 # Wordcloud Topic 2: terms that are at least 5 times more likely for topic 1.
-nottopic2 <- probRatio %>%
-  filter(pratio < 5) %>%
+nottopic2 <- probRatio |>
+  filter(pratio < 5) |>
   pull(term) #we need a vector for the removeWords() function
-docs %>% 
+docs |> 
   #remove word "brexit"
-  tm::tm_map(removeWords, nottopic2) %>%
+  tm::tm_map(removeWords, nottopic2) |>
   #create wordcloud
   wordcloud::wordcloud(
     random.order = FALSE,
