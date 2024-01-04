@@ -653,7 +653,7 @@ Variable `weekday` must be a factor. How can you tell?
 ###  
 
 -   It is tricky to get the time of day because R has no time data type. 
--   The book offers a trick (Chapter 13, Section Setting Components {16.3.3}).
+-   The book offers a trick (Chapter 17, Section Setting Components {17.3.3}).
 
 <div class="question" >
 Apply this trick to the `pubDateTime` variable in tibble `Brexit` to create a variable `time`. Show the variable as an area plot; don't save it. Put all code in one pipe!
