@@ -516,7 +516,7 @@ gradethis::grade_code()
 ###
 
 <div class="question" >
-Now do the same with the `lubridate` package (p. 239 {Ch. 16.2.1}), storing the results as a new variable `pubDateTime2` in tibble `Brexit`.
+Now do the same with the `lubridate` package (p. 298 {Ch. 17.2.2}), storing the results as a new variable `pubDateTime2` in tibble `Brexit`.
 </div>
 
 ```{r pubDate2, exercise = TRUE}
