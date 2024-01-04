@@ -192,9 +192,11 @@ Each problem set consists of two parts:
     Sunday.
 
 2.  Explanation: In class "test" at the beginning of each Tuesday
-    session (Week 2-4; \~15 min). Add comments to the code you submitted
+    session (Week 2-4; \~10 min). Add comments to the code you submitted
     in part 1 to precisely describe a) what the code does, and b) why
-    you performed each operation.
+    you performed each operation. Check the
+    [syllabus](https://canvas.uva.nl/courses/40018/assignments/syllabus)
+    for an example.
 
 ### Data Project: Tell a visual story
 
@@ -1756,7 +1758,7 @@ empirically informed manner.
 **Relevant SCRUM terms**
 
 | Term            | Using R Definition                                                                                                                                                |
-|--------------|----------------------------------------------------------|
+|-----------------|-------------------------------------------------------|
 | Sprints         | Short intervals in which the team sets goals, completes tasks and then evaluates. We'll have four, 1-week sprints (with sprint 1 being a bit shorter: Tue - Thu). |
 | SCRUM Master    | Person who oversees and facilitates the sprint. Choose a different team member per week.                                                                          |
 | Product         | The final data project                                                                                                                                            |
