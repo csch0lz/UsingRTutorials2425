@@ -1275,10 +1275,10 @@ Last 15 minutes of the session.
 ### Problem Set 2
 
 - Available from 1 PM today.
-- Download __R Markdown__ document with assigned exercises and accompanying data set from Canvas.  
-- Add answers and R code in the __R Markdown__ document.  
-- Knit __R Markdown__ document to PDF or Word.
-- Submit __R Markdown__ document and PDF or Word document to the Canvas assignment.  
+- Download __Quarto__ document with assigned exercises and accompanying data set from Canvas.  
+- Add answers and R code in the __Quarto__ document.  
+- Knit __Quarto__ document to PDF or Word.
+- Submit __Quarto__ document and PDF or Word document to the Canvas assignment.  
 - Submission deadline: Sunday, 12 PM (noon).  
 - Lecturer's feedback returned in the PDF or Word document.
 
