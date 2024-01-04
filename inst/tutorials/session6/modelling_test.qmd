@@ -1,0 +1,594 @@
+---
+title: 'Session 6: Modelling'
+output:
+  learnr::tutorial:
+    progressive: yes
+    allow_skip: yes
+runtime: shiny_prerendered
+description: |
+  We don't follow the approach to data analysis presented in the book. Instead, we apply our skills in statistical analysis within R.
+---
+
+```{r setup, include=FALSE}
+# Ensure that libraries are loaded.
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(knitr)
+library(kableExtra)
+library(haven) #For importing SPSS data files.
+library(car) #For ANOVA.  
+library(texreg) #For pretty regression results.
+library(effects) #For two-way interaction plots.
+library(broom) #For cleaning up statistical results.
+
+tutorial_options(exercise.timelimit = 20, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+glbwarm <- UsingRTutorials::glbwarm
+glbwarm_spss <- UsingRTutorials::glbwarm_spss
+# The estimated regression model with rstanarm. 
+model_1aBayes <- UsingRTutorials::model_1aBayes
+```
+
+<!-- Define programming tip style -->
+
+```{=html}
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+```
+<!-- Define question style -->
+
+```{=html}
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+```
+<!-- Define emphasis style -->
+
+```{=html}
+<style>
+.emphasis {
+  color: #e8301b;
+}
+</style>
+```
+## Overview
+
+Course Content
+
+-   Basic Statistical Models
+-   Print-Quality Results Tables
+-   Results Plots
+
+Data Project
+
+-   Finish Sprint 3
+-   Plan the last Sprint
+-   Updates of the SCRUM masters
+
+## Basic Statistical Models
+
+### 
+
+Let us practice with some of the most common statistical analyses in R.
+
+Consult Sections 3 and 4 in [*Help, My Collaborator Uses R! An Introduction to Reproducible Statistical Analyses in R*](https://wdenooy.github.io/Switch2R/index.html) and R help on the functions that we use.
+
+### Example data
+
+Example data: `glbwarm` (accessible within this tutorial).
+
+Source: Erik Nisbet; <http://afhayes.com/>
+
+Inspect the variables in the Environment.
+
+Main data types: 1. Number: `govact`, `posemot`, `negemot`, `age`. 2. Character: `ideology`, `sex`, `partyid`.
+
+::: question
+Inspect variable summaries.
+:::
+
+```{r inspect, exercise = TRUE, exercise.eval = TRUE}
+summary(glbwarm)
+```
+
+### *t* test: `t.test()`
+
+You already know how to execute an independent-samples *t* test (Session 5).
+
+There are different versions of the same function for different *t* tests.
+
+Usage (in `?t.test`):
+
+```{r t.test.vignette, eval=FALSE, echo=TRUE}
+t.test(x, ...)
+
+### Default S3 method:
+t.test(x, y = NULL,
+       alternative = c("two.sided", "less", "greater"),
+       mu = 0, paired = FALSE, 
+       var.equal = FALSE,
+       conf.level = 0.95, ...)
+
+### S3 method for class 'formula'
+t.test(formula, data, subset, na.action, ...)
+```
+
+-   the function with just `x` is for a one sample *t* test: specify the hypothesized population mean with argument `mu =`.\
+-   the function with `x, y` is for paired samples *t* tests.\
+-   the function with a formula is for two samples *t* tests; `y` must be a variable with two categories.
+
+::: question
+Use a *t* test and the `glbwarm` data object for testing the following null hypotheses (in this order):
+
+1.  Average negative emotions about global warming (variable `negemot`) are equal for females and males (variable `sex`) in the population.
+2.  In the population, average negative emotions about global warming are 3.0.
+3.  On average, negative emotions about global warming are higher than positive emotions about global warming (`posemot`).
+
+Send the results to the screen.
+:::
+
+```{r ttest, exercise = TRUE}
+
+```
+
+```{r ttest-hint-1}
+# Use the `t.test()` version that matches the kind of t test you need: on one
+# mean, paired samples, or independent samples.
+```
+
+```{r ttest-hint-2}
+# Note that the 'data = ' argument only works if we use the formula form 'y ~ x'.
+# Independent samples t test:
+t.test(negemot ~ sex, data = glbwarm)
+# For the other versions, the tibble name must be used and the dollar sign to
+# fuly define the variable.
+# t test on one mean (complete it yourself):
+t.test(glbwarm$negemot, ... )
+```
+
+```{r ttest-hint-3}
+# The code checker expects the three tests in the exact order as specified in
+# the question.
+```
+
+```{r ttest-solution, exercise.reveal_solution = FALSE}
+t.test(negemot ~ sex, data = glbwarm)
+t.test(glbwarm$negemot, mu = 3.0)
+t.test(glbwarm$negemot, glbwarm$posemot, paired = TRUE)
+```
+
+```{r ttest-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+### F test on Two Variances: `var.test()`
+
+In contrast to SPSS, R only gives you what you ask for.
+
+-   If you ask for a *t* test, you get a *t* test but not checks on assumptions.
+-   You have to apply those checks yourself.
+
+Version of the independent samples *t* test that we must use, depends on whether the population variances are equal for the two groups.
+
+::: question
+Use the function `var.test` to test if `govact` variances are equal for females and males in the population.
+
+Use the `glbwarm` data object and store the results as a new data object named `vartest`.
+:::
+
+```{r vartest1, exercise = TRUE}
+vartest <- ____
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#vartest1-hint}
+**Hint:** Have a look at the help for function `var.test`. It is important that you get used to the way R presents help on statistical functions.
+:::
+
+```{r vartest1-solution}
+vartest <- var.test(govact ~ sex, data = glbwarm)
+```
+
+```{r vartest1-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+::: tip
+**Remember**
+
+-   R formula: dependent variable/outcome \~ independent variable/predictor (and more).
+:::
+
+### 
+
+::: question
+Pull the p value from data object `vartest` that you have just created.
+
+Is the test on equal population variances statistically significant?
+:::
+
+```{r vartestp, exercise = TRUE, exercise.setup = "vartest1-solution"}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#vartestp-hint}
+**Hint:** Review Session 5 if you do not know how to do this. Remember: function `str()` is handy to see the contents (structure) of a list.
+:::
+
+```{r vartestp-solution}
+vartest$p.value
+```
+
+```{r vartestp-check}
+gradethis::grade_code(
+  correct = "`e-08`  (scientific notation) means `* 10^-8`, that is, divided by 10 to the power 8 (100,000,000). Note that the results are stored as class htest, just like the results from `t.test()`.", 
+  incorrect = "Perhaps you used double square brackets instead of the dollar sign to pull out the p value. That's OK."
+  )
+```
+
+### 
+
+In R, we can use a function within an argument of another function.
+
+Example for an independent samples *t* test:
+
+-   `var-equal` argument is `FALSE` by default.
+-   It must be `TRUE` if the *p* value of `var.test()` is larger then .05.
+
+::: question
+Integrate the F test on equal population variances in the *t* test, such that the *t* test automatically uses the correct version: with or without equal population variances assumed.
+
+Send the results to the screen (do not save it as a data object).
+:::
+
+```{r ttest2, exercise = TRUE, exercise.setup = "vartest1-solution"}
+t.test(govact ~ sex, data = glbwarm, var.equal = _____ )
+```
+
+```{r ttest2-hint-1}
+# You already executed the t test in this tutorial. Add the var.equal argument.
+t.test(govact ~ sex, data = glbwarm)
+```
+
+```{r ttest2-hint-2}
+# In the preceding exercise, you pulled the p value from the stored test result.
+vartest$p.value
+# Add it to the var.equal argument in such a way that a p value over .05 yields TRUE.
+```
+
+```{r ttest2-hint-3}
+# Replace the stored test result by the test function itself.
+t.test(govact ~ sex, data = glbwarm, var.equal = vartest$p.value > 0.05)
+```
+
+```{r ttest2-solution, exercise.reveal_solution = FALSE}
+t.test(govact ~ sex, data = glbwarm, var.equal = var.test(govact ~ sex, data = glbwarm)$p.value > 0.05)
+```
+
+```{r ttest2-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+### Linear Regression: `lm()`
+
+Usage (in `?lm`):
+
+```{r lm_vignette, eval=FALSE, echo=TRUE}
+lm(formula, data, subset, weights, na.action,
+   method = "qr", model = TRUE, x = FALSE, y = FALSE, qr = TRUE,
+   singular.ok = TRUE, contrasts = NULL, offset, ...)
+```
+
+See (the first edition) book p. 358-371 {Section 23.4} for using regression formulas: *In the second edition, modeling part has been removed.*
+
+-   including interactions and
+-   transformations within a formula.
+
+::: question
+Use `lm()` and tibble `glbwarm` to predict support for governmental action (`govact`) from age, negative emotions and party identification.
+
+Store the results in data object `model_1`.
+:::
+
+```{r lm1, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#lm1-hint}
+**Hint:** `lm()` is not a tidyverse function, so you have to use the `data =` argument.
+
+You can supply the name of the tibble (`glbwarm`) or pipe this tibble into the `lm()` function using the dot (`.`).
+:::
+
+```{r lm1-solution}
+model_1 <- lm(govact ~ age + negemot + partyid, data = glbwarm)
+```
+
+```{r lm1-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Perhaps, you used the independent variables in a different order within the formula. That is fine."
+  )
+```
+
+### 
+
+For quick inspection, data objects for results of statistical analyses always have:
+
+-   a `summary()` function;
+-   a `print()` function .
+
+Not for presentation of results!
+
+::: question
+Inspect the regression results (stored as `model_1`) with `summary()` and `print()`.
+
+What happened to the character variable?
+:::
+
+```{r lm2, exercise = TRUE, exercise.setup = "lm1-solution"}
+
+```
+
+### Linear Regression: Two-Way Interaction
+
+`lm()` takes care of:
+
+-   creating dummies/indicator variables for a categorical predictor (character string or factor) - see preceding exercise;
+-   creating interaction variables.
+
+(This is easier than in SPSS.)
+
+::: question
+Add an interaction effect between negative emotions (numeric) and age (numeric, in decades) to the regression model.
+
+Save the results as data object `model_1a`.
+
+Show the results with `print()`. Can you interpret the interaction effect?
+:::
+
+```{r lm3, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#lm3-hint}
+**Hint:** An interaction term (`var1*var2`) in a regression formula yields the partial effects of the individual variables and their interaction effect(s).
+:::
+
+```{r lm3-solution}
+model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
+print(model_1a)
+```
+
+```{r lm3-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Perhaps, you used the independent variables in a different order within the formula. That is fine."
+  )
+```
+
+### 
+
+::: question
+Now, predict support for governmental action (`govact`) from age and an interaction effect between negative emotions (numeric) and party identification (categorical).
+
+Send the results to the screen. Can you make sense of the coefficients?
+:::
+
+```{r lm4, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#lm4-hint}
+**Hint:** R creates all dummy variables and all interaction variables. That is convenient!
+:::
+
+```{r lm4-solution}
+lm(govact ~ age + negemot*partyid, data = glbwarm)
+```
+
+```{r lm4-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+### Analysis of Variance: `lm()` and `car::Anova()`
+
+In R, analysis of variance consists of two steps.
+
+**Step 1: ANOVA is linear regression with special contrasts (`contr.sum`).**
+
+-   Contrast `contr.sum` gives deviations from the mean.
+-   In analysis of variance, (main) effects are deviations from the (grand) mean.
+-   The `contrasts =` argument requires:
+    -   a list: `contrasts = list()`;
+    -   with contrast type for each categorical predictor:
+    -   `contrasts = list(sex = contr.sum, partyid = contr.sum)`
+
+::: question
+Estimate a regression model with support for governmental action (`govact`) predicted from respondent's sex and party identification, and the interaction between the two predictors.
+
+Use `contr.sum` contrasts and save the results as data object `model_2`.
+:::
+
+```{r anova1, exercise = TRUE}
+model_2 <- lm(govact ~ sex * partyid, data = glbwarm, contrasts= ____ )
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#anova1-hint}
+**Hint:** The `contrasts` argument requires a list of variable name and contrast type pairs.
+:::
+
+```{r anova1-solution}
+model_2 <- lm(govact ~ sex * partyid, data = glbwarm, contrasts=list(sex=contr.sum, partyid=contr.sum))
+```
+
+```{r anova1-check}
+gradethis::grade_code(
+  correct = "Have a look at the results: send model_2 to the screen.", 
+  incorrect = ""
+  )
+```
+
+### 
+
+**Step 2: Calculate the sums of squares partition.**
+
+Functions:
+
+-   `stats::anova()` for balanced designs.
+-   `car::Anova()` for (balanced and) unbalanced designs (Type !! or III sums of squares).
+
+::: question
+Use the `Anova()` function to show the sums of squares partition with associated F tests of `model_2` on the screen.
+:::
+
+```{r anova2, exercise = TRUE, exercise.setup = "anova1-solution"}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#anova2-hint}
+**Hint:** The `car` package has been loaded by the tutorial, so you do not have to include it if you use the `Anova()` function.
+:::
+
+```{r anova2-solution}
+Anova(model_2)
+```
+
+```{r anova2-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Perhaps you used the package name in the command, which is fine."
+  )
+```
+
+### 
+
+The anova functions return a data frame, which you can use as any data frame.
+
+For example, knit it to a pretty (HTML or PDF) table with `knitr::kable()`.
+
+We will do that later on in this tutorial.
+
+### Missing Values
+
+How a `stat::` package functions deal with missing values depends on the `na.action =` argument:
+
+-   `na.omit` (default and preferred) or `na.exclude`: listwise deletion;
+-   `na.fail`: stops with an error.
+
+::: question
+Check and, if necessary, set the `na.action` option in the console of RStudio.
+:::
+
+```{r NAoption, exercise = TRUE}
+# Get the current option for na.action.
+getOption("na.action")
+# Set the option (if necessary).
+options(na.action = "na.omit")
+```
+
+## Print-Quality Results Tables
+
+### Off-The-Shelf Tables
+
+There are several packages that help you to tabulate statistical results. The table below lists some of them with their characteristic features.
+
+```{r packageTables, echo=FALSE}
+# Create a data frame for the contents of the table.
+dt <- data.frame(
+  Package = c("base, stats", "stargazer", "texreg"),
+  Models = c("all", "regression", "regression"),
+  Format = c("plain text", "PDF, HTML, plain", "PDF, HTML, plain"),
+  Style = c("-", "div., not APA", "generic"),
+  Comparison = c("-", "side-by-side", "side-by-side"),
+  Peculiarities = c("summary() and print(), only for quick inspection", "", "texreg(), hmtlreg(), screenreg()"),
+  stringsAsFactors = FALSE
+  )
+names(dt)[5] <- paste0(names(dt)[5], footnote_marker_symbol(1))
+dt |>
+  knitr::kable(align = "llllll", escape = F) |> #show with kable() from the knitr package
+  kable_styling(full_width = T) |>
+  row_spec(0, font_size = 18) |>
+  footnote(symbol = "Results of two or more models in one table.")
+```
+
+### `apaquarto`: A Quarto Extension for APA7 Style Papers
+
+A great extension for Open Science projects!
+
+-   Write fully reproducible papers in Quarto and produce perfect, APA styled knitted documents in PDF or Word.
+-   Include graphs and tables, designed according to APA style.
+-   `apaquarto` integrates smoothly with .bib files and reference managers like Zotero.
+
+### 
+
+::: question
+Install `apaquarto`
+:::
+
+-   Go to: <https://github.com/wjschne/apaquarto>
+
+-   Click on Code (1) and then Download Zip (2)
+
+```{r, out.width="100%"}
+knitr::include_graphics("images/github.png")
+```
+
+-   Unzip the downloaded folder on your computer (remember the location).
+
+-   Open the `apaquarte.Rproj` file inside the folder.
+
+-   In `RStudio`, you can now open the template file `template.qmd` . It includes examples of various scenarios you might want to implement (e.g. citations, plots and tables).
+
+-   ::: question Run the document to check out the output. :::
+
+In order to print an APA formatted table, use the chunklabel: `{r apatb-YOURTABLENAME}`
+
+The below code produces the table of regression results.
+
+{{< include _extensions/wjschne/apaquarto/_apa_title.qmd >}}
+
+```{r apatb-apatable, echo=TRUE}
+library(broom)
+
+# Estimate the regression model (as before).
+model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
+
+broom::tidy(model_1a)
+```
+
