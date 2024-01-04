@@ -484,7 +484,7 @@ To work with dates and times change to `POSIXct` data type.
 -   `Brexit`, variable `pubDate`: date and time an article was posted as a string, e.g., "`r Brexit$pubDate[1]`". 
 
 <div class="question" >
-Create a date-time variable `pubDateTime` in tibble `Brexit` using a parse function in package `readr` (p. 134 {Ch. 11.3.4}). Check the results with a frequency table.
+Create a date-time variable `pubDateTime` in tibble `Brexit` using a parse function in package `readr` (p. 297 {Ch. 17.2.1}). Check the results with a frequency table.
 </div>
 
 ```{r pubDate1, exercise = TRUE}
