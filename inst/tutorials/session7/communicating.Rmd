@@ -31,85 +31,54 @@ glbwarm <- UsingRTutorials::glbwarm
 ```
 
 <!-- Define programming tip style -->
+
+```{=html}
 <style>
 .tip {
   background-color: #f5f5f5;
 }
 </style>
-
+```
 <!-- Define question style -->
+
+```{=html}
 <style>
 .question {
   color: #5A9DDB;
 }
 </style>
-
+```
 <!-- Define emphasis style -->
+
+```{=html}
 <style>
 .emphasis {
   color: #e8301b;
 }
 </style>
-
-##  Overview
+```
+## Overview
 
 Course Content
 
--   Report Layout.  
+-   Report Layout.
 -   Polishing Your Graphics.
 -   Finalizing the Group Project.
 
-## Report Layout With R Markdown
+## Report Layout With Quarto
 
-### 
+In Quarto, many output characteristics can be set in the YAML header at the beginning of the document.
 
-Let us explore the main features and options of R Markdown step by step.
+::: question
+In RStudio, open a new Quarto document. One-by-one, add the following options to the YAML header and render the document to see how it changes.
+:::
 
-<div class="question">
--   In RStudio, open a new R Markdown document and have a look at _Output Options..._ in the settings menu (see below image).
-</div> 
+-   Table of contents: `toc: true`
+-   Change the position of the table of contents: `toc-location: left` or `toc-location: body`
+-   Section numbering: `number_sections: true`
+-   Location of Figure and Table captions: for instance `fig-cap-location: bottom` or `tbl-cap-location: top`
 
-```{r out.width="40%"}
-knitr::include_graphics("images/OutputOptions.png")
-```
-
-### YAML
-
-In this menu you can change several features including:
-
-- Table of contents.
-- Section numbering.
-- Figure width and height.
-- Adding figure captions.
-
-<div class="question">
-Change the options. 
-
--   How does the YAML (first part of the R Markdown document) change? 
--   How does the knitted document change?
-</div> 
-
-<div class="tip" >
-__Tip__
-
-- Knit a document to HTML and check it before you knit to PDF or Word. HTML knitting is much faster.
-</div>
-
-###
-
-Many more YAML options can be set manually:
-
--   See the R Markdown Cheat Sheet (page 2).
-
-<div class="question">
--   Change the YAML of the R Markdown document such that a floating table of contents is shown if the document is knitted to HTML.
-</div> 
-
-<div class="tip" >
-__Programming Tip__
-
-- Mind the indentation and use of `:` in the YAML; R Markdown is very strict here. Use menu _Output Options..._ whenever possible because it structures the YAML correctly. 
-</div>
+You can find many more options online. Careful: Look at the options that are available for your intended output document (e.g. PDF, Word, or HTML): <https://quarto.org/docs/output-formats/all-formats.html>
 
 ### Visual editor
 
@@ -127,14 +96,12 @@ Use the visual editor for easy:
 
 ### References
 
-To include literature references in an R Markdown document, you need four things:
+To include literature references in an Quarto document, you need four things:
 
-1. A bibliography file containing the referenced literature, preferably in BibTex format: `references.bib`.
-2. A line in the YAML specifying the bibliography file(s) to use, for example, `bibliography: references.bib`.
-3. A line in the YAML specifying the format to be used for the references, for example, `csl: apa.csl`.
-4. A citation key in the text where you want to insert the reference, for example, "As argued by [@McQuail2005], Communication Science deals with ...".
-
-### 
+1.  A bibliography file containing the referenced literature, preferably in BibTex format: `references.bib`. Note: You can also pull references directly from popular reference managers like Zotero or online sources like PubMed.
+2.  A line in the YAML specifying the bibliography file(s) to use, for example, `bibliography: references.bib`. Note: If you do not start with a pre-defined .bib file, but instead rely fully on a reference manager, this line will be added automatically to the YAML header when you add your first reference.
+3.  A line in the YAML specifying the format to be used for the references, for example, `csl: apa.csl`. Note: The file `apa.csl` needs to be saved in the working directory (more below).
+4.  A citation key in the text where you want to insert the reference, for example, "As argued by [@McQuail2005], Communication Science deals with ...".
 
 ```{r out.width="90%"}
 knitr::include_graphics("images/InsertCitation.png")
@@ -143,74 +110,75 @@ knitr::include_graphics("images/InsertCitation.png")
 Adding a reference within the visual editor:
 
 -   Put the cursor where you want the reference.
--   Select _Citation_ from the _Insert_ menu.
-    1.   Select your reference software (if any) to select a reference.
-    2.   Or select the R packages that you are using, to acknowledge the work of the authors.
-    3.   The default file name of the references file is `references.bib`.
-    4.   Insert the selected references in the R Markdown document.
-    
-###
+-   Select *Citation* from the *Insert* menu.
+    1.  Select your reference software (if any) to select a reference.
+    2.  Or select the R packages that you are using, to acknowledge the work of the authors.
+    3.  The default file name of the references file is `references.bib`.
+    4.  Insert the selected references in the Quarto document.
+
+### 
 
 RStudio then:
 
-1.   Inserts the reference in the document.
-2.   Creates or expands the file `references.bib`.
-3.   Adds this file to the YAML, so a list of references is created when you knit the document.
+1.  Inserts the reference in the document.
+2.  Creates or expands the file `references.bib`.
+3.  Adds this file to the YAML, so a list of references is created when you knit the document.
 
-<div class="question">
--   Add a footnote on the first page to cite the following R packages: `base`, `tidyverse`, `knitr`, and `kableExtra`.
-</div> 
+::: question
+-   Open a new Quarto file. On the first page, cite the following R packages: `base`, `tidyverse`, `knitr`, and `kableExtra`.
+:::
 
-###
+### 
 
 To get the literature references in APA style, we need a citation style file.
 
-<div class="question">
--   Download the file with the APA journal citation style `apa.csl` from [https://www.zotero.org/styles](https://www.zotero.org/styles). 
+::: question
+-   Download the file with the APA journal citation style `apa.csl` from <https://www.zotero.org/styles>.
 -   Save it in your working directory.
--   Reference the APA journal citation style `apa.csl` in the YAML of the R Markdown file. Add the line: `csl: apa.csl`
--   Knit the document to HTML and inspect the references. All okay?
-</div> 
+-   Reference the APA journal citation style `apa.csl` in the YAML of the Quarto file. Add the line: `csl: apa.csl`
+-   Render the document to HTML and inspect the references. All okay?
+:::
 
 <!-- Define emphasis style -->
+
+```{=html}
 <style>
 .emphasis {
   color: #e8301b;
 }
 Ensure that the references and citation style files are saved in the working directory!
 </style>
-
+```
 ### Figure code chunk options
 
 Figures usually demand additional attention:
 
--   not too small and not too large, 
--   have a caption, 
+-   not too small and not too large,
+-   have a caption,
 -   are shown in the right place.
 
-_Output Options..._ sets for all figures:
+*YAML Header* sets for all figures:
 
--   Whether they have captions. Note that figure captions are numbered automatically only in PDF output.
--   Default width. 
+-   Where the figure caption is located: `fig-cap-location: top` or how it's aligned: `fig-align: left`
+-   Default width: `fig-width`
+-   For more options see: <https://quarto.org/docs/output-formats/all-formats.html> (choose your output format)
 
-Adjust a single figure with code chunk options (R Markdown Cheat Sheet, p. 1, bottom):
+Adjust a single figure with code chunk options (<https://quarto.org/docs/computations/execution-options.html>):
 
-- `fig.cap =` figure caption as string.
-- `fig.align =` 'left', 'right', or 'center'.
-- `out.width =` width of figure in output in percentage of line width (`"80%"`) or as a fixed width in pixels for HTML (`"300px"`) or inches, centimeters for PDF and Word (`"4.5in"`, `"6cm"`).
-- `fig.asp =` ratio of height to width.
+-   `#| fig.cap =` figure caption as string.
+-   `#| fig.align =` 'left', 'right', or 'center'.
+-   `#| out.width =` width of figure in output in percentage of line width (`"80%"`) or as a fixed width in pixels for HTML (`"300px"`) or inches, centimeters for PDF and Word (`"4.5in"`, `"6cm"`).
+-   `#| fig.asp =` ratio of height to width.
 
-Don't use:
-
--   `fig.width` and `fig.height`: specify the actual size (whatever that may be) of the figure instead of the output size.
+Figures are automatically numbered in PDF output, but not in Word or HTML. To accomplish this, you need to use cross-referencing. More below.
 
 Note:
 
 -   If the size of a figure in the document is too small, `knitr` may end with the error message that the margins are too large.
 
-<div class="question">
--   Reduce the size of the figure in the R Markdown file to 50 percent (half the line width), make it square, and add the caption "Pressure at different temperature levels."
-</div> 
+::: question
+-   Reduce the size of a figure in a Quarto file to 50 percent (half the line width), make it square, and add the caption "This is my figure."
+:::
 
 ### Custom tables
 
@@ -224,9 +192,9 @@ Table menu in visual editor:
 
 Present summary results as a table with `knitr::kable()` in a code chunk.
 
-<div class="question" >
+::: question
 -   Make sense of the below pipe (add comments).
-</div>
+:::
 
 ```{r resultstable, exercise = TRUE, exercise.lines = 8, exercise.eval = TRUE}
 glbwarm %>% 
@@ -237,61 +205,60 @@ glbwarm %>%
         caption = "Table: Support for government intervention across the sexes.")
 ```
 
-###
+### 
 
-For additional table layout options: 
+For additional table layout options:
 
 -   Package `kableExtra::`
 -   Documentation: [kableExtra vignette](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
 
-### Cross-references with `bookdown::`
+### Cross-references
 
-Figures are not automatically numbered in HTML or Word output. 
+Quarto allows you to number and cross-reference figures, tables, and sections.
 
-To accomplish this, you need the `bookdown::` package. 
+**Cross-referencing a figure added using an image file**
 
-Follow these steps:
+-   Add the figure by adding the following in the Markdown (text) part of a Quarto document: `![CAPTION](FILENAME.png){#LABEL}`
+-   Elsewhere in the document, reference the figure in your text: "See `@fig-CAPTION` for an illustration
 
-1.   Install and load the `bookdown` package from CRAN.
-2.   In the YAML below `date:`, add the line `site: "bookdown::bookdown_site"`.
-3.   Under `output:` in YAML replace:
-      + `html_document` by `bookdown::html_document2`,
-      + `pdf_document` by `bookdown::pdf_document2`, and
-      +  `word_document` by `bookdown::word_document2`.
-4.   In the text, use the following code to refer to a
-      + section: `\@ref(<section ID>)` - Create Section ID: `{#label}`.
-      + table: `\@ref(tab:<chunk ID>)` - Chunk ID: chunk name.
-      + figure: `\@ref(fig:<chunk ID>)` - Chunk ID: chunk name.
-5.   Knit the document to html_document2, pdf_document2, or word_document2.
+**Cross-referecing tables and figures created in code chunks**
 
-<div class="question">
-- Add a section label to the __R Markdown__ Section in the R Markdown file and use it to refer to this section in a sentence "As we have seen in Section 0.1, we can show statistical results in an R Markdown document." that you add to the __Including Plots__ Section.
-- Add a sentence with a reference to the pressure plot: "Figure 1 is beautiful, isn't it?"
-</div> 
+-   Create the figure (e.g. using `ggplot::`) or table inside a code chunk
 
-<div class="tip" >
-__Programming Tip__
+-   Add the beginning of the code chunk:
 
-- Don't use blanks in Section ID labels or names of code chunks that create a table or figure.
-</div>
+    -   add a figure label (`#| label: fig-LABEL`) and caption (`#| fig-cap: CAPTION`);
 
-### Knitting Problems  
+    -   or add a table label (`#| label: tbl-LABEL`) and caption (`#| tbl-cap: CAPTION`)
+
+::: question
+-   Add a section label to the **Quarto** Section in a new Quarto file and use it to refer to this section in a sentence "As we have seen in Section 0.1, we can show statistical results in a Quarto document." that you add to the **Running Code** Section.
+-   Add a figure using an image file on your computer and cross-reference it: "Figure 1 is beautiful, isn't it?"
+:::
+
+::: tip
+**Programming Tip**
+
+-   Don't use blanks in Section ID labels or names of code chunks that create a table or figure.
+:::
+
+### Knitting Problems
 
 Problems with knitting to HTML:
 
-- Probably errors in your code (also applies to Word and PDF).
-- Spot and fix them.
-- Use code chunk option `eval=FALSE` to see if a code chunk causes the problem.
+-   Probably errors in your code (also applies to Word and PDF).
+-   Spot and fix them.
+-   Use code chunk option `eval=FALSE` to see if a code chunk causes the problem.
 
 Problems with knitting to Word:
 
-- Functions for tables and figures may not work for Word.
-- Knit to HTML and import HTML in Word.
+-   Functions for tables and figures may not work for Word.
+-   Knit to HTML and import HTML in Word.
 
 Problems with knitting to PDF:
 
-- Characters like `%`, `\`, `/` have special meaning in LaTeX, which is the language used to create the PDF.
-- Ensure that variable names or captions do not include them.
+-   Characters like `%`, `\`, `/` have special meaning in LaTeX, which is the language used to create the PDF.
+-   Ensure that variable names or captions do not include them.
 
 ## Polishing Your Graphics
 
@@ -300,10 +267,10 @@ Problems with knitting to PDF:
 Setting plot labels:
 
 -   `labs()` layer: basic adjustments.
--   `theme()` layer: fine tuning of all details, including the legend. __Note__: features of graphical elements are specified with functions (with their own help page):
-  +   `element_text()`, e.g., `theme(plot.title = element_text(size = 10))`
-  +   `element_rect()`, e.g., `theme(plot.background = element_rect(fill = "green"))`
-  +   `element_line()`, e.g., `theme(axis.line = element_line(linewidth = 3, colour = "grey80"))`
+-   `theme()` layer: fine tuning of all details, including the legend. **Note**: features of graphical elements are specified with functions (with their own help page):
+-   `element_text()`, e.g., `theme(plot.title = element_text(size = 10))`
+-   `element_rect()`, e.g., `theme(plot.background = element_rect(fill = "green"))`
+-   `element_line()`, e.g., `theme(axis.line = element_line(linewidth = 3, colour = "grey80"))`
 
 ```{r labelsshow}
 ggplot(data = glbwarm, mapping = 
@@ -317,20 +284,21 @@ ggplot(data = glbwarm, mapping =
   theme(legend.position = "bottom")
 ```
 
-<div class="question">
+::: question
 -   Create the above plot using tibble `glbwarm`, which is available in this tutorial. Pay special attention to the labels and legend position.
-</div>
+:::
 
 ```{r labels, exercise = TRUE}
 
 ```
 
 <!-- To hide the solution, use a textual hint. -->
-<div id="labels-hint">
-__Hint:__ Remember that the answer checker checks the presence of all layers before it checks the contents of the layers, so first add all layers if you want to use the automatic feedback for building the plot.
 
-__Hint:__ Check out help on function `theme()` to find the argument that sets the position of the legend.
-</div>
+::: {#labels-hint}
+**Hint:** Remember that the answer checker checks the presence of all layers before it checks the contents of the layers, so first add all layers if you want to use the automatic feedback for building the plot.
+
+**Hint:** Check out help on function `theme()` to find the argument that sets the position of the legend.
+:::
 
 ```{r labels-solution}
 ggplot(data = glbwarm, mapping = aes(x = age, y = govact, color = partyid)) + geom_jitter() + labs(title = "Support for intervention by age", x = "Age", y = "Support for government intervention", color = "Party identification") + theme(legend.position = "bottom")
@@ -345,22 +313,22 @@ gradethis::grade_code(
 
 ### Themes
 
-Some plot characteristics are combined into theme types, e.g.: 
+Some plot characteristics are combined into theme types, e.g.:
 
--   `theme_bw()`, 
--   `theme_classic()`, 
--   `theme_dark()`, 
--   `theme_void()`, 
+-   `theme_bw()`,
+-   `theme_classic()`,
+-   `theme_dark()`,
+-   `theme_void()`,
 -   `theme_minimal()`.
 
-You can set some overall plot characteristics within these theme layers, e.g.: 
+You can set some overall plot characteristics within these theme layers, e.g.:
 
--   `base_size` (size of fonts used) 
+-   `base_size` (size of fonts used)
 -   `base_family` (font type used: `"serif"`, `"sans"`, or `"mono"`).
 
-<div class="question">
+::: question
 -   Experiment with `base_size` and `base_family` in the code below.
-</div> 
+:::
 
 ```{r themes, exercise = TRUE}
 ggplot(data = glbwarm, mapping = 
@@ -374,21 +342,21 @@ ggplot(data = glbwarm, mapping =
   theme(legend.position = "bottom")
 ```
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
-- Use `theme()` after, not before a theme type (such as `theme_bw()`), otherwise the theme type overrides the `theme()` settings.
-</div>
+-   Use `theme()` after, not before a theme type (such as `theme_bw()`), otherwise the theme type overrides the `theme()` settings.
+:::
 
-###
+### 
 
-Argument `base_size` sets a base size for all texts displayed in a plot. 
+Argument `base_size` sets a base size for all texts displayed in a plot.
 
-If you want to set the size of a particular type of text within the plot, for example, the text values displayed in the legend, you can do that within a `theme()` layer. 
+If you want to set the size of a particular type of text within the plot, for example, the text values displayed in the legend, you can do that within a `theme()` layer.
 
-<div class="question">
+::: question
 -   Complete the code below to set the size of the legend title to 10 and the size of the legend entries to 8.
-</div> 
+:::
 
 ```{r legend, exercise = TRUE}
 ggplot(data = glbwarm, mapping = 
@@ -429,19 +397,19 @@ gradethis::grade_code(
 
 ### Custom colors
 
-For marking groups by colors , `ggplot()` uses a vector of colors, assigning the first group to the first color, and so on. 
+For marking groups by colors , `ggplot()` uses a vector of colors, assigning the first group to the first color, and so on.
 
 Custom colors:
 
 -   Create a vector of colors that matches (number and order) the groups in your plot.
--   `RColorBrewer` offers nice color palettes ([book, p. 458](https://r4ds.had.co.nz/graphics-for-communication.html#replacing-a-scale)). 
+-   `RColorBrewer` offers nice color palettes ([book, p. 458](https://r4ds.had.co.nz/graphics-for-communication.html#replacing-a-scale)).
 -   Function `brewer.pal` in this package creates such a vector.
 
-Democrats should be blue, Republicans red, and let us use green for Independents. 
+Democrats should be blue, Republicans red, and let us use green for Independents.
 
-<div class="question">
+::: question
 -   Use the `scale_color_manual()` layer and the RColorBrewer `Accent` palette to assign the right colors to party identification in the plot.
-</div>
+:::
 
 ```{r colors, exercise = TRUE}
 ggplot(data = glbwarm, mapping = 
@@ -471,11 +439,11 @@ display.brewer.pal(8, name = "Accent")
 brewer.pal(8, "Accent")[c( )]
 # Note: 8 specifies the number of colors in this palette.
 ```
+
 ```{r colors-hint-3}
 # The `values =` argument in scale_color_manual() assigns colors to groups.
 scale_color_manual(values = brewer.pal(8, "Accent")[c(5, 1, 6)])
 ```
-
 
 ```{r colors-solution}
 ggplot(data = glbwarm, mapping = aes(x = age, y = govact, color = partyid)) +
@@ -489,11 +457,11 @@ gradethis::grade_code(
   )
 ```
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
-- Discrete scales, for example, distinguishing between groups, are quite different from continuous scales. As a consequence, palettes for discrete scales do not work for continuous scales and the other way around.
-</div>
+-   Discrete scales, for example, distinguishing between groups, are quite different from continuous scales. As a consequence, palettes for discrete scales do not work for continuous scales and the other way around.
+:::
 
 ### Scales and ticks
 
@@ -502,9 +470,9 @@ Fine-tuning the ticks (value labels) on axes:
 -   Use layers `scale_x_continuous()` and `scale_y_continuous()`,
 -   to set the breaks, minor breaks, limits, and, if you like, axis label.
 
-<div class="question">
+::: question
 -   Adjust the plot axes such that the vertical axis shows a grid line and label for each possible value of the original 7-point scale (1 to 7) and the horizontal axis shows labels and grid lines for decades (20, 30, 40, ..., 90) and only a grid line for each 2.5 years within a decade starting at 15 (15, 17.5, 22.5, 25, ..., 87.5).
-</div>
+:::
 
 ```{r ticks, exercise = TRUE, exercise.eval = TRUE}
 ggplot(data = glbwarm, mapping = 
@@ -564,8 +532,8 @@ Use graphical primitives and `geom_label()` or `geom_text()` to touch up a graph
 
 There are two ways of manually positioning graphical primitives within a plot
 
-- If the axes are numerical, use axis values as coordinates.
-- Otherwise, use a number between 0 and 1 as relative position.
+-   If the axes are numerical, use axis values as coordinates.
+-   Otherwise, use a number between 0 and 1 as relative position.
 
 ```{r additionsshow}
 ggplot(data = glbwarm, mapping = 
@@ -584,9 +552,9 @@ ggplot(data = glbwarm, mapping =
   theme(legend.position = "bottom")
 ```
 
-<div class="question">
+::: question
 -   Use a text geom to add the source ("Source: Global warming data set by Eric Nisbeth.") and author ("Author: Yah Tutor.") to the plot as shown in the above figure.
-</div>
+:::
 
 ```{r additions, exercise = TRUE}
 ggplot(data = glbwarm, mapping = 
@@ -631,12 +599,11 @@ gradethis::grade_code(
   )
 ```
 
-
 ## Fancy Stuff
 
 ### APA format article with `papaja::`
 
-Instead of adapting a standard R Markdown document, you can use the `papaja` package, which contains an APA6 article template. Once you have installed this package, an APA article template is available if you create a new R Markdown file using the _From Template_ option (see figure).
+Instead of adapting a standard R Markdown document, you can use the `papaja` package, which contains an APA6 article template. Once you have installed this package, an APA article template is available if you create a new R Markdown file using the *From Template* option (see figure).
 
 ```{r out.width="60%"}
 knitr::include_graphics("images/template.png")
@@ -646,14 +613,14 @@ If you didn't do so, install `papaja`. Run the command `remotes::install_github(
 
 `papaja` uses `bookdown` but you do not have to load this package separately.
 
-<div class="question">
-- Create a new R Markdown document from the APA journal template.
-- Inspect the contents of the template, check out the options.
-- Knit it to pdf (`output : papaja::apa6_pdf`) or Word (`output : papaja::apa6_word`) and inspect the knitted document.
-- Apply your skills for cross-referencing sections, tables, and figures.
-</div>
+::: question
+-   Create a new R Markdown document from the APA journal template.
+-   Inspect the contents of the template, check out the options.
+-   Knit it to pdf (`output : papaja::apa6_pdf`) or Word (`output : papaja::apa6_word`) and inspect the knitted document.
+-   Apply your skills for cross-referencing sections, tables, and figures.
+:::
 
-A manual for `papaja` is available at https://crsh.github.io/papaja_man/ .
+A manual for `papaja` is available at <https://crsh.github.io/papaja_man/> .
 
 ### Templates for other journals
 
@@ -669,9 +636,9 @@ A dashboard is used to show a group of related data visualizations. Below is a s
 knitr::include_graphics("images/dashboard.png")
 ```
 
-Read more about `flexdashboard` at https://RMarkdown.rstudio.com/flexdashboard/index.html .
+Read more about `flexdashboard` at <https://RMarkdown.rstudio.com/flexdashboard/index.html> .
 
-Another package is `shinydashboard`, which uses shiny to create interactive dashboards. See https://rstudio.github.io/shinydashboard/index.html for more information.
+Another package is `shinydashboard`, which uses shiny to create interactive dashboards. See <https://rstudio.github.io/shinydashboard/index.html> for more information.
 
 ## Finalizing the Group Project
 
