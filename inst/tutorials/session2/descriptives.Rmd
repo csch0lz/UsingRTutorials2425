@@ -9,7 +9,7 @@ description: >
     Organize your work, check your understanding of the basic tidyverse data wrangling 
     functions, learn how to wrangle in steps and check each step,
     and start working on your first reproducible research: your
-    Data Project as R Markdown file.
+    Data Project as Quarto file.
 ---
 
 ```{r setup, include=FALSE}
@@ -30,37 +30,42 @@ Glasgow <- UsingRTutorials::Glasgow
 ```
 
 <!-- Define programming tip style -->
+
+```{=html}
 <style>
 .tip {
   background-color: #f5f5f5;
 }
 </style>
-
+```
 <!-- Define question style -->
+
+```{=html}
 <style>
 .question {
   color: #5A9DDB;
 }
 </style>
-
+```
 <!-- Define emphasis style -->
+
+```{=html}
 <style>
 .emphasis {
   color: #e8301b;
 }
 </style>
-
+```
 ## Overview
 
 -   First 1.5 hours: Course content
-    +   Q&A
-    +   Data Wrangling with `dplyr::`
-    +   Workflow and Data Import
-    +   Integrating text and data: R Markdown
-
+    -   Q&A
+    -   Data Wrangling with `dplyr::`
+    -   Workflow and Data Import
+    -   Integrating text and data: Quarto
 -   Second 1.5 hours: Data project
-    +   Finish Sprint #1, plan and start Sprint #2
-    +   Plenary updates by the SCRUM masters
+    -   Finish Sprint #1, plan and start Sprint #2
+    -   Plenary updates by the SCRUM masters
 
 ## Q&A
 
@@ -74,42 +79,40 @@ Glasgow <- UsingRTutorials::Glasgow
 
 Data wrangling: Transforming (raw) data into (useful) information.
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
 -   You are responsible that the transformations are correct.
--   So __check__ every transformation step.
-</div>
-
-
+-   So **check** every transformation step.
+:::
 
 ### 
 
 Today, we use a data set containing information about friendships, tobacco, alcohol, and substance use among 160 students, who were followed over their second, third and fourth year at a secondary school in Glasgow (*Teenage Friends and Lifestyle Study* research project).
 
-The data set, named `Glasgow`, is available within this tutorial, so you do not have to load it. 
+The data set, named `Glasgow`, is available within this tutorial, so you do not have to load it.
 
--    **student**: respondent ID, as a character string.
--    **age**: respondent age, in years with one decimal digit.
--    **sex**: respondent sex, boy or girl.
--    **smoking_at_home**: any smokers at home, yes or no.
--    **smoking_parents**: smoking by at least one parent, yes or no.
--    **smoking_siblings**: smoking by at least one sibling, yes or no.
--    **wave**: time of observation, starting in February 1995, when the pupils were aged 13, and ending in January 1997.
--    **alcohol**: respondent alcohol consumption: 1 (none), 2 (once or twice a year), 3 (once a month), 4 (once a week) and 5 (more than once a week).
--    **cannabis**: respondent cannabis consumption: 1 (none), 2 (tried once), 3 (occasional) and 4 (regular).
--    **tobacco**: respondent tobacco consumption: 1 (none), 2 (occasional) and 3 (regular, i.e. more than once per week).
--    **money**: respondent's pocket money per month, in British pounds.
--    **romantic**: whether the student had a romantic relation, yes or no.
--    **friendships**: number of friendship nominations received by other respondents.
+-   **student**: respondent ID, as a character string.
+-   **age**: respondent age, in years with one decimal digit.
+-   **sex**: respondent sex, boy or girl.
+-   **smoking_at_home**: any smokers at home, yes or no.
+-   **smoking_parents**: smoking by at least one parent, yes or no.
+-   **smoking_siblings**: smoking by at least one sibling, yes or no.
+-   **wave**: time of observation, starting in February 1995, when the pupils were aged 13, and ending in January 1997.
+-   **alcohol**: respondent alcohol consumption: 1 (none), 2 (once or twice a year), 3 (once a month), 4 (once a week) and 5 (more than once a week).
+-   **cannabis**: respondent cannabis consumption: 1 (none), 2 (tried once), 3 (occasional) and 4 (regular).
+-   **tobacco**: respondent tobacco consumption: 1 (none), 2 (occasional) and 3 (regular, i.e. more than once per week).
+-   **money**: respondent's pocket money per month, in British pounds.
+-   **romantic**: whether the student had a romantic relation, yes or no.
+-   **friendships**: number of friendship nominations received by other respondents.
 
 ### Piping
 
 The `tidyverse` approach to data wrangling can be summarized as follows:
 
-- Transform data with functions: data frame → new data frame.
-- Breakdown transformations into logical steps.
-- Chain transformations into a pipe ` |> `): Use resulting data of previous step as input data of next step.
+-   Transform data with functions: data frame → new data frame.
+-   Breakdown transformations into logical steps.
+-   Chain transformations into a pipe `|>`): Use resulting data of previous step as input data of next step.
 
 ### 
 
@@ -147,9 +150,9 @@ knitr::include_graphics("images/mainwrangling.png")
 
 ### 
 
-<div class="question" >
+::: question
 Apply the `tidyverse` approach to the code below: Start with the data set and join all transformations in one pipe such that the result is shown on the screen.
-</div>
+:::
 
 ```{r pipe, exercise = TRUE, eval=FALSE}
 helpData1 <- filter(Glasgow, money >= 0)
@@ -213,8 +216,8 @@ gradethis::grade_code(
 
 ### 
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
 For readability, formulate a comment explaining what each step in the pipe does or is meant to do to the data.
 
@@ -227,16 +230,15 @@ myData  |>
   #for whom we want to know the average number of friends (but missings may appear!)
   summarise(avg_friends = mean(friendships, na.rm = TRUE))
 ```
+:::
 
-</div>
-
-<div class="question" >
+::: question
 Add a comment to every step of the solution to the previous exercise, explaining the purpose of the code in this step.
-</div>
+:::
 
 ## A Frequency Table
 
-Frequency tables count how often values appear in the data: counts per group. 
+Frequency tables count how often values appear in the data: counts per group.
 
 A count is a summary: We replace all cases within a group by one case containing the number of cases in that group.
 
@@ -252,9 +254,9 @@ Glasgow |>
   )
 ```
 
-<div class="question" >
+::: question
 Create the above table with the absolute frequencies (raw counts) and relative frequencies (percentages) of the number of friendships per student in the `Glasgow` data set.
-</div>
+:::
 
 As always, use tidyverse functions and join all functions in one pipe.
 
@@ -304,18 +306,18 @@ gradethis::grade_result(
 )
 ```
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
-- The current version of __summarise()__ by default undoes the last grouping. Hence the message in the console "`summarise()` ungrouping output (override with `.groups` argument)". 
-- This is the safe option. It is easy to forget that data are grouped, but results on grouped data can be very different from what you expect or want. 
-</div>
+-   The current version of **summarise()** by default undoes the last grouping. Hence the message in the console "`summarise()` ungrouping output (override with `.groups` argument)".
+-   This is the safe option. It is easy to forget that data are grouped, but results on grouped data can be very different from what you expect or want.
+:::
 
 ## Recoding and Grouping
 
-Some useful functions for recoding or grouping variables have been added to `tidyverse` since the publication of the book _R for Data Science_: 
+Some useful functions for recoding or grouping variables have been added to `tidyverse` since the publication of the book *R for Data Science*:
 
--   `recode(x, old = new, old = new, ...)`: Replace single old values by new values in variable `x`. 
+-   `recode(x, old = new, old = new, ...)`: Replace single old values by new values in variable `x`.
 
 ```{r eval=FALSE, echo=TRUE}
 # School year instead of wave indicator.
@@ -360,11 +362,11 @@ Glasgow |>
 
 Now, do it yourself.
 
-<div class="question" >
+::: question
 Create a new variable `money_class` dividing the Glasgow students into three groups containing more or less the same number of cases.
 
 Send the results to the screen.
-</div>
+:::
 
 ```{r binning, exercise = TRUE}
 
@@ -389,16 +391,16 @@ gradethis::grade_code(
 
 ### 
 
-<div class="question" >
-Create a new variable `money_class2` with the following groups for the Glasgow students' pocket money: 
+::: question
+Create a new variable `money_class2` with the following groups for the Glasgow students' pocket money:
 
-- group -1: values below 0 (negative pocket money?),
-- group 0: 0 (no pocket money), 
-- group 1: 1 - 10, 
-- group 2: more than 10 pounds per month.
+-   group -1: values below 0 (negative pocket money?),
+-   group 0: 0 (no pocket money),
+-   group 1: 1 - 10,
+-   group 2: more than 10 pounds per month.
 
 Send the results to the screen.
-</div>
+:::
 
 ```{r recodemoney, exercise = TRUE}
 
@@ -464,21 +466,21 @@ Glasgow |> mutate(money_class2 = case_when(money < 0 ~ -1, money == 0 ~ 0, money
 
 ### 
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
--   Use `count()` (which is equal to `group_by()` |> `summarise(n = n())`) to better understand a variable or a combination of two or more variables.
+-   Use `count()` (which is equal to `group_by()` \|\> `summarise(n = n())`) to better understand a variable or a combination of two or more variables.
 -   Check a recoded variable: Pipe the original and recoded variable into the count() function.
--   Example: |> count(money_class2, money)
+-   Example: \|\> count(money_class2, money)
 -   Browse the frequency table: are the original values linked to the correct groups on the new variable?
 -   Pay special attention to (combinations that involve) missing values. Missing values may create more missing values in data transformation steps because every transformation involving a missing value results in a missing value.
-</div>
+:::
 
-###
+### 
 
-<div class="question" >
+::: question
 Instead of grouping the values, set `-1` on variable `money` to missing (change the `money` variable). A negative number of pounds as pocket money cannot be correct.
-</div>
+:::
 
 Send the results to the screen.
 
@@ -518,11 +520,11 @@ In R, missing values are indicate by `NA`.
 
 ### How are missing values treated?
 
-The `alcohol` variable in the `Glasgow` data set has missing values. 
+The `alcohol` variable in the `Glasgow` data set has missing values.
 
-<div class="question" >
+::: question
 What happens with the missing values in the following commands?
-</div>
+:::
 
 ```{r quizNA}
 quiz(
@@ -550,12 +552,12 @@ quiz(
 )
 ```
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
-- If you are not sure about what some code exactly does, run it (on a dataset) and check the results.
-- You can use the code box below to check the commands of the above questions.
-</div>
+-   If you are not sure about what some code exactly does, run it (on a dataset) and check the results.
+-   You can use the code box below to check the commands of the above questions.
+:::
 
 ```{r quizNAcode, exercise = TRUE}
 #Copy code from the questions here...
@@ -566,18 +568,19 @@ __Programming Tip__
 
 Missing values are special: we cannot use them like other values.
 
-<div class="question" >
+::: question
 Correct the code below to count the number of missing values on the `alcohol` variable in the `Glasgow` data set.
-</div>
+:::
 
 ```{r countNA, exercise = TRUE, eval=FALSE}
 summarise(Glasgow, alcohol_NA = (alcohol == NA))
 ```
 
 <!-- To hide the solution, use a textual hint. -->
-<div id="countNA-hint">
-__Hint:__ We cannot use `== NA`. Check page 2 of the Data Transformation with `dplyr` cheat sheet for a function to work with missing values (`NA`). Oh, and with how many rows do you want to end up?
-</div>
+
+::: {#countNA-hint}
+**Hint:** We cannot use `== NA`. Check page 2 of the Data Transformation with `dplyr` cheat sheet for a function to work with missing values (`NA`). Oh, and with how many rows do you want to end up?
+:::
 
 ```{r countNA-solution}
 summarise(Glasgow, alcohol_NA = sum(is.na(alcohol)))
@@ -589,27 +592,27 @@ gradethis::grade_code()
 
 The previous exercise does not use a pipe because we apply just one transformation. Here, a pipe is perhaps a bit too much.
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
-It is very easy to mix up __=__ and __==__.
+It is very easy to mix up **=** and **==**.
 
-- __=__ means the same as __<-__ in R, namely "becomes". __y = 0__ means that data object __y__ becomes zero.
-- __==__ means "is equal to". __y == 0__ checks if __y__ equals zero, which is either true or false.
-</div>
+-   **=** means the same as **\<-** in R, namely "becomes". **y = 0** means that data object **y** becomes zero.
+-   **==** means "is equal to". **y == 0** checks if **y** equals zero, which is either true or false.
+:::
 
 ### Mock test data
 
-Finally, how does R treat a logical variable if we `sum()` it? 
+Finally, how does R treat a logical variable if we `sum()` it?
 
-Time for another little trick: 
+Time for another little trick:
 
 -   Create a small input data set.
--   Use it to test what a function does. 
+-   Use it to test what a function does.
 
-<div class="question" >
+::: question
 Predict the output of the function. Change the code below a few times until you are certain about what `sum()` does with logical values (`TRUE`or `FALSE` or `NA`).
-</div>
+:::
 
 ```{r conditions3, exercise = TRUE, eval=FALSE}
 sum(c(TRUE, TRUE, FALSE, FALSE, NA))
@@ -617,9 +620,9 @@ sum(c(TRUE, TRUE, FALSE, FALSE, NA))
 
 Perhaps, it helps understanding if you also use `mean()` instead of `sum()`.
 
-<div id="conditions3-hint">
-__Hint:__ Actually, the help on `sum()` tells you how logicals are treated.
-</div>
+::: {#conditions3-hint}
+**Hint:** Actually, the help on `sum()` tells you how logicals are treated.
+:::
 
 ```{r conditions3-check}
 gradethis::grade_result(
@@ -629,22 +632,21 @@ gradethis::grade_result(
 )
 ```
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
--   In R, `c()` creates a __vector__, which is a series of values (of the same type). 
+-   In R, `c()` creates a **vector**, which is a series of values (of the same type).
 -   A variable in a data frame is a vector.
 -   `c()` is also used when we have to pass more than one value to a function argument.
-</div>
+:::
 
 ## Multi-Case Functions
 
 ### 
 
-`mutate()`
--   __Ordinary use__: Calculate a new variable value for each case from the case's 'own' value on one or more variables. *Example: grouping a variable*.
+`mutate()` - **Ordinary use**: Calculate a new variable value for each case from the case's 'own' value on one or more variables. *Example: grouping a variable*.
 
--   __Special use__: Calculate a new variable value for each case from the values on a variable *for other cases*. 
+-   **Special use**: Calculate a new variable value for each case from the values on a variable *for other cases*.
 
 `dplyr` cheat sheet:
 
@@ -659,16 +661,16 @@ What if we use these function with:
 -   data sorting (`arrange()`),
 -   and grouping (`group_by()`)?
 
-The `Glasgow` data set contains the number of `friendships` of each student in three successive `wave`s (t1, t2, and t3). 
+The `Glasgow` data set contains the number of `friendships` of each student in three successive `wave`s (t1, t2, and t3).
 
-<div class="question" >
+::: question
 Calculate two new variables:
 
-- `prev_friendships`: the number of friendships in the preceding wave (if any);
-- `change`: the increase or decrease in a student's number of friendships from one wave to the next. 
+-   `prev_friendships`: the number of friendships in the preceding wave (if any);
+-   `change`: the increase or decrease in a student's number of friendships from one wave to the next.
 
 Retain only the variables `student`, `wave`, `friendships`, `prev_friendships`, and `change`, so it easy to inspect the results.
-</div>
+:::
 
 ```{r change, exercise = TRUE}
 Glasgow |>
@@ -732,37 +734,37 @@ gradethis::grade_result(
 )
 ```
 
-<div id="change-hint">
-__Hint:__ 
+::: {#change-hint}
+**Hint:**
 
--   Sort the data such that the cases for a student are together and in temporal order. Consult the _Data Transformation with dplyr_ cheat sheet to find the right function for using information from the preceding case. 
+-   Sort the data such that the cases for a student are together and in temporal order. Consult the *Data Transformation with dplyr* cheat sheet to find the right function for using information from the preceding case.
 -   Use help on a function if the description on the cheat sheet is not clear to you.
-</div>
+:::
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
--   If you use a multi-case function with grouping, check that the function correctly restarts for a new group. 
+-   If you use a multi-case function with grouping, check that the function correctly restarts for a new group.
 -   Pay special attention to the first and last value within a group: are these values as they should be?
-</div>
+:::
 
 ### 
 
 ### 
 
-<div class="question" >
+::: question
 What happens if you use the multi-case function without grouping? Comment out the grouping step in the previous answer box and inspect the results.
-</div>
+:::
 
 ## Missing Observations
 
 ### 
 
-What if we calculate the change in friendships for a student missing an observation for a wave? 
+What if we calculate the change in friendships for a student missing an observation for a wave?
 
-<div class="question" >
+::: question
 Manually calculate the change in number of friends of student s998 in the below example data fragment. What does the result mean?
-</div>
+:::
 
 ```{r}
 #Example of observation missing for one student.
@@ -781,19 +783,19 @@ Don't assume that your data are perfect! Use code to check your data.
 
 Step 1 - Formulate the precise conditions that you want to check:
 
-1.    For every student, we should have exactly three observations (rows).
-2.    The three observations per student should have different wave values.
-3.    Only wave values 't1', 't2', and 't3' should occur.
+1.  For every student, we should have exactly three observations (rows).
+2.  The three observations per student should have different wave values.
+3.  Only wave values 't1', 't2', and 't3' should occur.
 
 Step 2 - Translate the conditions into R code.
 
-1.    Use aggregation: `count()` or `group_by()`and `summarise()`.
-2.    Use `filter()` to select cases that violate the conditions.
+1.  Use aggregation: `count()` or `group_by()`and `summarise()`.
+2.  Use `filter()` to select cases that violate the conditions.
 
-<div class="question" >
+::: question
 -   Add comments to the below code that explain how this code checks the first two conditions specified above.
 -   Are there any cases that violate the first two conditions?
-</div>
+:::
 
 ```{r eval=FALSE}
 # correct code
@@ -819,9 +821,9 @@ Glasgow |>
   filter( n_obs != 3 | n_dist != 3)
 ```
 
-<div id="missingObs-hint">
-__Hint:__ Group by student before you summarize. Use function __n()__ to count the number of observations (rows). Logical OR is represented by __|__ and __!=__ means "is not equal to". If no cases remain, your code may be correct. 
-</div>
+::: {#missingObs-hint}
+**Hint:** Group by student before you summarize. Use function **n()** to count the number of observations (rows). Logical OR is represented by **\|** and **!=** means "is not equal to". If no cases remain, your code may be correct.
+:::
 
 ### 
 
@@ -832,9 +834,9 @@ Glasgow |>
   count(wave)
 ```
 
-<div class="question" >
+::: question
 Check the third condition (above) using `count()` (or `group_by()` and `summarize()`).
-</div>
+:::
 
 ```{r missingObs2, exercise = TRUE}
 
@@ -847,12 +849,11 @@ gradethis::grade_result(
 )
 ```
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
-- Never assume that data are complete. Formulate which regularities you expect in the data and use code to check them.
-</div>
-
+-   Never assume that data are complete. Formulate which regularities you expect in the data and use code to check them.
+:::
 
 ## Fancy Stuff
 
@@ -860,15 +861,15 @@ __Programming Tip__
 
 R has several packages for creating tabular output. In a later session, we will discuss some packages for tabulating statistical output.
 
-Here, we present a function (`kable()`) in a basic package for tabular output (`knitr`), which works very well with piping and R Markdown (discussed later in this tutorial). In addition, we use the `kableExtra` function to fine-tune tables created with `kable()`.
+Here, we present a function (`kable()`) in a basic package for tabular output (`knitr`), which works very well with piping and Quarto (discussed later in this tutorial). In addition, we use the `kableExtra` function to fine-tune tables created with `kable()`.
 
 ### 
 
 Let's start by noting that we must have the data in the required shape before we create a table. In other words, `kable()` does not do any counting or summarizing for us. It only displays our data.
 
-<div class="question" >
+::: question
 Make sense of the code below; add comments explaining every step. What happens if you do not drop the `sex` variable?
-</div>
+:::
 
 ```{r kable, exercise = TRUE, exercise.eval = TRUE}
 Glasgow |>
@@ -888,7 +889,7 @@ Glasgow |>
 # Use help on the `kable()` function (`?kable`) for more information on the options provided by `kable()`.
 ```
 
-###
+### 
 
 The above table is not particularly pretty, so let us improve it with the help of package `kableExtra`.
 
@@ -910,9 +911,9 @@ Glasgow |>
   kableExtra::pack_rows("Girls", 4, 6)
 ```
 
-<div class="question" >
+::: question
 Play around with this table using the code box below. Check out the options offered by `kableExtra` on the [package website](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
-</div>
+:::
 
 ### Adding summaries to plots
 
@@ -937,49 +938,49 @@ ggplot() +
   geom_line(data = averages, aes(x = wave, y = mean_friends, group = sex, color = sex))
 ```
 
-<div class="question" >
+::: question
 Play around with this plot. For example, use `geom_text()` to add the values of the group means to the plot.
-</div>
+:::
 
 ## Workflow and Data Import
 
-From this point on in this tutorial, you are supposed to work in RStudio. 
+From this point on in this tutorial, you are supposed to work in RStudio.
 
 ### R project
 
 An R Project keeps everything in the same place.
 
-<div class="question">
--   Create a new project for your Data Project: *File>New Project…*
-    +   **New Directory**. Start a project in a brand new working directory; or
-    +   **Existing Directory**. Create a new project in an existing directory.
-    +   Select a suitable directory name (which is also the project name.)
-</div>
+::: question
+-   Create a new project for your Data Project: *File\>New Project...*
+    -   **New Directory**. Start a project in a brand new working directory; or
+    -   **Existing Directory**. Create a new project in an existing directory.
+    -   Select a suitable directory name (which is also the project name.)
+:::
 
-The project directory is the working directory. 
+The project directory is the working directory.
 
 -   This is where R looks for your (data) files, unless you specify otherwise.
--   This directory is displayed in the RStudio _Files_ tab.
+-   This directory is displayed in the RStudio *Files* tab.
 
-<div class="question" >
+::: question
 Store the Data Project data files in this directory.
-</div>
+:::
 
 ### R Workspace
 
-While you are working on a project, R collects information, creates data objects, and so on. 
+While you are working on a project, R collects information, creates data objects, and so on.
 
--   Everything in R’s memory is called the workspace. 
--   Part of the workspace is shown in RStudio’s _Environment_ panel.
+-   Everything in R's memory is called the workspace.
+-   Part of the workspace is shown in RStudio's *Environment* panel.
 
-The workspace can be saved: 
+The workspace can be saved:
 
--   RStudio menu: _Session > Save Workspace As..._; 
--   R command: `save.image("filename.RData")`) 
+-   RStudio menu: *Session \> Save Workspace As...*;
+-   R command: `save.image("filename.RData")`)
 
-And loaded: 
+And loaded:
 
--   RStudio menu: _Session > Load Workspace..._; 
+-   RStudio menu: *Session \> Load Workspace...*;
 -   R command: `load("filename.RData")`).
 -   An R work space has file name extension `.RData`.
 
@@ -987,13 +988,13 @@ And loaded:
 
 RStudio's standard settings save and load the workspace when you close and open a project. This is risky. It is better to have a clean, reproducible workspace without data from previous runs.
 
-<div class="question" >
+::: question
 So, adjust the global settings of RStudio:
 
-- Go to _Tools>Global Options_,
-- Uncheck _Restore .RData into workspace at startup_,
-- Select _Never_ for _Save workspace to .RData on exit_.
-</div>
+-   Go to *Tools\>Global Options*,
+-   Uncheck *Restore .RData into workspace at startup*,
+-   Select *Never* for *Save workspace to .RData on exit*.
+:::
 
 *Global settings need to be set only once.*
 
@@ -1003,65 +1004,65 @@ So, adjust the global settings of RStudio:
 -   A file with extension `.R`, containing R code.
 -   Similar to answer boxes in this tutorial.
 
-We are not going to use script files because we embed all our code within the R Markdown document (next topic).
+We are not going to use script files because we embed all our code within the Quarto document (next topic).
 
-## R Markdown: Reproducible Research
+## Quarto: Reproducible Research
 
 ### 
 
-For both the weekly problem sets and your Data Project, you will be working with R Markdown.
+For both the weekly problem sets and your Data Project, you will be working with Quarto.
 
-An R Markdown file contains all steps from data to results:
+An Quarto file contains all steps from data to results:
 
 -   Commands to clean and analyze data.
 -   Comments to explain steps in data cleaning and analysis.
 -   Text, graphs, and tables presenting the research to the reader.
 
-<div class="emphasis" >
+::: emphasis
 Eve`R`ything in one place!
-</div>
+:::
 
-### R Markdown YAML
+### Quarto YAML
 
-<div class="question" >
-Open a new R Markdown document in RStudio.
+::: question
+Open a new Quarto document in RStudio.
 
-Adjust the first part of the document, called YAML (title, authors, date) and add a table of contents. 
-</div>
+Adjust the first part of the document, called YAML (title, authors, date) and add a table of contents.
+:::
 
-<div class="tip" >
-__Tips:__ 
+::: tip
+**Tips:**
 
--   You can set some YAML options in RStudio with _Output Options_ under the settings button (to the right of the Knit button). 
--   Alternatively, use the cheat sheet (RStudio: _Help > Cheat Sheets > R Markdown Cheat Sheet_).
-</div>
+-   You can set some YAML options in RStudio with *Output Options* under the settings button (to the right of the Knit button).
+-   Alternatively, use the cheat sheet (RStudio: *Help \> Cheat Sheets \> Browse cheat Sheets*).
+:::
 
-### First code chunk 
+### First code chunk
 
 Good practice:
 
 -   Load all required libraries in the first code chunk.
-    +   Example: `library(tidyverse) #load the tidyverse packages`
+    -   Example: `library(tidyverse) #load the tidyverse packages`
 -   Set all global settings in the first code chunk.
-    +   Recommended global settings for (knitting/rendering) code chunks: `knitr::opts_chunk$set(eval = TRUE, echo = FALSE, warning = FALSE, message = FALSE)`
+    -   Recommended global settings for (knitting/rendering) code chunks: `knitr::opts_chunk$set(eval = TRUE, echo = FALSE, warning = FALSE, message = FALSE)`
 
-<div class="question" >
-Adjust the settings in your R Markdown document and load the tidyverse package.
-</div>
+::: question
+Adjust the settings in your Quarto document and load the tidyverse package.
+:::
 
 More info on the meaning of code chunk settings:
 
--   R Markdown cheat sheet (`RStudio: Help > Cheat Sheets > R Markdown Cheat Sheet`) or at the [`knitr` web page](https://yihui.org/knitr/options/#chunk-options).
+-   Quarto cheat sheet or at the [`knitr` web page](https://yihui.org/knitr/options/#chunk-options).
 
 ### Code chunk names
 
-A code chunk may have a name (label), e.g., `setup` in the pic below):
+A code chunk may have a name (label), e.g., `chunk 3: make a table` in the pic below):
 
 -   May not contain a space.
--   May only occur once in an R Markdown document.
--   Informative chunk names are handy: quickly navigate via RStudio's code outline (button at the bottom left of the R Markdown screen). 
+-   May only occur once in an Quarto document.
+-   Informative chunk names are handy: quickly navigate via RStudio's code outline (button at the bottom left of the Quarto screen).
 
-![](images/outline.png)
+![](images/outlineQuarto.png)
 
 Another option for quick navigation:
 
@@ -1071,20 +1072,20 @@ Another option for quick navigation:
 
 To work with your data, they must be loaded.
 
-<div class="question" >
+::: question
 -   Download the Data Project data file marked for initial practice from Canvas to your project directory. Or: Each team member downloads a different Data Project data file.
--   Get rid of the text and code chunks from the standard R Markdown document.
+-   Get rid of the text and code chunks from the standard Quarto document.
 -   Add a header to start the section on data description.
--   Add your first code chunk (use the _Insert_ button at the top of the R Markdown screen).
-</div>
+-   Add your first code chunk (use the *Insert* button at the top of the Quarto screen).
+:::
 
 ### 
 
 All Data Project data sets are in `csv` format.
 
-<div class="question" >
+::: question
 Add a code chunk, name it, and import your data file into a data object with `read_csv()`.
-</div>
+:::
 
 Note that `read_csv()` is part of the `readr` package, which is automatically loaded by the `tidyverse` package.
 
@@ -1092,32 +1093,32 @@ Note that `read_csv()` is part of the `readr` package, which is automatically lo
 
 This function has some important features:
 
--	`read_csv()` uses the first row as variable names.
-- It guesses variable type: character, integer, double, ...
-- It reports variable types as a `col_types` argument.
--	Files ending in .gz, .bz2, .xz, or .zip are automatically uncompressed.
--	Files starting with http://, https://, ftp://, or ftps:// are automatically downloaded.
+-   `read_csv()` uses the first row as variable names.
+-   It guesses variable type: character, integer, double, ...
+-   It reports variable types as a `col_types` argument.
+-   Files ending in .gz, .bz2, .xz, or .zip are automatically uncompressed.
+-   Files starting with <http://>, <https://>, <ftp://>, or ftps:// are automatically downloaded.
 
-We don't like guesses; we want to be sure that the variable type is correct. 
+We don't like guesses; we want to be sure that the variable type is correct.
 
-<div class="question" >
--   Check the variable types reported when the data was read against the original data set. 
--   Add the `col_types` argument to your `read_csv()` command  and copy the reported (guessed) variable types (`cols( ... )`) behind the equals sign. 
-</div>
+::: question
+-   Check the variable types reported when the data was read against the original data set.
+-   Add the `col_types` argument to your `read_csv()` command and copy the reported (guessed) variable types (`cols( ... )`) behind the equals sign.
+:::
 
 Now, you are sure that the data will be read in the right way.
 
 ### 
 
-<div class="tip" >
-__Programming Tips__
+::: tip
+**Programming Tips**
 
-- Always assume that things go wrong, so you have to convince yourself that your code produces the right results.
-- Use comments abundantly. Explain why you do things in a particular way. It helps your group members and your future self to understand the code.
-- In a code chunk, press Ctr/Cmd-Enter to run the command in which your cursor is positioned.
-</div>
+-   Always assume that things go wrong, so you have to convince yourself that your code produces the right results.
+-   Use comments abundantly. Explain why you do things in a particular way. It helps your group members and your future self to understand the code.
+-   In a code chunk, press Ctr/Cmd-Enter to run the command in which your cursor is positioned.
+:::
 
-### R Markdown plot
+### Quarto plot
 
 Code chunks that produce a plot will show a plot in a knitted document.
 
@@ -1125,33 +1126,33 @@ You may want to change the appearance of the plot with code chunk options.
 
 Main options for a code chunk creating a plot (book p. 465-467, {28.7.1, 28.7.2}):
 
--	`fig.cap = ""`: Add a caption to the plot.
--	`fig.asp = 0.6`: Set the ratio of plot height to plot width.
--	`out.width = "75%"`: Set plot width as a percentage of text width.
+-   `fig.cap = ""`: Add a caption to the plot.
+-   `fig.asp = 0.6`: Set the ratio of plot height to plot width.
+-   `out.width = "75%"`: Set plot width as a percentage of text width.
 
-<div class="question" >
+::: question
 -   Add one of the plots created in the Data Project part of the previous session in a separate code chunk.
 -   Add a caption to the plot and change the plot to a square layout. Knit the document to check the results.
-</div>
+:::
 
 ### 
 
-<div class="tip" >
-__Programming Tips__
+::: tip
+**Programming Tips**
 
-- Carefully inspect a knitted R Markdown document for the presence and layout of plots and tables and for unwanted code or R messages.
-- Don't worry about code or output created by code that you may not need in the end. It is easy to skip a code chunk and not displaying its results by setting the code chunk option `eval=` to `FALSE`. Preserving (but hiding) unnecessary code prevents you from creating the code again later on.
-</div>
+-   Carefully inspect a knitted Quarto document for the presence and layout of plots and tables and for unwanted code or R messages.
+-   Don't worry about code or output created by code that you may not need in the end. It is easy to skip a code chunk and not displaying its results by setting the code chunk option `eval=` to `FALSE`. Preserving (but hiding) unnecessary code prevents you from creating the code again later on.
+:::
 
 ### Adding (formatted) text
 
-<div class="question" >
+::: question
 Now, add a description of the plot or data file for the reader of the document.
-</div>
+:::
 
-Use R Markdown text formatting options if needed, see _Help>Markdown Quick Reference_ in RStudio for the main options.
+Use Quarto text formatting options if needed, see *Help\>Markdown Quick Reference* in RStudio for the main options.
 
-Some often used text formatting in R Markdown.
+Some often used text formatting in Quarto.
 
 ```{r eval=FALSE, echo=TRUE}
 -   Headers: #, ##, ###
@@ -1166,7 +1167,7 @@ Some often used text formatting in R Markdown.
 
 ### Knitting to PDF
 
-Knit (render) an R Markdown with the knit button.
+Knit (render) an Quarto with the knit button.
 
 ```{r knitpic, out.width="30%"}
 knitr::include_graphics("images/Knit.png")
@@ -1174,24 +1175,24 @@ knitr::include_graphics("images/Knit.png")
 
 Knitting to HTML:
 
--   Is fastest. 
+-   Is fastest.
 -   Always knit to HTML first, to check the results.
 
 Knitting to a paper document:
 
--   Knit to PDF or Word. 
--   PDF output is supported better than Word, 
--   but requires the installation of a TeX package (see the [online book on R Markdown](https://bookdown.org/yihui/rmarkdown/installation.html)). 
+-   Knit to PDF or Word.
+-   PDF output is supported better than Word,
+-   but requires the installation of a TeX package (see the [online book on](https://bookdown.org/yihui/rmarkdown/installation.html)Quarto).
 
-<div class="question" >
-Knit your R Markdown document to PDF to check that it works and LaTeX package is correctly installed. 
-</div>
+::: question
+Knit your Quarto document to PDF to check that it works and LaTeX package is correctly installed.
+:::
 
 ### 
 
 If you want to fine-tune your PDF document:
 
-- Add `keep_tex: TRUE` to the document YAML, like this (mind the indentation):
+-   Add `keep_tex: TRUE` to the document YAML, like this (mind the indentation):
 
 ```{r echo = TRUE, eval = FALSE}
 output:
@@ -1203,9 +1204,9 @@ YAML option `keep_tex: TRUE` saves the TeX file (extension `.tex`), which you ca
 
 ## Data Project
 
-Start working on the R Markdown document for your Data Project in RStudio. 
+Start working on the Quarto document for your Data Project in RStudio.
 
--   Decide how you are going to collaborate on one R Markdown document.
+-   Decide how you are going to collaborate on one Quarto document.
 -   Sprint 1 Review & Sprint 1 Retrospective.
 -   Sprint 2 Planning.
 -   Remaining time: Work on the Sprint 2 Backlog.
@@ -1214,18 +1215,17 @@ Start working on the R Markdown document for your Data Project in RStudio.
 
 Last 15 minutes of the session.
 
-
 ## Reminders
 
 ### Problem Set 1
 
-- Available from 1 PM today.
-- Download __R Markdown__ document with assigned exercises and accompanying data set from Canvas.  
-- Add answers and R code in the __R Markdown__ document.  
-- Knit __R Markdown__ document to PDF or Word.
-- Submit __R Markdown__ document and PDF or Word document to the Canvas assignment.  
-- Submission deadline: Sunday, 12 PM (noon).  
-- Lecturer's feedback returned in the PDF or Word document.
+-   Available from 1 PM today.
+-   Download **Quarto** document with assigned exercises and accompanying data set from Canvas.\
+-   Add answers and R code in the **Quarto** document.\
+-   Knit **Quarto** document to PDF or Word.
+-   Submit **Quarto** document and PDF or Word document to the Canvas assignment.\
+-   Submission deadline: Sunday, 12 PM (noon).\
+-   Lecturer's feedback returned in the PDF or Word document.
 
 ### And as always...
 
