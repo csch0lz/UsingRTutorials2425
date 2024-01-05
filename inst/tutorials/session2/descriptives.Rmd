@@ -1124,15 +1124,15 @@ Code chunks that produce a plot will show a plot in a knitted document.
 
 You may want to change the appearance of the plot with code chunk options.
 
-Main options for a code chunk creating a plot (book p. 465-467, {28.7.1, 28.7.2}):
+Main options for a code chunk creating a plot (chapter 28.6):
 
--   `fig.cap = ""`: Add a caption to the plot.
--   `fig.asp = 0.6`: Set the ratio of plot height to plot width.
--   `out.width = "75%"`: Set plot width as a percentage of text width.
+-   `fig.cap : ""`: Add a caption to the plot.
+-   `fig.asp: 0.6`: Set the ratio of plot height to plot width.
+-   `out.width : "70%"`: Set plot width as a percentage of text width.
 
 ::: question
 -   Add one of the plots created in the Data Project part of the previous session in a separate code chunk.
--   Add a caption to the plot and change the plot to a square layout. Knit the document to check the results.
+-   Add a caption to the plot and change the plot to a square layout. Render the document to check the results.
 :::
 
 ### 
@@ -1140,8 +1140,8 @@ Main options for a code chunk creating a plot (book p. 465-467, {28.7.1, 28.7.2}
 ::: tip
 **Programming Tips**
 
--   Carefully inspect a knitted Quarto document for the presence and layout of plots and tables and for unwanted code or R messages.
--   Don't worry about code or output created by code that you may not need in the end. It is easy to skip a code chunk and not displaying its results by setting the code chunk option `eval=` to `FALSE`. Preserving (but hiding) unnecessary code prevents you from creating the code again later on.
+-   Carefully inspect a rendered Quarto document for the presence and layout of plots and tables and for unwanted code or R messages.
+-   Don't worry about code or output created by code that you may not need in the end. It is easy to skip a code chunk and not displaying its results by setting the code chunk option `echo: FALSE`. Preserving (but hiding) unnecessary code prevents you from creating the code again later on.
 :::
 
 ### Adding (formatted) text
@@ -1165,27 +1165,28 @@ Some often used text formatting in Quarto.
 -   superscript^2^ and subscript~2~
 ```
 
-### Knitting to PDF
+### Render to PDF
 
-Knit (render) an Quarto with the knit button.
+Render an Quarto with the Render button.
 
-```{r knitpic, out.width="30%"}
-knitr::include_graphics("images/Knit.png")
-```
 
-Knitting to HTML:
+
+![](images/render.png){width="397"}
+
+
+Render to HTML:
 
 -   Is fastest.
 -   Always knit to HTML first, to check the results.
 
-Knitting to a paper document:
+Render to a paper document:
 
--   Knit to PDF or Word.
+-   render to PDF or Word.
 -   PDF output is supported better than Word,
--   but requires the installation of a TeX package (see the [online book on](https://bookdown.org/yihui/rmarkdown/installation.html)Quarto).
+-   but requires the installation of a TeX package (see Canvas page "Course Introduction")
 
 ::: question
-Knit your Quarto document to PDF to check that it works and LaTeX package is correctly installed.
+Render your Quarto document to PDF to check that it works and LaTeX package is correctly installed.
 :::
 
 ### 
@@ -1195,8 +1196,8 @@ If you want to fine-tune your PDF document:
 -   Add `keep_tex: TRUE` to the document YAML, like this (mind the indentation):
 
 ```{r echo = TRUE, eval = FALSE}
-output:
-  pdf_document: 
+format:
+  pdf: 
     keep_tex: TRUE
 ```
 
@@ -1222,7 +1223,7 @@ Last 15 minutes of the session.
 -   Available from 1 PM today.
 -   Download **Quarto** document with assigned exercises and accompanying data set from Canvas.\
 -   Add answers and R code in the **Quarto** document.\
--   Knit **Quarto** document to PDF or Word.
+-   Render **Quarto** document to PDF or Word.
 -   Submit **Quarto** document and PDF or Word document to the Canvas assignment.\
 -   Submission deadline: Sunday, 12 PM (noon).\
 -   Lecturer's feedback returned in the PDF or Word document.
