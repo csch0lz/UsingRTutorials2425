@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 # Ensure that the data is loaded for the remainder of this tutorial.
 flights4 <- UsingRTutorials::flights4
 # Store the results of a t test, so the htest object is available in the tutorial.
-result_t <- flights4 |> t.test(arr_delay0 ~ origin, data = ., na.action = "na.omit")
+result_t <- flights4 |> t.test(arr_delay0 ~ origin, data = _, na.action = "na.omit")
 # Ensure that the final function report_ttest() is available in the tutorial.
 report_ttest <- function(result_t) { 
   # if (is.null(result_t) || class(result_t) != "htest") { 
@@ -128,7 +128,7 @@ The pipe:
 -   no intermediary data objects must be specified as argument;
 -   no risk of inadvertently overwriting an intermediary data object.
 
-### `.` in a pipe  
+### `_` in a pipe  
 
 Piping:
 
@@ -154,7 +154,7 @@ flights4 |> t.test(arr_delay0 ~ origin, )
 ```
 
 ```{r pipedot-solution, exercise.reveal_solution = FALSE}
-flights4 |> t.test(arr_delay0 ~ origin, data = .)
+flights4 |> t.test(arr_delay0 ~ origin, data = _)
 ```
 
 ```{r pipedot-check}
@@ -166,7 +166,7 @@ gradethis::grade_code(
 
 ###
 
-In a pipe, `.` represents the input object. Use it if:  
+In a pipe, `_` represents the input object. Use it if:  
 
 - the data frame is not the first argument of a function (see the preceding exercise),  
 - you don't use a function (see the example below).  
@@ -174,7 +174,7 @@ In a pipe, `.` represents the input object. Use it if:
 ```{r pipedot2, exercise = TRUE, exercise.lines = 4, exercise.eval = TRUE}
 # Get the value of the t statistic of an independent samples t test.
 flights4 |> 
-  t.test(arr_delay0 ~ origin, data = .) |>
+  t.test(arr_delay0 ~ origin, data = _) %>% #here |> does not support placeholder, so use %>%
   .$statistic #not a function
 ```
 
@@ -203,7 +203,7 @@ A _t_ test yields a results object, which is a list.
 ```{r storeresults, exercise = TRUE, exercise.lines = 4}
 # Store the results of a t test.
 result_t <- flights4 |> 
-  t.test(arr_delay0 ~ origin, data = .)
+  t.test(arr_delay0 ~ origin, data = _)
 result_t #Default print method for these results.
 ```
 
@@ -581,7 +581,7 @@ report_ttest <- function(x) {
 # Execute another t test: average arrival delay of carriers AA and UA.
 result_t2 <- flights4 |> 
   filter(carrier %in% c("AA", "UA")) |>
-  t.test(arr_delay0 ~ carrier, data = .)
+  t.test(arr_delay0 ~ carrier, data = _)
 # New test results.
 result_t2
 # New test results with function report_ttest().
@@ -699,12 +699,12 @@ Our function still has flaws: It gives errors or wrong output if the input is no
 
 ```{r setup_resultlm}
 #Run a regression.
-result_lm <- flights4 |> lm(arr_delay0 ~ origin, data = .)
+result_lm <- flights4 |> lm(arr_delay0 ~ origin, data = _)
 ```
 
 ```{r error=TRUE, echo=TRUE}
 #Run a regression.
-result_lm <- flights4 |> lm(arr_delay0 ~ origin, data = .)
+result_lm <- flights4 |> lm(arr_delay0 ~ origin, data = _)
 #Use regression results in function report_ttest().
 report_ttest(result_lm)
 ```
@@ -825,7 +825,7 @@ report_ttest <- function(x) {
 # Applied to previous t test results.
 report_ttest(result_t)
 # Applied to F test results.
-flights4 |> var.test(arr_delay0 ~ origin, data = .) |> report_ttest()
+flights4 |> var.test(arr_delay0 ~ origin, data = _) |> report_ttest()
 ```
 
 ###
