@@ -675,13 +675,13 @@ Inline code:
 -   R results displayed within text for report reader. 
 -   Calculated during document knitting: always up-to-date.
 
-Example R Markdown text with inline code:
+Example Quarto text with inline code:
 
 ```{r, eval=FALSE, echo=TRUE}
 There is a statistically significant difference in average delay between the two airports, `r report_ttest(result_t)`.  
 ```
 
-The R Markdown text shown above if the document is knitted: 
+The Quarto text shown above if the document is rendered: 
 
 > There is a statistically significant difference in average delay between the two airports, `r report_ttest(result_t)`.  
 
