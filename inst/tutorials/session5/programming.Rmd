@@ -662,7 +662,7 @@ gradethis::grade_code(
   )
 ```
 
-### Embedding output in R Markdown
+### Embedding output in Quarto
 
 Function `report_ttest()` is meant to display _t_ test results in APA style to the reader.
 
