@@ -146,7 +146,7 @@ tidyverse suite of packages:
 -   data import: readr::
 -   visualization: ggplot2::
 -   data wrangling: dplyr::, tidyr::
--   replicable research: R Markdown
+-   replicable research: Quarto
 
 Cheat sheets!
 
@@ -205,7 +205,7 @@ Each problem set consists of two parts:
 -   Group effort: Tidying the dataset.
 -   Individual effort: One data visualization per student based on the
     tidy data.
--   Reproducible: All steps from raw data to final results (R Markdown).
+-   Reproducible: All steps from raw data to final results (Quarto).
 -   *SCRUM-light* project management.
 
 ### Visual story example
