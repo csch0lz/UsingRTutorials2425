@@ -1058,7 +1058,6 @@ More info on the meaning of code chunk settings:
 
 A code chunk may have a name (label), e.g., `chunk 3: make a table` in the pic below):
 
--   May not contain a space.
 -   May only occur once in an Quarto document.
 -   Informative chunk names are handy: quickly navigate via RStudio's code outline (button at the bottom left of the Quarto screen).
 
