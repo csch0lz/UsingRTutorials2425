@@ -1125,9 +1125,9 @@ You may want to change the appearance of the plot with code chunk options.
 
 Main options for a code chunk creating a plot (chapter 28.6):
 
--   `fig.cap : ""`: Add a caption to the plot.
--   `fig.asp: 0.6`: Set the ratio of plot height to plot width.
--   `out.width : "70%"`: Set plot width as a percentage of text width.
+-   `fig-cap : ""`: Add a caption to the plot.
+-   `fig-asp: 0.6`: Set the ratio of plot height to plot width.
+-   `out-width : "70%"`: Set plot width as a percentage of text width.
 
 ::: question
 -   Add one of the plots created in the Data Project part of the previous session in a separate code chunk.
