@@ -1033,7 +1033,7 @@ Adjust the first part of the document, called YAML (title, authors, date) and ad
 ::: tip
 **Tips:**
 
--   You can set some YAML options in RStudio with *Output Options* under the settings button (to the right of the Knit button).
+-   You can set some YAML options in RStudio with *Output Options* under the settings button (to the right of the Render button).
 -   Alternatively, use the cheat sheet (RStudio: *Help \> Cheat Sheets \> Browse cheat Sheets*).
 :::
 
@@ -1177,7 +1177,7 @@ Render an Quarto with the Render button.
 Render to HTML:
 
 -   Is fastest.
--   Always knit to HTML first, to check the results.
+-   Always render to HTML first, to check the results.
 
 Render to a paper document:
 
