@@ -681,7 +681,7 @@ Glasgow |>
   #use a special function to calculate the difference
   mutate( 
     prev_friendships = ____(____), #number of friendships in the preceding wave (if any)
-    change = ____ #difference: later minus earlier
+    change = ____ #difference: current minus previous
     ) |>
   select( _____ )
 
