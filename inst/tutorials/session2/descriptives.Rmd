@@ -1140,7 +1140,7 @@ Main options for a code chunk creating a plot (chapter 28.6):
 **Programming Tips**
 
 -   Carefully inspect a rendered Quarto document for the presence and layout of plots and tables and for unwanted code or R messages.
--   Don't worry about code or output created by code that you may not need in the end. It is easy to skip a code chunk and not displaying its results by setting the code chunk option `echo: FALSE`. Preserving (but hiding) unnecessary code prevents you from creating the code again later on.
+
 :::
 
 ### Adding (formatted) text
