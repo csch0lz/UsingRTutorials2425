@@ -1044,15 +1044,11 @@ Good practice:
 -   Load all required libraries in the first code chunk.
     -   Example: `library(tidyverse) #load the tidyverse packages`
 -   Set all global settings in the first code chunk.
-    -   Recommended global settings for (knitting/rendering) code chunks: `knitr::opts_chunk$set(eval = TRUE, echo = FALSE, warning = FALSE, message = FALSE)`
+    -   Recommended global settings for (knitting/rendering) code chunks: `eval : TRUE, echo : FALSE, warning : FALSE, message : FALSE)`
 
 ::: question
 Adjust the settings in your Quarto document and load the tidyverse package.
 :::
-
-More info on the meaning of code chunk settings:
-
--   Quarto cheat sheet or at the [`knitr` web page](https://yihui.org/knitr/options/#chunk-options).
 
 ### Code chunk names
 
