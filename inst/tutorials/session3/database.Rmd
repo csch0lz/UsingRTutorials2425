@@ -767,6 +767,14 @@ StudentWave |>
 
 ```{r separate-solution, exercise.reveal_solution = FALSE}
 StudentWave |> separate(col = alcohol, into = c("alcohol_code", "alcohol_label"), sep = 2)
+#step1
+StudentWave  |>  
+  separate_wider_delim(alcohol, delim = " ", names = c("alcohol_code", "alcohol_label"),
+  too_many = "debug")
+#step2
+StudentWave  |>  
+  separate_wider_delim(alcohol, delim = " ", names = c("alcohol_code", "alcohol_label"),
+  too_many = "merge")
 ```
 
 ```{r separate-hint-1}
