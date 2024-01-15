@@ -239,7 +239,7 @@ GlasgowFriends |>
   slice(1:2)
 ```
 
-### Finding the type of cases for a variable 
+### Identifying types of cases in a dataset
 
 Every variable in your primary key and every combination of these variables may represent a different type of cases. 
 
