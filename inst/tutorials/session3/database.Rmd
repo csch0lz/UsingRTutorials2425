@@ -58,6 +58,7 @@ Problem sets discussion
 
 First two hours: Course content
 
+-   Explanation exercises for Problem set 1 (15min)  
 -   Tidy data  
 -   Joins (Relational data)
 
