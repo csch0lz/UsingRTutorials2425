@@ -118,6 +118,10 @@ Third hour: Data project
 -   The last exercise in each problem set is usually about your Data
     Project data.
 
+## A Word About AI
+
+It's a great coding too - but not just yet :).
+
 ## Tidy Data: Eve`R`ything In One Place
 
 Rules for optimal data structure (efficiency and consistency):
