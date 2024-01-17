@@ -97,7 +97,7 @@ Second 1.5 hours: Data project
 
 For your complex datasets, ask yourself one of the following:
 
-1.    Does the data set contain info on more than one type of unit?
+1.    Does the data set contain info on more than one type of cases?
       +   Or: Is the same information repeated in different rows?
       +   If so, transfer the info on each type of unit to a separate table.
       
@@ -113,7 +113,6 @@ For your complex datasets, ask yourself one of the following:
 ## Factors  
 
 -   Factor: R data type for a categorical (nominal or ordinal measurement level) variable. 
--   It is NOT exactly a variable with value labels in SPSS.
 
 ### 
 
