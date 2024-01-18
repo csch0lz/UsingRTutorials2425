@@ -1079,11 +1079,12 @@ Inspect the results of each step in the pipe with `View()`. Note that the View w
 #tidyverse requires a data frame
 varnames <- tibble(name = names(surveyweek1)[4:10]) |>
   #split each name into three parts
-  separate(name, into = c("humbug", "date", "topic"), sep = " - ") |>
+  separate_wider_delim( name , delim = " - ", names = c("humbug", "date", "topic")) |>
   #split the date into weekday and date
-  separate(date, into = c("weekday", "date"), sep = ", ") |>
+  separate_wider_delim( date, delim = ", ", names = c("weekday", "date")) |>  
   #extract the date variable as a vector
   pull(date)
+
 # Replace variable names in tibble.
 names(surveyweek1)[4:10] <- varnames
 # Show result.
