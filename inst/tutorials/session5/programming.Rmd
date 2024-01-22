@@ -131,8 +131,7 @@ The pipe:
 
 Piping:
 
--   First argument of function must be a tibble/data frame. 
--   All `tidyverse` functions have this characteristic. 
+-   In the `tidyverse`, all functions require the first argument ot be a tibble/data frame. 
 -   Base R functions do not necessarily have this characteristic.
 
 <div class="question" >
