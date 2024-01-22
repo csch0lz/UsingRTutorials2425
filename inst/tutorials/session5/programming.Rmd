@@ -68,7 +68,6 @@ report_ttest <- function(result_t) {
 
 First 1.5 hours: Course content
 
--   Data Tidying: Expert meeting
 -   Piping
 -   Lists
 -   Functions
