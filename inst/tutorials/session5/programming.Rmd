@@ -174,8 +174,8 @@ In a pipe, `_` represents the input object. Use it if:
 ```{r pipedot2, exercise = TRUE, exercise.lines = 4, exercise.eval = TRUE}
 # Get the value of the t statistic of an independent samples t test.
 flights4 |> 
-  t.test(arr_delay0 ~ origin, data = _) %>% #here |> does not support placeholder, so use %>%
-  .$statistic #not a function
+  t.test(arr_delay0 ~ origin, data = _)  |>
+  _$statistic #not a function
 ```
 
 We will see soon where `$statistic` comes from.  
