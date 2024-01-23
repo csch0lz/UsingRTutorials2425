@@ -287,7 +287,7 @@ gradethis::grade_code(
 
 Let's go one level down in the list of t test results: 
 
--   Extract the value of an attribute with the `attribute()` function.
+-   Extract the value of an attribute with the `attributes()` function.
 
 ```{r}
 str(result_t[4])
@@ -666,12 +666,12 @@ Function `report_ttest()` is meant to display _t_ test results in APA style to t
 
 This means that the result of the function must be displayed within a sentence in the report.
 
-This is called i
+This is called inline code.
 
 Inline code: 
 
 -   R results displayed within text for report reader. 
--   Calculated during document knitting: always up-to-date.
+-   Calculated during document rendering: always up-to-date.
 
 Example Quarto text with inline code:
 
@@ -770,7 +770,7 @@ report_ttest <- function(result_t) {
 ```
 
 ```{r classcheck-solution, exercise.reveal_solution = FALSE}
-report_ttest <- function(x) { if (class(x) != "htest") { return("#### Input is not a result of t.test()! ######") } else { paste0("*t* (", format(round(x$parameter, digits = 2), nsmall = 2), ") = ", format(round(x$statistic, digits = 2), nsmall = 2), ", *p* ",  ifelse(x$p.value >= 0.0005, paste0("= ", format(round(x$p.value, digits = 3), nsmall = 3)),"< 0.001"), ", 95%CI[", format(round(x$conf.int[1], digits = 2), nsmall = 2), ", ", format(round(x$conf.int[2], digits = 2), nsmall = 2), "]") } }
+report_ttest <- function(x) { if (class(x) != "htest") { return("#### Input is not a result of  t.test()! ######") } else { paste0("*t* (", format(round(x$parameter, digits = 2), nsmall = 2), ") = ", format(round(x$statistic, digits = 2), nsmall = 2), ", *p* ",  ifelse(x$p.value >= 0.0005, paste0("= ", format(round(x$p.value, digits = 3), nsmall = 3)),"< 0.001"), ", 95%CI[", format(round(x$conf.int[1], digits = 2), nsmall = 2), ", ", format(round(x$conf.int[2], digits = 2), nsmall = 2), "]") } }
 report_ttest(result_t)
 report_ttest(result_lm)
 report_ttest(NULL) 
