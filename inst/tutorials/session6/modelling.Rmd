@@ -63,6 +63,8 @@ model_1aBayes <- UsingRTutorials::model_1aBayes
 ```
 ## Overview
 
+Preparation for next Thursday's project presentation
+
 Course Content
 
 -   Basic Statistical Models
