@@ -633,15 +633,15 @@ texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
 
 `htmlreg()` produces HTML code:
 
--   This code should not be treated as ordinary text when the RMarkdown document is knitted.
+-   This code should not be treated as ordinary text when the Quarto document is knitted.
 -   Instead, it must be used and formatted as HTML code.
 
 The `results='asis'` code chunk option is needed to knit the html output of the code chunk as formatted text.
 
-The full code chunk in the RMarkdown document (note the `results='asis'` argument):
+The full code chunk in the Quarto document (note the `results='asis'` argument):
 
 ```{r, out.width="70%"}
-knitr::include_graphics("images/asis.png")
+knitr::include_graphics("images/asis_quarto.png")
 ```
 
 And this is what the knitted text looks like:
