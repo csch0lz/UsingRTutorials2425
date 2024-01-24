@@ -859,7 +859,6 @@ model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
 
 There are many packages offering ready-to-use plots, for example:
 
--   `papaja`: plots for analysis of variance.
 -   `coefplot`: plots regression coefficients for one or more models (`ggplot2` plots)
 -   `visreg`: plots regression lines (`ggplot2` plots).
 -   `effects`: plots regression lines (not `ggplot2` plots).
