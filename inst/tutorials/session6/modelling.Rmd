@@ -549,40 +549,6 @@ dt |>
   footnote(symbol = "Results of two or more models in one table.")
 ```
 
-### `apaquarto`: A Quarto Extension for APA7 Style Papers
-
-A great extension for Open Science projects!
-
--   Write fully reproducible papers in Quarto and produce perfect, APA styled knitted documents in PDF or Word.
--   Include graphs and tables, designed according to APA style.
--   `apaquarto` integrates smoothly with .bib files and reference managers like Zotero.
-
-### 
-
-::: question
-Install `apaquarto`
-:::
-
--   Go to: <https://github.com/wjschne/apaquarto>
-
--   Click on Code (1) and then Download Zip (2)
-
-```{r, out.width="100%"}
-knitr::include_graphics("images/github.png")
-```
-
--   Unzip the downloaded folder on your computer (remember the location).
-
--   Open the `apaquarto.Rproj` file inside the folder.
-
--   In `RStudio`, you can now open the template file `template.qmd` . It includes examples of various scenarios you might want to implement (e.g. citations, plots and tables).
-
--   ::: question Run the document to check out the output. :::
-
--   Go to Canvas for another example.
-
-We will see more of `apaquarto` in Session 7.
-
 ### Print-Quality Table With `texreg`
 
 ```{r model2_texreg, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}

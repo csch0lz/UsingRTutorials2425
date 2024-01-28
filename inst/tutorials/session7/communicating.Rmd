@@ -6,7 +6,7 @@ output:
     allow_skip: yes
 runtime: shiny_prerendered
 description: |
-  Let us have one more look at using R Markdown and ggplot() before we submit our Data Project as a visualization in an R Markdown document.
+  Let us have one more look at using Quarto and ggplot() before we submit our Data Project as a visualization in a Quarto document.
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +21,7 @@ library(RColorBrewer)
 tutorial_options(exercise.timelimit = 20, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
-# Note: A (new) R Markdown document can be knitted while a learnr tutorial is
+# Note: A (new) Quarto document can be rendered while a learnr tutorial is
 # running both if the tutorial is started from the console and from the Tutorial tab.
 ```
 
@@ -76,7 +76,10 @@ In RStudio, open a new Quarto document. One-by-one, add the following options to
 -   Table of contents: `toc: true`
 -   Change the position of the table of contents: `toc-location: left` or `toc-location: body`
 -   Section numbering: `number_sections: true`
--   Location of Figure and Table captions: for instance `fig-cap-location: bottom` or `tbl-cap-location: top`
+-   Figure and table captions:
+    -   Add a figure and a table to the document (e.g. use data from the `palmerpenguins::` package).
+    -   Add labels (`#| label: fig-/tbl-`) and captions (`#| fig-cap: "your caption"`/`#| tbl-cap: "your caption"`)
+    -   Change the caption locations: for instance `fig-cap-location: bottom` or `tbl-cap-location: top`
 
 You can find many more options online. Careful: Look at the options that are available for your intended output document (e.g. PDF, Word, or HTML): <https://quarto.org/docs/output-formats/all-formats.html>
 
@@ -218,7 +221,7 @@ Quarto allows you to number and cross-reference figures, tables, and sections.
 
 **Cross-referencing a figure added using an image file**
 
--   Add the figure by adding the following in the Markdown (text) part of a Quarto document: `![CAPTION](FILENAME.png){#LABEL}`
+-   Add the figure by adding the following in the Markdown (text) part of a Quarto document. IMPORTANT: do this in the Source editor, not the visual editor: `![CAPTION](FILENAME.png){#LABEL}`
 -   Elsewhere in the document, reference the figure in your text: "See `@fig-CAPTION` for an illustration
 
 **Cross-referecing tables and figures created in code chunks**
@@ -232,7 +235,7 @@ Quarto allows you to number and cross-reference figures, tables, and sections.
     -   or add a table label (`#| label: tbl-LABEL`) and caption (`#| tbl-cap: CAPTION`)
 
 ::: question
--   Add a section label to the **Quarto** Section in a new Quarto file and use it to refer to this section in a sentence "As we have seen in Section 0.1, we can show statistical results in a Quarto document." that you add to the **Running Code** Section.
+-   Add a section label to the **Quarto** Section in a new Quarto file and use it to refer to this section in a sentence "As we have seen in Section 0.1, we can show statistical results in a Quarto document." that you add to the **Running Code** Section. (e.g. `## Introduction {#sec-introduction}`)
 -   Add a figure using an image file on your computer and cross-reference it: "Figure 1 is beautiful, isn't it?"
 :::
 
@@ -242,20 +245,20 @@ Quarto allows you to number and cross-reference figures, tables, and sections.
 -   Don't use blanks in Section ID labels or names of code chunks that create a table or figure.
 :::
 
-### Knitting Problems
+### Rendering Problems
 
-Problems with knitting to HTML:
+Problems with rendering to HTML:
 
 -   Probably errors in your code (also applies to Word and PDF).
 -   Spot and fix them.
 -   Use code chunk option `eval=FALSE` to see if a code chunk causes the problem.
 
-Problems with knitting to Word:
+Problems with rendering to Word:
 
 -   Functions for tables and figures may not work for Word.
 -   Knit to HTML and import HTML in Word.
 
-Problems with knitting to PDF:
+Problems with rendering to PDF:
 
 -   Characters like `%`, `\`, `/` have special meaning in LaTeX, which is the language used to create the PDF.
 -   Ensure that variable names or captions do not include them.
@@ -402,7 +405,7 @@ For marking groups by colors , `ggplot()` uses a vector of colors, assigning the
 Custom colors:
 
 -   Create a vector of colors that matches (number and order) the groups in your plot.
--   `RColorBrewer` offers nice color palettes ([book, p. 458](https://r4ds.had.co.nz/graphics-for-communication.html#replacing-a-scale)).
+-   `RColorBrewer` offers nice color palettes (book [Figure 11.1](https://r4ds.hadley.nz/communication)).
 -   Function `brewer.pal` in this package creates such a vector.
 
 Democrats should be blue, Republicans red, and let us use green for Independents.
@@ -601,44 +604,59 @@ gradethis::grade_code(
 
 ## Fancy Stuff
 
-### APA format article with `papaja::`
+### APA format article with `apaquarto::`
 
-Instead of adapting a standard R Markdown document, you can use the `papaja` package, which contains an APA6 article template. Once you have installed this package, an APA article template is available if you create a new R Markdown file using the *From Template* option (see figure).
+Instead of adapting a standard Quarto document, you can use `apaquarto`, which contains an APA7 article template.
 
-```{r out.width="60%"}
-knitr::include_graphics("images/template.png")
-```
+A great extension for Open Science projects!
 
-If you didn't do so, install `papaja`. Run the command `remotes::install_github("crsh/papaja")` from the RStudio console.
-
-`papaja` uses `bookdown` but you do not have to load this package separately.
+-   Write fully reproducible papers in Quarto and produce perfect, APA styled rendered documents in PDF or Word.
+-   Include graphs and tables, designed according to APA style.
+-   `apaquarto` integrates smoothly with .bib files and reference managers like Zotero.
 
 ::: question
--   Create a new R Markdown document from the APA journal template.
+Install `apaquarto`
+:::
+
+-   Go to: <https://github.com/wjschne/apaquarto>
+
+-   Click on Code (1) and then Download Zip (2)
+
+```{r, out.width="100%"}
+knitr::include_graphics("images/github.png")
+```
+
+-   Unzip the downloaded folder on your computer (remember the location).
+
+-   Open the `apaquarto.Rproj` file inside the folder.
+
+-   In `RStudio`, you can now open the template file `template.qmd` . It includes examples of various scenarios you might want to implement (e.g. citations, plots and tables).
+-   Go to Canvas for another example.
+
+::: question
+-   Create a copy of the `template.qmd` file.
 -   Inspect the contents of the template, check out the options.
--   Knit it to pdf (`output : papaja::apa6_pdf`) or Word (`output : papaja::apa6_word`) and inspect the knitted document.
+-   Render it to pdf or Word and inspect the knitted document.
 -   Apply your skills for cross-referencing sections, tables, and figures.
 :::
 
-A manual for `papaja` is available at <https://crsh.github.io/papaja_man/> .
+All information about `apaquarto` is available at <https://github.com/wjschne/apaquarto> .
 
 ### Templates for other journals
 
-The `rticles` package offers R Markdown templates for several journals and some journal publishers.
-
-If you install this package, the journal or publisher templates are shown in the list of templates when you create a new R Markdown document.
+Quarto provides a long list of templates for specific journals. For details, see: https://quarto.org/docs/journals/formats.html.  
 
 ### Dashboards
 
-A dashboard is used to show a group of related data visualizations. Below is a screen shot of an example created with package `flexdashboard`. It uses HTML widgets to show pop-ups when you hover over a graph (in the original dashboard, not in the screen shot below).
+A dashboard is used to show a group of related data visualizations. 
+
+Below is a screen shot of an example created using Quarto an Shiny, and available at https://quarto.org/docs/dashboards/examples/. 
 
 ```{r out.width="100%"}
 knitr::include_graphics("images/dashboard.png")
 ```
 
-Read more about `flexdashboard` at <https://RMarkdown.rstudio.com/flexdashboard/index.html> .
-
-Another package is `shinydashboard`, which uses shiny to create interactive dashboards. See <https://rstudio.github.io/shinydashboard/index.html> for more information.
+Read more about dashboards at <https://quarto.org/docs/dashboards/> .
 
 ## Finalizing the Group Project
 
