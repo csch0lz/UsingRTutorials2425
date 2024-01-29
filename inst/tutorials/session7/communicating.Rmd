@@ -200,10 +200,10 @@ Present summary results as a table with `knitr::kable()` in a code chunk.
 :::
 
 ```{r resultstable, exercise = TRUE, exercise.lines = 8, exercise.eval = TRUE}
-glbwarm %>% 
-  group_by(sex) %>% 
+glbwarm |> 
+  group_by(sex) |> 
   summarise(sex_mean = round(mean(govact), digits=2), 
-            sex_sd = round(sd(govact), digits=2)) %>%
+            sex_sd = round(sd(govact), digits=2)) |> 
   kable(col.names = c("Sex", "Average Score", "Standard Deviation"),
         caption = "Table: Support for government intervention across the sexes.")
 ```
@@ -631,7 +631,6 @@ knitr::include_graphics("images/github.png")
 -   Open the `apaquarto.Rproj` file inside the folder.
 
 -   In `RStudio`, you can now open the template file `template.qmd` . It includes examples of various scenarios you might want to implement (e.g. citations, plots and tables).
--   Go to Canvas for another example.
 
 ::: question
 -   Create a copy of the `template.qmd` file.
@@ -664,10 +663,10 @@ Read more about dashboards at <https://quarto.org/docs/dashboards/> .
 
 Report:
 
--   Submit knitted R Markdown document (HTML, PDF, or Word) & R Markdown file via Canvas.
--   Knitted file must be reproducible from the R Markdown file.
+-   Submit rendered Quarto document (HTML, PDF, or Word) & Quarto file via Canvas.
+-   Rendered file must be reproducible from the Quarto file.
 
-Presentation (15 or 20 minutes per group, not necessarily in R Markdown):
+Presentation (15 or 20 minutes per group, not necessarily in Quarto):
 
 -   Brief description of the data set.
 -   Each group member presents a draft of their graph.
