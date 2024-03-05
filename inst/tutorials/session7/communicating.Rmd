@@ -241,7 +241,6 @@ Quarto allows you to number and cross-reference figures, tables, and sections.
 
 ::: tip
 **Programming Tip**
-
 -   Don't use blanks in Section ID labels or names of code chunks that create a table or figure.
 :::
 
