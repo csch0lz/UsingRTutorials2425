@@ -1,5 +1,5 @@
 ---
-title: "Session 1: Basics, Workflow and First Visualizations"
+title: "Session 1: Welcome, Basics, and First Visualizations"
 output: 
   learnr::tutorial:
     progressive: true
@@ -7,7 +7,7 @@ output:
 runtime: shiny_prerendered
 description: >
   Check your understanding of RStudio, loading packages and data;
-  create basic and more advanced plots with `ggplot()`, receive
+  create basic plots with `ggplot()`, receive
   programming tips, and check out some fancy visualization stuff.
 editor_options: 
   markdown: 
@@ -60,11 +60,12 @@ consumers <- UsingRTutorials::consumers #
 }
 </style>
 ```
+
 ## Overview
 
 -   Welcome and Course Organization
--   Coding in R
--   The Grammar of Graphics with ggplot::
+-   R Basics
+-   First Visualizations: The Grammar of Graphics with ggplot::
 -   Collaboration on the Data Project
 
 ## Course Organization
@@ -104,12 +105,12 @@ We hope you will:
 \- Have a working knowledge of R essentials and be able to get started
 with your own data.\
 - Understand why R is awesome!\
-- Develop know-how to quickly find out what you don’t know.
+- Develop know-how to quickly find out what you don’t know and keep developing independently.
 
 "Frustration is natural when you start programming in R [...]. But while
 you should expect to be a little frustrated, take comfort in that this
 experience is typical and temporary: it happens to everyone, and the
-only way to get over it is to keep trying."
+only way to get over it is to keep trying." (Wickham et al., 2023)
 
 ### Materials
 
@@ -124,7 +125,7 @@ Book:
     exercises (e.g.
     <https://mine-cetinkaya-rundel.github.io/r4ds-solutions/>)
 
-Additional materials: Canvas, MS Teams
+Additional materials: Canvas
 
 ::: emphasis
 Study the syllabus (module guide) on Canvas!
@@ -141,34 +142,43 @@ knitr::include_graphics("images/tidyverse2.png")
 Source:
 <https://r-unimelb.gitbook.io/rbook/into-the-tidyverse/the-tidyverse>
 
-tidyverse suite of packages:
+The tidyverse suite includes several packages. We will mostly focus on:
 
 -   data import: readr::
--   visualization: ggplot2::
 -   data wrangling: dplyr::, tidyr::
--   replicable research: Quarto
+-   visualization: ggplot2::
+
+Replicable research: Quarto
 
 Cheat sheets!
 
-NOTE: The tidyverse package(s) are loaded in the tutorials, so they can
-be used.
+NOTE: The tidyverse package(s) are loaded in the tutorials, so they can be used.
 
 ### Topics
 
 ```{r schedule, echo=FALSE}
-data.frame(Week = c(1, 1, 2, 2, 3, 3, 4, 4),
-           Date = c("Jan 9", "Jan 11", "Jan 16",
-                    "Jan 18", "Jan 23", "Jan 25",
-                    "Jan 30", "Feb 1"),
+data.frame(Week = c(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 7),
+           Date = c("Oct 29", "Oct 31", "Nov 5",
+                    "Nov 7", "Nov 12", "Nov 14",
+                    "Nov 19", "Nov 21", "Nov 26",
+                    "Nov 28", "Dec 3", "Dec 5",
+                    "Dec 10", "Dec 12", "Dec 13"),
            Topics = c(
-             " Basics, Workflow, and First Visualizations",
-             " Transforming and Exploring Data, Reports in Quarto",
-             " Data Tidying and Joins",
-             " Special Data types: Strings, Factors, Dates and Times",
-             " Programming: Functions and BaseR",
-             " A Brief Intro to Modelling",
-             " Communicating results: Finetuning Plot and Reports",
-             " Project Presentation"
+             " Welcome, Basics, and First Visualizations",
+             " Data Wrangling (dplyr::)",
+             " Data Tidying 1",
+             " Data Tidying 2",
+             " Workflow: Quarto, Github",
+             " Special types of data (factors, strings...)",
+             " Visualization",
+             " Intermezzo: Review, Practice, Individual Consultations",
+             " Modelling 1",
+             " Modelling 2",
+             " Programming in R",
+             " Report layout",
+             " Exam Preparation: Review, Practice, and Q&A",
+             " No Class: Individual Exam Preparation",
+             " Exam"
            )) |>
   knitr::kable(format = "html", col.names = c("Week", "Date", "Topics & Chapters"), align = c("l", "l", "l")) |>
   kableExtra::kable_styling(bootstrap_options = "striped", full_width = TRUE)
@@ -178,27 +188,16 @@ data.frame(Week = c(1, 1, 2, 2, 3, 3, 4, 4),
 
 Final grade:
 
-1.  Problem Sets (60%).
-2.  Data Project: reproducible report with one data visualization per
-    team member (40%).
+1.  Data Project: reproducible report with one data visualization per team member (40%).
+2.  On-Campus Exam (60%) 
 
-### Problem Sets
+### Exam
 
-Each problem set consists of two parts:
-
-1.  Coding: Take home assignment consisting of a selection of exercises
-    like those in *R for Data Science*. Assigned to each student on
-    Thursday as Canvas assignment. Submission deadline: following
-    Sunday.
-
-2.  Explanation: In class "test" at the beginning of each Tuesday
-    session (Week 2-4; \~10 min). Add comments to the code you submitted
-    in part 1 to precisely describe a) what the code does, and b) why
-    you performed each operation. Check the
-    [syllabus](https://canvas.uva.nl/courses/40018/assignments/syllabus)
-    for an example.
+The exam consists of a series of coding exercises similar to those in *R for Data Science*. The exam will be held on campus and fully relies on your knowledge of R, meaning that you are not allowed to use the book and will not have access to the internet.
 
 ### Data Project: Tell a visual story
+
+The data project consists of a collective effort (the group part) and an individual effort (the individual part). Rather than working towards one final deadline, we will work according to an adjusted version of a project management procedure called SCRUM (here: SCRUM-light). This means that you will work on the group-project in SCRUM-like sprints (short intervals of about 1 week) and submit intermediary products throughout the course. 
 
 -   Exploratory analysis of a complex data set: Showcase your R skills.
 -   Groups of 5 students.
@@ -208,20 +207,31 @@ Each problem set consists of two parts:
 -   Reproducible: All steps from raw data to final results (Quarto).
 -   *SCRUM-light* project management.
 
-### Visual story example
+### Telling a Visual Story in R
 
-```{r out.width="100%"}
-knitr::include_graphics("images/wolf.png")
+- What's possible?: https://r-graph-gallery.com/
+- Inspiration: Data journalism & Academic Publications
+
+```{r out.width="70%"}
+knitr::include_graphics("images/plotExample1.png")
 ```
 
-Source: <https://interaktiv.morgenpost.de/woelfe-in-deutschland/>
+```{r out.width="70%"}
+knitr::include_graphics("images/plotExample2.png")
+```
+
+```{r out.width="70%"}
+knitr::include_graphics("images/plotExample3.png")
+```
+
+Image source: <https://r-graph-gallery.com/best-r-chart-examples.html>
 
 A visualization requires a lot of data wrangling:
 
--   Selection: Which info do we show?
--   Styling: Do we simplify (model) data?
 -   Combining: Link data from different sources.
+-   Selection: Which info do we (not) show?
 -   Justification: How do we treat missing data?
+-   Styling: Do we simplify (model) data?
 
 ### Get inspired...
 
@@ -241,20 +251,9 @@ Books:
 
 ### Session Organization
 
-Course Content (\~1.5 hours)
-
--   Tue (Week 2-4): Weekly Assignment Part 2: Explanation (\~15 min)
--   Tue: Q&A on last week’s topics & problem sets (Submit more
-    complicated questions on Canvas. Brownie points for creating a
-    reprex - see book Chapter 8).
--   Overview of new topic(s) & practice.
-
-Data Project Collaboration (\~1.5 hours)
-
--   Collaborate in analyzing & visualizing a complex data set.
--   Project management with *SCRUM-light*.
-
-Use your study buddy, come prepared, and bring questions.
+- Come prepared and bring questions.
+- Work on interactive tutorials together. 
+- Some sessions: Review, practice, group work, or Q&A
 
 ### Study Buddies
 
@@ -273,7 +272,7 @@ Recommendations
 -   Discuss the course content, not the group project.
 -   Formulate questions for class.
 
-We will assign a study buddy to you.
+We will randomly assign a suggested study buddy to you on Canvas.
 
 ### SCRUM(-Light)
 
@@ -282,7 +281,7 @@ SCRUM is a framework for managing teamwork in a **systematic** and
 
 What is SCRUM(-Light)?
 
--   Four 1-week *"Sprints"*.
+-   1-week *"Sprints"*.
 -   **Sprint**: Set goals, complete tasks, evaluate.
 -   *SCRUM master*: Oversees and facilitates the *Sprint*.
 -   Detailed procedure on Canvas; Week 1 = guided Sprint.
@@ -298,17 +297,9 @@ Why SCRUM(-Light)?
 
 1.  Alcohol Posts and Alcohol Use.\
 
-2.  Dynamics and Performance of an IT Call Center.\
+2.  Friends and Families.\
 
-3.  Social Evolution.\
-
-4.  Friends and Families.\
-
-5.  German Chancellor Candidates Debate.
-
-6.  EU 2014 elections.\
-
-7.  Or your own... (See Canvas for requirements)
+3.  EU 2014 elections.\
 
 The Canvas ["Data Projects Data
 Sets"](https://canvas.uva.nl/courses/40018/pages/data-project-data-sets?module_item_id=1902862)
@@ -317,11 +308,20 @@ page contains the data and data descriptions.
 Who will work on which complex dataset (and with whom)?
 
 ::: emphasis
-Submit a list of (\~5) team members & a team name on the Canvas
-discussion board during the break.
+Submit a list of (\~5) team members & an (ideally creative) team name on the Canvas
+discussion board.
 :::
 
 ### Questions about the Syllabus?
+
+## Welcome to R and RStudio
+
+-  R: a programming language for statistical computing and graphics.
+-  RStudio: an integrated development environment (IDE) for R. In other words: a user-friendly interface for working with R.
+
+```{r out.width="100%"}
+knitr::include_graphics("images/RStudio.png")
+```
 
 ## Intermezzo: Tutorial Installation
 
@@ -341,7 +341,7 @@ In addition, install this tutorial:
     -   This should also install the `learnr` package.
     -   Be patient! Wait for the message `DONE (gradethis)`.
 -   Install the tutorials:
-    `remotes::install_github("xgaouva/UsingRTutorialsJan2024")`
+    `remotes::install_github("csch0lz/UsingRTutorials2425")`
     -   Answer `no` to question
         `Do you want to install from sources the package which needs compilation?`.
     -   Wait for the message `DONE (UsingRTutorials)`.
@@ -360,8 +360,7 @@ Alternatively:
 
 -   Restart R (Session \> Restart R) to show the tutorials in the
     RStudio *Tutorial* tab.
--   Click *Start Tutorial* for tutorial **Session 1: Basics, Workflow
-    and First Visualizations** in the *Tutorial* tab. (Takes some time!)
+-   Click *Start Tutorial* for tutorial **Session 1** in the *Tutorial* tab. (Takes some time!)
 -   Show the tutorial in a new window with the
     <img src="images/ShowNewWindow.png" width="234px"/> button.
 -   While you are working with the tutorial, you can also work in
@@ -376,13 +375,13 @@ Alternatively:
 
 Your tutorial answers are saved until you press *Start Over*.
 
-Use button <img src="images/stopButton.png"/> to stop the tutorial.
+Use button <img src="images/stopButton.png"/> in the top right corner of the RStudio console to stop the tutorial.
 
 ## Coding in R: Using functions
 
 We use functions in R to accomplish something.
 
-`funtion_name(argument_name = value, ...)`
+`function_name(argument_name = value, ...)`
 
 Function arguments specify the input for a function:
 
@@ -465,7 +464,7 @@ seq(10, 1, 1)
 
 We can assign the results of a function to a data object:
 
-`left_hand_object <- funtion_name(argument_name = value, ...)`
+`left_hand_object <- function_name(argument_name = value, ...)`
 
 If left-hand data object:
 
@@ -1328,9 +1327,8 @@ output$regPlot <- renderPlot({
 
 Book on ggplot2:
 
--   Hadley Wickham (2016), ggplot2. Elegant Graphics for Data Analysis.
-    Springer. <https://www.springer.com/gp/book/9783319242750> or build
-    it yourself on github: <https://github.com/hadley/ggplot2-book>
+-   Hadley Wickham, ggplot2. Elegant Graphics for Data Analysis.
+    Springer. <https://ggplot2-book.org/> 
 
 Interactive training:
 
@@ -1725,20 +1723,7 @@ Start simple!
 If you want to create a Shiny app, first create your plot with
 `ggplot()`, then add it to the Shiny app.
 
-## Collaboration on the Data Project
-
-### Work as a team. Tell a visual story.
-
--   Exploratory analysis of a complex data set: Showcase your R skills.
-
--   Group effort: Tidying the dataset
-
--   Individual effort: One data visualization per student.
-
--   Reproducible: All steps from raw data to final results (Quarto).
-
--   Your group work will be guided by our SCRUM-light project management
-    procedure.
+## Start working on the Data Project
 
 ### SCRUM-Light
 
@@ -1759,10 +1744,10 @@ empirically informed manner.
 
 | Term            | Using R Definition                                                                                                                                                |
 |-----------------|-------------------------------------------------------|
-| Sprints         | Short intervals in which the team sets goals, completes tasks and then evaluates. We'll have four, 1-week sprints (with sprint 1 being a bit shorter: Tue - Thu). |
-| SCRUM Master    | Person who oversees and facilitates the sprint. Choose a different team member per week.                                                                          |
-| Product         | The final data project                                                                                                                                            |
-| Product Goals   | The grading criteria the product needs to fulfill (see Syllabus).                                                                                                 |
+| Sprints         | Short intervals in which the team sets goals, completes tasks and then evaluates. We'll have several 1-week sprints (with sprint 1 being a bit shorter: Tue - Thu). |
+| SCRUM Master    | Person who oversees and facilitates the sprint. Assign a different team member per week.                                                                          |
+| Product         | Intermediate parts of the project that are handed it at specified deadlines.                                                                                                                                            |
+| Product Goals   | The grading criteria each product needs to fulfill (see Syllabus).                                                                                                 |
 | Product Backlog | A detailed to do lists that translates the product goals into concrete smaller tasks needed to achieve each product goal.                                         |
 
 The SCRUM(-light) procedure is described in detail on
@@ -1779,7 +1764,7 @@ template for Week 1 in the [SCRUM
 guide](https://canvas.uva.nl/courses/40018/pages/scrum-procedure?module_item_id=1902863)
 on Canvas.
 
-### Apply your skills from Session 1 to your Data Project
+### Complete as part of Sprint 1: Apply your skills from Session 1 to your Data Project
 
 Plots are very useful for getting a first idea of your data.
 
@@ -1842,15 +1827,9 @@ ggplot()
 Note: As long as you do not press the *Start Over* button, the code (and
 plots) are preserved in this tutorial, so you can use the code later.
 
-### SCRUM masters update
-
--   Use 1-2 minutes (per project group) to update the other groups on
-    your first Sprint plan.
-
 ### We’ve made a start!
 
 -   Contact your buddy.
 -   Study the assigned book chapters before the next session.
 -   Submit questions about the course material on Canvas.
--   SCRUM masters: Make sure your teams are organized to complete Sprint
-    1 by Thursday.
+-   SCRUM masters: Make sure your teams are organized to complete Sprint 1 by Thursday.
