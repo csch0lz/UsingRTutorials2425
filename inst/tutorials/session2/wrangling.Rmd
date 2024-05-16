@@ -1,15 +1,12 @@
 ---
-title: "Session 2: Descriptive Statistics and Reproducible Reports"
+title: "Session 2: Data Wrangling (dplyr::) & Quarto Basics"
 output: 
   learnr::tutorial:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
 description: >
-    Organize your work, check your understanding of the basic tidyverse data wrangling 
-    functions, learn how to wrangle in steps and check each step,
-    and start working on your first reproducible research: your
-    Data Project as Quarto file.
+   Basic tidyverse data wrangling functions: Learn how to wrangle in steps and check each step. Start using Quarto for reproducible research reports.
 ---
 
 ```{r setup, include=FALSE}
@@ -58,14 +55,10 @@ Glasgow <- UsingRTutorials::Glasgow
 ```
 ## Overview
 
--   First 1.5 hours: Course content
-    -   Q&A
-    -   Data Wrangling with `dplyr::`
-    -   Workflow and Data Import
-    -   Integrating text and data: Quarto
--   Second 1.5 hours: Data project
-    -   Finish Sprint #1, plan and start Sprint #2
-    -   Plenary updates by the SCRUM masters
+-   Q&A
+-   Data Wrangling with `dplyr::`
+-   Workflow and Data Import
+-   Quarto basics: Integrating text and data for reproducible research
 
 ## Q&A
 
@@ -942,13 +935,19 @@ ggplot() +
 Play around with this plot. For example, use `geom_text()` to add the values of the group means to the plot.
 :::
 
-## Workflow and Data Import
+## Quarto Basics: Integrating text and data for reproducible research
 
 From this point on in this tutorial, you are supposed to work in RStudio.
 
+Everything you do within one R Session is stored in your R Workspace. If you close RStudio, you lose everything you did in that session, unless you save it. You can choose to save your work in different file types. We will discuss:
+
+- R Projects
+- R Scripts
+- Quarto
+
 ### R project
 
-An R Project keeps everything in the same place.
+An R Project keeps all the files relevant to one project in the same place.
 
 ::: question
 -   Create a new project for your Data Project: *File\>New Project...*
@@ -966,38 +965,6 @@ The project directory is the working directory.
 Store the Data Project data files in this directory.
 :::
 
-### R Workspace
-
-While you are working on a project, R collects information, creates data objects, and so on.
-
--   Everything in R's memory is called the workspace.
--   Part of the workspace is shown in RStudio's *Environment* panel.
-
-The workspace can be saved:
-
--   RStudio menu: *Session \> Save Workspace As...*;
--   R command: `save.image("filename.RData")`)
-
-And loaded:
-
--   RStudio menu: *Session \> Load Workspace...*;
--   R command: `load("filename.RData")`).
--   An R work space has file name extension `.RData`.
-
-### 
-
-RStudio's standard settings save and load the workspace when you close and open a project. This is risky. It is better to have a clean, reproducible workspace without data from previous runs.
-
-::: question
-So, adjust the global settings of RStudio:
-
--   Go to *Tools\>Global Options*,
--   Uncheck *Restore .RData into workspace at startup*,
--   Select *Never* for *Save workspace to .RData on exit*.
-:::
-
-*Global settings need to be set only once.*
-
 ### R Script
 
 -   R version of SPSS syntax.
@@ -1006,13 +973,13 @@ So, adjust the global settings of RStudio:
 
 We are not going to use script files because we embed all our code within the Quarto document (next topic).
 
-## Quarto: Reproducible Research
+### Quarto: Reproducible Research
 
 ### 
 
-For both the weekly problem sets and your Data Project, you will be working with Quarto.
+You will be working with Quarto to complete your group project.
 
-An Quarto file contains all steps from data to results:
+A Quarto file contains all steps from data to results:
 
 -   Commands to clean and analyze data.
 -   Comments to explain steps in data cleaning and analysis.
@@ -1022,7 +989,7 @@ An Quarto file contains all steps from data to results:
 Eve`R`ything in one place!
 :::
 
-### Quarto YAML
+#### Quarto YAML
 
 ::: question
 Open a new Quarto document in RStudio.
@@ -1037,7 +1004,7 @@ Adjust the first part of the document, called YAML (title, authors, date) and ad
 -   Alternatively, use the cheat sheet (RStudio: *Help \> Cheat Sheets \> Browse cheat Sheets*).
 :::
 
-### First code chunk
+#### First code chunk
 
 Good practice:
 
@@ -1050,7 +1017,7 @@ Good practice:
 Adjust the settings in your Quarto document and load the tidyverse package.
 :::
 
-### Code chunk names
+#### Code chunk names
 
 A code chunk may have a name (label), e.g., `chunk 3: make a table` in the pic below):
 
@@ -1063,7 +1030,7 @@ Another option for quick navigation:
 
 -   Open a table of contents of the sections and sub-sections: document outline button (at the top right).
 
-### Load your data
+#### Load your data
 
 To work with your data, they must be loaded.
 
@@ -1113,7 +1080,7 @@ Now, you are sure that the data will be read in the right way.
 -   In a code chunk, press Ctr/Cmd-Enter to run the command in which your cursor is positioned.
 :::
 
-### Quarto plot
+#### Quarto plot
 
 Code chunks that produce a plot will show a plot in a knitted document.
 
@@ -1139,7 +1106,7 @@ Main options for a code chunk creating a plot (chapter 28.6):
 
 :::
 
-### Adding (formatted) text
+#### Adding (formatted) text
 
 ::: question
 Now, add a description of the plot or data file for the reader of the document.
@@ -1160,15 +1127,13 @@ Some often used text formatting in Quarto.
 -   superscript^2^ and subscript~2~
 ```
 
-### Render to PDF
+#### Render to PDF
 
 Render an Quarto with the Render button.
 
 
 
 ![](images/render.png){width="397"}
-
-
 Render to HTML:
 
 -   Is fastest.
@@ -1198,34 +1163,12 @@ format:
 
 YAML option `keep_tex: TRUE` saves the TeX file (extension `.tex`), which you can open in a TeX editor, for example [overleaf](https://www.overleaf.com/) or [Texmaker](https://www.xm1math.net/texmaker/).
 
-## Data Project
-
-Start working on the Quarto document for your Data Project in RStudio.
-
--   Decide how you are going to collaborate on one Quarto document.
--   Sprint 1 Review & Sprint 1 Retrospective.
--   Sprint 2 Planning.
--   Remaining time: Work on the Sprint 2 Backlog.
-
-## Plenary updates Sprint 1 SCRUM masters
-
-Last 15 minutes of the session.
-
-## Reminders
-
-### Problem Set 1
-
--   Available from 1 PM today.
--   Download **Quarto** document with assigned exercises and accompanying data set from Canvas.\
--   Add answers and R code in the **Quarto** document.\
--   Render **Quarto** document to PDF or Word.
--   Submit **Quarto** document and PDF or Word document to the Canvas assignment.\
--   Submission deadline: Sunday, 12 PM (noon).\
--   Lecturer's feedback returned in the PDF or Word document.
-
-### And as always...
+## That's it for today.
 
 -   Study course content
--   Meet your buddy
--   Work on Sprint 2
+-   Meet your study buddy
+-   Next steps group project:
+    -   Start working on the Quarto document for your Data Project in RStudio.
+    -   Sprint 1 Review & Sprint 1 Retrospective
+    -   Sprint 2 Planning
 -   **Sprint 2 SCRUM masters: Keep your team on course!**
