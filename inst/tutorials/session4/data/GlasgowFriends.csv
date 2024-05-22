@@ -1,0 +1,1558 @@
+student,neighbourhood,schooldist,hoodname,age,sex,smoking_at_home,smoking_parents,smoking_siblings,alcohol,cannabis,tobacco,money,romantic,wave,friend_1,friend_2,friend_3,friend_4,friend_5,friend_6,bestfriend,bfperiod,bfwave
+s001,1,0.9,Neighbourhood A,13.3,girl,no,no,no,3 once a month,1 none,2 occasional,6.2,no,t1,s033,s028,NA,NA,NA,NA,s033,from,t1
+s001,1,0.9,Neighbourhood A,13.3,girl,no,no,no,1 none,1 none,1 none,5,no,t2,s033,s027,s093,NA,NA,NA,s033,from,t1
+s001,1,0.9,Neighbourhood A,13.3,girl,no,no,no,3 once a month,1 none,1 none,12,yes,t3,s033,s027,s028,s123,NA,NA,s033,from,t1
+s001,1,0.9,Neighbourhood A,13.3,girl,no,no,no,3 once a month,1 none,2 occasional,6.2,no,t1,s033,s028,NA,NA,NA,NA,s033,to,t3
+s001,1,0.9,Neighbourhood A,13.3,girl,no,no,no,1 none,1 none,1 none,5,no,t2,s033,s027,s093,NA,NA,NA,s033,to,t3
+s001,1,0.9,Neighbourhood A,13.3,girl,no,no,no,3 once a month,1 none,1 none,12,yes,t3,s033,s027,s028,s123,NA,NA,s033,to,t3
+s003,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,2 once or twice a year,2 tried once,3 regular,8,yes,t1,s016,s028,s058,s067,NA,NA,s063,from,t2
+s003,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,2 once or twice a year,3 occasional,3 regular,25,yes,t2,s063,s072,s154,NA,NA,NA,s063,from,t2
+s003,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,2 once or twice a year,3 occasional,3 regular,17,yes,t3,s016,s064,s072,NA,NA,NA,s063,from,t2
+s003,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,2 once or twice a year,2 tried once,3 regular,8,yes,t1,s016,s028,s058,s067,NA,NA,s063,to,t2
+s003,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,2 once or twice a year,3 occasional,3 regular,25,yes,t2,s063,s072,s154,NA,NA,NA,s063,to,t2
+s003,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,2 once or twice a year,3 occasional,3 regular,17,yes,t3,s016,s064,s072,NA,NA,NA,s063,to,t2
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t1,s008,s012,s015,s025,s039,s089,s089,from,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s008,s012,s015,s039,s089,NA,s089,from,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,1 none,1 none,7,no,t3,s089,s127,s008,s039,s118,NA,s089,from,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t1,s008,s012,s015,s025,s039,s089,s089,to,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s008,s012,s015,s039,s089,NA,s089,to,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,1 none,1 none,7,no,t3,s089,s127,s008,s039,s118,NA,s089,to,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t1,s008,s012,s015,s025,s039,s089,s127,from,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s008,s012,s015,s039,s089,NA,s127,from,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,1 none,1 none,7,no,t3,s089,s127,s008,s039,s118,NA,s127,from,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t1,s008,s012,s015,s025,s039,s089,s127,to,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s008,s012,s015,s039,s089,NA,s127,to,t3
+s004,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,1 none,1 none,7,no,t3,s089,s127,s008,s039,s118,NA,s127,to,t3
+s005,3,3.69,Neighbourhood C,13.6,boy,no,no,no,2 once or twice a year,1 none,1 none,3.5,yes,t1,s035,s006,s010,s044,s051,NA,s035,from,t1
+s005,3,3.69,Neighbourhood C,13.6,boy,no,no,no,3 once a month,1 none,1 none,3,yes,t2,s035,s051,s101,s149,NA,NA,s035,from,t1
+s005,3,3.69,Neighbourhood C,13.6,boy,no,no,no,3 once a month,1 none,1 none,10,no,t3,s035,s051,s075,s077,s101,NA,s035,from,t1
+s005,3,3.69,Neighbourhood C,13.6,boy,no,no,no,2 once or twice a year,1 none,1 none,3.5,yes,t1,s035,s006,s010,s044,s051,NA,s035,to,t3
+s005,3,3.69,Neighbourhood C,13.6,boy,no,no,no,3 once a month,1 none,1 none,3,yes,t2,s035,s051,s101,s149,NA,NA,s035,to,t3
+s005,3,3.69,Neighbourhood C,13.6,boy,no,no,no,3 once a month,1 none,1 none,10,no,t3,s035,s051,s075,s077,s101,NA,s035,to,t3
+s006,1,0.9,Neighbourhood A,13.8,boy,yes,no,yes,3 once a month,3 occasional,3 regular,5,no,t1,s016,s123,NA,NA,NA,NA,s136,from,t3
+s006,1,0.9,Neighbourhood A,13.8,boy,yes,no,yes,2 once or twice a year,3 occasional,3 regular,8,no,t2,s057,NA,NA,NA,NA,NA,s136,from,t3
+s006,1,0.9,Neighbourhood A,13.8,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,30,no,t3,s136,s123,s146,NA,NA,NA,s136,from,t3
+s006,1,0.9,Neighbourhood A,13.8,boy,yes,no,yes,3 once a month,3 occasional,3 regular,5,no,t1,s016,s123,NA,NA,NA,NA,s136,to,t3
+s006,1,0.9,Neighbourhood A,13.8,boy,yes,no,yes,2 once or twice a year,3 occasional,3 regular,8,no,t2,s057,NA,NA,NA,NA,NA,s136,to,t3
+s006,1,0.9,Neighbourhood A,13.8,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,30,no,t3,s136,s123,s146,NA,NA,NA,s136,to,t3
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t1,s026,s004,s011,s015,s017,s023,s008,from,t3
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t2,s026,s004,s008,s011,s015,NA,s008,from,t3
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t3,s008,s011,s015,s068,s085,s095,s008,from,t3
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t1,s026,s004,s011,s015,s017,s023,s008,to,t3
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t2,s026,s004,s008,s011,s015,NA,s008,to,t3
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t3,s008,s011,s015,s068,s085,s095,s008,to,t3
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t1,s026,s004,s011,s015,s017,s023,s026,from,t1
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t2,s026,s004,s008,s011,s015,NA,s026,from,t1
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t3,s008,s011,s015,s068,s085,s095,s026,from,t1
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t1,s026,s004,s011,s015,s017,s023,s026,to,t2
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t2,s026,s004,s008,s011,s015,NA,s026,to,t2
+s007,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t3,s008,s011,s015,s068,s085,s095,s026,to,t2
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,8.5,yes,t1,s026,s004,s007,s012,s015,s039,s007,from,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,10.5,no,t2,s026,s039,s004,s012,s118,s127,s007,from,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,11,no,t3,s007,s011,s039,s089,s012,s043,s007,from,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,8.5,yes,t1,s026,s004,s007,s012,s015,s039,s007,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,10.5,no,t2,s026,s039,s004,s012,s118,s127,s007,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,11,no,t3,s007,s011,s039,s089,s012,s043,s007,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,8.5,yes,t1,s026,s004,s007,s012,s015,s039,s011,from,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,10.5,no,t2,s026,s039,s004,s012,s118,s127,s011,from,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,11,no,t3,s007,s011,s039,s089,s012,s043,s011,from,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,8.5,yes,t1,s026,s004,s007,s012,s015,s039,s011,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,10.5,no,t2,s026,s039,s004,s012,s118,s127,s011,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,11,no,t3,s007,s011,s039,s089,s012,s043,s011,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,8.5,yes,t1,s026,s004,s007,s012,s015,s039,s026,from,t1
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,10.5,no,t2,s026,s039,s004,s012,s118,s127,s026,from,t1
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,11,no,t3,s007,s011,s039,s089,s012,s043,s026,from,t1
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,8.5,yes,t1,s026,s004,s007,s012,s015,s039,s026,to,t2
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,10.5,no,t2,s026,s039,s004,s012,s118,s127,s026,to,t2
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,11,no,t3,s007,s011,s039,s089,s012,s043,s026,to,t2
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,8.5,yes,t1,s026,s004,s007,s012,s015,s039,s039,from,t2
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,10.5,no,t2,s026,s039,s004,s012,s118,s127,s039,from,t2
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,11,no,t3,s007,s011,s039,s089,s012,s043,s039,from,t2
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,8.5,yes,t1,s026,s004,s007,s012,s015,s039,s039,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,10.5,no,t2,s026,s039,s004,s012,s118,s127,s039,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,11,no,t3,s007,s011,s039,s089,s012,s043,s039,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,8.5,yes,t1,s026,s004,s007,s012,s015,s039,s089,from,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,10.5,no,t2,s026,s039,s004,s012,s118,s127,s089,from,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,11,no,t3,s007,s011,s039,s089,s012,s043,s089,from,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,8.5,yes,t1,s026,s004,s007,s012,s015,s039,s089,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,10.5,no,t2,s026,s039,s004,s012,s118,s127,s089,to,t3
+s008,1,0.9,Neighbourhood A,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,11,no,t3,s007,s011,s039,s089,s012,s043,s089,to,t3
+s009,2,2.26,Neighbourhood B,13.1,girl,yes,yes,no,4 once a week,1 none,1 none,2.5,no,t1,s019,s013,s104,s115,NA,NA,s019,from,t1
+s009,2,2.26,Neighbourhood B,13.1,girl,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s019,from,t1
+s009,2,2.26,Neighbourhood B,13.1,girl,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s019,from,t1
+s009,2,2.26,Neighbourhood B,13.1,girl,yes,yes,no,4 once a week,1 none,1 none,2.5,no,t1,s019,s013,s104,s115,NA,NA,s019,to,t1
+s009,2,2.26,Neighbourhood B,13.1,girl,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s019,to,t1
+s009,2,2.26,Neighbourhood B,13.1,girl,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s019,to,t1
+s012,2,2.26,Neighbourhood B,13,girl,no,no,no,3 once a month,1 none,1 none,6,no,t1,s004,s015,s017,s025,s039,s089,s043,from,t3
+s012,2,2.26,Neighbourhood B,13,girl,no,no,no,3 once a month,2 tried once,1 none,7,yes,t2,s008,s011,s015,s043,NA,NA,s043,from,t3
+s012,2,2.26,Neighbourhood B,13,girl,no,no,no,4 once a week,3 occasional,1 none,20,no,t3,s043,s004,s089,NA,NA,NA,s043,from,t3
+s012,2,2.26,Neighbourhood B,13,girl,no,no,no,3 once a month,1 none,1 none,6,no,t1,s004,s015,s017,s025,s039,s089,s043,to,t3
+s012,2,2.26,Neighbourhood B,13,girl,no,no,no,3 once a month,2 tried once,1 none,7,yes,t2,s008,s011,s015,s043,NA,NA,s043,to,t3
+s012,2,2.26,Neighbourhood B,13,girl,no,no,no,4 once a week,3 occasional,1 none,20,no,t3,s043,s004,s089,NA,NA,NA,s043,to,t3
+s014,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t1,s002,s022,s024,s117,s148,NA,s148,from,t2
+s014,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,3 once a month,2 tried once,1 none,10,no,t2,s148,s074,s117,s120,NA,NA,s148,from,t2
+s014,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,2 once or twice a year,1 none,1 none,30,no,t3,s022,s038,s085,s148,NA,NA,s148,from,t2
+s014,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t1,s002,s022,s024,s117,s148,NA,s148,to,t2
+s014,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,3 once a month,2 tried once,1 none,10,no,t2,s148,s074,s117,s120,NA,NA,s148,to,t2
+s014,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,2 once or twice a year,1 none,1 none,30,no,t3,s022,s038,s085,s148,NA,NA,s148,to,t2
+s017,2,2.26,Neighbourhood B,13.7,girl,yes,yes,yes,3 once a month,1 none,1 none,1.5,no,t1,s004,s007,s008,s015,s025,s026,s156,from,t2
+s017,2,2.26,Neighbourhood B,13.7,girl,yes,yes,yes,2 once or twice a year,1 none,1 none,-1,yes,t2,s156,s007,NA,NA,NA,NA,s156,from,t2
+s017,2,2.26,Neighbourhood B,13.7,girl,yes,yes,yes,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s156,from,t2
+s017,2,2.26,Neighbourhood B,13.7,girl,yes,yes,yes,3 once a month,1 none,1 none,1.5,no,t1,s004,s007,s008,s015,s025,s026,s156,to,t2
+s017,2,2.26,Neighbourhood B,13.7,girl,yes,yes,yes,2 once or twice a year,1 none,1 none,-1,yes,t2,s156,s007,NA,NA,NA,NA,s156,to,t2
+s017,2,2.26,Neighbourhood B,13.7,girl,yes,yes,yes,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s156,to,t2
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,1,no,t1,s022,s138,s095,NA,NA,NA,s022,from,t1
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,NA,1 none,1 none,10,no,t2,s138,s021,s022,NA,NA,NA,s022,from,t1
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,7,no,t3,s091,s108,s138,s022,s100,NA,s022,from,t1
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,1,no,t1,s022,s138,s095,NA,NA,NA,s022,to,t1
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,NA,1 none,1 none,10,no,t2,s138,s021,s022,NA,NA,NA,s022,to,t1
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,7,no,t3,s091,s108,s138,s022,s100,NA,s022,to,t1
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,1,no,t1,s022,s138,s095,NA,NA,NA,s091,from,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,NA,1 none,1 none,10,no,t2,s138,s021,s022,NA,NA,NA,s091,from,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,7,no,t3,s091,s108,s138,s022,s100,NA,s091,from,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,1,no,t1,s022,s138,s095,NA,NA,NA,s091,to,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,NA,1 none,1 none,10,no,t2,s138,s021,s022,NA,NA,NA,s091,to,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,7,no,t3,s091,s108,s138,s022,s100,NA,s091,to,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,1,no,t1,s022,s138,s095,NA,NA,NA,s108,from,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,NA,1 none,1 none,10,no,t2,s138,s021,s022,NA,NA,NA,s108,from,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,7,no,t3,s091,s108,s138,s022,s100,NA,s108,from,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,1,no,t1,s022,s138,s095,NA,NA,NA,s108,to,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,NA,1 none,1 none,10,no,t2,s138,s021,s022,NA,NA,NA,s108,to,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,7,no,t3,s091,s108,s138,s022,s100,NA,s108,to,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,1,no,t1,s022,s138,s095,NA,NA,NA,s138,from,t1
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,NA,1 none,1 none,10,no,t2,s138,s021,s022,NA,NA,NA,s138,from,t1
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,7,no,t3,s091,s108,s138,s022,s100,NA,s138,from,t1
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,1,no,t1,s022,s138,s095,NA,NA,NA,s138,to,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,NA,1 none,1 none,10,no,t2,s138,s021,s022,NA,NA,NA,s138,to,t3
+s018,2,2.26,Neighbourhood B,13.6,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,7,no,t3,s091,s108,s138,s022,s100,NA,s138,to,t3
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,4 once a week,3 occasional,3 regular,1,no,t1,s009,s013,s115,NA,NA,NA,s009,from,t1
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,5 more than once a week,2 tried once,3 regular,10,no,t2,s013,s115,NA,NA,NA,NA,s009,from,t1
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,4 once a week,3 occasional,3 regular,20,no,t3,s070,NA,NA,NA,NA,NA,s009,from,t1
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,4 once a week,3 occasional,3 regular,1,no,t1,s009,s013,s115,NA,NA,NA,s009,to,t1
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,5 more than once a week,2 tried once,3 regular,10,no,t2,s013,s115,NA,NA,NA,NA,s009,to,t1
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,4 once a week,3 occasional,3 regular,20,no,t3,s070,NA,NA,NA,NA,NA,s009,to,t1
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,4 once a week,3 occasional,3 regular,1,no,t1,s009,s013,s115,NA,NA,NA,s070,from,t3
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,5 more than once a week,2 tried once,3 regular,10,no,t2,s013,s115,NA,NA,NA,NA,s070,from,t3
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,4 once a week,3 occasional,3 regular,20,no,t3,s070,NA,NA,NA,NA,NA,s070,from,t3
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,4 once a week,3 occasional,3 regular,1,no,t1,s009,s013,s115,NA,NA,NA,s070,to,t3
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,5 more than once a week,2 tried once,3 regular,10,no,t2,s013,s115,NA,NA,NA,NA,s070,to,t3
+s019,3,3.69,Neighbourhood C,13.1,girl,yes,no,yes,4 once a week,3 occasional,3 regular,20,no,t3,s070,NA,NA,NA,NA,NA,s070,to,t3
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,12.5,no,t1,s018,s032,s151,NA,NA,NA,s018,from,t1
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,15,no,t2,s151,s002,NA,NA,NA,NA,s018,from,t1
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,20,no,t3,s036,s151,s002,s014,s037,s120,s018,from,t1
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,12.5,no,t1,s018,s032,s151,NA,NA,NA,s018,to,t1
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,15,no,t2,s151,s002,NA,NA,NA,NA,s018,to,t1
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,20,no,t3,s036,s151,s002,s014,s037,s120,s018,to,t1
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,12.5,no,t1,s018,s032,s151,NA,NA,NA,s036,from,t3
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,15,no,t2,s151,s002,NA,NA,NA,NA,s036,from,t3
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,20,no,t3,s036,s151,s002,s014,s037,s120,s036,from,t3
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,12.5,no,t1,s018,s032,s151,NA,NA,NA,s036,to,t3
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,15,no,t2,s151,s002,NA,NA,NA,NA,s036,to,t3
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,20,no,t3,s036,s151,s002,s014,s037,s120,s036,to,t3
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,12.5,no,t1,s018,s032,s151,NA,NA,NA,s151,from,t2
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,15,no,t2,s151,s002,NA,NA,NA,NA,s151,from,t2
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,20,no,t3,s036,s151,s002,s014,s037,s120,s151,from,t2
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,12.5,no,t1,s018,s032,s151,NA,NA,NA,s151,to,t3
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,15,no,t2,s151,s002,NA,NA,NA,NA,s151,to,t3
+s022,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,1 none,1 none,20,no,t3,s036,s151,s002,s014,s037,s120,s151,to,t3
+s023,4,NA,NA,13.1,boy,yes,yes,no,NA,1 none,1 none,5,no,t1,s026,NA,NA,NA,NA,NA,s026,from,t3
+s023,4,NA,NA,13.1,boy,yes,yes,no,NA,1 none,1 none,2,no,t2,s007,s020,s021,s026,NA,NA,s026,from,t3
+s023,4,NA,NA,13.1,boy,yes,yes,no,NA,1 none,1 none,5,no,t3,s026,NA,NA,NA,NA,NA,s026,from,t3
+s023,4,NA,NA,13.1,boy,yes,yes,no,NA,1 none,1 none,5,no,t1,s026,NA,NA,NA,NA,NA,s026,to,t3
+s023,4,NA,NA,13.1,boy,yes,yes,no,NA,1 none,1 none,2,no,t2,s007,s020,s021,s026,NA,NA,s026,to,t3
+s023,4,NA,NA,13.1,boy,yes,yes,no,NA,1 none,1 none,5,no,t3,s026,NA,NA,NA,NA,NA,s026,to,t3
+s025,2,2.26,Neighbourhood B,13.4,girl,yes,yes,no,3 once a month,1 none,1 none,20,no,t1,s012,s004,s007,s015,s017,s019,s012,from,t1
+s025,2,2.26,Neighbourhood B,13.4,girl,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s012,from,t1
+s025,2,2.26,Neighbourhood B,13.4,girl,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s012,from,t1
+s025,2,2.26,Neighbourhood B,13.4,girl,yes,yes,no,3 once a month,1 none,1 none,20,no,t1,s012,s004,s007,s015,s017,s019,s012,to,t1
+s025,2,2.26,Neighbourhood B,13.4,girl,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s012,to,t1
+s025,2,2.26,Neighbourhood B,13.4,girl,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s012,to,t1
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,7,yes,t1,s007,s008,s015,s017,s023,NA,s007,from,t1
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,NA,1 none,1 none,8.5,no,t2,s007,s008,s017,s023,NA,NA,s007,from,t1
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t3,s007,s008,s023,NA,NA,NA,s007,from,t1
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,7,yes,t1,s007,s008,s015,s017,s023,NA,s007,to,t2
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,NA,1 none,1 none,8.5,no,t2,s007,s008,s017,s023,NA,NA,s007,to,t2
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t3,s007,s008,s023,NA,NA,NA,s007,to,t2
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,7,yes,t1,s007,s008,s015,s017,s023,NA,s008,from,t1
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,NA,1 none,1 none,8.5,no,t2,s007,s008,s017,s023,NA,NA,s008,from,t1
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t3,s007,s008,s023,NA,NA,NA,s008,from,t1
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,7,yes,t1,s007,s008,s015,s017,s023,NA,s008,to,t2
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,NA,1 none,1 none,8.5,no,t2,s007,s008,s017,s023,NA,NA,s008,to,t2
+s026,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t3,s007,s008,s023,NA,NA,NA,s008,to,t2
+s027,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,27,no,t1,s028,s034,s065,s093,NA,NA,s093,from,t2
+s027,1,0.9,Neighbourhood A,13.1,girl,no,no,no,5 more than once a week,1 none,2 occasional,20,no,t2,s093,s001,s028,s033,NA,NA,s093,from,t2
+s027,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,2 occasional,25,yes,t3,s093,s001,s028,s029,s033,s084,s093,from,t2
+s027,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,27,no,t1,s028,s034,s065,s093,NA,NA,s093,to,t3
+s027,1,0.9,Neighbourhood A,13.1,girl,no,no,no,5 more than once a week,1 none,2 occasional,20,no,t2,s093,s001,s028,s033,NA,NA,s093,to,t3
+s027,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,2 occasional,25,yes,t3,s093,s001,s028,s029,s033,s084,s093,to,t3
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,3 regular,8,yes,t1,s003,s031,s034,s041,s065,NA,s052,from,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,2 occasional,10,no,t2,s052,s087,s001,s027,s072,s157,s052,from,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,1 none,40,no,t3,s001,s027,s033,s034,s063,s093,s052,from,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,3 regular,8,yes,t1,s003,s031,s034,s041,s065,NA,s052,to,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,2 occasional,10,no,t2,s052,s087,s001,s027,s072,s157,s052,to,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,1 none,40,no,t3,s001,s027,s033,s034,s063,s093,s052,to,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,3 regular,8,yes,t1,s003,s031,s034,s041,s065,NA,s087,from,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,2 occasional,10,no,t2,s052,s087,s001,s027,s072,s157,s087,from,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,1 none,40,no,t3,s001,s027,s033,s034,s063,s093,s087,from,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,3 regular,8,yes,t1,s003,s031,s034,s041,s065,NA,s087,to,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,2 occasional,10,no,t2,s052,s087,s001,s027,s072,s157,s087,to,t2
+s028,1,0.9,Neighbourhood A,13.5,girl,yes,yes,no,5 more than once a week,2 tried once,1 none,40,no,t3,s001,s027,s033,s034,s063,s093,s087,to,t2
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,20,no,t1,s016,s126,s131,s120,NA,NA,s016,from,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,2 occasional,25,yes,t2,s034,s126,s072,s131,NA,NA,s016,from,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,30,yes,t3,s034,s093,NA,NA,NA,NA,s016,from,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,20,no,t1,s016,s126,s131,s120,NA,NA,s016,to,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,2 occasional,25,yes,t2,s034,s126,s072,s131,NA,NA,s016,to,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,30,yes,t3,s034,s093,NA,NA,NA,NA,s016,to,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,20,no,t1,s016,s126,s131,s120,NA,NA,s034,from,t2
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,2 occasional,25,yes,t2,s034,s126,s072,s131,NA,NA,s034,from,t2
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,30,yes,t3,s034,s093,NA,NA,NA,NA,s034,from,t2
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,20,no,t1,s016,s126,s131,s120,NA,NA,s034,to,t3
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,2 occasional,25,yes,t2,s034,s126,s072,s131,NA,NA,s034,to,t3
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,30,yes,t3,s034,s093,NA,NA,NA,NA,s034,to,t3
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,20,no,t1,s016,s126,s131,s120,NA,NA,s126,from,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,2 occasional,25,yes,t2,s034,s126,s072,s131,NA,NA,s126,from,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,30,yes,t3,s034,s093,NA,NA,NA,NA,s126,from,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,20,no,t1,s016,s126,s131,s120,NA,NA,s126,to,t2
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,2 occasional,25,yes,t2,s034,s126,s072,s131,NA,NA,s126,to,t2
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,30,yes,t3,s034,s093,NA,NA,NA,NA,s126,to,t2
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,20,no,t1,s016,s126,s131,s120,NA,NA,s131,from,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,2 occasional,25,yes,t2,s034,s126,s072,s131,NA,NA,s131,from,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,30,yes,t3,s034,s093,NA,NA,NA,NA,s131,from,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,20,no,t1,s016,s126,s131,s120,NA,NA,s131,to,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,2 occasional,25,yes,t2,s034,s126,s072,s131,NA,NA,s131,to,t1
+s029,3,3.69,Neighbourhood C,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,30,yes,t3,s034,s093,NA,NA,NA,NA,s131,to,t1
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,1 none,1 none,1 none,10,yes,t1,s030,s027,s028,s041,s122,NA,s030,from,t1
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,2 once or twice a year,1 none,2 occasional,3,no,t2,s155,s045,NA,NA,NA,NA,s030,from,t1
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s030,from,t1
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,1 none,1 none,1 none,10,yes,t1,s030,s027,s028,s041,s122,NA,s030,to,t1
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,2 once or twice a year,1 none,2 occasional,3,no,t2,s155,s045,NA,NA,NA,NA,s030,to,t1
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s030,to,t1
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,1 none,1 none,1 none,10,yes,t1,s030,s027,s028,s041,s122,NA,s155,from,t2
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,2 once or twice a year,1 none,2 occasional,3,no,t2,s155,s045,NA,NA,NA,NA,s155,from,t2
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s155,from,t2
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,1 none,1 none,1 none,10,yes,t1,s030,s027,s028,s041,s122,NA,s155,to,t2
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,2 once or twice a year,1 none,2 occasional,3,no,t2,s155,s045,NA,NA,NA,NA,s155,to,t2
+s031,1,0.9,Neighbourhood A,13.7,girl,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s155,to,t2
+s033,1,0.9,Neighbourhood A,13.5,girl,no,no,no,3 once a month,1 none,1 none,6,no,t1,s001,s027,s028,s145,NA,NA,s001,from,t1
+s033,1,0.9,Neighbourhood A,13.5,girl,no,no,no,4 once a week,1 none,2 occasional,5,no,t2,s001,s027,s028,NA,NA,NA,s001,from,t1
+s033,1,0.9,Neighbourhood A,13.5,girl,no,no,no,3 once a month,1 none,3 regular,10,no,t3,s001,s027,s028,s093,NA,NA,s001,from,t1
+s033,1,0.9,Neighbourhood A,13.5,girl,no,no,no,3 once a month,1 none,1 none,6,no,t1,s001,s027,s028,s145,NA,NA,s001,to,t3
+s033,1,0.9,Neighbourhood A,13.5,girl,no,no,no,4 once a week,1 none,2 occasional,5,no,t2,s001,s027,s028,NA,NA,NA,s001,to,t3
+s033,1,0.9,Neighbourhood A,13.5,girl,no,no,no,3 once a month,1 none,3 regular,10,no,t3,s001,s027,s028,s093,NA,NA,s001,to,t3
+s034,3,3.69,Neighbourhood C,13.6,girl,yes,yes,no,4 once a week,1 none,2 occasional,16,no,t1,s027,s028,s031,s041,s065,NA,s029,from,t3
+s034,3,3.69,Neighbourhood C,13.6,girl,yes,yes,no,4 once a week,2 tried once,2 occasional,25,no,t2,s107,NA,NA,NA,NA,NA,s029,from,t3
+s034,3,3.69,Neighbourhood C,13.6,girl,yes,yes,no,5 more than once a week,3 occasional,3 regular,25,no,t3,s029,s086,s093,s107,NA,NA,s029,from,t3
+s034,3,3.69,Neighbourhood C,13.6,girl,yes,yes,no,4 once a week,1 none,2 occasional,16,no,t1,s027,s028,s031,s041,s065,NA,s029,to,t3
+s034,3,3.69,Neighbourhood C,13.6,girl,yes,yes,no,4 once a week,2 tried once,2 occasional,25,no,t2,s107,NA,NA,NA,NA,NA,s029,to,t3
+s034,3,3.69,Neighbourhood C,13.6,girl,yes,yes,no,5 more than once a week,3 occasional,3 regular,25,no,t3,s029,s086,s093,s107,NA,NA,s029,to,t3
+s035,1,0.9,Neighbourhood A,13.2,boy,no,no,no,2 once or twice a year,2 tried once,1 none,10,no,t1,s149,s036,s044,s051,s150,s151,s149,from,t1
+s035,1,0.9,Neighbourhood A,13.2,boy,no,no,no,3 once a month,2 tried once,1 none,10,no,t2,s005,s051,s101,s114,s149,NA,s149,from,t1
+s035,1,0.9,Neighbourhood A,13.2,boy,no,no,no,2 once or twice a year,2 tried once,1 none,6,no,t3,s005,s051,s076,s101,s149,NA,s149,from,t1
+s035,1,0.9,Neighbourhood A,13.2,boy,no,no,no,2 once or twice a year,2 tried once,1 none,10,no,t1,s149,s036,s044,s051,s150,s151,s149,to,t1
+s035,1,0.9,Neighbourhood A,13.2,boy,no,no,no,3 once a month,2 tried once,1 none,10,no,t2,s005,s051,s101,s114,s149,NA,s149,to,t1
+s035,1,0.9,Neighbourhood A,13.2,boy,no,no,no,2 once or twice a year,2 tried once,1 none,6,no,t3,s005,s051,s076,s101,s149,NA,s149,to,t1
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,NA,1 none,1 none,7,no,t1,s002,s038,s148,NA,NA,NA,s002,from,t1
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,17,no,t2,s002,s038,s148,s116,s120,NA,s002,from,t1
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,3 once a month,1 none,1 none,22.5,no,t3,s002,s036,s038,s120,s148,NA,s002,from,t1
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,NA,1 none,1 none,7,no,t1,s002,s038,s148,NA,NA,NA,s002,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,17,no,t2,s002,s038,s148,s116,s120,NA,s002,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,3 once a month,1 none,1 none,22.5,no,t3,s002,s036,s038,s120,s148,NA,s002,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,NA,1 none,1 none,7,no,t1,s002,s038,s148,NA,NA,NA,s036,from,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,17,no,t2,s002,s038,s148,s116,s120,NA,s036,from,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,3 once a month,1 none,1 none,22.5,no,t3,s002,s036,s038,s120,s148,NA,s036,from,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,NA,1 none,1 none,7,no,t1,s002,s038,s148,NA,NA,NA,s036,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,17,no,t2,s002,s038,s148,s116,s120,NA,s036,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,3 once a month,1 none,1 none,22.5,no,t3,s002,s036,s038,s120,s148,NA,s036,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,NA,1 none,1 none,7,no,t1,s002,s038,s148,NA,NA,NA,s038,from,t1
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,17,no,t2,s002,s038,s148,s116,s120,NA,s038,from,t1
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,3 once a month,1 none,1 none,22.5,no,t3,s002,s036,s038,s120,s148,NA,s038,from,t1
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,NA,1 none,1 none,7,no,t1,s002,s038,s148,NA,NA,NA,s038,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,17,no,t2,s002,s038,s148,s116,s120,NA,s038,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,3 once a month,1 none,1 none,22.5,no,t3,s002,s036,s038,s120,s148,NA,s038,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,NA,1 none,1 none,7,no,t1,s002,s038,s148,NA,NA,NA,s120,from,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,17,no,t2,s002,s038,s148,s116,s120,NA,s120,from,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,3 once a month,1 none,1 none,22.5,no,t3,s002,s036,s038,s120,s148,NA,s120,from,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,NA,1 none,1 none,7,no,t1,s002,s038,s148,NA,NA,NA,s120,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,17,no,t2,s002,s038,s148,s116,s120,NA,s120,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,3 once a month,1 none,1 none,22.5,no,t3,s002,s036,s038,s120,s148,NA,s120,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,NA,1 none,1 none,7,no,t1,s002,s038,s148,NA,NA,NA,s148,from,t1
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,17,no,t2,s002,s038,s148,s116,s120,NA,s148,from,t1
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,3 once a month,1 none,1 none,22.5,no,t3,s002,s036,s038,s120,s148,NA,s148,from,t1
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,NA,1 none,1 none,7,no,t1,s002,s038,s148,NA,NA,NA,s148,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,17,no,t2,s002,s038,s148,s116,s120,NA,s148,to,t3
+s037,1,0.9,Neighbourhood A,13.8,boy,no,no,no,3 once a month,1 none,1 none,22.5,no,t3,s002,s036,s038,s120,s148,NA,s148,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s008,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s008,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s008,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s008,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s008,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s008,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s012,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s012,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s012,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s012,to,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s012,to,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s012,to,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s015,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s015,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s015,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s015,to,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s015,to,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s015,to,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s089,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s089,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s089,from,t1
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s089,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s089,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s089,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s127,from,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s127,from,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s127,from,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s127,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s127,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s127,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s139,from,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s139,from,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s139,from,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,NA,1 none,1 none,2.5,no,t1,s008,s012,s015,s089,s004,s037,s139,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t2,s008,s089,s004,s015,s118,s127,s139,to,t3
+s039,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,7.5,no,t3,s008,s089,s127,s139,s004,NA,s139,to,t3
+s040,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,3 once a month,1 none,1 none,3,no,t1,s143,s041,s147,NA,NA,NA,s143,from,t1
+s040,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,3 once a month,1 none,1 none,3,no,t2,s041,s143,s147,NA,NA,NA,s143,from,t1
+s040,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s143,from,t1
+s040,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,3 once a month,1 none,1 none,3,no,t1,s143,s041,s147,NA,NA,NA,s143,to,t1
+s040,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,3 once a month,1 none,1 none,3,no,t2,s041,s143,s147,NA,NA,NA,s143,to,t1
+s040,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s143,to,t1
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,4 once a week,2 tried once,2 occasional,7.5,yes,t1,s028,s034,s040,s065,NA,NA,s028,from,t1
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,5 more than once a week,3 occasional,3 regular,7.5,yes,t2,s072,s034,s126,NA,NA,NA,s028,from,t1
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,4 once a week,2 tried once,3 regular,10.5,yes,t3,s072,s126,s131,NA,NA,NA,s028,from,t1
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,4 once a week,2 tried once,2 occasional,7.5,yes,t1,s028,s034,s040,s065,NA,NA,s028,to,t1
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,5 more than once a week,3 occasional,3 regular,7.5,yes,t2,s072,s034,s126,NA,NA,NA,s028,to,t1
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,4 once a week,2 tried once,3 regular,10.5,yes,t3,s072,s126,s131,NA,NA,NA,s028,to,t1
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,4 once a week,2 tried once,2 occasional,7.5,yes,t1,s028,s034,s040,s065,NA,NA,s072,from,t2
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,5 more than once a week,3 occasional,3 regular,7.5,yes,t2,s072,s034,s126,NA,NA,NA,s072,from,t2
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,4 once a week,2 tried once,3 regular,10.5,yes,t3,s072,s126,s131,NA,NA,NA,s072,from,t2
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,4 once a week,2 tried once,2 occasional,7.5,yes,t1,s028,s034,s040,s065,NA,NA,s072,to,t3
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,5 more than once a week,3 occasional,3 regular,7.5,yes,t2,s072,s034,s126,NA,NA,NA,s072,to,t3
+s041,3,3.69,Neighbourhood C,13,girl,yes,yes,no,4 once a week,2 tried once,3 regular,10.5,yes,t3,s072,s126,s131,NA,NA,NA,s072,to,t3
+s043,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,2,no,t1,s046,s052,s056,s059,s065,s066,s012,from,t2
+s043,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,4 once a week,1 none,2 occasional,8,yes,t2,s012,s011,s015,s059,s066,s089,s012,from,t2
+s043,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,4 once a week,2 tried once,2 occasional,-1,yes,t3,s012,s059,s073,NA,NA,NA,s012,from,t2
+s043,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,2,no,t1,s046,s052,s056,s059,s065,s066,s012,to,t3
+s043,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,4 once a week,1 none,2 occasional,8,yes,t2,s012,s011,s015,s059,s066,s089,s012,to,t3
+s043,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,4 once a week,2 tried once,2 occasional,-1,yes,t3,s012,s059,s073,NA,NA,NA,s012,to,t3
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,3 occasional,1 none,5,no,t1,s051,s005,s058,s067,s078,s101,s051,from,t1
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,2 tried once,1 none,5,no,t2,s067,s058,s071,s146,s151,NA,s051,from,t1
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,5 more than once a week,3 occasional,3 regular,7,yes,t3,s136,s058,s146,NA,NA,NA,s051,from,t1
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,3 occasional,1 none,5,no,t1,s051,s005,s058,s067,s078,s101,s051,to,t1
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,2 tried once,1 none,5,no,t2,s067,s058,s071,s146,s151,NA,s051,to,t1
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,5 more than once a week,3 occasional,3 regular,7,yes,t3,s136,s058,s146,NA,NA,NA,s051,to,t1
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,3 occasional,1 none,5,no,t1,s051,s005,s058,s067,s078,s101,s067,from,t2
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,2 tried once,1 none,5,no,t2,s067,s058,s071,s146,s151,NA,s067,from,t2
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,5 more than once a week,3 occasional,3 regular,7,yes,t3,s136,s058,s146,NA,NA,NA,s067,from,t2
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,3 occasional,1 none,5,no,t1,s051,s005,s058,s067,s078,s101,s067,to,t2
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,2 tried once,1 none,5,no,t2,s067,s058,s071,s146,s151,NA,s067,to,t2
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,5 more than once a week,3 occasional,3 regular,7,yes,t3,s136,s058,s146,NA,NA,NA,s067,to,t2
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,3 occasional,1 none,5,no,t1,s051,s005,s058,s067,s078,s101,s136,from,t3
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,2 tried once,1 none,5,no,t2,s067,s058,s071,s146,s151,NA,s136,from,t3
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,5 more than once a week,3 occasional,3 regular,7,yes,t3,s136,s058,s146,NA,NA,NA,s136,from,t3
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,3 occasional,1 none,5,no,t1,s051,s005,s058,s067,s078,s101,s136,to,t3
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,3 once a month,2 tried once,1 none,5,no,t2,s067,s058,s071,s146,s151,NA,s136,to,t3
+s044,2,2.26,Neighbourhood B,13.6,boy,no,no,no,5 more than once a week,3 occasional,3 regular,7,yes,t3,s136,s058,s146,NA,NA,NA,s136,to,t3
+s045,4,NA,NA,13.8,girl,no,no,no,3 once a month,3 occasional,3 regular,7.5,yes,t1,s031,s064,NA,NA,NA,NA,s155,from,t2
+s045,4,NA,NA,13.8,girl,no,no,no,3 once a month,3 occasional,3 regular,9.5,no,t2,s155,s031,NA,NA,NA,NA,s155,from,t2
+s045,4,NA,NA,13.8,girl,no,no,no,4 once a week,3 occasional,2 occasional,20,no,t3,s160,NA,NA,NA,NA,NA,s155,from,t2
+s045,4,NA,NA,13.8,girl,no,no,no,3 once a month,3 occasional,3 regular,7.5,yes,t1,s031,s064,NA,NA,NA,NA,s155,to,t2
+s045,4,NA,NA,13.8,girl,no,no,no,3 once a month,3 occasional,3 regular,9.5,no,t2,s155,s031,NA,NA,NA,NA,s155,to,t2
+s045,4,NA,NA,13.8,girl,no,no,no,4 once a week,3 occasional,2 occasional,20,no,t3,s160,NA,NA,NA,NA,NA,s155,to,t2
+s045,4,NA,NA,13.8,girl,no,no,no,3 once a month,3 occasional,3 regular,7.5,yes,t1,s031,s064,NA,NA,NA,NA,s160,from,t3
+s045,4,NA,NA,13.8,girl,no,no,no,3 once a month,3 occasional,3 regular,9.5,no,t2,s155,s031,NA,NA,NA,NA,s160,from,t3
+s045,4,NA,NA,13.8,girl,no,no,no,4 once a week,3 occasional,2 occasional,20,no,t3,s160,NA,NA,NA,NA,NA,s160,from,t3
+s045,4,NA,NA,13.8,girl,no,no,no,3 once a month,3 occasional,3 regular,7.5,yes,t1,s031,s064,NA,NA,NA,NA,s160,to,t3
+s045,4,NA,NA,13.8,girl,no,no,no,3 once a month,3 occasional,3 regular,9.5,no,t2,s155,s031,NA,NA,NA,NA,s160,to,t3
+s045,4,NA,NA,13.8,girl,no,no,no,4 once a week,3 occasional,2 occasional,20,no,t3,s160,NA,NA,NA,NA,NA,s160,to,t3
+s046,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,4 once a week,1 none,1 none,10,yes,t1,s133,s045,s052,s063,s065,s099,s133,from,t1
+s046,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,3 once a month,1 none,3 regular,20,yes,t2,s133,s032,s099,NA,NA,NA,s133,from,t1
+s046,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,3 once a month,2 tried once,1 none,25,yes,t3,NA,NA,NA,NA,NA,NA,s133,from,t1
+s046,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,4 once a week,1 none,1 none,10,yes,t1,s133,s045,s052,s063,s065,s099,s133,to,t2
+s046,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,3 once a month,1 none,3 regular,20,yes,t2,s133,s032,s099,NA,NA,NA,s133,to,t2
+s046,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,3 once a month,2 tried once,1 none,25,yes,t3,NA,NA,NA,NA,NA,NA,s133,to,t2
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,1 none,1 none,2 occasional,3,no,t1,s050,s042,s049,s057,s061,s068,s049,from,t2
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,1 none,3 occasional,3 regular,10,yes,t2,s049,NA,NA,NA,NA,NA,s049,from,t2
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,4 once a week,2 tried once,3 regular,7.5,no,t3,NA,NA,NA,NA,NA,NA,s049,from,t2
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,1 none,1 none,2 occasional,3,no,t1,s050,s042,s049,s057,s061,s068,s049,to,t2
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,1 none,3 occasional,3 regular,10,yes,t2,s049,NA,NA,NA,NA,NA,s049,to,t2
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,4 once a week,2 tried once,3 regular,7.5,no,t3,NA,NA,NA,NA,NA,NA,s049,to,t2
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,1 none,1 none,2 occasional,3,no,t1,s050,s042,s049,s057,s061,s068,s050,from,t1
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,1 none,3 occasional,3 regular,10,yes,t2,s049,NA,NA,NA,NA,NA,s050,from,t1
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,4 once a week,2 tried once,3 regular,7.5,no,t3,NA,NA,NA,NA,NA,NA,s050,from,t1
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,1 none,1 none,2 occasional,3,no,t1,s050,s042,s049,s057,s061,s068,s050,to,t1
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,1 none,3 occasional,3 regular,10,yes,t2,s049,NA,NA,NA,NA,NA,s050,to,t1
+s047,2,2.26,Neighbourhood B,14.3,boy,yes,yes,no,4 once a week,2 tried once,3 regular,7.5,no,t3,NA,NA,NA,NA,NA,NA,s050,to,t1
+s048,4,NA,NA,12.9,boy,yes,yes,NA,NA,1 none,1 none,10,no,t2,s032,s049,NA,NA,NA,NA,s032,from,t2
+s048,4,NA,NA,12.9,boy,yes,yes,NA,3 once a month,2 tried once,1 none,10,no,t3,s032,s069,s049,s057,s060,NA,s032,from,t2
+s048,4,NA,NA,12.9,boy,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s032,from,t2
+s048,4,NA,NA,12.9,boy,yes,yes,NA,NA,1 none,1 none,10,no,t2,s032,s049,NA,NA,NA,NA,s032,to,t3
+s048,4,NA,NA,12.9,boy,yes,yes,NA,3 once a month,2 tried once,1 none,10,no,t3,s032,s069,s049,s057,s060,NA,s032,to,t3
+s048,4,NA,NA,12.9,boy,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s032,to,t3
+s048,4,NA,NA,12.9,boy,yes,yes,NA,NA,1 none,1 none,10,no,t2,s032,s049,NA,NA,NA,NA,s069,from,t3
+s048,4,NA,NA,12.9,boy,yes,yes,NA,3 once a month,2 tried once,1 none,10,no,t3,s032,s069,s049,s057,s060,NA,s069,from,t3
+s048,4,NA,NA,12.9,boy,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s069,from,t3
+s048,4,NA,NA,12.9,boy,yes,yes,NA,NA,1 none,1 none,10,no,t2,s032,s049,NA,NA,NA,NA,s069,to,t3
+s048,4,NA,NA,12.9,boy,yes,yes,NA,3 once a month,2 tried once,1 none,10,no,t3,s032,s069,s049,s057,s060,NA,s069,to,t3
+s048,4,NA,NA,12.9,boy,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s069,to,t3
+s049,1,0.9,Neighbourhood A,13.1,boy,yes,yes,no,3 once a month,1 none,1 none,7.5,no,t1,s044,s050,s051,s058,s062,s067,s060,from,t3
+s049,1,0.9,Neighbourhood A,13.1,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s036,s060,s075,s098,NA,NA,s060,from,t3
+s049,1,0.9,Neighbourhood A,13.1,boy,yes,yes,no,4 once a week,3 occasional,2 occasional,20,no,t3,s060,s050,s057,s074,s106,s113,s060,from,t3
+s049,1,0.9,Neighbourhood A,13.1,boy,yes,yes,no,3 once a month,1 none,1 none,7.5,no,t1,s044,s050,s051,s058,s062,s067,s060,to,t3
+s049,1,0.9,Neighbourhood A,13.1,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s036,s060,s075,s098,NA,NA,s060,to,t3
+s049,1,0.9,Neighbourhood A,13.1,boy,yes,yes,no,4 once a week,3 occasional,2 occasional,20,no,t3,s060,s050,s057,s074,s106,s113,s060,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s049,from,t1
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s049,from,t1
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s049,from,t1
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s049,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s049,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s049,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s057,from,t1
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s057,from,t1
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s057,from,t1
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s057,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s057,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s057,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s060,from,t1
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s060,from,t1
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s060,from,t1
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s060,to,t2
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s060,to,t2
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s060,to,t2
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s062,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s062,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s062,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s062,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s062,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s062,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s069,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s069,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s069,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s069,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s069,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s069,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s074,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s074,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s074,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s074,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s074,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s074,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s106,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s106,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s106,from,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,NA,1 none,1 none,10,no,t1,s049,s057,s060,s044,s051,s058,s106,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s049,s057,s060,s062,NA,NA,s106,to,t3
+s050,2,2.26,Neighbourhood B,13.3,boy,yes,yes,no,4 once a week,3 occasional,1 none,15,no,t3,s049,s057,s062,s069,s074,s106,s106,to,t3
+s051,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,3 once a month,3 occasional,1 none,3,no,t1,s005,s035,s044,s101,s149,NA,s101,from,t3
+s051,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,3 once a month,3 occasional,1 none,50,no,t2,s005,s044,s101,NA,NA,NA,s101,from,t3
+s051,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,3 once a month,4 regular,1 none,7,no,t3,s101,s005,s062,s075,s149,NA,s101,from,t3
+s051,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,3 once a month,3 occasional,1 none,3,no,t1,s005,s035,s044,s101,s149,NA,s101,to,t3
+s051,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,3 once a month,3 occasional,1 none,50,no,t2,s005,s044,s101,NA,NA,NA,s101,to,t3
+s051,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,3 once a month,4 regular,1 none,7,no,t3,s101,s005,s062,s075,s149,NA,s101,to,t3
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,3 once a month,1 none,1 none,10,no,t1,s066,s028,s065,s072,s087,NA,s066,from,t1
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,5 more than once a week,3 occasional,3 regular,10,no,t2,s065,s087,s107,s123,s155,NA,s066,from,t1
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,5 more than once a week,3 occasional,3 regular,35,yes,t3,s107,s065,s087,NA,NA,NA,s066,from,t1
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,3 once a month,1 none,1 none,10,no,t1,s066,s028,s065,s072,s087,NA,s066,to,t1
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,5 more than once a week,3 occasional,3 regular,10,no,t2,s065,s087,s107,s123,s155,NA,s066,to,t1
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,5 more than once a week,3 occasional,3 regular,35,yes,t3,s107,s065,s087,NA,NA,NA,s066,to,t1
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,3 once a month,1 none,1 none,10,no,t1,s066,s028,s065,s072,s087,NA,s107,from,t3
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,5 more than once a week,3 occasional,3 regular,10,no,t2,s065,s087,s107,s123,s155,NA,s107,from,t3
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,5 more than once a week,3 occasional,3 regular,35,yes,t3,s107,s065,s087,NA,NA,NA,s107,from,t3
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,3 once a month,1 none,1 none,10,no,t1,s066,s028,s065,s072,s087,NA,s107,to,t3
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,5 more than once a week,3 occasional,3 regular,10,no,t2,s065,s087,s107,s123,s155,NA,s107,to,t3
+s052,1,0.9,Neighbourhood A,13.8,girl,no,no,no,5 more than once a week,3 occasional,3 regular,35,yes,t3,s107,s065,s087,NA,NA,NA,s107,to,t3
+s055,4,NA,NA,12.9,girl,yes,yes,no,NA,1 none,1 none,5.5,no,t1,s070,s043,s056,s059,s061,s125,s056,from,t3
+s055,4,NA,NA,12.9,girl,yes,yes,no,NA,1 none,1 none,4,yes,t2,s070,s056,s059,s061,s068,s099,s056,from,t3
+s055,4,NA,NA,12.9,girl,yes,yes,no,1 none,1 none,1 none,15.53,yes,t3,s056,s070,s061,s079,s092,NA,s056,from,t3
+s055,4,NA,NA,12.9,girl,yes,yes,no,NA,1 none,1 none,5.5,no,t1,s070,s043,s056,s059,s061,s125,s056,to,t3
+s055,4,NA,NA,12.9,girl,yes,yes,no,NA,1 none,1 none,4,yes,t2,s070,s056,s059,s061,s068,s099,s056,to,t3
+s055,4,NA,NA,12.9,girl,yes,yes,no,1 none,1 none,1 none,15.53,yes,t3,s056,s070,s061,s079,s092,NA,s056,to,t3
+s055,4,NA,NA,12.9,girl,yes,yes,no,NA,1 none,1 none,5.5,no,t1,s070,s043,s056,s059,s061,s125,s070,from,t1
+s055,4,NA,NA,12.9,girl,yes,yes,no,NA,1 none,1 none,4,yes,t2,s070,s056,s059,s061,s068,s099,s070,from,t1
+s055,4,NA,NA,12.9,girl,yes,yes,no,1 none,1 none,1 none,15.53,yes,t3,s056,s070,s061,s079,s092,NA,s070,from,t1
+s055,4,NA,NA,12.9,girl,yes,yes,no,NA,1 none,1 none,5.5,no,t1,s070,s043,s056,s059,s061,s125,s070,to,t3
+s055,4,NA,NA,12.9,girl,yes,yes,no,NA,1 none,1 none,4,yes,t2,s070,s056,s059,s061,s068,s099,s070,to,t3
+s055,4,NA,NA,12.9,girl,yes,yes,no,1 none,1 none,1 none,15.53,yes,t3,s056,s070,s061,s079,s092,NA,s070,to,t3
+s056,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,1 none,1 none,1 none,6,yes,t1,s105,s059,s061,NA,NA,NA,s105,from,t1
+s056,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,1 none,1 none,1 none,8,yes,t2,s105,s052,s061,s088,s121,NA,s105,from,t1
+s056,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,3 once a month,1 none,1 none,10,no,t3,s105,s088,s112,s121,s132,NA,s105,from,t1
+s056,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,1 none,1 none,1 none,6,yes,t1,s105,s059,s061,NA,NA,NA,s105,to,t3
+s056,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,1 none,1 none,1 none,8,yes,t2,s105,s052,s061,s088,s121,NA,s105,to,t3
+s056,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,3 once a month,1 none,1 none,10,no,t3,s105,s088,s112,s121,s132,NA,s105,to,t3
+s057,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,2 occasional,5,yes,t1,s133,s046,s049,s050,s060,NA,s133,from,t1
+s057,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,3 regular,7,no,t2,s049,s050,s060,s062,NA,NA,s133,from,t1
+s057,1,0.9,Neighbourhood A,13.7,boy,no,no,no,3 once a month,3 occasional,1 none,12,no,t3,s049,s050,s060,s074,s106,s113,s133,from,t1
+s057,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,2 occasional,5,yes,t1,s133,s046,s049,s050,s060,NA,s133,to,t1
+s057,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,3 regular,7,no,t2,s049,s050,s060,s062,NA,NA,s133,to,t1
+s057,1,0.9,Neighbourhood A,13.7,boy,no,no,no,3 once a month,3 occasional,1 none,12,no,t3,s049,s050,s060,s074,s106,s113,s133,to,t1
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,4 once a week,2 tried once,1 none,13.5,yes,t1,s044,s051,s067,s071,s146,NA,s044,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,3 once a month,2 tried once,1 none,15,yes,t2,s044,s067,s071,s146,s094,NA,s044,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,5 more than once a week,3 occasional,1 none,25,no,t3,s044,s071,s136,s146,NA,NA,s044,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,4 once a week,2 tried once,1 none,13.5,yes,t1,s044,s051,s067,s071,s146,NA,s044,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,3 once a month,2 tried once,1 none,15,yes,t2,s044,s067,s071,s146,s094,NA,s044,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,5 more than once a week,3 occasional,1 none,25,no,t3,s044,s071,s136,s146,NA,NA,s044,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,4 once a week,2 tried once,1 none,13.5,yes,t1,s044,s051,s067,s071,s146,NA,s067,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,3 once a month,2 tried once,1 none,15,yes,t2,s044,s067,s071,s146,s094,NA,s067,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,5 more than once a week,3 occasional,1 none,25,no,t3,s044,s071,s136,s146,NA,NA,s067,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,4 once a week,2 tried once,1 none,13.5,yes,t1,s044,s051,s067,s071,s146,NA,s067,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,3 once a month,2 tried once,1 none,15,yes,t2,s044,s067,s071,s146,s094,NA,s067,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,5 more than once a week,3 occasional,1 none,25,no,t3,s044,s071,s136,s146,NA,NA,s067,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,4 once a week,2 tried once,1 none,13.5,yes,t1,s044,s051,s067,s071,s146,NA,s071,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,3 once a month,2 tried once,1 none,15,yes,t2,s044,s067,s071,s146,s094,NA,s071,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,5 more than once a week,3 occasional,1 none,25,no,t3,s044,s071,s136,s146,NA,NA,s071,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,4 once a week,2 tried once,1 none,13.5,yes,t1,s044,s051,s067,s071,s146,NA,s071,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,3 once a month,2 tried once,1 none,15,yes,t2,s044,s067,s071,s146,s094,NA,s071,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,5 more than once a week,3 occasional,1 none,25,no,t3,s044,s071,s136,s146,NA,NA,s071,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,4 once a week,2 tried once,1 none,13.5,yes,t1,s044,s051,s067,s071,s146,NA,s146,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,3 once a month,2 tried once,1 none,15,yes,t2,s044,s067,s071,s146,s094,NA,s146,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,5 more than once a week,3 occasional,1 none,25,no,t3,s044,s071,s136,s146,NA,NA,s146,from,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,4 once a week,2 tried once,1 none,13.5,yes,t1,s044,s051,s067,s071,s146,NA,s146,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,3 once a month,2 tried once,1 none,15,yes,t2,s044,s067,s071,s146,s094,NA,s146,to,t2
+s058,1,0.9,Neighbourhood A,13.2,boy,yes,no,no,5 more than once a week,3 occasional,1 none,25,no,t3,s044,s071,s136,s146,NA,NA,s146,to,t2
+s059,3,3.69,Neighbourhood C,13.4,girl,yes,yes,no,3 once a month,1 none,1 none,-1,no,t1,s135,s043,s056,s088,s097,s105,s135,from,t1
+s059,3,3.69,Neighbourhood C,13.4,girl,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s135,s043,NA,NA,NA,NA,s135,from,t1
+s059,3,3.69,Neighbourhood C,13.4,girl,yes,yes,no,3 once a month,1 none,1 none,99.99,no,t3,s135,NA,NA,NA,NA,NA,s135,from,t1
+s059,3,3.69,Neighbourhood C,13.4,girl,yes,yes,no,3 once a month,1 none,1 none,-1,no,t1,s135,s043,s056,s088,s097,s105,s135,to,t2
+s059,3,3.69,Neighbourhood C,13.4,girl,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s135,s043,NA,NA,NA,NA,s135,to,t2
+s059,3,3.69,Neighbourhood C,13.4,girl,yes,yes,no,3 once a month,1 none,1 none,99.99,no,t3,s135,NA,NA,NA,NA,NA,s135,to,t2
+s060,1,0.9,Neighbourhood A,13.4,boy,no,no,no,3 once a month,2 tried once,1 none,10.5,yes,t1,s057,s046,s049,s050,s058,s133,s057,from,t1
+s060,1,0.9,Neighbourhood A,13.4,boy,no,no,no,3 once a month,1 none,1 none,10,no,t2,s057,s049,s050,s058,s062,NA,s057,from,t1
+s060,1,0.9,Neighbourhood A,13.4,boy,no,no,no,3 once a month,2 tried once,1 none,20,no,t3,s049,s050,s057,s074,s106,s113,s057,from,t1
+s060,1,0.9,Neighbourhood A,13.4,boy,no,no,no,3 once a month,2 tried once,1 none,10.5,yes,t1,s057,s046,s049,s050,s058,s133,s057,to,t2
+s060,1,0.9,Neighbourhood A,13.4,boy,no,no,no,3 once a month,1 none,1 none,10,no,t2,s057,s049,s050,s058,s062,NA,s057,to,t2
+s060,1,0.9,Neighbourhood A,13.4,boy,no,no,no,3 once a month,2 tried once,1 none,20,no,t3,s049,s050,s057,s074,s106,s113,s057,to,t2
+s061,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,3,yes,t1,s079,s047,s048,s056,s059,NA,s079,from,t1
+s061,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,yes,t2,s038,s042,s056,s068,s083,s091,s079,from,t1
+s061,1,0.9,Neighbourhood A,13,boy,yes,yes,no,4 once a week,1 none,1 none,10,yes,t3,s042,s079,s091,s092,s110,NA,s079,from,t1
+s061,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,3,yes,t1,s079,s047,s048,s056,s059,NA,s079,to,t1
+s061,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,yes,t2,s038,s042,s056,s068,s083,s091,s079,to,t1
+s061,1,0.9,Neighbourhood A,13,boy,yes,yes,no,4 once a week,1 none,1 none,10,yes,t3,s042,s079,s091,s092,s110,NA,s079,to,t1
+s063,2,2.26,Neighbourhood B,13.5,girl,yes,yes,yes,4 once a week,3 occasional,2 occasional,10,yes,t1,s128,s031,s045,s046,s064,s152,s128,from,t1
+s063,2,2.26,Neighbourhood B,13.5,girl,yes,yes,yes,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s128,from,t1
+s063,2,2.26,Neighbourhood B,13.5,girl,yes,yes,yes,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s128,from,t1
+s063,2,2.26,Neighbourhood B,13.5,girl,yes,yes,yes,4 once a week,3 occasional,2 occasional,10,yes,t1,s128,s031,s045,s046,s064,s152,s128,to,t1
+s063,2,2.26,Neighbourhood B,13.5,girl,yes,yes,yes,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s128,to,t1
+s063,2,2.26,Neighbourhood B,13.5,girl,yes,yes,yes,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s128,to,t1
+s064,1,0.9,Neighbourhood A,13.2,girl,yes,yes,yes,4 once a week,4 regular,3 regular,15,yes,t1,s045,s063,s065,s066,s128,NA,s045,from,t1
+s064,1,0.9,Neighbourhood A,13.2,girl,yes,yes,yes,4 once a week,3 occasional,3 regular,10,yes,t2,s045,s052,s065,s155,NA,NA,s045,from,t1
+s064,1,0.9,Neighbourhood A,13.2,girl,yes,yes,yes,2 once or twice a year,3 occasional,3 regular,30,no,t3,s003,s045,s065,NA,NA,NA,s045,from,t1
+s064,1,0.9,Neighbourhood A,13.2,girl,yes,yes,yes,4 once a week,4 regular,3 regular,15,yes,t1,s045,s063,s065,s066,s128,NA,s045,to,t2
+s064,1,0.9,Neighbourhood A,13.2,girl,yes,yes,yes,4 once a week,3 occasional,3 regular,10,yes,t2,s045,s052,s065,s155,NA,NA,s045,to,t2
+s064,1,0.9,Neighbourhood A,13.2,girl,yes,yes,yes,2 once or twice a year,3 occasional,3 regular,30,no,t3,s003,s045,s065,NA,NA,NA,s045,to,t2
+s065,1,0.9,Neighbourhood A,13.6,girl,yes,yes,yes,4 once a week,3 occasional,2 occasional,20,no,t1,s028,s052,s087,NA,NA,NA,s087,from,t2
+s065,1,0.9,Neighbourhood A,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,10,yes,t2,s087,s052,s114,NA,NA,NA,s087,from,t2
+s065,1,0.9,Neighbourhood A,13.6,girl,yes,yes,yes,3 once a month,4 regular,3 regular,15,yes,t3,s052,s087,s107,NA,NA,NA,s087,from,t2
+s065,1,0.9,Neighbourhood A,13.6,girl,yes,yes,yes,4 once a week,3 occasional,2 occasional,20,no,t1,s028,s052,s087,NA,NA,NA,s087,to,t2
+s065,1,0.9,Neighbourhood A,13.6,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,10,yes,t2,s087,s052,s114,NA,NA,NA,s087,to,t2
+s065,1,0.9,Neighbourhood A,13.6,girl,yes,yes,yes,3 once a month,4 regular,3 regular,15,yes,t3,s052,s087,s107,NA,NA,NA,s087,to,t2
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,1 none,1 none,7.5,no,t1,s052,s043,s056,s059,s064,s065,s052,from,t1
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,1 none,1 none,10,no,t2,s125,s043,s059,s082,s115,NA,s052,from,t1
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,2 tried once,1 none,15,no,t3,s013,s073,s082,s115,s125,NA,s052,from,t1
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,1 none,1 none,7.5,no,t1,s052,s043,s056,s059,s064,s065,s052,to,t1
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,1 none,1 none,10,no,t2,s125,s043,s059,s082,s115,NA,s052,to,t1
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,2 tried once,1 none,15,no,t3,s013,s073,s082,s115,s125,NA,s052,to,t1
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,1 none,1 none,7.5,no,t1,s052,s043,s056,s059,s064,s065,s125,from,t2
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,1 none,1 none,10,no,t2,s125,s043,s059,s082,s115,NA,s125,from,t2
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,2 tried once,1 none,15,no,t3,s013,s073,s082,s115,s125,NA,s125,from,t2
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,1 none,1 none,7.5,no,t1,s052,s043,s056,s059,s064,s065,s125,to,t2
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,1 none,1 none,10,no,t2,s125,s043,s059,s082,s115,NA,s125,to,t2
+s066,1,0.9,Neighbourhood A,13.1,girl,yes,yes,no,3 once a month,2 tried once,1 none,15,no,t3,s013,s073,s082,s115,s125,NA,s125,to,t2
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,1,no,t1,s037,s053,s091,s056,s061,NA,s037,from,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t2,s037,s061,s083,s091,NA,NA,s037,from,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t3,s053,s083,s085,s091,s095,s127,s037,from,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,1,no,t1,s037,s053,s091,s056,s061,NA,s037,to,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t2,s037,s061,s083,s091,NA,NA,s037,to,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t3,s053,s083,s085,s091,s095,s127,s037,to,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,1,no,t1,s037,s053,s091,s056,s061,NA,s053,from,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t2,s037,s061,s083,s091,NA,NA,s053,from,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t3,s053,s083,s085,s091,s095,s127,s053,from,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,1,no,t1,s037,s053,s091,s056,s061,NA,s053,to,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t2,s037,s061,s083,s091,NA,NA,s053,to,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t3,s053,s083,s085,s091,s095,s127,s053,to,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,1,no,t1,s037,s053,s091,s056,s061,NA,s083,from,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t2,s037,s061,s083,s091,NA,NA,s083,from,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t3,s053,s083,s085,s091,s095,s127,s083,from,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,1,no,t1,s037,s053,s091,s056,s061,NA,s083,to,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t2,s037,s061,s083,s091,NA,NA,s083,to,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t3,s053,s083,s085,s091,s095,s127,s083,to,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,1,no,t1,s037,s053,s091,s056,s061,NA,s085,from,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t2,s037,s061,s083,s091,NA,NA,s085,from,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t3,s053,s083,s085,s091,s095,s127,s085,from,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,1,no,t1,s037,s053,s091,s056,s061,NA,s085,to,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t2,s037,s061,s083,s091,NA,NA,s085,to,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t3,s053,s083,s085,s091,s095,s127,s085,to,t3
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,1,no,t1,s037,s053,s091,s056,s061,NA,s091,from,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t2,s037,s061,s083,s091,NA,NA,s091,from,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t3,s053,s083,s085,s091,s095,s127,s091,from,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,1,no,t1,s037,s053,s091,s056,s061,NA,s091,to,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t2,s037,s061,s083,s091,NA,NA,s091,to,t1
+s068,1,0.9,Neighbourhood A,13.1,boy,no,no,no,NA,1 none,1 none,3,no,t3,s053,s083,s085,s091,s095,s127,s091,to,t1
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s074,s078,s091,s103,s106,s113,s032,from,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,3 occasional,1 none,5,no,t2,s032,s074,s080,s106,s113,NA,s032,from,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,3 once a month,3 occasional,1 none,5,yes,t3,s032,s048,s062,s074,s050,s106,s032,from,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s074,s078,s091,s103,s106,s113,s032,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,3 occasional,1 none,5,no,t2,s032,s074,s080,s106,s113,NA,s032,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,3 once a month,3 occasional,1 none,5,yes,t3,s032,s048,s062,s074,s050,s106,s032,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s074,s078,s091,s103,s106,s113,s048,from,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,3 occasional,1 none,5,no,t2,s032,s074,s080,s106,s113,NA,s048,from,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,3 once a month,3 occasional,1 none,5,yes,t3,s032,s048,s062,s074,s050,s106,s048,from,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s074,s078,s091,s103,s106,s113,s048,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,3 occasional,1 none,5,no,t2,s032,s074,s080,s106,s113,NA,s048,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,3 once a month,3 occasional,1 none,5,yes,t3,s032,s048,s062,s074,s050,s106,s048,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s074,s078,s091,s103,s106,s113,s062,from,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,3 occasional,1 none,5,no,t2,s032,s074,s080,s106,s113,NA,s062,from,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,3 once a month,3 occasional,1 none,5,yes,t3,s032,s048,s062,s074,s050,s106,s062,from,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s074,s078,s091,s103,s106,s113,s062,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,3 occasional,1 none,5,no,t2,s032,s074,s080,s106,s113,NA,s062,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,3 once a month,3 occasional,1 none,5,yes,t3,s032,s048,s062,s074,s050,s106,s062,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s074,s078,s091,s103,s106,s113,s074,from,t1
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,3 occasional,1 none,5,no,t2,s032,s074,s080,s106,s113,NA,s074,from,t1
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,3 once a month,3 occasional,1 none,5,yes,t3,s032,s048,s062,s074,s050,s106,s074,from,t1
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s074,s078,s091,s103,s106,s113,s074,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,2 once or twice a year,3 occasional,1 none,5,no,t2,s032,s074,s080,s106,s113,NA,s074,to,t3
+s069,2,2.26,Neighbourhood B,13.4,boy,yes,yes,no,3 once a month,3 occasional,1 none,5,yes,t3,s032,s048,s062,s074,s050,s106,s074,to,t3
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t1,s055,s059,s088,s089,s119,NA,s019,from,t3
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,4 once a week,1 none,1 none,6.75,no,t2,s055,s066,s073,s082,s089,s125,s019,from,t3
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t3,s019,s055,s152,NA,NA,NA,s019,from,t3
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t1,s055,s059,s088,s089,s119,NA,s019,to,t3
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,4 once a week,1 none,1 none,6.75,no,t2,s055,s066,s073,s082,s089,s125,s019,to,t3
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t3,s019,s055,s152,NA,NA,NA,s019,to,t3
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t1,s055,s059,s088,s089,s119,NA,s055,from,t1
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,4 once a week,1 none,1 none,6.75,no,t2,s055,s066,s073,s082,s089,s125,s055,from,t1
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t3,s019,s055,s152,NA,NA,NA,s055,from,t1
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t1,s055,s059,s088,s089,s119,NA,s055,to,t3
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,4 once a week,1 none,1 none,6.75,no,t2,s055,s066,s073,s082,s089,s125,s055,to,t3
+s070,1,0.9,Neighbourhood A,13.6,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t3,s019,s055,s152,NA,NA,NA,s055,to,t3
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,4 once a week,3 occasional,1 none,10,yes,t1,s058,s067,s010,s146,s151,NA,s058,from,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,4 once a week,2 tried once,1 none,20,no,t2,s044,s058,s067,s140,s142,NA,s058,from,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,5 more than once a week,2 tried once,1 none,17.5,no,t3,s044,s058,s077,s146,s149,NA,s058,from,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,4 once a week,3 occasional,1 none,10,yes,t1,s058,s067,s010,s146,s151,NA,s058,to,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,4 once a week,2 tried once,1 none,20,no,t2,s044,s058,s067,s140,s142,NA,s058,to,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,5 more than once a week,2 tried once,1 none,17.5,no,t3,s044,s058,s077,s146,s149,NA,s058,to,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,4 once a week,3 occasional,1 none,10,yes,t1,s058,s067,s010,s146,s151,NA,s067,from,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,4 once a week,2 tried once,1 none,20,no,t2,s044,s058,s067,s140,s142,NA,s067,from,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,5 more than once a week,2 tried once,1 none,17.5,no,t3,s044,s058,s077,s146,s149,NA,s067,from,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,4 once a week,3 occasional,1 none,10,yes,t1,s058,s067,s010,s146,s151,NA,s067,to,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,4 once a week,2 tried once,1 none,20,no,t2,s044,s058,s067,s140,s142,NA,s067,to,t1
+s071,1,0.9,Neighbourhood A,13.1,boy,no,no,no,5 more than once a week,2 tried once,1 none,17.5,no,t3,s044,s058,s077,s146,s149,NA,s067,to,t1
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,yes,t1,s016,s086,s120,s131,NA,NA,s016,from,t1
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10.5,yes,t2,s041,s044,s126,s016,NA,NA,s016,from,t1
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,3 once a month,3 occasional,3 regular,20,yes,t3,s041,s080,s016,NA,NA,NA,s016,from,t1
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,yes,t1,s016,s086,s120,s131,NA,NA,s016,to,t1
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10.5,yes,t2,s041,s044,s126,s016,NA,NA,s016,to,t1
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,3 once a month,3 occasional,3 regular,20,yes,t3,s041,s080,s016,NA,NA,NA,s016,to,t1
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,yes,t1,s016,s086,s120,s131,NA,NA,s041,from,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10.5,yes,t2,s041,s044,s126,s016,NA,NA,s041,from,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,3 once a month,3 occasional,3 regular,20,yes,t3,s041,s080,s016,NA,NA,NA,s041,from,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,yes,t1,s016,s086,s120,s131,NA,NA,s041,to,t3
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10.5,yes,t2,s041,s044,s126,s016,NA,NA,s041,to,t3
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,3 once a month,3 occasional,3 regular,20,yes,t3,s041,s080,s016,NA,NA,NA,s041,to,t3
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,yes,t1,s016,s086,s120,s131,NA,NA,s044,from,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10.5,yes,t2,s041,s044,s126,s016,NA,NA,s044,from,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,3 once a month,3 occasional,3 regular,20,yes,t3,s041,s080,s016,NA,NA,NA,s044,from,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,yes,t1,s016,s086,s120,s131,NA,NA,s044,to,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10.5,yes,t2,s041,s044,s126,s016,NA,NA,s044,to,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,3 once a month,3 occasional,3 regular,20,yes,t3,s041,s080,s016,NA,NA,NA,s044,to,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,yes,t1,s016,s086,s120,s131,NA,NA,s080,from,t3
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10.5,yes,t2,s041,s044,s126,s016,NA,NA,s080,from,t3
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,3 once a month,3 occasional,3 regular,20,yes,t3,s041,s080,s016,NA,NA,NA,s080,from,t3
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,yes,t1,s016,s086,s120,s131,NA,NA,s080,to,t3
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10.5,yes,t2,s041,s044,s126,s016,NA,NA,s080,to,t3
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,3 once a month,3 occasional,3 regular,20,yes,t3,s041,s080,s016,NA,NA,NA,s080,to,t3
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,yes,t1,s016,s086,s120,s131,NA,NA,s126,from,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10.5,yes,t2,s041,s044,s126,s016,NA,NA,s126,from,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,3 once a month,3 occasional,3 regular,20,yes,t3,s041,s080,s016,NA,NA,NA,s126,from,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,yes,t1,s016,s086,s120,s131,NA,NA,s126,to,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10.5,yes,t2,s041,s044,s126,s016,NA,NA,s126,to,t2
+s072,1,0.9,Neighbourhood A,13.6,girl,yes,no,yes,3 once a month,3 occasional,3 regular,20,yes,t3,s041,s080,s016,NA,NA,NA,s126,to,t2
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,3 once a month,3 occasional,1 none,10,no,t1,s113,s049,s069,s083,s098,s103,s106,from,t3
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,4 once a week,4 regular,3 regular,15,no,t2,s113,s106,NA,NA,NA,NA,s106,from,t3
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,4 once a week,4 regular,3 regular,30,no,t3,s106,s049,s050,s057,s069,NA,s106,from,t3
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,3 once a month,3 occasional,1 none,10,no,t1,s113,s049,s069,s083,s098,s103,s106,to,t3
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,4 once a week,4 regular,3 regular,15,no,t2,s113,s106,NA,NA,NA,NA,s106,to,t3
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,4 once a week,4 regular,3 regular,30,no,t3,s106,s049,s050,s057,s069,NA,s106,to,t3
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,3 once a month,3 occasional,1 none,10,no,t1,s113,s049,s069,s083,s098,s103,s113,from,t1
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,4 once a week,4 regular,3 regular,15,no,t2,s113,s106,NA,NA,NA,NA,s113,from,t1
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,4 once a week,4 regular,3 regular,30,no,t3,s106,s049,s050,s057,s069,NA,s113,from,t1
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,3 once a month,3 occasional,1 none,10,no,t1,s113,s049,s069,s083,s098,s103,s113,to,t2
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,4 once a week,4 regular,3 regular,15,no,t2,s113,s106,NA,NA,NA,NA,s113,to,t2
+s074,2,2.26,Neighbourhood B,13.7,boy,no,no,no,4 once a week,4 regular,3 regular,30,no,t3,s106,s049,s050,s057,s069,NA,s113,to,t2
+s075,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,2 tried once,1 none,10,no,t1,s076,s080,s083,s090,NA,NA,s076,from,t1
+s075,1,0.9,Neighbourhood A,13.1,boy,no,no,no,5 more than once a week,3 occasional,3 regular,10,no,t2,s074,s076,s080,NA,NA,NA,s076,from,t1
+s075,1,0.9,Neighbourhood A,13.1,boy,no,no,no,3 once a month,4 regular,3 regular,13,no,t3,s048,s062,s076,s080,s101,NA,s076,from,t1
+s075,1,0.9,Neighbourhood A,13.1,boy,no,no,no,2 once or twice a year,2 tried once,1 none,10,no,t1,s076,s080,s083,s090,NA,NA,s076,to,t1
+s075,1,0.9,Neighbourhood A,13.1,boy,no,no,no,5 more than once a week,3 occasional,3 regular,10,no,t2,s074,s076,s080,NA,NA,NA,s076,to,t1
+s075,1,0.9,Neighbourhood A,13.1,boy,no,no,no,3 once a month,4 regular,3 regular,13,no,t3,s048,s062,s076,s080,s101,NA,s076,to,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,no,t1,s072,s075,s044,s078,s080,s086,s072,from,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,1 none,1 none,20.5,no,t2,s084,s035,s044,s058,s067,s149,s072,from,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,2 tried once,1 none,12.5,no,t3,s035,s051,s075,s084,s101,s149,s072,from,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,no,t1,s072,s075,s044,s078,s080,s086,s072,to,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,1 none,1 none,20.5,no,t2,s084,s035,s044,s058,s067,s149,s072,to,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,2 tried once,1 none,12.5,no,t3,s035,s051,s075,s084,s101,s149,s072,to,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,no,t1,s072,s075,s044,s078,s080,s086,s075,from,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,1 none,1 none,20.5,no,t2,s084,s035,s044,s058,s067,s149,s075,from,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,2 tried once,1 none,12.5,no,t3,s035,s051,s075,s084,s101,s149,s075,from,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,no,t1,s072,s075,s044,s078,s080,s086,s075,to,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,1 none,1 none,20.5,no,t2,s084,s035,s044,s058,s067,s149,s075,to,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,2 tried once,1 none,12.5,no,t3,s035,s051,s075,s084,s101,s149,s075,to,t1
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,no,t1,s072,s075,s044,s078,s080,s086,s084,from,t2
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,1 none,1 none,20.5,no,t2,s084,s035,s044,s058,s067,s149,s084,from,t2
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,2 tried once,1 none,12.5,no,t3,s035,s051,s075,s084,s101,s149,s084,from,t2
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,no,t1,s072,s075,s044,s078,s080,s086,s084,to,t2
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,1 none,1 none,20.5,no,t2,s084,s035,s044,s058,s067,s149,s084,to,t2
+s076,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,3 once a month,2 tried once,1 none,12.5,no,t3,s035,s051,s075,s084,s101,s149,s084,to,t2
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,25,no,t1,s058,s077,s080,s067,s078,s084,s058,from,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,1 none,25.5,no,t2,s151,NA,NA,NA,NA,NA,s058,from,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,2 tried once,1 none,20,yes,t3,s061,NA,NA,NA,NA,NA,s058,from,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,25,no,t1,s058,s077,s080,s067,s078,s084,s058,to,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,1 none,25.5,no,t2,s151,NA,NA,NA,NA,NA,s058,to,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,2 tried once,1 none,20,yes,t3,s061,NA,NA,NA,NA,NA,s058,to,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,25,no,t1,s058,s077,s080,s067,s078,s084,s061,from,t3
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,1 none,25.5,no,t2,s151,NA,NA,NA,NA,NA,s061,from,t3
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,2 tried once,1 none,20,yes,t3,s061,NA,NA,NA,NA,NA,s061,from,t3
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,25,no,t1,s058,s077,s080,s067,s078,s084,s061,to,t3
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,1 none,25.5,no,t2,s151,NA,NA,NA,NA,NA,s061,to,t3
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,2 tried once,1 none,20,yes,t3,s061,NA,NA,NA,NA,NA,s061,to,t3
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,25,no,t1,s058,s077,s080,s067,s078,s084,s077,from,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,1 none,25.5,no,t2,s151,NA,NA,NA,NA,NA,s077,from,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,2 tried once,1 none,20,yes,t3,s061,NA,NA,NA,NA,NA,s077,from,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,25,no,t1,s058,s077,s080,s067,s078,s084,s077,to,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,1 none,25.5,no,t2,s151,NA,NA,NA,NA,NA,s077,to,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,2 tried once,1 none,20,yes,t3,s061,NA,NA,NA,NA,NA,s077,to,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,25,no,t1,s058,s077,s080,s067,s078,s084,s080,from,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,1 none,25.5,no,t2,s151,NA,NA,NA,NA,NA,s080,from,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,2 tried once,1 none,20,yes,t3,s061,NA,NA,NA,NA,NA,s080,from,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,25,no,t1,s058,s077,s080,s067,s078,s084,s080,to,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,1 none,25.5,no,t2,s151,NA,NA,NA,NA,NA,s080,to,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,2 tried once,1 none,20,yes,t3,s061,NA,NA,NA,NA,NA,s080,to,t1
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,25,no,t1,s058,s077,s080,s067,s078,s084,s151,from,t2
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,1 none,25.5,no,t2,s151,NA,NA,NA,NA,NA,s151,from,t2
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,2 tried once,1 none,20,yes,t3,s061,NA,NA,NA,NA,NA,s151,from,t2
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,2 once or twice a year,1 none,1 none,25,no,t1,s058,s077,s080,s067,s078,s084,s151,to,t2
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,1 none,1 none,25.5,no,t2,s151,NA,NA,NA,NA,NA,s151,to,t2
+s079,1,0.9,Neighbourhood A,13.7,boy,no,no,no,4 once a week,2 tried once,1 none,20,yes,t3,s061,NA,NA,NA,NA,NA,s151,to,t2
+s080,2,2.26,Neighbourhood B,13.3,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t1,s075,s076,s078,s079,s084,s090,s144,from,t2
+s080,2,2.26,Neighbourhood B,13.3,boy,no,no,no,3 once a month,1 none,3 regular,10,no,t2,s144,s077,s109,s120,NA,NA,s144,from,t2
+s080,2,2.26,Neighbourhood B,13.3,boy,no,no,no,2 once or twice a year,4 regular,3 regular,20.01,yes,t3,s144,s044,NA,NA,NA,NA,s144,from,t2
+s080,2,2.26,Neighbourhood B,13.3,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t1,s075,s076,s078,s079,s084,s090,s144,to,t3
+s080,2,2.26,Neighbourhood B,13.3,boy,no,no,no,3 once a month,1 none,3 regular,10,no,t2,s144,s077,s109,s120,NA,NA,s144,to,t3
+s080,2,2.26,Neighbourhood B,13.3,boy,no,no,no,2 once or twice a year,4 regular,3 regular,20.01,yes,t3,s144,s044,NA,NA,NA,NA,s144,to,t3
+s081,1,0.9,Neighbourhood A,13.3,boy,no,no,no,2 once or twice a year,3 occasional,2 occasional,5,yes,t1,s092,s069,s074,s085,s099,NA,s092,from,t1
+s081,1,0.9,Neighbourhood A,13.3,boy,no,no,no,2 once or twice a year,3 occasional,3 regular,4.5,no,t2,s061,s099,s122,s144,s150,NA,s092,from,t1
+s081,1,0.9,Neighbourhood A,13.3,boy,no,no,no,4 once a week,4 regular,3 regular,10,yes,t3,s099,NA,NA,NA,NA,NA,s092,from,t1
+s081,1,0.9,Neighbourhood A,13.3,boy,no,no,no,2 once or twice a year,3 occasional,2 occasional,5,yes,t1,s092,s069,s074,s085,s099,NA,s092,to,t1
+s081,1,0.9,Neighbourhood A,13.3,boy,no,no,no,2 once or twice a year,3 occasional,3 regular,4.5,no,t2,s061,s099,s122,s144,s150,NA,s092,to,t1
+s081,1,0.9,Neighbourhood A,13.3,boy,no,no,no,4 once a week,4 regular,3 regular,10,yes,t3,s099,NA,NA,NA,NA,NA,s092,to,t1
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,10,no,t1,s071,s075,s076,s077,s078,s079,s076,from,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,NA,1 none,1 none,10,no,t2,s076,s077,s036,s078,s098,NA,s076,from,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,40,yes,t3,s049,s050,s074,s076,s078,NA,s076,from,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,10,no,t1,s071,s075,s076,s077,s078,s079,s076,to,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,NA,1 none,1 none,10,no,t2,s076,s077,s036,s078,s098,NA,s076,to,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,40,yes,t3,s049,s050,s074,s076,s078,NA,s076,to,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,10,no,t1,s071,s075,s076,s077,s078,s079,s077,from,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,NA,1 none,1 none,10,no,t2,s076,s077,s036,s078,s098,NA,s077,from,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,40,yes,t3,s049,s050,s074,s076,s078,NA,s077,from,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,10,no,t1,s071,s075,s076,s077,s078,s079,s077,to,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,NA,1 none,1 none,10,no,t2,s076,s077,s036,s078,s098,NA,s077,to,t2
+s084,2,2.26,Neighbourhood B,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,40,yes,t3,s049,s050,s074,s076,s078,NA,s077,to,t2
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,10,no,t1,s068,s083,NA,NA,NA,NA,s068,from,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,4 once a week,2 tried once,1 none,5,no,t3,s095,s083,NA,NA,NA,NA,s068,from,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,5,no,t2,NA,NA,NA,NA,NA,NA,s068,from,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,10,no,t1,s068,s083,NA,NA,NA,NA,s068,to,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,4 once a week,2 tried once,1 none,5,no,t3,s095,s083,NA,NA,NA,NA,s068,to,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,5,no,t2,NA,NA,NA,NA,NA,NA,s068,to,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,10,no,t1,s068,s083,NA,NA,NA,NA,s083,from,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,4 once a week,2 tried once,1 none,5,no,t3,s095,s083,NA,NA,NA,NA,s083,from,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,5,no,t2,NA,NA,NA,NA,NA,NA,s083,from,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,10,no,t1,s068,s083,NA,NA,NA,NA,s083,to,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,4 once a week,2 tried once,1 none,5,no,t3,s095,s083,NA,NA,NA,NA,s083,to,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,5,no,t2,NA,NA,NA,NA,NA,NA,s083,to,t1
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,10,no,t1,s068,s083,NA,NA,NA,NA,s095,from,t3
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,4 once a week,2 tried once,1 none,5,no,t3,s095,s083,NA,NA,NA,NA,s095,from,t3
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,5,no,t2,NA,NA,NA,NA,NA,NA,s095,from,t3
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,10,no,t1,s068,s083,NA,NA,NA,NA,s095,to,t3
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,4 once a week,2 tried once,1 none,5,no,t3,s095,s083,NA,NA,NA,NA,s095,to,t3
+s085,1,0.9,Neighbourhood A,13.5,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,5,no,t2,NA,NA,NA,NA,NA,NA,s095,to,t3
+s087,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,1 none,1 none,1 none,20,no,t1,s065,s028,s072,s086,s093,s157,s065,from,t1
+s087,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,3 once a month,1 none,1 none,10,no,t2,s065,s052,s086,s123,NA,NA,s065,from,t1
+s087,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,no,t3,s052,s065,s086,s093,s107,NA,s065,from,t1
+s087,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,1 none,1 none,1 none,20,no,t1,s065,s028,s072,s086,s093,s157,s065,to,t2
+s087,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,3 once a month,1 none,1 none,10,no,t2,s065,s052,s086,s123,NA,NA,s065,to,t2
+s087,1,0.9,Neighbourhood A,13.7,girl,yes,no,yes,4 once a week,3 occasional,3 regular,10,no,t3,s052,s065,s086,s093,s107,NA,s065,to,t2
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,4,yes,t1,s056,s070,s089,NA,NA,NA,s056,from,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,5,yes,t2,s112,s089,s106,NA,NA,NA,s056,from,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t3,s056,s105,s112,NA,NA,NA,s056,from,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,4,yes,t1,s056,s070,s089,NA,NA,NA,s056,to,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,5,yes,t2,s112,s089,s106,NA,NA,NA,s056,to,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t3,s056,s105,s112,NA,NA,NA,s056,to,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,4,yes,t1,s056,s070,s089,NA,NA,NA,s105,from,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,5,yes,t2,s112,s089,s106,NA,NA,NA,s105,from,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t3,s056,s105,s112,NA,NA,NA,s105,from,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,4,yes,t1,s056,s070,s089,NA,NA,NA,s105,to,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,5,yes,t2,s112,s089,s106,NA,NA,NA,s105,to,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t3,s056,s105,s112,NA,NA,NA,s105,to,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,4,yes,t1,s056,s070,s089,NA,NA,NA,s112,from,t2
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,5,yes,t2,s112,s089,s106,NA,NA,NA,s112,from,t2
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t3,s056,s105,s112,NA,NA,NA,s112,from,t2
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,4,yes,t1,s056,s070,s089,NA,NA,NA,s112,to,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,5,yes,t2,s112,s089,s106,NA,NA,NA,s112,to,t3
+s088,2,2.26,Neighbourhood B,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t3,s056,s105,s112,NA,NA,NA,s112,to,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,10,no,t1,s088,s004,s012,s039,s056,s112,s008,from,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,2 once or twice a year,1 none,1 none,20,no,t2,s004,s008,s039,s088,s112,s156,s008,from,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,30,no,t3,s008,s039,s004,s011,s012,s015,s008,from,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,10,no,t1,s088,s004,s012,s039,s056,s112,s008,to,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,2 once or twice a year,1 none,1 none,20,no,t2,s004,s008,s039,s088,s112,s156,s008,to,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,30,no,t3,s008,s039,s004,s011,s012,s015,s008,to,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,10,no,t1,s088,s004,s012,s039,s056,s112,s039,from,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,2 once or twice a year,1 none,1 none,20,no,t2,s004,s008,s039,s088,s112,s156,s039,from,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,30,no,t3,s008,s039,s004,s011,s012,s015,s039,from,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,10,no,t1,s088,s004,s012,s039,s056,s112,s039,to,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,2 once or twice a year,1 none,1 none,20,no,t2,s004,s008,s039,s088,s112,s156,s039,to,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,30,no,t3,s008,s039,s004,s011,s012,s015,s039,to,t3
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,10,no,t1,s088,s004,s012,s039,s056,s112,s088,from,t1
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,2 once or twice a year,1 none,1 none,20,no,t2,s004,s008,s039,s088,s112,s156,s088,from,t1
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,30,no,t3,s008,s039,s004,s011,s012,s015,s088,from,t1
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,10,no,t1,s088,s004,s012,s039,s056,s112,s088,to,t1
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,2 once or twice a year,1 none,1 none,20,no,t2,s004,s008,s039,s088,s112,s156,s088,to,t1
+s089,1,0.9,Neighbourhood A,13.1,girl,no,no,no,4 once a week,1 none,1 none,30,no,t3,s008,s039,s004,s011,s012,s015,s088,to,t1
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,1 none,1 none,1,no,t1,s075,s076,s080,NA,NA,NA,s075,from,t1
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,1 none,1 none,22.5,no,t2,s075,s076,s091,NA,NA,NA,s075,from,t1
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,2 tried once,1 none,18,no,t3,s076,s075,s077,NA,NA,NA,s075,from,t1
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,1 none,1 none,1,no,t1,s075,s076,s080,NA,NA,NA,s075,to,t1
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,1 none,1 none,22.5,no,t2,s075,s076,s091,NA,NA,NA,s075,to,t1
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,2 tried once,1 none,18,no,t3,s076,s075,s077,NA,NA,NA,s075,to,t1
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,1 none,1 none,1,no,t1,s075,s076,s080,NA,NA,NA,s076,from,t3
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,1 none,1 none,22.5,no,t2,s075,s076,s091,NA,NA,NA,s076,from,t3
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,2 tried once,1 none,18,no,t3,s076,s075,s077,NA,NA,NA,s076,from,t3
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,1 none,1 none,1,no,t1,s075,s076,s080,NA,NA,NA,s076,to,t3
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,1 none,1 none,22.5,no,t2,s075,s076,s091,NA,NA,NA,s076,to,t3
+s090,2,2.26,Neighbourhood B,13.2,boy,no,no,no,2 once or twice a year,2 tried once,1 none,18,no,t3,s076,s075,s077,NA,NA,NA,s076,to,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,no,t2,s061,s068,s053,s083,s116,NA,s018,from,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t3,s018,s108,s138,s021,s061,s084,s018,from,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,yes,t1,NA,NA,NA,NA,NA,NA,s018,from,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,no,t2,s061,s068,s053,s083,s116,NA,s018,to,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t3,s018,s108,s138,s021,s061,s084,s018,to,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,yes,t1,NA,NA,NA,NA,NA,NA,s018,to,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,no,t2,s061,s068,s053,s083,s116,NA,s061,from,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t3,s018,s108,s138,s021,s061,s084,s061,from,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,yes,t1,NA,NA,NA,NA,NA,NA,s061,from,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,no,t2,s061,s068,s053,s083,s116,NA,s061,to,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t3,s018,s108,s138,s021,s061,s084,s061,to,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,yes,t1,NA,NA,NA,NA,NA,NA,s061,to,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,no,t2,s061,s068,s053,s083,s116,NA,s068,from,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t3,s018,s108,s138,s021,s061,s084,s068,from,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,yes,t1,NA,NA,NA,NA,NA,NA,s068,from,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,no,t2,s061,s068,s053,s083,s116,NA,s068,to,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t3,s018,s108,s138,s021,s061,s084,s068,to,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,yes,t1,NA,NA,NA,NA,NA,NA,s068,to,t2
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,no,t2,s061,s068,s053,s083,s116,NA,s108,from,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t3,s018,s108,s138,s021,s061,s084,s108,from,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,yes,t1,NA,NA,NA,NA,NA,NA,s108,from,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,no,t2,s061,s068,s053,s083,s116,NA,s108,to,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t3,s018,s108,s138,s021,s061,s084,s108,to,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,yes,t1,NA,NA,NA,NA,NA,NA,s108,to,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,no,t2,s061,s068,s053,s083,s116,NA,s138,from,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t3,s018,s108,s138,s021,s061,s084,s138,from,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,yes,t1,NA,NA,NA,NA,NA,NA,s138,from,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,7,no,t2,s061,s068,s053,s083,s116,NA,s138,to,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t3,s018,s108,s138,s021,s061,s084,s138,to,t3
+s091,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7.5,yes,t1,NA,NA,NA,NA,NA,NA,s138,to,t3
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,0.5,yes,t1,s081,s088,NA,NA,NA,NA,s081,from,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5.5,no,t3,s122,s061,s110,s127,NA,NA,s081,from,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,NA,1 none,1 none,3,no,t2,NA,NA,NA,NA,NA,NA,s081,from,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,0.5,yes,t1,s081,s088,NA,NA,NA,NA,s081,to,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5.5,no,t3,s122,s061,s110,s127,NA,NA,s081,to,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,NA,1 none,1 none,3,no,t2,NA,NA,NA,NA,NA,NA,s081,to,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,0.5,yes,t1,s081,s088,NA,NA,NA,NA,s088,from,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5.5,no,t3,s122,s061,s110,s127,NA,NA,s088,from,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,NA,1 none,1 none,3,no,t2,NA,NA,NA,NA,NA,NA,s088,from,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,0.5,yes,t1,s081,s088,NA,NA,NA,NA,s088,to,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5.5,no,t3,s122,s061,s110,s127,NA,NA,s088,to,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,NA,1 none,1 none,3,no,t2,NA,NA,NA,NA,NA,NA,s088,to,t1
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,0.5,yes,t1,s081,s088,NA,NA,NA,NA,s122,from,t3
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5.5,no,t3,s122,s061,s110,s127,NA,NA,s122,from,t3
+s092,4,NA,NA,13.4,boy,yes,yes,no,NA,1 none,1 none,3,no,t2,NA,NA,NA,NA,NA,NA,s122,from,t3
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,0.5,yes,t1,s081,s088,NA,NA,NA,NA,s122,to,t3
+s092,4,NA,NA,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5.5,no,t3,s122,s061,s110,s127,NA,NA,s122,to,t3
+s092,4,NA,NA,13.4,boy,yes,yes,no,NA,1 none,1 none,3,no,t2,NA,NA,NA,NA,NA,NA,s122,to,t3
+s093,1,0.9,Neighbourhood A,13,girl,yes,yes,no,3 once a month,1 none,1 none,30,yes,t1,s027,s087,NA,NA,NA,NA,s027,from,t1
+s093,1,0.9,Neighbourhood A,13,girl,yes,yes,no,4 once a week,1 none,1 none,20,no,t2,s027,s086,s087,NA,NA,NA,s027,from,t1
+s093,1,0.9,Neighbourhood A,13,girl,yes,yes,no,3 once a month,1 none,3 regular,30,yes,t3,s027,s006,s028,s034,s086,s087,s027,from,t1
+s093,1,0.9,Neighbourhood A,13,girl,yes,yes,no,3 once a month,1 none,1 none,30,yes,t1,s027,s087,NA,NA,NA,NA,s027,to,t3
+s093,1,0.9,Neighbourhood A,13,girl,yes,yes,no,4 once a week,1 none,1 none,20,no,t2,s027,s086,s087,NA,NA,NA,s027,to,t3
+s093,1,0.9,Neighbourhood A,13,girl,yes,yes,no,3 once a month,1 none,3 regular,30,yes,t3,s027,s006,s028,s034,s086,s087,s027,to,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t1,s020,s021,s018,s138,NA,NA,s020,from,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t2,s020,s021,s068,s083,s085,NA,s020,from,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t3,s083,s085,s020,s021,NA,NA,s020,from,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t1,s020,s021,s018,s138,NA,NA,s020,to,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t2,s020,s021,s068,s083,s085,NA,s020,to,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t3,s083,s085,s020,s021,NA,NA,s020,to,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t1,s020,s021,s018,s138,NA,NA,s021,from,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t2,s020,s021,s068,s083,s085,NA,s021,from,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t3,s083,s085,s020,s021,NA,NA,s021,from,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t1,s020,s021,s018,s138,NA,NA,s021,to,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t2,s020,s021,s068,s083,s085,NA,s021,to,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t3,s083,s085,s020,s021,NA,NA,s021,to,t1
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t1,s020,s021,s018,s138,NA,NA,s083,from,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t2,s020,s021,s068,s083,s085,NA,s083,from,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t3,s083,s085,s020,s021,NA,NA,s083,from,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t1,s020,s021,s018,s138,NA,NA,s083,to,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t2,s020,s021,s068,s083,s085,NA,s083,to,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t3,s083,s085,s020,s021,NA,NA,s083,to,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t1,s020,s021,s018,s138,NA,NA,s085,from,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t2,s020,s021,s068,s083,s085,NA,s085,from,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t3,s083,s085,s020,s021,NA,NA,s085,from,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t1,s020,s021,s018,s138,NA,NA,s085,to,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,7,no,t2,s020,s021,s068,s083,s085,NA,s085,to,t3
+s095,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t3,s083,s085,s020,s021,NA,NA,s085,to,t3
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,1 none,25,no,t1,s002,s049,s074,s101,s113,s137,s002,from,t1
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,1 none,25,no,t2,s002,s036,s049,s120,s137,NA,s002,from,t1
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,2 occasional,35,yes,t3,s120,s036,s151,NA,NA,NA,s002,from,t1
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,1 none,25,no,t1,s002,s049,s074,s101,s113,s137,s002,to,t1
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,1 none,25,no,t2,s002,s036,s049,s120,s137,NA,s002,to,t1
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,2 occasional,35,yes,t3,s120,s036,s151,NA,NA,NA,s002,to,t1
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,1 none,25,no,t1,s002,s049,s074,s101,s113,s137,s120,from,t3
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,1 none,25,no,t2,s002,s036,s049,s120,s137,NA,s120,from,t3
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,2 occasional,35,yes,t3,s120,s036,s151,NA,NA,NA,s120,from,t3
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,1 none,25,no,t1,s002,s049,s074,s101,s113,s137,s120,to,t3
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,1 none,25,no,t2,s002,s036,s049,s120,s137,NA,s120,to,t3
+s098,1,0.9,Neighbourhood A,13.5,boy,no,no,no,4 once a week,3 occasional,2 occasional,35,yes,t3,s120,s036,s151,NA,NA,NA,s120,to,t3
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,3 once a month,2 tried once,1 none,4,yes,t1,s133,s046,s094,s111,NA,NA,s115,from,t2
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,3 once a month,2 tried once,1 none,3,no,t2,s115,s013,s081,s082,NA,NA,s115,from,t2
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,4 once a week,3 occasional,1 none,15,yes,t3,s081,s115,s152,NA,NA,NA,s115,from,t2
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,3 once a month,2 tried once,1 none,4,yes,t1,s133,s046,s094,s111,NA,NA,s115,to,t2
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,3 once a month,2 tried once,1 none,3,no,t2,s115,s013,s081,s082,NA,NA,s115,to,t2
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,4 once a week,3 occasional,1 none,15,yes,t3,s081,s115,s152,NA,NA,NA,s115,to,t2
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,3 once a month,2 tried once,1 none,4,yes,t1,s133,s046,s094,s111,NA,NA,s133,from,t1
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,3 once a month,2 tried once,1 none,3,no,t2,s115,s013,s081,s082,NA,NA,s133,from,t1
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,4 once a week,3 occasional,1 none,15,yes,t3,s081,s115,s152,NA,NA,NA,s133,from,t1
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,3 once a month,2 tried once,1 none,4,yes,t1,s133,s046,s094,s111,NA,NA,s133,to,t1
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,3 once a month,2 tried once,1 none,3,no,t2,s115,s013,s081,s082,NA,NA,s133,to,t1
+s099,1,0.9,Neighbourhood A,13.8,girl,yes,yes,no,4 once a week,3 occasional,1 none,15,yes,t3,s081,s115,s152,NA,NA,NA,s133,to,t1
+s100,4,NA,NA,13.6,boy,yes,yes,no,3 once a month,2 tried once,1 none,2.5,no,t1,s085,s053,s068,s116,NA,NA,s061,from,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s061,s091,s116,s068,s095,NA,s061,from,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,4 once a week,2 tried once,1 none,50,no,t3,s091,s018,s108,s138,NA,NA,s061,from,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,3 once a month,2 tried once,1 none,2.5,no,t1,s085,s053,s068,s116,NA,NA,s061,to,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s061,s091,s116,s068,s095,NA,s061,to,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,4 once a week,2 tried once,1 none,50,no,t3,s091,s018,s108,s138,NA,NA,s061,to,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,3 once a month,2 tried once,1 none,2.5,no,t1,s085,s053,s068,s116,NA,NA,s085,from,t1
+s100,4,NA,NA,13.6,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s061,s091,s116,s068,s095,NA,s085,from,t1
+s100,4,NA,NA,13.6,boy,yes,yes,no,4 once a week,2 tried once,1 none,50,no,t3,s091,s018,s108,s138,NA,NA,s085,from,t1
+s100,4,NA,NA,13.6,boy,yes,yes,no,3 once a month,2 tried once,1 none,2.5,no,t1,s085,s053,s068,s116,NA,NA,s085,to,t1
+s100,4,NA,NA,13.6,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s061,s091,s116,s068,s095,NA,s085,to,t1
+s100,4,NA,NA,13.6,boy,yes,yes,no,4 once a week,2 tried once,1 none,50,no,t3,s091,s018,s108,s138,NA,NA,s085,to,t1
+s100,4,NA,NA,13.6,boy,yes,yes,no,3 once a month,2 tried once,1 none,2.5,no,t1,s085,s053,s068,s116,NA,NA,s091,from,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s061,s091,s116,s068,s095,NA,s091,from,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,4 once a week,2 tried once,1 none,50,no,t3,s091,s018,s108,s138,NA,NA,s091,from,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,3 once a month,2 tried once,1 none,2.5,no,t1,s085,s053,s068,s116,NA,NA,s091,to,t3
+s100,4,NA,NA,13.6,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s061,s091,s116,s068,s095,NA,s091,to,t3
+s100,4,NA,NA,13.6,boy,yes,yes,no,4 once a week,2 tried once,1 none,50,no,t3,s091,s018,s108,s138,NA,NA,s091,to,t3
+s100,4,NA,NA,13.6,boy,yes,yes,no,3 once a month,2 tried once,1 none,2.5,no,t1,s085,s053,s068,s116,NA,NA,s116,from,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s061,s091,s116,s068,s095,NA,s116,from,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,4 once a week,2 tried once,1 none,50,no,t3,s091,s018,s108,s138,NA,NA,s116,from,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,3 once a month,2 tried once,1 none,2.5,no,t1,s085,s053,s068,s116,NA,NA,s116,to,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s061,s091,s116,s068,s095,NA,s116,to,t2
+s100,4,NA,NA,13.6,boy,yes,yes,no,4 once a week,2 tried once,1 none,50,no,t3,s091,s018,s108,s138,NA,NA,s116,to,t2
+s101,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,2 once or twice a year,2 tried once,1 none,5,no,t1,s051,s044,s113,s131,NA,NA,s051,from,t1
+s101,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,2 once or twice a year,2 tried once,1 none,30,yes,t2,s051,s005,s106,NA,NA,NA,s051,from,t1
+s101,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,3 once a month,4 regular,2 occasional,35,no,t3,s051,s062,s076,NA,NA,NA,s051,from,t1
+s101,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,2 once or twice a year,2 tried once,1 none,5,no,t1,s051,s044,s113,s131,NA,NA,s051,to,t3
+s101,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,2 once or twice a year,2 tried once,1 none,30,yes,t2,s051,s005,s106,NA,NA,NA,s051,to,t3
+s101,3,3.69,Neighbourhood C,13.4,boy,yes,yes,yes,3 once a month,4 regular,2 occasional,35,no,t3,s051,s062,s076,NA,NA,NA,s051,to,t3
+s102,4,NA,NA,13.6,boy,yes,no,no,4 once a week,2 tried once,3 regular,3.4,yes,t1,s094,s109,NA,NA,NA,NA,s094,from,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s094,from,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s094,from,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,4 once a week,2 tried once,3 regular,3.4,yes,t1,s094,s109,NA,NA,NA,NA,s094,to,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s094,to,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s094,to,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,4 once a week,2 tried once,3 regular,3.4,yes,t1,s094,s109,NA,NA,NA,NA,s109,from,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s109,from,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s109,from,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,4 once a week,2 tried once,3 regular,3.4,yes,t1,s094,s109,NA,NA,NA,NA,s109,to,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s109,to,t1
+s102,4,NA,NA,13.6,boy,yes,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s109,to,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,3 once a month,1 none,1 none,10,yes,t1,s069,s106,s074,s113,NA,NA,s069,from,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s069,from,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s069,from,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,3 once a month,1 none,1 none,10,yes,t1,s069,s106,s074,s113,NA,NA,s069,to,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s069,to,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s069,to,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,3 once a month,1 none,1 none,10,yes,t1,s069,s106,s074,s113,NA,NA,s106,from,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s106,from,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s106,from,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,3 once a month,1 none,1 none,10,yes,t1,s069,s106,s074,s113,NA,NA,s106,to,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s106,to,t1
+s103,4,NA,NA,13.4,boy,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s106,to,t1
+s104,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,3 once a month,1 none,1 none,10,yes,t1,s115,s009,s013,NA,NA,NA,s115,from,t1
+s104,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s115,from,t1
+s104,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s115,from,t1
+s104,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,3 once a month,1 none,1 none,10,yes,t1,s115,s009,s013,NA,NA,NA,s115,to,t1
+s104,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s115,to,t1
+s104,2,2.26,Neighbourhood B,13.7,girl,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s115,to,t1
+s105,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t1,s056,s061,s088,s089,s104,s112,s056,from,t1
+s105,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t2,s056,s052,s088,s112,s121,NA,s056,from,t1
+s105,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,4 once a week,1 none,1 none,7,no,t3,s056,s066,s088,s112,s121,s147,s056,from,t1
+s105,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t1,s056,s061,s088,s089,s104,s112,s056,to,t3
+s105,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t2,s056,s052,s088,s112,s121,NA,s056,to,t3
+s105,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,4 once a week,1 none,1 none,7,no,t3,s056,s066,s088,s112,s121,s147,s056,to,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s069,s074,s103,s113,NA,NA,s049,from,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,3 once a month,3 occasional,1 none,2.5,no,t2,s074,s113,s098,NA,NA,NA,s049,from,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,4 once a week,3 occasional,3 regular,5,no,t3,s049,s057,s113,s050,s074,NA,s049,from,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s069,s074,s103,s113,NA,NA,s049,to,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,3 once a month,3 occasional,1 none,2.5,no,t2,s074,s113,s098,NA,NA,NA,s049,to,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,4 once a week,3 occasional,3 regular,5,no,t3,s049,s057,s113,s050,s074,NA,s049,to,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s069,s074,s103,s113,NA,NA,s057,from,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,3 once a month,3 occasional,1 none,2.5,no,t2,s074,s113,s098,NA,NA,NA,s057,from,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,4 once a week,3 occasional,3 regular,5,no,t3,s049,s057,s113,s050,s074,NA,s057,from,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s069,s074,s103,s113,NA,NA,s057,to,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,3 once a month,3 occasional,1 none,2.5,no,t2,s074,s113,s098,NA,NA,NA,s057,to,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,4 once a week,3 occasional,3 regular,5,no,t3,s049,s057,s113,s050,s074,NA,s057,to,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s069,s074,s103,s113,NA,NA,s074,from,t2
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,3 once a month,3 occasional,1 none,2.5,no,t2,s074,s113,s098,NA,NA,NA,s074,from,t2
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,4 once a week,3 occasional,3 regular,5,no,t3,s049,s057,s113,s050,s074,NA,s074,from,t2
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s069,s074,s103,s113,NA,NA,s074,to,t2
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,3 once a month,3 occasional,1 none,2.5,no,t2,s074,s113,s098,NA,NA,NA,s074,to,t2
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,4 once a week,3 occasional,3 regular,5,no,t3,s049,s057,s113,s050,s074,NA,s074,to,t2
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s069,s074,s103,s113,NA,NA,s113,from,t2
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,3 once a month,3 occasional,1 none,2.5,no,t2,s074,s113,s098,NA,NA,NA,s113,from,t2
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,4 once a week,3 occasional,3 regular,5,no,t3,s049,s057,s113,s050,s074,NA,s113,from,t2
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s069,s074,s103,s113,NA,NA,s113,to,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,3 once a month,3 occasional,1 none,2.5,no,t2,s074,s113,s098,NA,NA,NA,s113,to,t3
+s106,2,2.26,Neighbourhood B,13.8,boy,no,no,no,4 once a week,3 occasional,3 regular,5,no,t3,s049,s057,s113,s050,s074,NA,s113,to,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t1,s123,s114,NA,NA,NA,NA,s034,from,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s114,s123,s034,s065,s087,NA,s034,from,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,3 regular,7,no,t3,s034,s052,s123,s065,s087,s114,s034,from,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t1,s123,s114,NA,NA,NA,NA,s034,to,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s114,s123,s034,s065,s087,NA,s034,to,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,3 regular,7,no,t3,s034,s052,s123,s065,s087,s114,s034,to,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t1,s123,s114,NA,NA,NA,NA,s052,from,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s114,s123,s034,s065,s087,NA,s052,from,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,3 regular,7,no,t3,s034,s052,s123,s065,s087,s114,s052,from,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t1,s123,s114,NA,NA,NA,NA,s052,to,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s114,s123,s034,s065,s087,NA,s052,to,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,3 regular,7,no,t3,s034,s052,s123,s065,s087,s114,s052,to,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t1,s123,s114,NA,NA,NA,NA,s114,from,t2
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s114,s123,s034,s065,s087,NA,s114,from,t2
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,3 regular,7,no,t3,s034,s052,s123,s065,s087,s114,s114,from,t2
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t1,s123,s114,NA,NA,NA,NA,s114,to,t2
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s114,s123,s034,s065,s087,NA,s114,to,t2
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,3 regular,7,no,t3,s034,s052,s123,s065,s087,s114,s114,to,t2
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t1,s123,s114,NA,NA,NA,NA,s123,from,t1
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s114,s123,s034,s065,s087,NA,s123,from,t1
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,3 regular,7,no,t3,s034,s052,s123,s065,s087,s114,s123,from,t1
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t1,s123,s114,NA,NA,NA,NA,s123,to,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,1 none,1 none,10,no,t2,s114,s123,s034,s065,s087,NA,s123,to,t3
+s107,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,3 regular,7,no,t3,s034,s052,s123,s065,s087,s114,s123,to,t3
+s109,4,NA,NA,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6.5,yes,t1,s111,s094,NA,NA,NA,NA,s111,from,t1
+s109,4,NA,NA,13,boy,yes,yes,no,3 once a month,2 tried once,1 none,5,yes,t2,s031,s111,s155,NA,NA,NA,s111,from,t1
+s109,4,NA,NA,13,boy,yes,yes,no,4 once a week,3 occasional,3 regular,10,yes,t3,s111,NA,NA,NA,NA,NA,s111,from,t1
+s109,4,NA,NA,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6.5,yes,t1,s111,s094,NA,NA,NA,NA,s111,to,t1
+s109,4,NA,NA,13,boy,yes,yes,no,3 once a month,2 tried once,1 none,5,yes,t2,s031,s111,s155,NA,NA,NA,s111,to,t1
+s109,4,NA,NA,13,boy,yes,yes,no,4 once a week,3 occasional,3 regular,10,yes,t3,s111,NA,NA,NA,NA,NA,s111,to,t1
+s111,4,NA,NA,13,boy,yes,yes,no,3 once a month,1 none,1 none,40,yes,t1,s109,s094,NA,NA,NA,NA,s109,from,t1
+s111,4,NA,NA,13,boy,yes,yes,no,3 once a month,2 tried once,3 regular,5,yes,t2,s109,NA,NA,NA,NA,NA,s109,from,t1
+s111,4,NA,NA,13,boy,yes,yes,no,4 once a week,4 regular,3 regular,5,yes,t3,s109,NA,NA,NA,NA,NA,s109,from,t1
+s111,4,NA,NA,13,boy,yes,yes,no,3 once a month,1 none,1 none,40,yes,t1,s109,s094,NA,NA,NA,NA,s109,to,t3
+s111,4,NA,NA,13,boy,yes,yes,no,3 once a month,2 tried once,3 regular,5,yes,t2,s109,NA,NA,NA,NA,NA,s109,to,t3
+s111,4,NA,NA,13,boy,yes,yes,no,4 once a week,4 regular,3 regular,5,yes,t3,s109,NA,NA,NA,NA,NA,s109,to,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s088,s089,s097,s104,s105,s115,s056,from,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,1 none,1 none,3,no,t2,s056,s088,s089,s097,s099,s115,s056,from,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,3 once a month,1 none,1 none,15,no,t3,s056,s088,s004,s099,s105,s139,s056,from,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s088,s089,s097,s104,s105,s115,s056,to,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,1 none,1 none,3,no,t2,s056,s088,s089,s097,s099,s115,s056,to,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,3 once a month,1 none,1 none,15,no,t3,s056,s088,s004,s099,s105,s139,s056,to,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s088,s089,s097,s104,s105,s115,s088,from,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,1 none,1 none,3,no,t2,s056,s088,s089,s097,s099,s115,s088,from,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,3 once a month,1 none,1 none,15,no,t3,s056,s088,s004,s099,s105,s139,s088,from,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,2 once or twice a year,1 none,1 none,2.5,no,t1,s088,s089,s097,s104,s105,s115,s088,to,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,1 none,1 none,3,no,t2,s056,s088,s089,s097,s099,s115,s088,to,t3
+s112,1,0.9,Neighbourhood A,13.5,girl,no,no,no,3 once a month,1 none,1 none,15,no,t3,s056,s088,s004,s099,s105,s139,s088,to,t3
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,4,no,t1,s074,s069,s098,s101,s106,s114,s074,from,t1
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,3 once a month,2 tried once,3 regular,4,no,t2,s074,s106,s032,s120,NA,NA,s074,from,t1
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,4 once a week,3 occasional,1 none,5,no,t3,s106,s049,s050,s057,s060,s074,s074,from,t1
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,4,no,t1,s074,s069,s098,s101,s106,s114,s074,to,t2
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,3 once a month,2 tried once,3 regular,4,no,t2,s074,s106,s032,s120,NA,NA,s074,to,t2
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,4 once a week,3 occasional,1 none,5,no,t3,s106,s049,s050,s057,s060,s074,s074,to,t2
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,4,no,t1,s074,s069,s098,s101,s106,s114,s106,from,t2
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,3 once a month,2 tried once,3 regular,4,no,t2,s074,s106,s032,s120,NA,NA,s106,from,t2
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,4 once a week,3 occasional,1 none,5,no,t3,s106,s049,s050,s057,s060,s074,s106,from,t2
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,4,no,t1,s074,s069,s098,s101,s106,s114,s106,to,t3
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,3 once a month,2 tried once,3 regular,4,no,t2,s074,s106,s032,s120,NA,NA,s106,to,t3
+s113,1,0.9,Neighbourhood A,12.8,boy,yes,yes,no,4 once a week,3 occasional,1 none,5,no,t3,s106,s049,s050,s057,s060,s074,s106,to,t3
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,3 once a month,1 none,1 none,10,yes,t1,s107,s123,NA,NA,NA,NA,s107,from,t1
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,3 once a month,1 none,1 none,10,yes,t2,s065,s123,NA,NA,NA,NA,s107,from,t1
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,1 none,5,yes,t3,s123,s107,NA,NA,NA,NA,s107,from,t1
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,3 once a month,1 none,1 none,10,yes,t1,s107,s123,NA,NA,NA,NA,s107,to,t1
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,3 once a month,1 none,1 none,10,yes,t2,s065,s123,NA,NA,NA,NA,s107,to,t1
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,1 none,5,yes,t3,s123,s107,NA,NA,NA,NA,s107,to,t1
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,3 once a month,1 none,1 none,10,yes,t1,s107,s123,NA,NA,NA,NA,s123,from,t3
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,3 once a month,1 none,1 none,10,yes,t2,s065,s123,NA,NA,NA,NA,s123,from,t3
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,1 none,5,yes,t3,s123,s107,NA,NA,NA,NA,s123,from,t3
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,3 once a month,1 none,1 none,10,yes,t1,s107,s123,NA,NA,NA,NA,s123,to,t3
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,3 once a month,1 none,1 none,10,yes,t2,s065,s123,NA,NA,NA,NA,s123,to,t3
+s114,1,0.9,Neighbourhood A,13.2,girl,yes,yes,no,4 once a week,3 occasional,1 none,5,yes,t3,s123,s107,NA,NA,NA,NA,s123,to,t3
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,30,yes,t1,s013,s104,s109,s111,NA,NA,s066,from,t3
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,15,no,t2,s099,s104,s040,s125,s143,NA,s066,from,t3
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,3 occasional,3 regular,20,no,t3,s066,s073,s082,s125,NA,NA,s066,from,t3
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,30,yes,t1,s013,s104,s109,s111,NA,NA,s066,to,t3
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,15,no,t2,s099,s104,s040,s125,s143,NA,s066,to,t3
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,3 occasional,3 regular,20,no,t3,s066,s073,s082,s125,NA,NA,s066,to,t3
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,30,yes,t1,s013,s104,s109,s111,NA,NA,s099,from,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,15,no,t2,s099,s104,s040,s125,s143,NA,s099,from,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,3 occasional,3 regular,20,no,t3,s066,s073,s082,s125,NA,NA,s099,from,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,30,yes,t1,s013,s104,s109,s111,NA,NA,s099,to,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,15,no,t2,s099,s104,s040,s125,s143,NA,s099,to,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,3 occasional,3 regular,20,no,t3,s066,s073,s082,s125,NA,NA,s099,to,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,30,yes,t1,s013,s104,s109,s111,NA,NA,s104,from,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,15,no,t2,s099,s104,s040,s125,s143,NA,s104,from,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,3 occasional,3 regular,20,no,t3,s066,s073,s082,s125,NA,NA,s104,from,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,30,yes,t1,s013,s104,s109,s111,NA,NA,s104,to,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,1 none,1 none,15,no,t2,s099,s104,s040,s125,s143,NA,s104,to,t2
+s115,2,2.26,Neighbourhood B,13.5,girl,yes,yes,no,4 once a week,3 occasional,3 regular,20,no,t3,s066,s073,s082,s125,NA,NA,s104,to,t2
+s117,2,2.26,Neighbourhood B,13.7,boy,yes,yes,no,3 once a month,1 none,1 none,12,no,t1,s114,s148,NA,NA,NA,NA,s120,from,t3
+s117,2,2.26,Neighbourhood B,13.7,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,8,no,t2,s036,s144,s148,NA,NA,NA,s120,from,t3
+s117,2,2.26,Neighbourhood B,13.7,boy,yes,yes,no,3 once a month,2 tried once,1 none,10,no,t3,s120,s142,s148,NA,NA,NA,s120,from,t3
+s117,2,2.26,Neighbourhood B,13.7,boy,yes,yes,no,3 once a month,1 none,1 none,12,no,t1,s114,s148,NA,NA,NA,NA,s120,to,t3
+s117,2,2.26,Neighbourhood B,13.7,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,8,no,t2,s036,s144,s148,NA,NA,NA,s120,to,t3
+s117,2,2.26,Neighbourhood B,13.7,boy,yes,yes,no,3 once a month,2 tried once,1 none,10,no,t3,s120,s142,s148,NA,NA,NA,s120,to,t3
+s118,3,3.69,Neighbourhood C,13.6,girl,no,no,no,2 once or twice a year,1 none,1 none,5,yes,t1,s127,s104,s115,s135,NA,NA,s127,from,t1
+s118,3,3.69,Neighbourhood C,13.6,girl,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s127,s004,s039,s097,s150,NA,s127,from,t1
+s118,3,3.69,Neighbourhood C,13.6,girl,no,no,no,3 once a month,NA,1 none,5,no,t3,s127,s004,s039,NA,NA,NA,s127,from,t1
+s118,3,3.69,Neighbourhood C,13.6,girl,no,no,no,2 once or twice a year,1 none,1 none,5,yes,t1,s127,s104,s115,s135,NA,NA,s127,to,t3
+s118,3,3.69,Neighbourhood C,13.6,girl,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s127,s004,s039,s097,s150,NA,s127,to,t3
+s118,3,3.69,Neighbourhood C,13.6,girl,no,no,no,3 once a month,NA,1 none,5,no,t3,s127,s004,s039,NA,NA,NA,s127,to,t3
+s119,1,0.9,Neighbourhood A,13.5,girl,no,no,no,1 none,1 none,1 none,10,yes,t1,s070,s125,NA,NA,NA,NA,s070,from,t1
+s119,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,1 none,1 none,10.5,no,t2,s011,s118,s127,NA,NA,NA,s070,from,t1
+s119,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s070,from,t1
+s119,1,0.9,Neighbourhood A,13.5,girl,no,no,no,1 none,1 none,1 none,10,yes,t1,s070,s125,NA,NA,NA,NA,s070,to,t1
+s119,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,1 none,1 none,10.5,no,t2,s011,s118,s127,NA,NA,NA,s070,to,t1
+s119,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s070,to,t1
+s121,1,0.9,Neighbourhood A,13.5,girl,no,no,no,1 none,1 none,1 none,5,no,t1,s132,s134,s139,NA,NA,NA,s132,from,t1
+s121,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,1 none,1 none,7.5,no,t2,s132,s134,s139,NA,NA,NA,s132,from,t1
+s121,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,1 none,1 none,16,yes,t3,s132,s134,s139,s143,NA,NA,s132,from,t1
+s121,1,0.9,Neighbourhood A,13.5,girl,no,no,no,1 none,1 none,1 none,5,no,t1,s132,s134,s139,NA,NA,NA,s132,to,t3
+s121,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,1 none,1 none,7.5,no,t2,s132,s134,s139,NA,NA,NA,s132,to,t3
+s121,1,0.9,Neighbourhood A,13.5,girl,no,no,no,NA,1 none,1 none,16,yes,t3,s132,s134,s139,s143,NA,NA,s132,to,t3
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,4 once a week,2 tried once,1 none,6.5,yes,t1,s092,s129,s136,s142,NA,NA,s092,from,t2
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t2,s092,s150,NA,NA,NA,NA,s092,from,t2
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,4 once a week,2 tried once,1 none,10,no,t3,s092,s042,s110,s150,NA,NA,s092,from,t2
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,4 once a week,2 tried once,1 none,6.5,yes,t1,s092,s129,s136,s142,NA,NA,s092,to,t3
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t2,s092,s150,NA,NA,NA,NA,s092,to,t3
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,4 once a week,2 tried once,1 none,10,no,t3,s092,s042,s110,s150,NA,NA,s092,to,t3
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,4 once a week,2 tried once,1 none,6.5,yes,t1,s092,s129,s136,s142,NA,NA,s150,from,t2
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t2,s092,s150,NA,NA,NA,NA,s150,from,t2
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,4 once a week,2 tried once,1 none,10,no,t3,s092,s042,s110,s150,NA,NA,s150,from,t2
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,4 once a week,2 tried once,1 none,6.5,yes,t1,s092,s129,s136,s142,NA,NA,s150,to,t2
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,2 once or twice a year,1 none,1 none,6,no,t2,s092,s150,NA,NA,NA,NA,s150,to,t2
+s122,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,4 once a week,2 tried once,1 none,10,no,t3,s092,s042,s110,s150,NA,NA,s150,to,t2
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,4 once a week,1 none,2 occasional,20,no,t1,s107,s114,NA,NA,NA,NA,s107,from,t1
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,3 once a month,1 none,1 none,5,no,t2,s107,s052,s065,s087,NA,NA,s107,from,t1
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,4 once a week,3 occasional,3 regular,30.35,yes,t3,s114,s006,NA,NA,NA,NA,s107,from,t1
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,4 once a week,1 none,2 occasional,20,no,t1,s107,s114,NA,NA,NA,NA,s107,to,t2
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,3 once a month,1 none,1 none,5,no,t2,s107,s052,s065,s087,NA,NA,s107,to,t2
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,4 once a week,3 occasional,3 regular,30.35,yes,t3,s114,s006,NA,NA,NA,NA,s107,to,t2
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,4 once a week,1 none,2 occasional,20,no,t1,s107,s114,NA,NA,NA,NA,s114,from,t3
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,3 once a month,1 none,1 none,5,no,t2,s107,s052,s065,s087,NA,NA,s114,from,t3
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,4 once a week,3 occasional,3 regular,30.35,yes,t3,s114,s006,NA,NA,NA,NA,s114,from,t3
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,4 once a week,1 none,2 occasional,20,no,t1,s107,s114,NA,NA,NA,NA,s114,to,t3
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,3 once a month,1 none,1 none,5,no,t2,s107,s052,s065,s087,NA,NA,s114,to,t3
+s123,1,0.9,Neighbourhood A,13.2,girl,no,no,no,4 once a week,3 occasional,3 regular,30.35,yes,t3,s114,s006,NA,NA,NA,NA,s114,to,t3
+s125,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,NA,1 none,1 none,12.5,yes,t1,s066,s115,s119,NA,NA,NA,s066,from,t1
+s125,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,NA,1 none,1 none,16.5,no,t2,s066,s063,s115,NA,NA,NA,s066,from,t1
+s125,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,20,no,t3,s066,s073,s115,s117,NA,NA,s066,from,t1
+s125,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,NA,1 none,1 none,12.5,yes,t1,s066,s115,s119,NA,NA,NA,s066,to,t3
+s125,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,NA,1 none,1 none,16.5,no,t2,s066,s063,s115,NA,NA,NA,s066,to,t3
+s125,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,20,no,t3,s066,s073,s115,s117,NA,NA,s066,to,t3
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,4 once a week,3 occasional,3 regular,15.5,no,t1,s016,s131,s120,NA,NA,NA,s016,from,t1
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,5 more than once a week,3 occasional,3 regular,25,yes,t2,s034,s072,NA,NA,NA,NA,s016,from,t1
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,5 more than once a week,3 occasional,3 regular,30,no,t3,s131,s016,s078,s154,s157,NA,s016,from,t1
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,4 once a week,3 occasional,3 regular,15.5,no,t1,s016,s131,s120,NA,NA,NA,s016,to,t1
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,5 more than once a week,3 occasional,3 regular,25,yes,t2,s034,s072,NA,NA,NA,NA,s016,to,t1
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,5 more than once a week,3 occasional,3 regular,30,no,t3,s131,s016,s078,s154,s157,NA,s016,to,t1
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,4 once a week,3 occasional,3 regular,15.5,no,t1,s016,s131,s120,NA,NA,NA,s131,from,t1
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,5 more than once a week,3 occasional,3 regular,25,yes,t2,s034,s072,NA,NA,NA,NA,s131,from,t1
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,5 more than once a week,3 occasional,3 regular,30,no,t3,s131,s016,s078,s154,s157,NA,s131,from,t1
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,4 once a week,3 occasional,3 regular,15.5,no,t1,s016,s131,s120,NA,NA,NA,s131,to,t3
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,5 more than once a week,3 occasional,3 regular,25,yes,t2,s034,s072,NA,NA,NA,NA,s131,to,t3
+s126,2,2.26,Neighbourhood B,13.7,girl,no,no,no,5 more than once a week,3 occasional,3 regular,30,no,t3,s131,s016,s078,s154,s157,NA,s131,to,t3
+s127,3,3.69,Neighbourhood C,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,5,yes,t1,s118,s059,s115,s135,NA,NA,s118,from,t1
+s127,3,3.69,Neighbourhood C,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,8,no,t2,s118,s004,s008,s039,NA,NA,s118,from,t1
+s127,3,3.69,Neighbourhood C,13.5,girl,yes,yes,no,4 once a week,2 tried once,1 none,10,yes,t3,s118,s004,s039,NA,NA,NA,s118,from,t1
+s127,3,3.69,Neighbourhood C,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,5,yes,t1,s118,s059,s115,s135,NA,NA,s118,to,t3
+s127,3,3.69,Neighbourhood C,13.5,girl,yes,yes,no,2 once or twice a year,1 none,1 none,8,no,t2,s118,s004,s008,s039,NA,NA,s118,to,t3
+s127,3,3.69,Neighbourhood C,13.5,girl,yes,yes,no,4 once a week,2 tried once,1 none,10,yes,t3,s118,s004,s039,NA,NA,NA,s118,to,t3
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,2 occasional,20,no,t1,s016,s101,s120,s126,NA,NA,s016,from,t2
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,1 none,20,yes,t2,s016,s041,s044,s058,s067,NA,s016,from,t2
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,1 none,20,yes,t3,s126,s016,s041,s072,s157,NA,s016,from,t2
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,2 occasional,20,no,t1,s016,s101,s120,s126,NA,NA,s016,to,t2
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,1 none,20,yes,t2,s016,s041,s044,s058,s067,NA,s016,to,t2
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,1 none,20,yes,t3,s126,s016,s041,s072,s157,NA,s016,to,t2
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,2 occasional,20,no,t1,s016,s101,s120,s126,NA,NA,s126,from,t3
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,1 none,20,yes,t2,s016,s041,s044,s058,s067,NA,s126,from,t3
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,1 none,20,yes,t3,s126,s016,s041,s072,s157,NA,s126,from,t3
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,2 occasional,20,no,t1,s016,s101,s120,s126,NA,NA,s126,to,t3
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,1 none,20,yes,t2,s016,s041,s044,s058,s067,NA,s126,to,t3
+s131,2,2.26,Neighbourhood B,12.9,girl,yes,yes,no,5 more than once a week,3 occasional,1 none,20,yes,t3,s126,s016,s041,s072,s157,NA,s126,to,t3
+s132,1,0.9,Neighbourhood A,13.3,girl,yes,yes,yes,NA,1 none,1 none,5,no,t1,s121,s134,s139,NA,NA,NA,s121,from,t1
+s132,1,0.9,Neighbourhood A,13.3,girl,yes,yes,yes,NA,1 none,1 none,7.5,no,t2,s121,s134,s139,NA,NA,NA,s121,from,t1
+s132,1,0.9,Neighbourhood A,13.3,girl,yes,yes,yes,2 once or twice a year,1 none,1 none,8,no,t3,s121,s015,s118,s134,s139,NA,s121,from,t1
+s132,1,0.9,Neighbourhood A,13.3,girl,yes,yes,yes,NA,1 none,1 none,5,no,t1,s121,s134,s139,NA,NA,NA,s121,to,t3
+s132,1,0.9,Neighbourhood A,13.3,girl,yes,yes,yes,NA,1 none,1 none,7.5,no,t2,s121,s134,s139,NA,NA,NA,s121,to,t3
+s132,1,0.9,Neighbourhood A,13.3,girl,yes,yes,yes,2 once or twice a year,1 none,1 none,8,no,t3,s121,s015,s118,s134,s139,NA,s121,to,t3
+s133,4,NA,NA,13.1,girl,no,no,no,4 once a week,2 tried once,1 none,20,yes,t1,s046,s060,s099,s104,s115,NA,s046,from,t1
+s133,4,NA,NA,13.1,girl,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s046,from,t1
+s133,4,NA,NA,13.1,girl,no,no,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s046,from,t1
+s133,4,NA,NA,13.1,girl,no,no,no,4 once a week,2 tried once,1 none,20,yes,t1,s046,s060,s099,s104,s115,NA,s046,to,t1
+s133,4,NA,NA,13.1,girl,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s046,to,t1
+s133,4,NA,NA,13.1,girl,no,no,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s046,to,t1
+s135,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,3 once a month,1 none,1 none,10,no,t1,s059,s127,NA,NA,NA,NA,s059,from,t2
+s135,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s059,s118,s127,NA,NA,NA,s059,from,t2
+s135,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,3 once a month,1 none,1 none,10,NA,t3,s059,NA,NA,NA,NA,NA,s059,from,t2
+s135,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,3 once a month,1 none,1 none,10,no,t1,s059,s127,NA,NA,NA,NA,s059,to,t2
+s135,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s059,s118,s127,NA,NA,NA,s059,to,t2
+s135,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,3 once a month,1 none,1 none,10,NA,t3,s059,NA,NA,NA,NA,NA,s059,to,t2
+s136,4,NA,NA,13.7,boy,yes,yes,NA,2 once or twice a year,1 none,1 none,25,no,t2,s117,s120,s151,NA,NA,NA,s044,from,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,5 more than once a week,2 tried once,1 none,20,yes,t3,s044,s058,s146,NA,NA,NA,s044,from,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s044,from,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,2 once or twice a year,1 none,1 none,25,no,t2,s117,s120,s151,NA,NA,NA,s044,to,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,5 more than once a week,2 tried once,1 none,20,yes,t3,s044,s058,s146,NA,NA,NA,s044,to,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s044,to,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,2 once or twice a year,1 none,1 none,25,no,t2,s117,s120,s151,NA,NA,NA,s058,from,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,5 more than once a week,2 tried once,1 none,20,yes,t3,s044,s058,s146,NA,NA,NA,s058,from,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s058,from,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,2 once or twice a year,1 none,1 none,25,no,t2,s117,s120,s151,NA,NA,NA,s058,to,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,5 more than once a week,2 tried once,1 none,20,yes,t3,s044,s058,s146,NA,NA,NA,s058,to,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s058,to,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,2 once or twice a year,1 none,1 none,25,no,t2,s117,s120,s151,NA,NA,NA,s146,from,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,5 more than once a week,2 tried once,1 none,20,yes,t3,s044,s058,s146,NA,NA,NA,s146,from,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s146,from,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,2 once or twice a year,1 none,1 none,25,no,t2,s117,s120,s151,NA,NA,NA,s146,to,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,5 more than once a week,2 tried once,1 none,20,yes,t3,s044,s058,s146,NA,NA,NA,s146,to,t3
+s136,4,NA,NA,13.7,boy,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s146,to,t3
+s137,4,NA,NA,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,12.5,no,t1,s098,s002,s049,s122,s140,s141,s098,from,t1
+s137,4,NA,NA,13.4,boy,no,no,no,NA,1 none,1 none,8.5,no,t2,s098,s048,s049,s130,s140,s141,s098,from,t1
+s137,4,NA,NA,13.4,boy,no,no,no,3 once a month,1 none,1 none,12.5,no,t3,s049,s098,s141,NA,NA,NA,s098,from,t1
+s137,4,NA,NA,13.4,boy,no,no,no,2 once or twice a year,1 none,1 none,12.5,no,t1,s098,s002,s049,s122,s140,s141,s098,to,t2
+s137,4,NA,NA,13.4,boy,no,no,no,NA,1 none,1 none,8.5,no,t2,s098,s048,s049,s130,s140,s141,s098,to,t2
+s137,4,NA,NA,13.4,boy,no,no,no,3 once a month,1 none,1 none,12.5,no,t3,s049,s098,s141,NA,NA,NA,s098,to,t2
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10.5,no,t1,s018,s095,s140,NA,NA,NA,s018,from,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,15,no,t2,s018,s020,s021,NA,NA,NA,s018,from,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,25,yes,t3,s018,s091,s108,NA,NA,NA,s018,from,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10.5,no,t1,s018,s095,s140,NA,NA,NA,s018,to,t3
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,15,no,t2,s018,s020,s021,NA,NA,NA,s018,to,t3
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,25,yes,t3,s018,s091,s108,NA,NA,NA,s018,to,t3
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10.5,no,t1,s018,s095,s140,NA,NA,NA,s095,from,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,15,no,t2,s018,s020,s021,NA,NA,NA,s095,from,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,25,yes,t3,s018,s091,s108,NA,NA,NA,s095,from,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10.5,no,t1,s018,s095,s140,NA,NA,NA,s095,to,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,15,no,t2,s018,s020,s021,NA,NA,NA,s095,to,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,25,yes,t3,s018,s091,s108,NA,NA,NA,s095,to,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10.5,no,t1,s018,s095,s140,NA,NA,NA,s140,from,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,15,no,t2,s018,s020,s021,NA,NA,NA,s140,from,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,25,yes,t3,s018,s091,s108,NA,NA,NA,s140,from,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10.5,no,t1,s018,s095,s140,NA,NA,NA,s140,to,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,15,no,t2,s018,s020,s021,NA,NA,NA,s140,to,t1
+s138,2,2.26,Neighbourhood B,12.9,boy,yes,yes,no,2 once or twice a year,1 none,1 none,25,yes,t3,s018,s091,s108,NA,NA,NA,s140,to,t1
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,25,yes,t1,s151,s149,NA,NA,NA,NA,s044,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,20,no,t2,s117,NA,NA,NA,NA,NA,s044,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,10.5,yes,t3,s044,s136,s146,s153,NA,NA,s044,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,25,yes,t1,s151,s149,NA,NA,NA,NA,s044,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,20,no,t2,s117,NA,NA,NA,NA,NA,s044,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,10.5,yes,t3,s044,s136,s146,s153,NA,NA,s044,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,25,yes,t1,s151,s149,NA,NA,NA,NA,s136,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,20,no,t2,s117,NA,NA,NA,NA,NA,s136,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,10.5,yes,t3,s044,s136,s146,s153,NA,NA,s136,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,25,yes,t1,s151,s149,NA,NA,NA,NA,s136,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,20,no,t2,s117,NA,NA,NA,NA,NA,s136,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,10.5,yes,t3,s044,s136,s146,s153,NA,NA,s136,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,25,yes,t1,s151,s149,NA,NA,NA,NA,s146,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,20,no,t2,s117,NA,NA,NA,NA,NA,s146,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,10.5,yes,t3,s044,s136,s146,s153,NA,NA,s146,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,25,yes,t1,s151,s149,NA,NA,NA,NA,s146,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,20,no,t2,s117,NA,NA,NA,NA,NA,s146,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,10.5,yes,t3,s044,s136,s146,s153,NA,NA,s146,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,25,yes,t1,s151,s149,NA,NA,NA,NA,s151,from,t1
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,20,no,t2,s117,NA,NA,NA,NA,NA,s151,from,t1
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,10.5,yes,t3,s044,s136,s146,s153,NA,NA,s151,from,t1
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,25,yes,t1,s151,s149,NA,NA,NA,NA,s151,to,t1
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,20,no,t2,s117,NA,NA,NA,NA,NA,s151,to,t1
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,10.5,yes,t3,s044,s136,s146,s153,NA,NA,s151,to,t1
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,25,yes,t1,s151,s149,NA,NA,NA,NA,s153,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,20,no,t2,s117,NA,NA,NA,NA,NA,s153,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,10.5,yes,t3,s044,s136,s146,s153,NA,NA,s153,from,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,4 regular,3 regular,25,yes,t1,s151,s149,NA,NA,NA,NA,s153,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,20,no,t2,s117,NA,NA,NA,NA,NA,s153,to,t3
+s144,4,NA,NA,12.9,boy,yes,no,yes,5 more than once a week,3 occasional,3 regular,10.5,yes,t3,s044,s136,s146,s153,NA,NA,s153,to,t3
+s145,1,0.9,Neighbourhood A,13.6,girl,no,no,no,2 once or twice a year,1 none,1 none,2,no,t1,s139,s001,s028,s033,s056,NA,s139,from,t1
+s145,1,0.9,Neighbourhood A,13.6,girl,no,no,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s139,from,t1
+s145,1,0.9,Neighbourhood A,13.6,girl,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s139,from,t1
+s145,1,0.9,Neighbourhood A,13.6,girl,no,no,no,2 once or twice a year,1 none,1 none,2,no,t1,s139,s001,s028,s033,s056,NA,s139,to,t1
+s145,1,0.9,Neighbourhood A,13.6,girl,no,no,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s139,to,t1
+s145,1,0.9,Neighbourhood A,13.6,girl,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s139,to,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s036,from,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s036,from,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s036,from,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s036,to,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s036,to,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s036,to,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s044,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s044,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s044,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s044,to,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s044,to,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s044,to,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s058,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s058,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s058,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s058,to,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s058,to,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s058,to,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s067,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s067,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s067,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s067,to,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s067,to,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s067,to,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s071,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s071,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s071,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s071,to,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s071,to,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s071,to,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s077,from,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s077,from,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s077,from,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s077,to,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s077,to,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s077,to,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s129,from,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s129,from,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s129,from,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s129,to,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s129,to,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s129,to,t2
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s136,from,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s136,from,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s136,from,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s136,to,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s136,to,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s136,to,t3
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s149,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s149,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s149,from,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,5 more than once a week,1 none,1 none,5,yes,t1,s044,s058,s067,s071,s149,NA,s149,to,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,5,no,t2,s036,s044,s058,s077,s129,NA,s149,to,t1
+s146,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,5,yes,t3,s044,s058,s136,s006,s151,NA,s149,to,t1
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,1 none,1 none,1 none,5,no,t1,s134,s040,s143,NA,NA,NA,s134,from,t1
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s134,s040,s143,NA,NA,NA,s134,from,t1
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,3 once a month,1 none,1 none,5,no,t3,s143,s121,s134,NA,NA,NA,s134,from,t1
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,1 none,1 none,1 none,5,no,t1,s134,s040,s143,NA,NA,NA,s134,to,t2
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s134,s040,s143,NA,NA,NA,s134,to,t2
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,3 once a month,1 none,1 none,5,no,t3,s143,s121,s134,NA,NA,NA,s134,to,t2
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,1 none,1 none,1 none,5,no,t1,s134,s040,s143,NA,NA,NA,s143,from,t3
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s134,s040,s143,NA,NA,NA,s143,from,t3
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,3 once a month,1 none,1 none,5,no,t3,s143,s121,s134,NA,NA,NA,s143,from,t3
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,1 none,1 none,1 none,5,no,t1,s134,s040,s143,NA,NA,NA,s143,to,t3
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s134,s040,s143,NA,NA,NA,s143,to,t3
+s147,3,3.69,Neighbourhood C,13.2,girl,no,no,no,3 once a month,1 none,1 none,5,no,t3,s143,s121,s134,NA,NA,NA,s143,to,t3
+s149,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,1 none,2 tried once,1 none,5,no,t1,s035,s036,s078,NA,NA,NA,s078,from,t2
+s149,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,3 once a month,3 occasional,1 none,25,no,t2,s078,s005,s035,NA,NA,NA,s078,from,t2
+s149,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,3 once a month,3 occasional,1 none,40,no,t3,s005,s051,s058,s078,NA,NA,s078,from,t2
+s149,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,1 none,2 tried once,1 none,5,no,t1,s035,s036,s078,NA,NA,NA,s078,to,t2
+s149,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,3 once a month,3 occasional,1 none,25,no,t2,s078,s005,s035,NA,NA,NA,s078,to,t2
+s149,2,2.26,Neighbourhood B,13.5,boy,yes,yes,no,3 once a month,3 occasional,1 none,40,no,t3,s005,s051,s058,s078,NA,NA,s078,to,t2
+s150,1,0.9,Neighbourhood A,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5.5,no,t1,s151,s035,s036,s144,s148,s149,s151,from,t1
+s150,1,0.9,Neighbourhood A,13.4,boy,yes,yes,no,3 once a month,1 none,1 none,10,no,t2,s036,s079,s092,s122,s151,NA,s151,from,t1
+s150,1,0.9,Neighbourhood A,13.4,boy,yes,yes,no,4 once a week,3 occasional,1 none,30,yes,t3,s010,s036,s122,s148,s151,NA,s151,from,t1
+s150,1,0.9,Neighbourhood A,13.4,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5.5,no,t1,s151,s035,s036,s144,s148,s149,s151,to,t1
+s150,1,0.9,Neighbourhood A,13.4,boy,yes,yes,no,3 once a month,1 none,1 none,10,no,t2,s036,s079,s092,s122,s151,NA,s151,to,t1
+s150,1,0.9,Neighbourhood A,13.4,boy,yes,yes,no,4 once a week,3 occasional,1 none,30,yes,t3,s010,s036,s122,s148,s151,NA,s151,to,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,1 none,1 none,5,no,t1,s036,s150,s035,s094,s144,s149,s036,from,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,2 tried once,1 none,25,no,t2,s022,s036,s044,s079,s136,s150,s036,from,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,1 none,1 none,25,no,t3,s010,s022,s036,s120,s150,NA,s036,from,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,1 none,1 none,5,no,t1,s036,s150,s035,s094,s144,s149,s036,to,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,2 tried once,1 none,25,no,t2,s022,s036,s044,s079,s136,s150,s036,to,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,1 none,1 none,25,no,t3,s010,s022,s036,s120,s150,NA,s036,to,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,1 none,1 none,5,no,t1,s036,s150,s035,s094,s144,s149,s150,from,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,2 tried once,1 none,25,no,t2,s022,s036,s044,s079,s136,s150,s150,from,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,1 none,1 none,25,no,t3,s010,s022,s036,s120,s150,NA,s150,from,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,1 none,1 none,5,no,t1,s036,s150,s035,s094,s144,s149,s150,to,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,2 tried once,1 none,25,no,t2,s022,s036,s044,s079,s136,s150,s150,to,t1
+s151,1,0.9,Neighbourhood A,13.4,boy,yes,yes,yes,3 once a month,1 none,1 none,25,no,t3,s010,s022,s036,s120,s150,NA,s150,to,t1
+s152,4,NA,NA,13,girl,yes,yes,no,2 once or twice a year,2 tried once,3 regular,10,no,t2,s045,s064,s128,s155,NA,NA,s045,from,t3
+s152,4,NA,NA,13,girl,yes,yes,no,3 once a month,3 occasional,3 regular,10,no,t3,s045,s109,s111,NA,NA,NA,s045,from,t3
+s152,4,NA,NA,13,girl,yes,yes,no,1 none,2 tried once,1 none,10,no,t1,NA,NA,NA,NA,NA,NA,s045,from,t3
+s152,4,NA,NA,13,girl,yes,yes,no,2 once or twice a year,2 tried once,3 regular,10,no,t2,s045,s064,s128,s155,NA,NA,s045,to,t3
+s152,4,NA,NA,13,girl,yes,yes,no,3 once a month,3 occasional,3 regular,10,no,t3,s045,s109,s111,NA,NA,NA,s045,to,t3
+s152,4,NA,NA,13,girl,yes,yes,no,1 none,2 tried once,1 none,10,no,t1,NA,NA,NA,NA,NA,NA,s045,to,t3
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,3 once a month,4 regular,3 regular,20,yes,t2,s031,s045,NA,NA,NA,NA,s031,from,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s031,from,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s031,from,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,3 once a month,4 regular,3 regular,20,yes,t2,s031,s045,NA,NA,NA,NA,s031,to,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s031,to,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s031,to,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,3 once a month,4 regular,3 regular,20,yes,t2,s031,s045,NA,NA,NA,NA,s045,from,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s045,from,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s045,from,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,3 once a month,4 regular,3 regular,20,yes,t2,s031,s045,NA,NA,NA,NA,s045,to,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s045,to,t2
+s155,2,2.26,Neighbourhood B,13.1,girl,yes,yes,NA,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s045,to,t2
+s156,1,0.9,Neighbourhood A,12.9,girl,yes,yes,NA,1 none,1 none,1 none,35,no,t2,s017,s004,s015,s039,s089,s152,s017,from,t2
+s156,1,0.9,Neighbourhood A,12.9,girl,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s017,from,t2
+s156,1,0.9,Neighbourhood A,12.9,girl,yes,yes,NA,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s017,from,t2
+s156,1,0.9,Neighbourhood A,12.9,girl,yes,yes,NA,1 none,1 none,1 none,35,no,t2,s017,s004,s015,s039,s089,s152,s017,to,t2
+s156,1,0.9,Neighbourhood A,12.9,girl,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s017,to,t2
+s156,1,0.9,Neighbourhood A,12.9,girl,yes,yes,NA,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,s017,to,t2
+s160,2,2.26,Neighbourhood B,13.7,girl,no,no,NA,2 once or twice a year,2 tried once,3 regular,15,no,t3,s045,NA,NA,NA,NA,NA,s045,from,t3
+s160,2,2.26,Neighbourhood B,13.7,girl,no,no,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s045,from,t3
+s160,2,2.26,Neighbourhood B,13.7,girl,no,no,NA,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s045,from,t3
+s160,2,2.26,Neighbourhood B,13.7,girl,no,no,NA,2 once or twice a year,2 tried once,3 regular,15,no,t3,s045,NA,NA,NA,NA,NA,s045,to,t3
+s160,2,2.26,Neighbourhood B,13.7,girl,no,no,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,s045,to,t3
+s160,2,2.26,Neighbourhood B,13.7,girl,no,no,NA,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,s045,to,t3
+s002,1,0.9,Neighbourhood A,13.3,boy,no,no,no,NA,1 none,1 none,4,no,t1,s024,s037,s098,s116,NA,NA,NA,NA,NA
+s010,1,0.9,Neighbourhood A,12.9,boy,no,no,no,NA,2 tried once,1 none,5,no,t1,s005,s058,s067,s071,s146,NA,NA,NA,NA
+s011,1,0.9,Neighbourhood A,13.4,girl,no,no,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s004,s007,s008,s026,s039,NA,NA,NA,NA
+s013,2,2.26,Neighbourhood B,13.6,girl,no,no,no,4 once a week,1 none,1 none,5,no,t1,s009,s019,s104,s115,NA,NA,NA,NA,NA
+s015,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,2 once or twice a year,1 none,1 none,7,yes,t1,s004,s008,s012,s025,s039,s089,NA,NA,NA
+s016,1,0.9,Neighbourhood A,13.7,girl,yes,yes,no,4 once a week,3 occasional,1 none,10,yes,t1,s003,s006,s126,s131,NA,NA,NA,NA,NA
+s020,3,3.69,Neighbourhood C,13.5,boy,no,no,no,2 once or twice a year,1 none,1 none,1,no,t1,s018,s023,s095,s138,NA,NA,NA,NA,NA
+s021,3,3.69,Neighbourhood C,13.5,boy,no,no,no,NA,1 none,1 none,-1,no,t1,s008,s018,s023,s095,s138,NA,NA,NA,NA
+s024,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,3 once a month,1 none,1 none,15,no,t1,s002,s014,s022,NA,NA,NA,NA,NA,NA
+s030,1,0.9,Neighbourhood A,13.7,girl,yes,yes,no,3 once a month,3 occasional,1 none,10,yes,t1,s031,s133,NA,NA,NA,NA,NA,NA,NA
+s032,2,2.26,Neighbourhood B,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t1,s035,s106,s130,s141,s144,NA,NA,NA,NA
+s036,1,0.9,Neighbourhood A,13.3,boy,no,no,no,3 once a month,2 tried once,1 none,7,no,t1,s150,s151,NA,NA,NA,NA,NA,NA,NA
+s038,1,0.9,Neighbourhood A,13.5,boy,no,no,no,NA,1 none,1 none,5,no,t1,s037,s148,NA,NA,NA,NA,NA,NA,NA
+s042,2,2.26,Neighbourhood B,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,15,no,t1,s048,s061,NA,NA,NA,NA,NA,NA,NA
+s053,1,0.9,Neighbourhood A,13.4,boy,yes,yes,no,3 once a month,1 none,1 none,12.5,no,t1,s068,s091,NA,NA,NA,NA,NA,NA,NA
+s054,1,0.9,Neighbourhood A,13.2,girl,yes,yes,yes,2 once or twice a year,1 none,1 none,5,no,t1,s055,s061,NA,NA,NA,NA,NA,NA,NA
+s062,3,3.69,Neighbourhood C,13.1,boy,no,no,no,3 once a month,1 none,1 none,4.5,no,t1,s120,s126,s131,NA,NA,NA,NA,NA,NA
+s067,1,0.9,Neighbourhood A,13.1,boy,yes,yes,yes,4 once a week,2 tried once,1 none,6,yes,t1,s010,s028,s044,s058,s071,s146,NA,NA,NA
+s073,1,0.9,Neighbourhood A,12.8,girl,no,no,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s082,s086,s087,NA,NA,NA,NA,NA,NA
+s082,2,2.26,Neighbourhood B,13,girl,no,no,no,2 once or twice a year,1 none,1 none,5,no,t1,s073,NA,NA,NA,NA,NA,NA,NA,NA
+s083,3,3.69,Neighbourhood C,13.5,boy,no,no,no,NA,1 none,1 none,2,no,t1,s069,s074,s075,s085,NA,NA,NA,NA,NA
+s086,2,2.26,Neighbourhood B,13.6,girl,yes,yes,no,3 once a month,2 tried once,1 none,10,no,t1,s065,s072,s087,s093,s157,NA,NA,NA,NA
+s094,2,2.26,Neighbourhood B,13.5,boy,no,no,no,4 once a week,1 none,1 none,4,yes,t1,s103,s108,s110,s111,NA,NA,NA,NA,NA
+s096,1,0.9,Neighbourhood A,13.2,boy,yes,yes,no,3 once a month,1 none,1 none,10.5,no,t1,s010,s100,s110,NA,NA,NA,NA,NA,NA
+s097,1,0.9,Neighbourhood A,13.3,girl,no,no,no,2 once or twice a year,1 none,1 none,3.5,no,t1,s088,s104,s105,s112,s115,NA,NA,NA,NA
+s108,2,2.26,Neighbourhood B,12.8,boy,no,no,no,2 once or twice a year,1 none,1 none,5.75,no,t1,s095,s106,s116,NA,NA,NA,NA,NA,NA
+s116,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t1,s002,s106,s108,NA,NA,NA,NA,NA,NA
+s120,4,NA,NA,13,boy,yes,yes,no,NA,1 none,1 none,6,no,t1,s062,s131,NA,NA,NA,NA,NA,NA,NA
+s124,4,NA,NA,NA,boy,yes,yes,no,2 once or twice a year,2 tried once,1 none,5,no,t1,s151,NA,NA,NA,NA,NA,NA,NA,NA
+s128,4,NA,NA,14.2,girl,yes,yes,yes,5 more than once a week,4 regular,3 regular,5,yes,t1,s063,s064,NA,NA,NA,NA,NA,NA,NA
+s130,1,0.9,Neighbourhood A,13.6,boy,no,no,no,3 once a month,1 none,2 occasional,2,no,t1,s032,s117,s122,s140,NA,NA,NA,NA,NA
+s134,1,0.9,Neighbourhood A,13.1,girl,no,no,no,2 once or twice a year,1 none,1 none,-1,no,t1,s121,s132,s147,NA,NA,NA,NA,NA,NA
+s140,1,0.9,Neighbourhood A,13,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,6,no,t1,s129,s138,s140,s142,NA,NA,NA,NA,NA
+s141,2,2.26,Neighbourhood B,13.2,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t1,s032,s120,s130,NA,NA,NA,NA,NA,NA
+s142,2,2.26,Neighbourhood B,12.9,boy,no,no,no,3 once a month,1 none,1 none,11,yes,t1,s117,s120,s129,s136,s141,NA,NA,NA,NA
+s143,2,2.26,Neighbourhood B,13.3,girl,yes,yes,no,2 once or twice a year,1 none,1 none,13,no,t1,s040,s134,s147,NA,NA,NA,NA,NA,NA
+s148,2,2.26,Neighbourhood B,13.4,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,10,no,t1,s002,s037,s038,s091,NA,NA,NA,NA,NA
+s002,1,0.9,Neighbourhood A,13.3,boy,no,no,no,NA,1 none,1 none,5,no,t2,s037,s038,s074,s113,s120,NA,NA,NA,NA
+s010,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,2 tried once,1 none,8,no,t2,s044,s058,s067,s150,s151,NA,NA,NA,NA
+s011,1,0.9,Neighbourhood A,13.4,girl,no,no,no,3 once a month,1 none,1 none,0,no,t2,s004,s007,s015,s039,s119,NA,NA,NA,NA
+s013,2,2.26,Neighbourhood B,13.6,girl,no,no,no,4 once a week,1 none,1 none,5,no,t2,s019,s115,NA,NA,NA,NA,NA,NA,NA
+s015,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,3 once a month,1 none,2 occasional,10,yes,t2,s004,s011,s012,s043,NA,NA,NA,NA,NA
+s020,3,3.69,Neighbourhood C,13.5,boy,no,no,no,2 once or twice a year,1 none,1 none,0,no,t2,s004,s007,s023,s083,s095,NA,NA,NA,NA
+s021,3,3.69,Neighbourhood C,13.5,boy,no,no,no,NA,1 none,1 none,0,no,t2,s023,s083,s095,NA,NA,NA,NA,NA,NA
+s024,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,3 once a month,1 none,1 none,12.5,no,t2,s002,s022,NA,NA,NA,NA,NA,NA,NA
+s032,2,2.26,Neighbourhood B,13,boy,yes,yes,no,3 once a month,1 none,1 none,15,no,t2,s036,s048,s069,s130,s151,NA,NA,NA,NA
+s036,1,0.9,Neighbourhood A,13.3,boy,no,no,no,3 once a month,3 occasional,1 none,12,no,t2,s084,s098,s150,s151,NA,NA,NA,NA,NA
+s038,1,0.9,Neighbourhood A,13.5,boy,no,no,no,NA,1 none,1 none,5,no,t2,s002,s037,s116,s141,s148,NA,NA,NA,NA
+s042,2,2.26,Neighbourhood B,13.8,boy,no,no,no,2 once or twice a year,1 none,1 none,20,no,t2,s061,NA,NA,NA,NA,NA,NA,NA,NA
+s053,1,0.9,Neighbourhood A,13.4,boy,yes,yes,no,4 once a week,1 none,1 none,-1,no,t2,s061,s068,s091,NA,NA,NA,NA,NA,NA
+s062,3,3.69,Neighbourhood C,13.1,boy,no,no,no,3 once a month,1 none,1 none,5,no,t2,s050,s057,s072,NA,NA,NA,NA,NA,NA
+s067,1,0.9,Neighbourhood A,13.1,boy,yes,yes,yes,3 once a month,3 occasional,1 none,30,no,t2,s044,s058,s071,s146,s153,NA,NA,NA,NA
+s073,1,0.9,Neighbourhood A,12.8,girl,no,no,no,2 once or twice a year,1 none,2 occasional,5.7,no,t2,s043,s082,NA,NA,NA,NA,NA,NA,NA
+s077,1,0.9,Neighbourhood A,13.2,boy,yes,yes,no,4 once a week,1 none,1 none,40,no,t2,s058,s071,s078,NA,NA,NA,NA,NA,NA
+s078,2,2.26,Neighbourhood B,13.7,boy,yes,yes,no,1 none,2 tried once,1 none,17,yes,t2,s084,NA,NA,NA,NA,NA,NA,NA,NA
+s082,2,2.26,Neighbourhood B,13,girl,no,no,no,2 once or twice a year,1 none,1 none,10,no,t2,s066,s073,NA,NA,NA,NA,NA,NA,NA
+s083,3,3.69,Neighbourhood C,13.5,boy,no,no,no,NA,1 none,1 none,5,no,t2,s061,s068,s085,s091,s095,s149,NA,NA,NA
+s086,2,2.26,Neighbourhood B,13.6,girl,yes,yes,no,3 once a month,2 tried once,1 none,10,no,t2,s065,s087,s093,s126,NA,NA,NA,NA,NA
+s096,1,0.9,Neighbourhood A,13.2,boy,yes,yes,no,3 once a month,1 none,3 regular,10.5,yes,t2,s010,NA,NA,NA,NA,NA,NA,NA,NA
+s097,1,0.9,Neighbourhood A,13.3,girl,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s011,s118,s119,s127,NA,NA,NA,NA,NA
+s108,2,2.26,Neighbourhood B,12.8,boy,no,no,no,NA,1 none,1 none,4,no,t2,s106,s116,s137,s140,NA,NA,NA,NA,NA
+s116,1,0.9,Neighbourhood A,13,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t2,s002,s038,s068,s091,s100,NA,NA,NA,NA
+s120,4,NA,NA,13,boy,yes,yes,no,NA,1 none,1 none,15,no,t2,s062,s072,s098,s117,s126,NA,NA,NA,NA
+s128,4,NA,NA,14.2,girl,yes,yes,yes,5 more than once a week,3 occasional,3 regular,10,no,t2,s152,NA,NA,NA,NA,NA,NA,NA,NA
+s130,1,0.9,Neighbourhood A,13.6,boy,no,no,no,2 once or twice a year,1 none,1 none,8.08,no,t2,s032,s038,s048,s137,s140,NA,NA,NA,NA
+s134,1,0.9,Neighbourhood A,13.1,girl,no,no,no,2 once or twice a year,1 none,1 none,0,no,t2,s121,s132,s139,s147,NA,NA,NA,NA,NA
+s139,1,0.9,Neighbourhood A,13.4,girl,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s121,s132,s134,NA,NA,NA,NA,NA,NA
+s140,1,0.9,Neighbourhood A,13,boy,yes,yes,yes,4 once a week,1 none,1 none,10,no,t2,s137,s142,NA,NA,NA,NA,NA,NA,NA
+s141,2,2.26,Neighbourhood B,13.2,boy,yes,yes,no,2 once or twice a year,1 none,1 none,5,no,t2,s032,s048,s130,s137,s140,NA,NA,NA,NA
+s142,2,2.26,Neighbourhood B,12.9,boy,no,no,no,2 once or twice a year,1 none,1 none,5,no,t2,s044,s071,s129,NA,NA,NA,NA,NA,NA
+s143,2,2.26,Neighbourhood B,13.3,girl,yes,yes,no,3 once a month,1 none,1 none,5,no,t2,s040,s134,s147,NA,NA,NA,NA,NA,NA
+s148,2,2.26,Neighbourhood B,13.4,boy,yes,yes,yes,4 once a week,1 none,1 none,10,no,t2,s002,s037,s117,s129,NA,NA,NA,NA,NA
+s154,2,2.26,Neighbourhood B,13.6,girl,no,no,NA,3 once a month,2 tried once,1 none,30,yes,t2,s155,NA,NA,NA,NA,NA,NA,NA,NA
+s002,1,0.9,Neighbourhood A,13.3,boy,no,no,no,NA,1 none,1 none,12,no,t3,s037,s148,NA,NA,NA,NA,NA,NA,NA
+s010,1,0.9,Neighbourhood A,12.9,boy,no,no,no,3 once a month,3 occasional,1 none,10,no,t3,s058,s122,s150,s151,NA,NA,NA,NA,NA
+s011,1,0.9,Neighbourhood A,13.4,girl,no,no,no,2 once or twice a year,1 none,1 none,-1,no,t3,s015,s089,NA,NA,NA,NA,NA,NA,NA
+s013,2,2.26,Neighbourhood B,13.6,girl,no,no,no,4 once a week,1 none,3 regular,5,no,t3,s066,s073,s082,s115,NA,NA,NA,NA,NA
+s015,1,0.9,Neighbourhood A,12.9,girl,yes,yes,no,3 once a month,2 tried once,3 regular,12,yes,t3,s007,s011,NA,NA,NA,NA,NA,NA,NA
+s016,1,0.9,Neighbourhood A,13.7,girl,yes,yes,no,3 once a month,2 tried once,3 regular,20,yes,t3,s041,s072,s126,s131,NA,NA,NA,NA,NA
+s020,3,3.69,Neighbourhood C,13.5,boy,no,no,no,2 once or twice a year,1 none,1 none,0,no,t3,s004,s007,s008,s023,s083,s095,NA,NA,NA
+s021,3,3.69,Neighbourhood C,13.5,boy,no,no,no,NA,1 none,1 none,0,no,t3,s023,s083,s085,s095,s138,NA,NA,NA,NA
+s032,2,2.26,Neighbourhood B,13,boy,yes,yes,no,3 once a month,3 occasional,1 none,10,no,t3,s069,NA,NA,NA,NA,NA,NA,NA,NA
+s036,1,0.9,Neighbourhood A,13.3,boy,no,no,no,4 once a week,3 occasional,1 none,25,no,t3,s022,s098,s122,s151,NA,NA,NA,NA,NA
+s038,1,0.9,Neighbourhood A,13.5,boy,no,no,no,2 once or twice a year,1 none,1 none,15,no,t3,s002,s037,s085,s117,s148,NA,NA,NA,NA
+s053,1,0.9,Neighbourhood A,13.4,boy,yes,yes,no,3 once a month,1 none,1 none,10,no,t3,s068,s083,s085,s095,NA,NA,NA,NA,NA
+s062,3,3.69,Neighbourhood C,13.1,boy,no,no,no,4 once a week,3 occasional,1 none,10,no,t3,s049,s051,s075,s101,NA,NA,NA,NA,NA
+s073,1,0.9,Neighbourhood A,12.8,girl,no,no,no,3 once a month,1 none,1 none,5,yes,t3,s066,s082,s115,s125,NA,NA,NA,NA,NA
+s082,2,2.26,Neighbourhood B,13,girl,no,no,no,4 once a week,1 none,1 none,10,yes,t3,s073,s115,NA,NA,NA,NA,NA,NA,NA
+s083,3,3.69,Neighbourhood C,13.5,boy,no,no,no,NA,1 none,1 none,5,no,t3,s053,s068,s085,s095,s121,s134,NA,NA,NA
+s086,2,2.26,Neighbourhood B,13.6,girl,yes,yes,no,3 once a month,1 none,1 none,10,no,t3,s034,s052,s087,s093,NA,NA,NA,NA,NA
+s097,1,0.9,Neighbourhood A,13.3,girl,no,no,no,2 once or twice a year,1 none,1 none,8,no,t3,s007,s008,s011,NA,NA,NA,NA,NA,NA
+s108,2,2.26,Neighbourhood B,12.8,boy,no,no,no,2 once or twice a year,2 tried once,1 none,3,no,t3,s018,s091,s100,s138,NA,NA,NA,NA,NA
+s110,1,0.9,Neighbourhood A,13.6,boy,no,no,no,3 once a month,1 none,1 none,3,no,t3,s092,NA,NA,NA,NA,NA,NA,NA,NA
+s116,1,0.9,Neighbourhood A,13,boy,yes,yes,no,NA,1 none,1 none,20,no,t3,s068,s083,s091,s100,s108,NA,NA,NA,NA
+s120,4,NA,NA,13,boy,yes,yes,no,NA,1 none,1 none,70,no,t3,s036,s037,s098,s117,s151,NA,NA,NA,NA
+s130,1,0.9,Neighbourhood A,13.6,boy,no,no,no,2 once or twice a year,1 none,1 none,15,no,t3,s002,s022,s032,s038,s117,s140,NA,NA,NA
+s134,1,0.9,Neighbourhood A,13.1,girl,no,no,no,2 once or twice a year,1 none,1 none,99.99,no,t3,s121,s139,s143,s147,NA,NA,NA,NA,NA
+s139,1,0.9,Neighbourhood A,13.4,girl,no,no,no,2 once or twice a year,1 none,1 none,10,no,t3,s039,s121,s134,NA,NA,NA,NA,NA,NA
+s141,2,2.26,Neighbourhood B,13.2,boy,yes,yes,no,2 once or twice a year,1 none,1 none,10,no,t3,s032,s048,s069,s137,s140,NA,NA,NA,NA
+s142,2,2.26,Neighbourhood B,12.9,boy,no,no,no,4 once a week,2 tried once,1 none,10,no,t3,s042,s117,s120,s134,NA,NA,NA,NA,NA
+s143,2,2.26,Neighbourhood B,13.3,girl,yes,yes,no,4 once a week,1 none,1 none,15,no,t3,s134,s147,NA,NA,NA,NA,NA,NA,NA
+s148,2,2.26,Neighbourhood B,13.4,boy,yes,yes,yes,2 once or twice a year,1 none,1 none,15,no,t3,s002,s037,s038,s117,s120,NA,NA,NA,NA
+s154,2,2.26,Neighbourhood B,13.6,girl,no,no,NA,2 once or twice a year,3 occasional,1 none,30,yes,t3,s003,s126,NA,NA,NA,NA,NA,NA,NA
+s016,1,0.9,Neighbourhood A,13.7,girl,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s024,1,0.9,Neighbourhood A,13.7,boy,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s030,1,0.9,Neighbourhood A,13.7,girl,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s030,1,0.9,Neighbourhood A,13.7,girl,yes,yes,no,2 once or twice a year,3 occasional,1 none,10,yes,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s042,2,2.26,Neighbourhood B,13.8,boy,no,no,no,4 once a week,4 regular,1 none,40,no,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s054,1,0.9,Neighbourhood A,13.2,girl,yes,yes,yes,3 once a month,1 none,1 none,5,no,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s054,1,0.9,Neighbourhood A,13.2,girl,yes,yes,yes,3 once a month,1 none,1 none,10,yes,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s067,1,0.9,Neighbourhood A,13.1,boy,yes,yes,yes,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s077,1,0.9,Neighbourhood A,13.2,boy,yes,yes,no,4 once a week,1 none,1 none,5,no,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s077,1,0.9,Neighbourhood A,13.2,boy,yes,yes,no,4 once a week,1 none,1 none,21,no,t1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s078,2,2.26,Neighbourhood B,13.7,boy,yes,yes,no,3 once a month,2 tried once,1 none,25,yes,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s078,2,2.26,Neighbourhood B,13.7,boy,yes,yes,no,1 none,2 tried once,1 none,30,no,t1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s094,2,2.26,Neighbourhood B,13.5,boy,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s094,2,2.26,Neighbourhood B,13.5,boy,no,no,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s096,1,0.9,Neighbourhood A,13.2,boy,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s110,1,0.9,Neighbourhood A,13.6,boy,no,no,no,3 once a month,1 none,1 none,5,no,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s110,1,0.9,Neighbourhood A,13.6,boy,no,no,no,2 once or twice a year,1 none,1 none,5,yes,t1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s124,4,NA,NA,NA,boy,yes,yes,no,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s124,4,NA,NA,NA,boy,yes,yes,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s128,4,NA,NA,14.2,girl,yes,yes,yes,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s129,4,NA,NA,14.6,boy,no,no,no,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s129,4,NA,NA,14.6,boy,no,no,no,4 once a week,3 occasional,1 none,10,no,t1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s129,4,NA,NA,14.6,boy,no,no,no,4 once a week,2 tried once,1 none,10,yes,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s139,1,0.9,Neighbourhood A,13.4,girl,no,no,no,2 once or twice a year,1 none,1 none,5,no,t1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s140,1,0.9,Neighbourhood A,13,boy,yes,yes,yes,4 once a week,2 tried once,1 none,20,no,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s153,4,NA,NA,13.2,boy,yes,no,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s153,4,NA,NA,13.2,boy,yes,no,NA,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s153,4,NA,NA,13.2,boy,yes,no,NA,5 more than once a week,4 regular,1 none,10,no,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s154,2,2.26,Neighbourhood B,13.6,girl,no,no,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s157,4,NA,NA,13.1,girl,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s157,4,NA,NA,13.1,girl,yes,yes,NA,5 more than once a week,4 regular,3 regular,-1,no,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s157,4,NA,NA,13.1,girl,yes,yes,NA,4 once a week,3 occasional,3 regular,5,no,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s158,2,2.26,Neighbourhood B,12.4,girl,no,no,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s158,2,2.26,Neighbourhood B,12.4,girl,no,no,NA,NA,NA,NA,-1,NA,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s158,2,2.26,Neighbourhood B,12.4,girl,no,no,NA,2 once or twice a year,1 none,1 none,17,yes,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s159,3,3.69,Neighbourhood C,13.8,girl,yes,yes,NA,NA,NA,NA,-1,NA,t1,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s159,3,3.69,Neighbourhood C,13.8,girl,yes,yes,NA,NA,NA,NA,-1,NA,t2,NA,NA,NA,NA,NA,NA,NA,NA,NA
+s159,3,3.69,Neighbourhood C,13.8,girl,yes,yes,NA,5 more than once a week,2 tried once,1 none,10,no,t3,NA,NA,NA,NA,NA,NA,NA,NA,NA
