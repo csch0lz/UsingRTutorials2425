@@ -63,27 +63,35 @@ Student <- GlasgowFriends |> select(student, neighbourhood, schooldist, hoodname
 ```
 ## Overview
 
-- AI 
-- Four principles of tidy data
-- Principle 1: Each type of case must have its own tibble
-- Principle 2: Each observation must have it's own row
+-   AI
+-   Four principles of tidy data
+-   Principle 1: Each type of case must have its own tibble
+-   Principle 2: Each observation must have it's own row
 
 ## AI
 
-- AI can be a great coding help, ONCE you have a basic understanding of R.
-- When you try to use AI before you understanding the basics:
-  - You will likely write low quality prompts.
-  - You are unlikely to understand and critically evaluate the output.
-- Our recommendation: Learn on your own first. Use AI later to keep developing (e.g. using GitHub Co-Pilot for R).
-- In this class, we will not use AI to generate code. The exam will be closed book and without internet connection.
+-   AI can be a great coding help, ONCE you have a basic understanding
+    of R.
+-   When you try to use AI before you understanding the basics:
+    -   You will likely write low quality prompts.
+    -   You are unlikely to understand and critically evaluate the
+        output.
+-   Our recommendation: Learn on your own first. Use AI later to keep
+    developing (e.g. using GitHub Co-Pilot for R).
+-   In this class, we will not use AI to generate code. The exam will be
+    closed book and without internet connection.
 
 ## Tidy Data: Eve`R`ything In One Place
 
-- Rules for optimal data structure designed for efficient and consistent data storage.
-- Key goals are to facilitate easy storage and (re-)use of complex datasets by 
-+ Storing data in a way that conserves space,
-+ Storing data in a way that is easily understandable by others, 
-+ Preparing the dataset for common operations (e.g. merging different types of data) given the characteristics of the R programming language.
+-   Rules for optimal data structure designed for efficient and
+    consistent data storage.
+-   Key goals are to facilitate easy storage and (re-)use of complex
+    datasets by
+-   Storing data in a way that conserves space,
+-   Storing data in a way that is easily understandable by others,
+-   Preparing the dataset for common operations (e.g. merging different
+    types of data) given the characteristics of the R programming
+    language.
 
 ## Four Principles of Tidy Data
 
@@ -107,7 +115,8 @@ Student <- GlasgowFriends |> select(student, neighbourhood, schooldist, hoodname
     -   Don't cram more than one piece of information in a cell.\
     -   Split the variable.
 
-Today, we will focus on principle 1 and 2. In the next session, we'll focus on principles 3 and 4.
+Today, we will focus on principle 1 and 2. In the next session, we'll
+focus on principles 3 and 4.
 
 ## 1. Each type of case must have its own tibble
 
@@ -837,13 +846,16 @@ flights |> #use the flights tibble in the nycflights13 package
     labs(y = "Latitude", x = "Longitude")
 ```
 
-## What's next 
+## What's next
 
-Tips for your current or upcoming Sprint Backlog: With the skills
-discussed today, you can:
+-   We are half way through Sprint 2. Keep working on your Sprint
+    Backlog.
 
--   Check and begin tidying your complex data sets according to principles 1 and 2.
--   Summarize the contents and relations between your data sets in your
-    Data Project Quarto file.
--   Plan in some time for everybody to practice with `ggplot()` on the
-    Data Project.
+-   Tips for your current or upcoming Sprint Backlog: With the skills
+    discussed today, you can:
+
+    -   Check and begin tidying your complex data sets according to
+        principles 1 and 2.
+
+    -   Summarize the contents and relations between your data sets in
+        your Data Project Quarto file

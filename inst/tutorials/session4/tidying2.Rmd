@@ -63,19 +63,23 @@ Student <- GlasgowFriends |> select(student, neighbourhood, schooldist, hoodname
 ```
 ## Overview
 
-- AI 
-- Four principles of tidy data
-- Principle 3: Each variable must have its own column.
-- Principle 4: Each value must have its own cell.
-- Connecting different types of data through Joins
+-   AI
+-   Four principles of tidy data
+-   Principle 3: Each variable must have its own column.
+-   Principle 4: Each value must have its own cell.
+-   Connecting different types of data through Joins
 
 ## Tidy Data: Eve`R`ything In One Place
 
-- Rules for optimal data structure designed for efficient and consistent data storage.
-- Key goals are to facilitate easy storage and (re-)use of complex datasets by 
-+ Storing data in a way that conserves space,
-+ Storing data in a way that is easily understandable by others, 
-+ Preparing the dataset for common operations (e.g. merging different types of data) given the characteristics of the R programming language.
+-   Rules for optimal data structure designed for efficient and
+    consistent data storage.
+-   Key goals are to facilitate easy storage and (re-)use of complex
+    datasets by
+-   Storing data in a way that conserves space,
+-   Storing data in a way that is easily understandable by others,
+-   Preparing the dataset for common operations (e.g. merging different
+    types of data) given the characteristics of the R programming
+    language.
 
 ## Four Principles of Tidy Data
 
@@ -99,7 +103,8 @@ Student <- GlasgowFriends |> select(student, neighbourhood, schooldist, hoodname
     -   Don't cram more than one piece of information in a cell.\
     -   Split the variable.
 
-Last time, we discussed principles 1 and 2. Today, we will focus on principle 3 and 4. 
+Last time, we discussed principles 1 and 2. Today, we will focus on
+principle 3 and 4.
 
 ## 3. Each variable must have its own column.
 
@@ -257,19 +262,19 @@ gradethis::grade_code(
   )
 ```
 
-
 ## Overview Data Tidying Steps
 
-- Determine the initial structure of your dataset. 
-+ What are they primary keys? 
-+ What violations of the tidy data principles can you see? 
-- Adress the issues:
-+ Start with Principle 1 (redistributing data to different tibbles if necessary)
-+ Continue with Principle 2 (pivot_longer)
-+ Finish by addressing issues for Principle 3 and 4
-- Confirm and document the new structure of your dataset.
-+ What are the primary and foreign keys of the final data set? 
-+ How can different data sources be joined? 
+-   Determine the initial structure of your dataset.
+-   What are they primary keys?
+-   What violations of the tidy data principles can you see?
+-   Adress the issues:
+-   Start with Principle 1 (redistributing data to different tibbles if
+    necessary)
+-   Continue with Principle 2 (pivot_longer)
+-   Finish by addressing issues for Principle 3 and 4
+-   Confirm and document the new structure of your dataset.
+-   What are the primary and foreign keys of the final data set?
+-   How can different data sources be joined?
 
 This concludes data tidying.
 
@@ -315,10 +320,9 @@ Slide 2: visualize the application of the tidy data principle to your
 -   Include a screenshot of the data in it’s tidy form.
 -   Include the R code you used to tidy the data.
 
-### Who becomes an expert in what? 
+### Who becomes an expert in what?
 
-see [Canvas Discussion
-Forum](ADD LINK)
+see [Canvas Discussion Forum](ADD%20LINK)
 
 ## Joins: Combining Different Data Sources
 
@@ -597,7 +601,7 @@ gradethis::grade_code(
   )
 ```
 
-### Recognizing untidy data 
+### Recognizing untidy data
 
 ::: tip
 **Programming Tips**
@@ -684,11 +688,10 @@ StudentWave |>
 
 ### Joins: (Relational) database diagram
 
-A relational database is a network of tables
-(tibbles) and joins between tables. To the best of my knowledge,
-packages for network analysis cannot display tables. The R package
-`DiagrammeR`, which uses [graphviz](http://www.graphviz.org/), can do
-this.
+A relational database is a network of tables (tibbles) and joins between
+tables. To the best of my knowledge, packages for network analysis
+cannot display tables. The R package `DiagrammeR`, which uses
+[graphviz](http://www.graphviz.org/), can do this.
 
 ```{r diagram1, exercise = TRUE, exercise.eval = TRUE}
 #After installing the DiagrammeR package, load it.
@@ -807,7 +810,9 @@ digraph database {
 
 ## Data Project
 
-Tips for your current or upcoming Sprint Backlog: With the skills
+We are completing Sprint 2. Remember to do the Sprint 2 Retrospective and Review and Plan Sprint 3. 
+
+Tips for your upcoming Sprint Backlog: With the skills
 discussed today, you can:
 
 -   Check and tidy your complex data sets according to principles 3-4.
@@ -818,3 +823,20 @@ discussed today, you can:
     Data Project Quarto file.
 -   Plan in some time for everybody to practice with `ggplot()` on the
     Data Project.
+
+## Next Session: Review + Q&A
+
+**Meet the Experts**
+
+Exchange and consolidate data tidying knowledge with experts from other
+groups.
+
+**Review course content**
+
+Submit questions and/or difficult topics for review by completing the "Session 5 Preparation" Assignment on Canvas by the end of day Sunday,
+November 10th.
+
+**Group consultations for the Data Project**
+
+\~ X minutes per group. Discuss as a group what you want to ask
+beforehand.

@@ -1,12 +1,12 @@
 ---
-title: 'Session 4: Data Types'
+title: 'Session 6: Special Types of Data'
 output:
   learnr::tutorial:
     progressive: yes
     allow_skip: yes
 runtime: shiny_prerendered
 description: |
-  Dive into the details of some special data types: factors, dates and times, and character strings, and continue working on your Data Project.
+  Dive into the details of some special data types: factors, dates and times, and character strings.
 ---
 
 ```{r setup, include=FALSE}
@@ -38,81 +38,41 @@ surveyweek1 <- UsingRTutorials::surveyweek1
 ```
 
 <!-- Define programming tip style -->
+
+```{=html}
 <style>
 .tip {
   background-color: #f5f5f5;
 }
 </style>
-
+```
 <!-- Define question style -->
+
+```{=html}
 <style>
 .question {
   color: #5A9DDB;
 }
 </style>
-
+```
 <!-- Define emphasis style -->
+
+```{=html}
 <style>
 .emphasis {
   color: #e8301b;
 }
 </style>
-
+```
 ## Overview
 
-First 1.5 hours: Course content
-
--   Data Tidying: Expert meeting
 -   Factors
 -   Dates & Times
 -   Strings
 
-Second 1.5 hours: Data project
+## Factors
 
--   Sprint 2: Retrospective & Review
--   Sprint 3: Planning, Update Project Backlog
--   Updates of the Sprint 2 Scrum-Masters
-
-## Meet the experts
-
--   Team up with the experts of your topic.
--   Each expert:
-    +   Describes the tidy data principle in 1-2 sentences.
-    +   Shows one example from their complex dataset to the group of experts.
--   Each expert group:
-    +   Makes a power point presentation.
-    +   1 slide with the best description of the principle the group can come up with.
-    +   1 slide per expert:
-      +   Screenshot of original variable;
-      +   Screenshot of code to tidy the variable;
-      +   Screenshot of end result
-
-<div class="emphasis" >
--   Instructions are available on Canvas.
-</div>
-
-### 
-
-### Tidying tasks (reminder)
-
-For your complex datasets, ask yourself one of the following:
-
-1.    Does the data set contain info on more than one type of cases?
-      +   Or: Is the same information repeated in different rows?
-      +   If so, transfer the info on each type of unit to a separate table.
-      
-2.    Do different variables address the same information?
-      +   If so, gather (pivot_longer()) repeated information into one variable.
-
-3.    Is there a variable with values that should be variables by themselves?
-      +   If so, spread (pivot_wider) the values into variables.
-
-4.    Does a variable contain more than one piece of information?
-      +   If so, separate the pieces into different variables.
-
-## Factors  
-
--   Factor: R data type for a categorical (nominal or ordinal measurement level) variable. 
+-   Factor: R data type for a categorical (nominal or ordinal measurement level) variable.
 
 ### 
 
@@ -122,9 +82,9 @@ For your complex datasets, ask yourself one of the following:
 
 Example data set `Brexit`: 600 articles about Brexit from the (former) news website nujij.nl.
 
-<div class="question" >
+::: question
 Create a frequency table of the variable `category` in the `Brexit`dataset.
-</div>
+:::
 
 ```{r freqtable, exercise = TRUE}
 
@@ -146,15 +106,15 @@ gradethis::grade_code(
   )
 ```
 
-###
+### 
 
-Note the order of values in this frequency table: alphabetical. 
+Note the order of values in this frequency table: alphabetical.
 
 In addition, note the negligible number of observations for media, etc.
 
 ### Character variable in statistical analysis
 
--   A character variable is usually converted to dummies in statistical analysis. 
+-   A character variable is usually converted to dummies in statistical analysis.
 -   Regression models in R do this automatically.
 
 Below are the results of a regression model predicting the number of votes for a post from the post category.
@@ -169,7 +129,7 @@ lm(votes ~ category, data = Brexit) |>
   kableExtra::kable_classic(full_width = FALSE)
 ```
 
-###
+### 
 
 ```{r quiz}
 question("What is the reference category here?",
@@ -186,17 +146,17 @@ question("What is the reference category here?",
 
 -   Want another reference category or reorder the categories? Create a factor.
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
-- Having the values in another order than alphabetically is the main reason for using a factor instead of a character variable.
-</div>
+-   Having the values in another order than alphabetically is the main reason for using a factor instead of a character variable.
+:::
 
-### Create a factor   
+### Create a factor
 
-<div class="question" >
+::: question
 Create a factor called `cat_fact` from the variable `category` and add it to tibble `Brexit`.
-</div>
+:::
 
 ```{r factor, exercise = TRUE}
 Brexit <- Brexit |> 
@@ -223,7 +183,7 @@ gradethis::grade_code(
   )
 ```
 
-###
+### 
 
 Have a close look at the description of the new factor:
 
@@ -235,14 +195,14 @@ str(Brexit$cat_fact)
 -   Factor: a set of labels (levels) plus a set of integer values.
 -   In contrast to SPSS, we must use the labels, we cannot use the integer values!
 
-### Change the first factor category 
+### Change the first factor category
 
 -   By default, The first category of a character variable or factor is the reference group.
--   Reset the first category to change the reference group. 
+-   Reset the first category to change the reference group.
 
-<div class="question" >
-Use the previously created factor `cat_fact` to add a new factor called `cat_new` to tibble `Brexit` in which `Economie` (_Economy_) is the first category.
-</div>
+::: question
+Use the previously created factor `cat_fact` to add a new factor called `cat_new` to tibble `Brexit` in which `Economie` (*Economy*) is the first category.
+:::
 
 ```{r relevel, exercise = TRUE, exercise.setup = "factor-solution"}
 
@@ -271,11 +231,11 @@ gradethis::grade_code(
   )
 ```
 
-###
+### 
 
-<div class="question" >
-Now check that `Economie` is the reference category in a regression model. 
-</div>
+::: question
+Now check that `Economie` is the reference category in a regression model.
+:::
 
 ```{r relevelmodel-init}
 Brexit <- Brexit |> 
@@ -291,9 +251,9 @@ Brexit <- Brexit |>
 
 ```
 
-<div id="relevelmodel-hint">
-__Hint:__ Regression function: lm(y ~ x, data = ).
-</div>
+::: {#relevelmodel-hint}
+**Hint:** Regression function: lm(y \~ x, data = ).
+:::
 
 ```{r relevelmodel-solution}
 lm(votes ~ cat_new, data = Brexit)
@@ -308,15 +268,16 @@ gradethis::grade_code(
 
 Notes:
 
--   We save the changes in the `Brexit` tibble because we want to use the reordered factor later on in this tutorial. 
+-   We save the changes in the `Brexit` tibble because we want to use the reordered factor later on in this tutorial.
 -   We use a new name for the new variable, so the original variable is preserved.
 
 ### Recode factor levels
 
--   Categories `Media`, `Overig` (_Other_), `Showbizz`, and `Wetenschap` (_Science_) contain only one observation. 
+-   Categories `Media`, `Overig` (*Other*), `Showbizz`, and `Wetenschap` (*Science*) contain only one observation.
 
-<div class="question" >
-Merge these with category `Algemeen` (_General_) in a new variable `cat_fact2` in tibble `Brexit`. Inspect the result.</div>
+::: question
+Merge these with category `Algemeen` (*General*) in a new variable `cat_fact2` in tibble `Brexit`. Inspect the result.
+:::
 
 ```{r recodefactor, exercise = TRUE, exercise.setup = "factor-solution"}
 
@@ -344,15 +305,15 @@ gradethis::grade_code(
 
 ### Grouping a numeric variable into a factor
 
--   Variable `reactions`: the number of reactions that a post received. 
--   We want a new variable that groups the number of reactions into three bins. 
+-   Variable `reactions`: the number of reactions that a post received.
+-   We want a new variable that groups the number of reactions into three bins.
 -   Each bin should contain more or less the same number of observations (posts).
 
 Unfortunately, variable `reactions` is not numeric.
 
-<div class="question" >
+::: question
 Use function `parse_number()` to create a new numeric variable `react_num` in tibble `Brexit`, which gives us the number of reactions to a post. Check the results with a frequency table of `reactions` - `react_num`combinations.
-</div>
+:::
 
 ```{r groupreactions1, exercise = TRUE}
 # 
@@ -387,11 +348,11 @@ gradethis::grade_code(
   )
 ```
 
-###
+### 
 
-<div class="question" >
+::: question
 Group the number of reactions in three bins with (nearly) the same number of cases and store this variable as a factor named `react_cat` in tibble `Brexit`.
-</div>
+:::
 
 ```{r orderedfactor, exercise = TRUE, exercise.setup = "groupreactions1-solution"}
 
@@ -425,16 +386,15 @@ gradethis::grade_code(
 
 The three reactions bins should be labeled "low", "medium", "high". But the substantive order from low to high does not match the alphabetical order. The bins variable must therefore be a factor.
 
-###
+### 
 
-<div class="question" >
+::: question
 Plot a bar chart of the factor representing the reactions bins. Are the bins in the desired order?
-</div>
+:::
 
 ```{r binplot-ini, exercise.setup = "groupreactions1-solution"}
 Brexit <- Brexit |> mutate(react_cat = ntile(parse_number(reactions), 3), react_cat = factor(react_cat, levels = c(1, 2, 3), labels = c("low", "medium", "high")))
 ```
-
 
 ```{r binplot, exercise = TRUE, exercise.setup = "binplot-ini"}
 
@@ -455,17 +415,23 @@ gradethis::grade_code(
   )
 ```
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
-- An ordered factor assigns ordinal measurement level. In a regression model, no ordinary dummy variables are created for an ordered factor. So avoid ordered factors, unless you really need an ordinal variable.
-</div>
+-   An ordered factor assigns ordinal measurement level. In a regression model, no ordinary dummy variables are created for an ordered factor. So avoid ordered factors, unless you really need an ordinal variable.
+:::
 
-## Dates and Times  
+## Dates and Times
+
+::: tip
+**Programming Tip**
+
+-   Never assume that dates and times are correctly read.
+:::
 
 ### Date-time data object
 
-Example: Publication date of post on _nujij.nl_ in tibble `Brexit`.
+Example: Publication date of post on *nujij.nl* in tibble `Brexit`.
 
 ```{r POSIXct, echo=FALSE}
 str(Brexit$pubDate, "%B %d, %Y %H:%M:%S")
@@ -475,16 +441,16 @@ Date plus time of day is a character string here.
 
 To work with dates and times change to `POSIXct` data type.
 
-- Number of seconds since the beginning of 1970.
-- Shown in the standard format (of your computer locale).
+-   Number of seconds since the beginning of 1970.
+-   Shown in the standard format (of your computer locale).
 
-### String to date-time  
+### String to date-time
 
--   `Brexit`, variable `pubDate`: date and time an article was posted as a string, e.g., "`r Brexit$pubDate[1]`". 
+-   `Brexit`, variable `pubDate`: date and time an article was posted as a string, e.g., "`r Brexit$pubDate[1]`".
 
-<div class="question" >
+::: question
 Create a date-time variable `pubDateTime` in tibble `Brexit` using a parse function in package `readr` (p. 297 {Ch. 17.2.1}). Check the results with a frequency table.
-</div>
+:::
 
 ```{r pubDate1, exercise = TRUE}
 # Create and add the date-time variable.
@@ -512,11 +478,11 @@ Brexit |> count(pubDate, pubDateTime)
 gradethis::grade_code()
 ```
 
-###
+### 
 
-<div class="question" >
+::: question
 Now do the same with the `lubridate` package (p. 298 {Ch. 17.2.2}), storing the results as a new variable `pubDateTime2` in tibble `Brexit`.
-</div>
+:::
 
 ```{r pubDate2, exercise = TRUE}
 Brexit <- Brexit |> 
@@ -538,22 +504,22 @@ gradethis::grade_code(
   )
 ```
 
-- Package `lubridate` simplifies the identification of date/time elements.
-- Date and time formatting codes are also used for displaying dates and times.
+-   Package `lubridate` simplifies the identification of date/time elements.
+-   Date and time formatting codes are also used for displaying dates and times.
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
-- Especially when you let `readr` guess the date and time format, the results can be wrong. Always compare the new date-time variable to the original string variable.
-</div>
+-   Especially when you let `readr` guess the date and time format, the results can be wrong. Always compare the new date-time variable to the original string variable.
+:::
 
 ### Retrieve info from date-time
 
 It is easy to get the date from a date-time (POSIXct) variable with the `lubridate` package.
 
-<div class="question" >
+::: question
 Add a variable `date` to the `Brexit` tibble; derive it from the recently created variable `pubDateTime`.
-</div>
+:::
 
 ```{r Date, exercise = TRUE, exercise.setup = "pubDate1-solution"}
 Brexit <- Brexit |> 
@@ -575,16 +541,15 @@ gradethis::grade_code(
   )
 ```
 
-###
+### 
 
-<div class="question" >
+::: question
 Inspect the dates of the posts with a frequency polygon.
-</div>
+:::
 
 ```{r datePlot-init}
 Brexit <- Brexit |> mutate(date = date(parse_datetime(pubDate, format = "%B %d, %Y %H:%M:%S")))
 ```
-
 
 ```{r datePlot, exercise = TRUE, exercise.setup = "datePlot-init"}
 
@@ -607,18 +572,18 @@ gradethis::grade_code(
   )
 ```
 
-###
+### 
 
-- Note that there is a `date` variable type in R. It behaves just like a `date-time` variable.
-- `date()` is also a base R function. When you load the `lubridate` package, the base R `date()` function is overriden.
+-   Note that there is a `date` variable type in R. It behaves just like a `date-time` variable.
+-   `date()` is also a base R function. When you load the `lubridate` package, the base R `date()` function is overriden.
 
-###
+### 
 
 It is also easy to get the weekday with the `lubridate` package.
 
-<div class="question" >
+::: question
 Use the `pubDateTime` variable to calculate the weekday at which a post was published as a new variable `weekday` containing the names of the weekdays. Store it in the `Brexit` tibble and inspect a frequency table of the `weekday` variable.
-</div>
+:::
 
 ```{r weekday, exercise = TRUE, exercise.setup = "pubDate1-solution"}
 # This time, start from scratch...
@@ -626,9 +591,10 @@ Use the `pubDateTime` variable to calculate the weekday at which a post was publ
 ```
 
 <!-- To hide the solution, use a textual hint. -->
-<div id="weekday-hint">
-__Hint:__ How about the `wday()` function?
-</div>
+
+::: {#weekday-hint}
+**Hint:** How about the `wday()` function?
+:::
 
 ```{r weekday-solution}
 Brexit |> mutate(weekday = wday(pubDateTime, label=TRUE)) |> select(weekday)
@@ -641,7 +607,7 @@ gradethis::grade_code(
   )
 ```
 
-###
+### 
 
 ```{r plotweekday, echo=FALSE}
 Brexit  |> mutate(weekday = lubridate::wday(parse_datetime(pubDate, "%B %d, %Y %H:%M:%S"), label=TRUE)) |> ggplot(aes(weekday)) + geom_bar()
@@ -649,14 +615,14 @@ Brexit  |> mutate(weekday = lubridate::wday(parse_datetime(pubDate, "%B %d, %Y %
 
 Variable `weekday` must be a factor. How can you tell?
 
-###  
+### 
 
--   It is tricky to get the time of day because R has no time data type. 
+-   It is tricky to get the time of day because R has no time data type.
 -   The book offers a trick (Chapter 17, Section Setting Components {17.3.3}).
 
-<div class="question" >
+::: question
 Apply this trick to the `pubDateTime` variable in tibble `Brexit` to create a variable `time`. Show the variable as an area plot; don't save it. Put all code in one pipe!
-</div>
+:::
 
 ```{r time, exercise = TRUE, exercise.setup = "pubDate1-solution"}
 Brexit |> 
@@ -695,12 +661,12 @@ gradethis::grade_code(
 
 ### Calculating with date-time
 
--   Let us have a look at the time span between successive posts. 
+-   Let us have a look at the time span between successive posts.
 -   How long does it take for a new post to appear?
 
-<div class="question" >
+::: question
 Subtract the `pubDateTime` of the previous post from the `pubDateTime` of the current post and store the result as variable `lapse` in tibble `Brexit`.
-</div>
+:::
 
 ```{r timelapse, exercise = TRUE, exercise.setup = "pubDate1-solution"}
 Brexit <- Brexit |> 
@@ -729,7 +695,7 @@ gradethis::grade_code(
   )
 ```
 
-###
+### 
 
 ```{r timelapseplot, echo=FALSE}
 #Show publication date-time and lapse for first few observations.
@@ -740,12 +706,12 @@ Brexit |>
   slice(1:6)
 ```
 
--   The time difference between subsequent postings are clearly in seconds (see above table). 
+-   The time difference between subsequent postings are clearly in seconds (see above table).
 -   What if we use the dates of publications?
 
-<div class="question" >
+::: question
 Show the difference in days (dates) between subsequent posts (new variable `lapse2`) for the first six posts in a table.
-</div>
+:::
 
 ```{r daylapse, exercise = TRUE, exercise.setup = "datePlot-init"}
 Brexit |> 
@@ -778,69 +744,69 @@ gradethis::grade_code(
   )
 ```
 
-###
+### 
 
--   Now the difference is expressed in days. 
+-   Now the difference is expressed in days.
 
 Subtracting two date-times:
 
--   yields data type `difftime`; 
--   which can have several time units; 
+-   yields data type `difftime`;
+-   which can have several time units;
 -   namely, the largest time unit that is smaller than the smallest measured time difference.
 
-<div class="emphasis" >
+::: emphasis
 We don't like unpredictable results!
-</div>
+:::
 
-Data type `duration`: 
+Data type `duration`:
 
 -   Always expresses time differences in seconds.
 -   Change `difftime` into `duration` with the `as.duration()` function. See the book for more details.
 
-<div class="tip" >
-__Programming Tips__
+::: tip
+**Programming Tips**
 
-- Work with data type `duration` instead of `difftime` unless you have to take into account daylight saving and leap seconds.
-- Note: For minutes, hours, days, and weeks, a `duration` can be divided (ignoring leap seconds) by the appropriate number of seconds.
-</div>
+-   Work with data type `duration` instead of `difftime` unless you have to take into account daylight saving and leap seconds.
+-   Note: For minutes, hours, days, and weeks, a `duration` can be divided (ignoring leap seconds) by the appropriate number of seconds.
+:::
 
-## Strings  
+## Strings
 
-### String manipulation  
+### String manipulation
 
-Main applications:  
-  
-1. Change string into another type (factor, date, number) that is more convenient for analysis.  
-    - Examples in previous topics of this tutorial (string to factor or date-time).  
-2. Query and quantify natural text contents.  
-    - Find texts with particular contents.  
-    - Change content characteristics into variables.
+Main applications:
 
-Topic 2 is esp. relevant for students working on a complex data set including text (natural language): Alcohol Posts and Use, German Chancellor Debate    .
+1.  Change string into another type (factor, date, number) that is more convenient for analysis.
+    -   Examples in previous topics of this tutorial (string to factor or date-time).\
+2.  Query and quantify natural text contents.
+    -   Find texts with particular contents.\
+    -   Change content characteristics into variables.
+
+Topic 2 is esp. relevant for students working on a complex data set including text (natural language): Alcohol Posts and Use, German Chancellor Debate .
 
 ### Change variable names
 
-Friends & Families weekly survey: nasty variable names. Use `rename()`? 
+Friends & Families weekly survey: nasty variable names. Use `rename()`?
 
 ```{r imagesurvey, out.width="100%"}
 knitr::include_graphics("images/surveyweek1.png")
 ```
- 
-- Data sets in the wild often contain troublesome variable names.
-- We can use `rename()` to change each name one by one.
-- Instead, let's handle variable names as string data and use string manipulation techniques to simplify the variable names.
 
-###
+-   Data sets in the wild often contain troublesome variable names.
+-   We can use `rename()` to change each name one by one.
+-   Instead, let's handle variable names as string data and use string manipulation techniques to simplify the variable names.
+
+### 
 
 Objective: Simplify the variable name to the date for which the sad/depressed score was entered.
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
 -   If possible, first create code that works for one example. Next, extend the code to deal with all cases.
-</div>
+:::
 
--   First example of a troublesome variable name in tibble `surveyweek1`. 
+-   First example of a troublesome variable name in tibble `surveyweek1`.
 
 ```{r getvar, exercise=TRUE, exercise.eval = TRUE}
 # Get a variable name as a character variable with the names() function.
@@ -852,9 +818,9 @@ names(surveyweek1)[4]
 
 Step 1: Remove all up to (and including) the first " - ".
 
-<div class="question" >
+::: question
 Run the below code and inspect the intermediary results to check that you understand what each line of code does. For example, why is there `+ 1` within the `str_sub()` function?
-</div>
+:::
 
 ```{r step1, exercise = TRUE, exercise.lines = 15}
 # Store variable name in a data object, so we can use it.
@@ -873,16 +839,17 @@ varname <- str_sub(varname, start = str_locate(varname, " - ")[2] + 1)
 # Show result to check that the code works.
 varname # Intermediary result. Comment out in your Data Project code!
 ```
-###
-
-The book focuses on finding and replacing particular strings/words:
-
-- `str_locate()` with `str_sub()` are nice for cutting up a string.
-- `[2]` behind str_locate() selects the second item of the vector: the end position.
 
 ### 
 
-We now have: 
+The book focuses on finding and replacing particular strings/words:
+
+-   `str_locate()` with `str_sub()` are nice for cutting up a string.
+-   `[2]` behind str_locate() selects the second item of the vector: the end position.
+
+### 
+
+We now have:
 
 ```{r step1result}
 str_sub(names(surveyweek1)[4], start = str_locate(names(surveyweek1)[4], " - ")[2] + 1)
@@ -892,11 +859,11 @@ str_sub(names(surveyweek1)[4], start = str_locate(names(surveyweek1)[4], " - ")[
 varname <- str_sub(names(surveyweek1)[4], start = str_locate(names(surveyweek1)[4], " - ")[2] + 1)
 ```
 
-Step 2: Get rid of the weekday name, so remove all up to (and including)  ", ".
+Step 2: Get rid of the weekday name, so remove all up to (and including) ", ".
 
-<div class="question" >
+::: question
 Run the below code and inspect the intermediary results to check that you understand what each line of code does.
-</div>
+:::
 
 ```{r step2, exercise = TRUE, exercise.setup = "step2-ini", exercise.lines = 6}
 # Select substring after the end position of ", ".
@@ -905,18 +872,18 @@ varname <- str_sub(varname, start = str_locate(varname, ", ")[2] + 1)
 varname # Intermediary result. Comment out in your Data Project code!
 ```
 
-###
+### 
 
 ```{r step3-ini}
 varname <- str_sub(names(surveyweek1)[4], start = str_locate(names(surveyweek1)[4], " - ")[2] + 1)
 varname <- str_sub(varname, start = str_locate(varname, ", ")[2] + 1)
 ```
 
-Step 3: Get rid of the "Sad or depressed" part, so remove all from (and including)  " - ".
+Step 3: Get rid of the "Sad or depressed" part, so remove all from (and including) " - ".
 
-<div class="question" >
+::: question
 Run the below code and inspect the intermediary results to check that you understand what each line of code does.
-</div>
+:::
 
 ```{r step3, exercise = TRUE, exercise.setup = "step3-ini", exercise.lines = 6}
 # Show the name that we start with.
@@ -929,29 +896,30 @@ varname
 
 This is the variable name that we were after.
 
-<div class="tip" >
-__Programming Tip__
+::: tip
+**Programming Tip**
 
-- It is good practice to check intermediary results, so you know that your code performs as expected.
-- It is equally good practice to comment out code that is only used for checking intermediary results when the code is definitive.
-</div>
+-   It is good practice to check intermediary results, so you know that your code performs as expected.
+-   It is equally good practice to comment out code that is only used for checking intermediary results when the code is definitive.
+:::
 
 ### (for code experts...)
 
 Note that `start` and `end` arguments can be combined in `sub_str()`. Steps 2 and 3 can thus be done in one command.
 
-<div class="question" >
-Write the `str_sub()`function that combines Steps 2 and 3. 
-</div>
+::: question
+Write the `str_sub()`function that combines Steps 2 and 3.
+:::
 
 ```{r step2and3, exercise = TRUE, exercise.setup = "step2-ini"}
 str_sub(varname, )
 ```
 
 <!-- To hide the solution, use a textual hint. -->
-<div id="step2and3-hint">
-__Hint:__ You should be able to figure this out. Use help on the `str_sub()` and `str_locate()` functions.
-</div>
+
+::: {#step2and3-hint}
+**Hint:** You should be able to figure this out. Use help on the `str_sub()` and `str_locate()` functions.
+:::
 
 ```{r step2and3-solution}
 str_sub(varname, start = str_locate(varname, ", ")[2] + 1, end = str_locate(varname, " - ")[1] - 1)
@@ -968,9 +936,9 @@ gradethis::grade_code(
 
 Let us apply the commands to all relevant variables (sequence 4 to 10).
 
-<div class="question" >
+::: question
 Run the below code. What do `names()` and `str_locate()` produce now?
-</div>
+:::
 
 ```{r strlocate1, exercise = TRUE, exercise.lines = 7}
 # Get all selected variable names.
@@ -982,12 +950,12 @@ varname
 str_locate(varname, " - ")
 ```
 
-###
+### 
 
--   `str_locate()` creates a matrix with start and end position columns for each variable. 
+-   `str_locate()` creates a matrix with start and end position columns for each variable.
 -   Instead of a single value, we must select a column to get start or end positions.
-    +   Start positions: first column `[,1]`;
-    +   End positions: second column `[,2]`.
+    -   Start positions: first column `[,1]`;
+    -   End positions: second column `[,2]`.
 
 ```{r strlocate2-ini}
 # Get all selected variable names.
@@ -1001,9 +969,9 @@ str_locate(varname, " - ")[,2]
 
 ### 
 
-<div class="question" >
+::: question
 Adjust the commands that we have created for changing one variable name to changing the names of all relevant variables.
-</div>
+:::
 
 ```{r changeall, exercise = TRUE}
 # Store variable name in a data object, so we can use it.
@@ -1045,7 +1013,7 @@ gradethis::grade_result(
 )
 ```
 
-###
+### 
 
 Once we have the correct variable names, we can use them to replace the names in the `surveyweek1` tibble.
 
@@ -1071,9 +1039,9 @@ str(surveyweek1)
 
 Because the variable names are so well structured in this particular example, we can achieve the same with the tidyverse `separate()` function.
 
-<div class="question" >
+::: question
 Inspect the results of each step in the pipe with `View()`. Note that the View window may be hidden behind another screen.
-</div>
+:::
 
 ```{r separate, exercise = TRUE, exercise.lines = 12}
 #tidyverse requires a data frame
@@ -1098,18 +1066,18 @@ str(surveyweek1)
 
 ## Fancy Stuff
 
-Natural text such as the header or body text of posts is used for classifying texts (topic modelling), for example, using sentiment analysis, or investigating relations between words, e.g., as visualized in a word cloud. 
+Natural text such as the header or body text of posts is used for classifying texts (topic modelling), for example, using sentiment analysis, or investigating relations between words, e.g., as visualized in a word cloud.
 
 ### Word cloud
 
--   Special R data class `Corpus` handles sets of texts. 
--   `tm` package: tools for creating, cleaning, and manipulating a corpus of texts. 
+-   Special R data class `Corpus` handles sets of texts.
+-   `tm` package: tools for creating, cleaning, and manipulating a corpus of texts.
 
 Let us use this package and the `wordcloud` package to create some word clouds.
 
-<div class="question" >
+::: question
 Use help and inspect intermediary results to understand what happens here.
-</div>
+:::
 
 ```{r wordcloud1, exercise = TRUE, exercise.lines = 23, exercise.eval = TRUE}
 # Load the required packages.
@@ -1137,15 +1105,15 @@ wordcloud::wordcloud(
   )
 ```
 
-###
+### 
 
--   The word _Brexit_ clearly dominates the word cloud. 
+-   The word *Brexit* clearly dominates the word cloud.
 -   Articles have been selected because this word appears!
 -   Let us make a word cloud without it.
 
-<div class="question" >
+::: question
 Play around with the selection of words and the arguments of the `wordcloud()` function.
-</div>
+:::
 
 ```{r prepare-doc}
 # Create a corpus for the headings (titles) of the Brexit articles.
@@ -1163,7 +1131,6 @@ docs <- Brexit |>
   tm::tm_map(removeWords, stopwords("dutch")) #remove Duch stopwords
 ```
 
-
 ```{r wordcloud2, exercise = TRUE, exercise.eval = TRUE, exercise.setup = "prepare-doc"}
 docs |> 
   #remove word "brexit"
@@ -1179,17 +1146,17 @@ docs |>
 
 Document-term-matrix:
 
--   Used for classifying texts based on the (co-)occurrence of words. 
--   Is a data matrix with rows (or columns) for texts (documents) and a column (or row) for each word that appears in at least one text. 
--   Cells contain frequencies: How many times does this word occur in this document. 
+-   Used for classifying texts based on the (co-)occurrence of words.
+-   Is a data matrix with rows (or columns) for texts (documents) and a column (or row) for each word that appears in at least one text.
+-   Cells contain frequencies: How many times does this word occur in this document.
 
 The `tm` package can create document-term-matrices from a text corpus.
 
 The code below must identify two topics in the `Brexit` texts and shows these as two word clouds.
 
-<div class="question" >
+::: question
 Play around with the number of topics in the `lda()` function. Note that the code only displays the first two topics.
-</div>
+:::
 
 ```{r topicmodel, exercise = TRUE, exercise.lines = 25, exercise.eval = TRUE, exercise.setup = "prepare-doc"}
 # Load the required package.
@@ -1246,46 +1213,16 @@ docs |>
 
 Well, what's the difference between the two topics? Note that the results may change dramatically from one run to the next. Perhaps, there is just one story.
 
-## Tidy Data Experts Meeting
-
-- Experts for the same tidy data principle: sit together.
-- Follow the instructions in the _Expert Meeting Instructions_ document (attached to Session 4 module on Canvas.)
-
--   Duration: 20 minutes.
-
 ## Data Project: To Do
 
--   Sprint 2: Retrospective & Review.
--   Sprint 3: Planning, Update Project Backlog.
--   Remaining time: Work on the Sprint 2 Backlog.
-
-<div class="tip" >
-__Programming Tip__
-
-- Never assume that dates and times are correctly read.
-</div>
-
-## Plenary updates Sprint 2 SCRUM masters
-
-Last 15 minutes of the session.
+-   Sprint 3: Complete backlog, Retrospective & Review.
+-   Sprint 4: Planning, Update Project Backlog.
+    -   New additions: Practice with special variable types that occur in your dataset and complete related tidying tasks.
 
 
-## Reminders
-
-### Problem Set 2
-
-- Available from 1 PM today.
-- Download __Quarto__ document with assigned exercises and accompanying data set from Canvas.  
-- Add answers and R code in the __Quarto__ document.  
-- Render __Quarto__ document to PDF or Word.
-- Submit __Quarto__ document and PDF or Word document to the Canvas assignment.  
-- Submission deadline: Sunday, 12 PM (noon).  
-- Lecturer's feedback returned in the PDF or Word document.
-
-### And as always...
+## And as always...
 
 -   Study course content
 -   Meet your buddy
--   Work on Sprint 3
--   **Sprint 3 SCRUM masters: Keep your team on course!**
-
+-   Work on Sprint 4
+-   **Sprint 4 SCRUM masters: Keep your team on course!**

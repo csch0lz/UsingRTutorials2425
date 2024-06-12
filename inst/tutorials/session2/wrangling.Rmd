@@ -941,9 +941,9 @@ From this point on in this tutorial, you are supposed to work in RStudio.
 
 Everything you do within one R Session is stored in your R Workspace. If you close RStudio, you lose everything you did in that session, unless you save it. You can choose to save your work in different file types. We will discuss:
 
-- R Projects
-- R Scripts
-- Quarto
+-   R Projects
+-   R Scripts
+-   Quarto
 
 ### R project
 
@@ -1103,7 +1103,6 @@ Main options for a code chunk creating a plot (chapter 28.6):
 **Programming Tips**
 
 -   Carefully inspect a rendered Quarto document for the presence and layout of plots and tables and for unwanted code or R messages.
-
 :::
 
 #### Adding (formatted) text
@@ -1131,10 +1130,7 @@ Some often used text formatting in Quarto.
 
 Render an Quarto with the Render button.
 
-
-
-![](images/render.png){width="397"}
-Render to HTML:
+![](images/render.png){width="397"} Render to HTML:
 
 -   Is fastest.
 -   Always render to HTML first, to check the results.
@@ -1168,7 +1164,10 @@ YAML option `keep_tex: TRUE` saves the TeX file (extension `.tex`), which you ca
 -   Study course content
 -   Meet your study buddy
 -   Next steps group project:
-    -   Start working on the Quarto document for your Data Project in RStudio.
-    -   Sprint 1 Review & Sprint 1 Retrospective
-    -   Sprint 2 Planning
+    -   Sprint 1: Review & Retrospective
+    -   Sprint 2: Planning 
+-   Some inspiration for planning: 
+    -   You can already: organize your group work in a Quarto file and practice data wrangling skills
+    -   Plan in some time to start data tidying after Session 3.
+    -   Plan in some time for everybody to practice with ggplot() on the Data Project.
 -   **Sprint 2 SCRUM masters: Keep your team on course!**

@@ -1,0 +1,128 @@
+---
+title: "Session 5: Review and Q&A"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+    Review content about R basics, visualization, and data tidying.
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+# Ensure that libraries are loaded.
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(knitr)
+library(kableExtra)
+
+tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r, context="data", include=FALSE}
+#Load any datasets
+```
+
+<!-- Define programming tip style -->
+
+```{=html}
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+```
+<!-- Define question style -->
+
+```{=html}
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+```
+<!-- Define emphasis style -->
+
+```{=html}
+<style>
+.emphasis {
+  color: #e8301b;
+}
+</style>
+```
+## Overview
+
+-   Meet the Experts
+-   Review Course Content
+-   Group Consultations
+
+## Meet the Experts
+
+Each group has at least one expert per tidy data principle, who have
+prepared by:
+
+-   Re-visiting the tidy data principle in the book and course
+    materials.
+-   Applying it to one of your Data Project data sets.
+-   Producing 2 PowerPoint slides (use the template in Session 5 module
+    on Canvas).
+
+Today, the experts of different groups will meet to discuss their
+knowledge and examples.
+
+## Meet the Experts: What to do
+
+Team up with the experts of your topic.
+
+-   Each expert:
+
+    -   Describes the tidy data principle in 1-2 sentences.
+
+    -   Shows one example from their complex dataset to the group of
+        experts.
+
+-   Each expert group:
+
+    -   Consolidate your findings in one common power point
+        presentation, containing:
+
+        -   1 slide with the best description of the principle the group
+            agrees on (WHAT, HOW, WHY).
+
+        -   1 slide PER EXPERT with an example (ONLY INCLUDE GOOD
+            EXAMPLES THE GROUP AGREES ON.):
+
+            -   Screenshot of original variable
+
+            -   Screenshot of code to tidy the variable;
+
+            -   Screenshot of end result
+
+## Course Content Review
+
+[ADD SLIDES IF USEFUL]
+
+## Data Project Consultations
+
+Each group will have a consultation with the instructor to discuss their
+Data Project. We will have X minutes per group.
+
+| Order | Group        |
+|-------|--------------|
+| 1     | GROUP NAME 1 |
+| 2     | GROUP NAME 2 |
+| 3     | GROUP NAME 3 |
+
+## Data Project: What's next
+
+We are in the middle of Sprint 3.
+
+-   Take a moment to update your product and sprint backlogs if needed
+    based on the feedback you got today.
+
+-   Keep working on your current sprint backlog.
