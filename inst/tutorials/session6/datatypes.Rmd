@@ -1213,16 +1213,22 @@ docs |>
 
 Well, what's the difference between the two topics? Note that the results may change dramatically from one run to the next. Perhaps, there is just one story.
 
-## Data Project: To Do
+## What's next
+
+-   You now know everything you might need to complete the group part of the data project (Deadline: November 21st).
+-   We recommend that you keep working in the SCRUM-Light framework as you approach the individual part of the assignment to keep each other on track and keep the community alive. 
+-   In your Sprint Backlogs, make time for both the individual data project and exam prep!
+-   Remember, what you produce from now on should be an individual effort. Your group can help discuss ideas and give some feedback, but you need to do the work yourself.
+
+## What's next - Continued
 
 -   Sprint 3: Complete backlog, Retrospective & Review.
 -   Sprint 4: Planning, Update Project Backlog.
     -   New additions: Practice with special variable types that occur in your dataset and complete related tidying tasks.
-
+    -   Remember that starting after Session 7, you can also start to seriously think about your individual project in parallel to finishing the group part by the deadline.
 
 ## And as always...
 
 -   Study course content
 -   Meet your buddy
--   Work on Sprint 4
 -   **Sprint 4 SCRUM masters: Keep your team on course!**

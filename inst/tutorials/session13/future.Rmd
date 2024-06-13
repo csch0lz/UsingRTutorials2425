@@ -1,0 +1,135 @@
+---
+title: 'Session 14: Your Future with R'
+output:
+  learnr::tutorial:
+    progressive: yes
+    allow_skip: yes
+runtime: shiny_prerendered
+description: |
+  Easy work flows and strategies to use R in collaborative, open science research.
+---
+
+```{r setup, include=FALSE}
+# Ensure that libraries are loaded.
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(knitr)
+library(kableExtra)
+library(haven) #For importing SPSS data files.
+library(car) #For ANOVA.  
+library(texreg) #For pretty regression results.
+library(effects) #For two-way interaction plots.
+library(broom) #For cleaning up statistical results.
+
+tutorial_options(exercise.timelimit = 20, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+glbwarm <- UsingRTutorials::glbwarm
+glbwarm_spss <- UsingRTutorials::glbwarm_spss
+# The estimated regression model with rstanarm. 
+model_1aBayes <- UsingRTutorials::model_1aBayes
+```
+
+<!-- Define programming tip style -->
+
+```{=html}
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+```
+<!-- Define question style -->
+
+```{=html}
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+```
+<!-- Define emphasis style -->
+
+```{=html}
+<style>
+.emphasis {
+  color: #e8301b;
+}
+</style>
+```
+
+## Overview
+
+## (Reference) Importing SPSS Data
+
+### 
+
+SPSS data files have a complicated setup with variable labels and value labels.
+
+R data frames or tibbles do not have such labels.
+
+In case you later have SPSS data that you want to analyze in R, here are **two options** for importing SPSS data.
+
+### Option 1. Export from SPSS to .csv and import .csv in R.
+
+-   Export data from SPSS to a CSV file with value labels for categorical variables:
+    -   *File \> Export \> CSV Data* with *Save value labels where defined instead of data values*.
+-   Use `read_csv()` (as you learned before) to import the CSV file.
+
+::: question
+Import the SPSS file `data/glbwarm.csv` and have a look at it.
+:::
+
+```{r importCSV, exercise = TRUE, exercise.eval = TRUE}
+# The CSV is available in the data directory of this tutorial.
+glbwarm <- read_csv("data/glbwarm.csv")
+# Inspect the variables.
+str(glbwarm)
+```
+
+### Option 2. Import SPSS .sav file directly with tidyverse package `haven`.
+
+The tidyverse package `haven` contains function `read_sav()` (or `read_spss()`) for importing SPSS (and other software packages) data files.
+
+::: question
+Import the SPSS file `data/glbwarm.sav` and have a look at it.
+:::
+
+```{r importSPSS, exercise = TRUE}
+# The SPSS system file is available in the data directory of this tutorial.
+glbwarm_spss <- haven::read_sav("data/glbwarm.sav")
+# Inspect the variables.
+str(glbwarm_spss)
+```
+
+### 
+
+Imported categorical variables such as *ideology*:
+
+-   Are numerical codes with labels.
+-   So, R treats these variables as numerical.
+-   If you don't want that, change them into factors.
+
+::: question
+Use the `haven::as_factor()` function to add a variable named `sex_fct` to tibble `glbwarm_spss`.
+:::
+
+```{r sex_fct, exercise = TRUE}
+# Add sex as a factor to the tibble.
+glbwarm_spss <- glbwarm_spss |> 
+  mutate(sex_fct = haven::as_factor(sex))
+# Inspect the original and new variable.
+glbwarm_spss |> count(sex, sex_fct)
+```
+
+### 
+
+Passing the entire tibble `glbwarm_spss` to `haven::as_factor()`will change all labelled variables into factors.
+
+I am not sure this is what you want here. Perhaps you would like to use the `ideology` variable as a seven-point scale.
+
+

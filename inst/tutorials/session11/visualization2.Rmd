@@ -1,0 +1,240 @@
+---
+title: 'Session 11: Visualization 2'
+output:
+  learnr::tutorial:
+    progressive: yes
+    allow_skip: yes
+runtime: shiny_prerendered
+description: |
+  Apply your skills in statistical analysis within R.
+---
+
+```{r setup, include=FALSE}
+# Ensure that libraries are loaded.
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(knitr)
+library(kableExtra)
+library(haven) #For importing SPSS data files.
+library(car) #For ANOVA.  
+library(texreg) #For pretty regression results.
+library(effects) #For two-way interaction plots.
+library(broom) #For cleaning up statistical results.
+
+tutorial_options(exercise.timelimit = 20, exercise.checker = gradethis::grade_learnr)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+glbwarm <- UsingRTutorials::glbwarm
+glbwarm_spss <- UsingRTutorials::glbwarm_spss
+# The estimated regression model with rstanarm. 
+model_1aBayes <- UsingRTutorials::model_1aBayes
+```
+
+<!-- Define programming tip style -->
+
+```{=html}
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+```
+<!-- Define question style -->
+
+```{=html}
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+```
+<!-- Define emphasis style -->
+
+```{=html}
+<style>
+.emphasis {
+  color: #e8301b;
+}
+</style>
+```
+## Overview
+
+## Results Plots
+
+### Standard `plot()` function
+
+A data object with statistical results usually has a `plot()` function:
+
+-   These plots are for quick inspection rather than final presentation.
+-   They can be very useful for checking assumptions.
+
+::: question
+Apply the `plot()` function to the result of linear regression (`model_1a`).
+
+-   Which plots do you get?
+-   Are these all plots that you can get with this function?
+:::
+
+```{r lmplots-setup}
+model_1 <- lm(govact ~ age + negemot + partyid, data = glbwarm)
+model_1a <- lm(govact ~ age*negemot + partyid, data = glbwarm)
+```
+
+```{r lmplots, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#lmplots-hint}
+**Hint:** See `plot.lm()` for help.
+:::
+
+### Off-The-Shelf Plots
+
+There are many packages offering ready-to-use plots, for example:
+
+-   `coefplot`: plots regression coefficients for one or more models (`ggplot2` plots)
+-   `visreg`: plots regression lines (`ggplot2` plots).
+-   `effects`: plots regression lines (not `ggplot2` plots).
+
+Note that `ggplot2` plots created by such packages can be further customized: Save the plot (e.g., `p`) and then add layers, themes, ... (e.g., `p + theme_bw()`).
+
+### Interaction Plot with the `effects` Package
+
+You can graph interaction effects with the `effects` package in two steps.
+
+```{r effects, exercise=TRUE, exercise.setup = "lm3-solution", exercise.eval = TRUE }
+# Load effects package.
+library(effects)
+# Step 1: Create a data object containing all effects.
+eff.model2 <- effects::allEffects(model_1a)
+# Step 2: Plot interaction effects.
+plot(eff.model2, 'age:negemot', x.var = 'age')
+```
+
+Note the `rug` on the horizontal axis, showing the age score of all cases within a `negemot` group.
+
+### Custom Plots with `ggplot()`
+
+It is not so difficult to create this plot with `ggplot()`.
+
+Advantage: Full control. E.g., why does the plot from the `effects` package skip negative emotions around three?
+
+::: question
+Create a ggplot from `glbwarm` like the above effects plot with facets for negative emotions between 1 and 1.5 (labeled `1`), between 1.5 and 2.5 (labeled `2`), between 2.5 and 3.5 (labeled `3`), between 3.5 and 4.5 (labeled `4`), between 4.5 and 5.5 (labeled `5`), between 5.5 and 6 (labeled `6`). Name the new variable `negemot_bin`.
+:::
+
+```{r ggplot, exercise = TRUE, exercise.setup = "lm3-solution"}
+
+```
+
+```{r ggplot-hint-1}
+# Create the binned negative emotions variable.
+glbwarm |>
+  mutate(negemot_bin = 
+  case_when(
+    negemot < 1.5 ~ 1,
+    negemot < 2.5 ~ 2,
+    negemot < 3.5 ~ 3,
+    negemot < 4.5 ~ 4,
+    negemot < 5.5 ~ 5,
+    negemot >= 5.5 ~ 6
+    )
+  )
+```
+
+```{r ggplot-hint-2}
+# Pipe the tibble into ggplot() and use geom_smooth().
+glbwarm |>
+  mutate(negemot_bin = 
+  case_when(
+    negemot < 1.5 ~ 1,
+    negemot < 2.5 ~ 2,
+    negemot < 3.5 ~ 3,
+    negemot < 4.5 ~ 4,
+    negemot < 5.5 ~ 5,
+    negemot >= 5.5 ~ 6
+    )
+  ) |>
+  ggplot( ) +
+    geom_smooth( )
+```
+
+```{r ggplot-hint-3}
+# Use geom_rug() to represent all observations on the horizontal axis.
+```
+
+```{r ggplot-hint-4}
+# Use facet_wrap() on the binned negative emotions variable.
+```
+
+```{r ggplot-solution, exercise.reveal_solution = FALSE}
+glbwarm |> mutate(negemot_bin = case_when( negemot < 1.5 ~ 1, negemot < 2.5 ~ 2, negemot < 3.5 ~ 3, negemot < 4.5 ~ 4, negemot < 5.5 ~ 5, negemot >= 5.5 ~ 6)) |> ggplot(aes(x = age)) + geom_smooth(aes(y = govact), method = lm) + geom_rug() + facet_wrap(vars(negemot_bin))
+```
+
+Do you notice differences between your plot and the plot created with the `effects` package?
+
+Which plot do you trust more?
+
+### More ggplot practice
+
+It is not that difficult to create a means plot showing the results of analysis of variance.
+
+```{r anovaplothidden, eval=TRUE, echo=FALSE}
+glbwarm |> group_by(partyid, sex) |> 
+  summarise(avg_govact = mean(govact)) |> 
+  ggplot(aes(x = partyid, y = avg_govact, 
+             color = sex)) + 
+    geom_line(aes(group = sex)) + 
+    geom_point() +
+    labs(x = "Party identification",
+    y = "Gov.intervention") +
+    scale_y_continuous(
+      limits = c(min(glbwarm$govact), max(glbwarm$govact)),
+      breaks = 1:7
+    ) +
+    theme_bw() +
+    theme(legend.position = c(0.8, 0.8),
+      legend.background = element_blank())
+```
+
+::: question
+Use your data wrangling skills and `gglot()` to create the above means plot.
+:::
+
+```{r anovaplot, exercise = TRUE}
+glbwarm |> group_by(partyid, sex) |> 
+  summarise(avg_govact = mean(govact)) |> 
+  ggplot( ____ )
+```
+
+```{r anovaplot-hint-1}
+# First calculate the group means that must be shown.
+glbwarm |> group_by(partyid, sex) |> 
+  summarise(avg_govact = mean(govact))
+# Important: You plot summaries now, not the original observations.
+```
+
+```{r anovaplot-hint-2}
+# Use geom_point() to show the dots.
+```
+
+```{r anovaplot-hint-3}
+# Use geom_line() to show the lines with the group argument.
+```
+
+```{r anovaplot-hint-4}
+# Use theme_bw() for the general appearance of the plot.
+# More on this in Session 7.
+```
+
+```{r anovaplot-hint-5}
+# Use legend.position and legend.background within theme()
+# for the fine details of the legend.
+```
+
