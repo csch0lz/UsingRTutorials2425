@@ -1,0 +1,1011 @@
+---
+title: "Session 1: Welcome, Basics, and First Visualizations"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+  Check your understanding of RStudio, loading packages and data;
+  create basic plots with `ggplot()`, receive
+  programming tips, and check out some fancy visualization stuff.
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(knitr)
+
+gradethis::gradethis_setup()
+tutorial_options(exercise.timelimit = 60)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+# Ensure that library is loaded.
+library(tidyverse)
+```
+
+```{r, context="data", include=FALSE}
+# Ensure that the data is loaded for the remainder of this tutorial.
+consumers <- UsingRTutorials::consumers #  
+# Alternatives: readr::read_csv("http://82.196.4.233:3838/www/consumers.csv") or readr::read_csv("data/consumers.csv")
+```
+
+<!-- Define programming tip style -->
+
+```{=html}
+<style>
+.tip {
+  background-color: #f5f5f5;
+}
+</style>
+```
+<!-- Define question style -->
+
+```{=html}
+<style>
+.question {
+  color: #5A9DDB;
+}
+</style>
+```
+<!-- Define emphasis style -->
+
+```{=html}
+<style>
+.emphasis {
+  color: #e8301b;
+}
+</style>
+```
+## Overview
+
+## Visual Exploration
+
+Let's revisit a graph we discussed in the very first session. Again, we will use some (fake) `consumers` data about a particular brand and
+exposure to an advertising campaign for the brand. These are the
+variables:
+
+```{r variableDesc}
+tibble::tibble(
+  `Variable name` = c("ad_expo", "wom", "gender", "brand_aw", "firstname"),
+  `Variable Label` = c("Exposure to the campaign", "Heard about the brand through word of mouth", "Gender of the respondent", "Awareness of the brand", "Respondent's first name"),
+  `Value Labels`= c("1 = No exposure; 10 = Max exposure", "yes, no", "female, male", "1 = Not aware; 10 = Max aware", "")) |>
+  knitr::kable(booktabs = TRUE)
+```
+
+```{r plot-recreate1, exercise=FALSE, message=FALSE, warning=FALSE}
+# Standard ggplot plot with title and axis labels.
+ggplot2::ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(color = gender, shape = wom),
+    size = 4
+    ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~x,
+    se = FALSE,
+    color = "black"
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+### Axis Labels
+
+We'll start where we left off in Session 1. 
+
+```{r plot-recreate4, exercise=FALSE, message=FALSE, warning=FALSE}
+# Standard ggplot plot with title and axis labels.
+ggplot2::ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(color = gender, shape = wom),
+    size = 4
+    ) +
+  geom_smooth(
+    method = "lm",
+    formula = y ~x,
+    se = FALSE,
+    color = "black"
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+::: question
+Add the labels to the plot or change the labels. Mind the details.
+:::
+
+```{r ggplotLabels, exercise = TRUE, exercise.lines = 20, message=FALSE, warning=FALSE}
+# The code below is the solution we created in Session 1. 
+ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "black"
+    )
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#ggplotLabels-hint}
+**Hint:** Consider the details of both axes and the title.
+:::
+
+```{r ggplotLabels-solution}
+ggplot(
+  data = consumers,
+  mapping =
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "black"
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    )
+```
+
+```{r ggplotLabels-check}
+gradethis::grade_code()
+```
+
+### Facetting
+
+Different graphs for different groups of observations.
+
+-   facet_wrap(\~ x): one grouping variable
+-   facet_grid(y \~ x): two grouping variables
+
+```{r plot_facet_example, exercise=FALSE, message=FALSE, warning=FALSE}
+# Adaptation: word of mouth as facets instead of shape.
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y =brand_aw)
+  )+
+  geom_point(
+    mapping = aes(color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
+  facet_wrap(vars(wom))
+```
+
+::: question
+Adjust the visualization to match the plot above. Create two plots in
+one row.
+:::
+
+```{r plot_facet, exercise=TRUE, exercise.lines = 20, warning=FALSE, message=FALSE }
+# Copy the solution to the preceding exercise here as your starting point.
+ggplot()
+```
+
+::: {#plot_facet-hint}
+**Hint:** You must use the vars() function to identify the variable that
+is used to create facets.
+:::
+
+```{r plot_facet-solution}
+# Adaptation: word of mouth as facets instead of shape.
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y =brand_aw)
+  )+
+  geom_point(
+    mapping = aes(color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
+  facet_wrap(~wom)
+```
+
+```{r plot_facet-check}
+gradethis::grade_code(
+  correct = "You can also use facet_wrap(vars(wom))."
+)
+```
+
+### Adding labels to datapoints
+
+We may want to know who is the outlier in the plot, having an
+exceptionally low exposure score. Use `geom_text()` to add the
+participants' first names to the plot, as shown below. Carefully inspect
+the arguments for this geom.
+
+```{r plot_label_show, echo=FALSE, warning=FALSE, message=FALSE}
+# Adaptation: add firstname as label.
+ggplot2::ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE,
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
+  geom_text(
+    aes(label = firstname),
+    nudge_y = 0.4,
+    check_overlap = TRUE
+    )
+```
+
+::: question
+Create this graph yourself.
+:::
+
+```{r plot_label, exercise=TRUE, exercise.lines = 20, warning=FALSE, message=FALSE}
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE,
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
+  geom_text()
+```
+
+::: {#plot_label-hint}
+**Hint:** Use help on this geom to get more information about the
+arguments of this geom.
+:::
+
+```{r plot_label-solution}
+# Adaptation: swap color and shape, line color as aesthetic.
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE,
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
+  geom_text(
+    aes(label = firstname),
+    nudge_y = 0.4,
+    check_overlap = TRUE
+    )
+```
+
+```{r plot_label-check}
+gradethis::grade_code(
+  correct = "The example plot uses `geom_text()` because the boxes created by `geom_label()` obscure the data."
+  )
+```
+
+### Adding primitives
+
+Actually, we can draw all kinds of shapes on the plot, for example, an
+arrow drawing attention to the extremely low exposure score.
+
+::: question
+Use `geom_segment` to create this plot.
+:::
+
+```{r plot_primitives_show, echo=FALSE, warning=FALSE, message=FALSE}
+# Adaptation: Add arrow pointing to extreme value.
+ggplot2::ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
+  geom_segment(
+    x = 1, xend = 1, y = 4, yend = 2,
+    arrow = arrow(
+      type = "closed"
+    )
+  )
+```
+
+```{r plot_primitives, exercise=TRUE, exercise.lines = 20}
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
+  geom_segment()
+```
+
+::: {#plot_primitives-hint}
+**Hint:** Pay attention to the `arrow` argument. It uses a function! Use
+help on the geom and on this function.
+:::
+
+```{r plot_primitives-solution}
+# Adaptation: Add arrow pointing to extreme value.
+ggplot(
+  data = consumers,
+  mapping = 
+    aes(x = ad_expo,
+        y = brand_aw)
+  )+
+  geom_point(
+    mapping = aes(shape = wom, color = gender),
+    size = 4
+    ) +
+  geom_smooth(
+    mapping = 
+    aes(color = gender),
+    method = "lm",
+    se = FALSE
+    ) +
+  labs(
+    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
+    x = "Exposure to the campaign",
+    y = "Brand awareness"
+    ) +
+  geom_segment(
+    x = 1, xend = 1, y = 4, yend = 2,
+    arrow = arrow(
+      type = "closed"
+    )
+  )
+```
+
+```{r plot_primitives-check}
+gradethis::grade_code(
+  correct = "And yes, you can change the color and size of the arrow just like you can change them for points and other geoms."
+)
+```
+
+## Evaluating a Plot
+
+Once you master the `ggplot2` package and other packages for creating
+plots (see the **Fancy stuff** part of this tutorial), you should start
+thinking about what you want to convey with a plot and whether the plot
+conveys your message in a clear and attractive way.
+
+We will use the following criteria in this course:
+
+1.  The data visualization is sufficiently complex to tell a story. For
+    example, it presents both a pattern (as a first impression) and
+    deviations from this pattern (inviting reflection about the
+    pattern). The deviations, however, should not be overwhelming
+    because of too much information.
+
+2.  The data visualization is self-explanatory. It should be
+    comprehensible if it is presented by itself. For example, use
+    informative, readable labels.
+
+3.  The data visualization gives an accurate, not a biased view of the
+    data. For example, sizes should accurately reflect quantity.
+
+4.  The data visualization uses graphic features (size, font type,
+    colors, line styles) in such a way that the main parts are stressed
+    and unimportant parts remain visually in the background. Justify
+    your choices with comments in the code.
+
+If you see a plot (or any other graphic):
+
+-   Have a close look at a plot. What does it tell you?
+-   When the plot disappears, try to formulate your first impression of
+    the plot, both in terms of the information it gives (What stands out
+    in the plot?) and the (dis)pleasure it gives you.
+-   When the plot reappears, inspect it more closely. Where do your eyes
+    go and which information do you collect during the process of
+    looking at the plot.
+
+::: question
+Practice with the plots below. Use the checkboxes to show plots, which
+will first be shown for a few seconds and, a bit later, for a longer
+time.
+:::
+
+```{r, echo=FALSE}
+fluidPage(
+  fluidRow(
+    column(2,
+      radioButtons("radio", label = h3("Select a plot"),
+    choices = list("Plot 1" = 1, "Plot 2" = 2, "Plot 3" = 3, "Plot 4" = 4, "Plot 5" = 5, "Plot 6" = 6), 
+    selected = 1),
+      sliderInput("slider", label = "", min = 0, max = 20, value = 0,
+                  step = 1, ticks = FALSE, 
+                  animate = TRUE
+      )
+    ),
+    column(10,
+      plotOutput("regPlot")
+    )
+  )  
+)
+```
+
+```{r, context="server", warning=FALSE, message=FALSE}
+output$regPlot <- renderPlot({
+  g <- ggplot(
+    data = consumers,
+    aes(x = ad_expo, y = brand_aw)
+    ) +
+    scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
+    scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
+    theme_bw( base_size = 14 )
+  
+  ## Create plot versions
+  if (input$radio == 1) { 
+    # just regression line and confidence interval
+    g <- g + geom_smooth(method = "lm", formula = y ~ x, se = TRUE, color = "black")
+    }
+  else if (input$radio == 2) {
+    # point size reflects brand_aw
+    g <- g + 
+      geom_point(aes(size = brand_aw), color = "grey") +
+      geom_smooth(method = "lm", formula = y ~ x, se = FALSE)
+    }
+  else if (input$radio == 3) {
+    # outlier not visible (and regression line without outlier)
+    g <- g + 
+      geom_point(size = 2, color = "grey") +
+      geom_smooth(data = consumers[consumers$ad_expo > 1,], 
+        mapping = aes(x = ad_expo, y = brand_aw),
+        method = "lm", formula = y ~ x, se = FALSE) +
+      scale_x_continuous(limits = c(4, 10))
+    }
+  else if (input$radio == 4) {
+    # grey total regression line, red regression line without outlier
+    g <- g + 
+      geom_point(size = 2, aes(color = ifelse(ad_expo > 1, "grey", "red")), show.legend = FALSE) +
+      geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "grey", size = 2) +
+      geom_smooth(
+        data = consumers[consumers$ad_expo > 1,], 
+        mapping = aes(x = ad_expo, y = brand_aw),
+        method = "lm", formula = y ~ x, se = FALSE, color = "red"
+        ) +
+      geom_text(x = 3.9, y = 4.3, label = "without outlier", size = 3, color = "red", alpha = 0.6) +
+      scale_color_manual(values = c("red", "grey"))
+    }
+  else if (input$radio == 5) {
+    # regression line per gender, with additional regression line for males without outlier
+    g <- g + 
+      geom_point(aes(color = gender), size = 2) +
+      geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)) +
+      geom_smooth(
+        data = consumers[consumers$ad_expo > 1 & consumers$gender == "male",], 
+        mapping = aes(x = ad_expo, y = brand_aw),
+        method = "lm", formula = y ~ x, se = FALSE, color = "blue", linetype = "dashed"
+        ) +
+      geom_text(x = 4.1, y = 3.4, label = "without outlier", size = 3, color = "blue", alpha = 0.6)
+    }
+  else if (input$radio == 6) {
+    # density conours and regression lines per gender
+    g <- g + 
+      geom_density2d(aes(color = gender),  adjust = 2) +
+      geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender))
+    }
+  
+  ## Show plot, depending on slider value
+  if (input$slider == 0) {
+    #show press button text
+    ggplot(data = consumers) + geom_text(x = 0.5, y = 0.5, label = "Press the little play button", size = 12) 
+    } 
+  else if ((input$slider > 0 & input$slider < 4) | (input$slider > 10)) {
+    # ask user to reset the slider 
+    if (input$slider == 20) {
+      if (input$radio == 3 ) {hor_pos = 7}
+      else {hor_pos = 5.5}
+      g <- g + geom_text(x = hor_pos, y = 8.5, label = "Reset the slider to 0\nbefore you watch another plot.", size = 8)
+      }
+    #show plot
+    g
+    } 
+  else {
+    # What did you see?
+    ggplot(data = consumers) + geom_text(x = 0.5, y = 0.5, label = "What did you see?", size = 18)
+    }
+})
+```
+
+## Additional Materials
+
+Book on ggplot2:
+
+-   Hadley Wickham, ggplot2. Elegant Graphics for Data Analysis.
+    Springer. <https://ggplot2-book.org/>
+
+Interactive training:
+
+-   <https://www.datacamp.com/courses/data-visualization-with-ggplot2-1>
+
+## Debugging (advanced)
+
+Your friend tried to create a non-stacked bar chart showing the
+proportion of females in the consumers data set who heard by word of
+mouth against the proportion who did not, as well as the proportion of
+males who heard and who did not hear by word of mouth.
+
+::: question
+Your friend did not manage to get the code to work. Can you do that?
+:::
+
+```{r debug, exercise = TRUE, eval=FALSE}
+ggplot(data consumers) +
+  geom_bar(
+    mapping = aes(
+      x = wom, 
+      color = gender,
+      position = "dodge"
+  )
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#debug-hint}
+**Hints:**
+
+-   Pay attention to the error messages when you run the code.
+-   For proportions, you have to use a computed variable: check out the
+    help on `geom_bar()`.
+-   You may want to check the *R for Data Science* book: bar charts are
+    tricky.
+:::
+
+```{r debug-solution}
+ggplot(data = consumers) +
+  geom_bar(
+    mapping = aes(
+      x = wom, 
+      y = ..prop..,
+      group = gender,
+      fill = gender
+    ),
+    position = "dodge"
+  )
+```
+
+```{r debug-check}
+gradethis::grade_code(
+  correct = "To get proportions, you must indeed specify both the y argument (indicating that you want proportions) and the group argument (specifying which total to use for caluclating proportions).", 
+  incorrect = "If you don't see the problems, build up the graph from zero, step by step."
+  )
+```
+
+::: tip
+**Programming Tips**
+
+-   When you program something complicated, build it in steps.
+-   Check intermediate results regularly by running the code and
+    inspecting the results.
+:::
+
+## Fancy Stuff
+
+### `gganimate` package
+
+If you want to animate your `ggplot` plot, the package
+[`gganimate`](https://gganimate.com/index.html) provides you with tools
+to create an animated GIF (with the `gifski` package) or a video (with
+the `av` package).
+
+The code below creates an animated gif using
+[Gapminder](https://www.gapminder.org/) data on life expectancy, GDP per
+capita, and population size by country.
+
+::: question
+Play around with the settings that are specific to `animate()`.
+:::
+
+Note that it takes quite some time to generate the animation.
+
+```{r gganimate1, exercise=TRUE, exercise.lines = 32, exercise.timelimit = 120, eval=FALSE}
+# Install the following packages if they haven't been installed.
+library(gganimate)
+library(gifski)
+library(gapminder) #data used
+
+# This code creates an animated ggplot
+g <- ggplot(gapminder::gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  # Here comes the gganimate specific bits
+  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  transition_time(year) +
+  ease_aes('linear') +
+  shadow_wake(
+    wake_length = 0.2
+  )
+
+# And here, we show the animated plot.
+gganimate::animate(
+  plot = g, #gganimate plot to be shown
+  nframes = 78, #1 frame for each year from 1952 to 2007 plus 2x11 additional frames for start and end 
+  renderer = gifski_renderer( #save as animated GIF
+    file = "gapminder.gif",
+    loop = TRUE
+    ),
+  start_pause = 12, #first frame shows 12 times
+  end_pause = 12, #last frame shows 36 times
+  rewind = FALSE #roll back to the start
+)
+```
+
+### 
+
+If you would have a look at the gapminder data (e.g., with
+`View(gapminder)`), you would see that the data are available for 1952,
+1957, 1962, 1967, and so on. The `gganimate()` animation creates frames
+for the years in between. In a way, the data for the in-between-years
+are fabricated; they may give a wrong view of reality.
+
+::: tip
+**Programming Tip**
+
+-   Carefully inspect the results created by packages that do a lot of
+    work for you. They may do things that you do not want.
+:::
+
+Movement is fascinating but it can also be frustrating if the user
+cannot pause or determine the speed of the animation. *Evaluate the pros
+and cons of animations critically.*
+
+### `ggplotly()` in the `plotly` package
+
+The `plotly` library is designed for creating interactive graphics. It
+has its own language for creating graphs but for the `ggplot` user, it
+provides the 'ggplotly()' function to change a `ggplot` plot into an
+interactive `plotly` plot.
+
+The `plotly` library offers the option to zoom, select items in the
+graph, and see additional information about the items in the graph.
+
+::: question
+Run the code to see the graph.
+:::
+
+If you carefully position your cursor on a dot, the respondent's first
+name will pop up (works better if you select the *Compare data on hover*
+option).
+
+```{r plotly1, exercise=TRUE, exercise.lines = 26}
+#these packages have been installed by UsingRTutorials
+library(plotly) 
+library(gapminder) #contains the data used here
+
+#Step 1: create a ggplot
+g <- ggplot(
+  data = consumers,
+  aes(x = ad_expo, y = brand_aw)
+  ) +
+    geom_point(aes(color = gender), size = 2) +
+    geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)) +
+    geom_smooth(
+      data = consumers[consumers$ad_expo > 1 & consumers$gender == "male",], 
+      mapping = aes(x = ad_expo, y = brand_aw),
+      method = "lm", formula = y ~ x, se = FALSE, color = "blue", linetype = "dashed"
+      ) +
+    geom_text(
+      aes(label = firstname),
+      alpha = 0 #trick: make labels invisible (transparent)
+      ) +
+    scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
+    scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
+    theme_bw()
+
+#Step 2: Turn the ggplot into a plotly plot and use plotly options.
+ggplotly(g, tooltip = c("text"), dynamicTicks = TRUE)
+```
+
+### 
+
+There are (limited) options for animation, as demonstrated in the plot
+below. Run the code to see the plot.
+
+::: question
+Change the code, so the pop ups only show the country name.
+:::
+
+```{r plotly2, exercise=TRUE}
+#Step 1: create a ggplot and use a variable to define the frames of the animation
+p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(aes(size = pop, frame = year, ids = country)) +
+  scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
+
+#Step 2: Turn the ggplot into a plotly plot.
+ggplotly(p)
+```
+
+::: {#plotly2-hint}
+**Hint:** Have a look at the help for the `ggplotly()` function.
+:::
+
+```{r plotly2-solution}
+p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(aes(size = pop, frame = year, ids = country)) +
+  scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
+
+ggplotly(p, tooltip = "country")
+```
+
+```{r plotly2-check}
+gradethis::grade_code()
+```
+
+## Fancy Stuff
+
+### `gganimate` package
+
+If you want to animate your `ggplot` plot, the package
+[`gganimate`](https://gganimate.com/index.html) provides you with tools
+to create an animated GIF (with the `gifski` package) or a video (with
+the `av` package).
+
+The code below creates an animated gif using
+[Gapminder](https://www.gapminder.org/) data on life expectancy, GDP per
+capita, and population size by country.
+
+::: question
+Play around with the settings that are specific to `animate()`.
+:::
+
+Note that it takes quite some time to generate the animation.
+
+```{r gganimate1, exercise=TRUE, exercise.lines = 32, exercise.timelimit = 120, eval=FALSE}
+# Install the following packages if they haven't been installed.
+library(gganimate)
+library(gifski)
+library(gapminder) #data used
+
+# This code creates an animated ggplot
+g <- ggplot(gapminder::gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  # Here comes the gganimate specific bits
+  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  transition_time(year) +
+  ease_aes('linear') +
+  shadow_wake(
+    wake_length = 0.2
+  )
+
+# And here, we show the animated plot.
+gganimate::animate(
+  plot = g, #gganimate plot to be shown
+  nframes = 78, #1 frame for each year from 1952 to 2007 plus 2x11 additional frames for start and end 
+  renderer = gifski_renderer( #save as animated GIF
+    file = "gapminder.gif",
+    loop = TRUE
+    ),
+  start_pause = 12, #first frame shows 12 times
+  end_pause = 12, #last frame shows 36 times
+  rewind = FALSE #roll back to the start
+)
+```
+
+### 
+
+If you would have a look at the gapminder data (e.g., with
+`View(gapminder)`), you would see that the data are available for 1952,
+1957, 1962, 1967, and so on. The `gganimate()` animation creates frames
+for the years in between. In a way, the data for the in-between-years
+are fabricated; they may give a wrong view of reality.
+
+::: tip
+**Programming Tip**
+
+-   Carefully inspect the results created by packages that do a lot of
+    work for you. They may do things that you do not want.
+:::
+
+Movement is fascinating but it can also be frustrating if the user
+cannot pause or determine the speed of the animation. *Evaluate the pros
+and cons of animations critically.*
+
+### `ggplotly()` in the `plotly` package
+
+The `plotly` library is designed for creating interactive graphics. It
+has its own language for creating graphs but for the `ggplot` user, it
+provides the 'ggplotly()' function to change a `ggplot` plot into an
+interactive `plotly` plot.
+
+The `plotly` library offers the option to zoom, select items in the
+graph, and see additional information about the items in the graph.
+
+::: question
+Run the code to see the graph.
+:::
+
+If you carefully position your cursor on a dot, the respondent's first
+name will pop up (works better if you select the *Compare data on hover*
+option).
+
+```{r plotly1, exercise=TRUE, exercise.lines = 26}
+#these packages have been installed by UsingRTutorials
+library(plotly) 
+library(gapminder) #contains the data used here
+
+#Step 1: create a ggplot
+g <- ggplot(
+  data = consumers,
+  aes(x = ad_expo, y = brand_aw)
+  ) +
+    geom_point(aes(color = gender), size = 2) +
+    geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)) +
+    geom_smooth(
+      data = consumers[consumers$ad_expo > 1 & consumers$gender == "male",], 
+      mapping = aes(x = ad_expo, y = brand_aw),
+      method = "lm", formula = y ~ x, se = FALSE, color = "blue", linetype = "dashed"
+      ) +
+    geom_text(
+      aes(label = firstname),
+      alpha = 0 #trick: make labels invisible (transparent)
+      ) +
+    scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
+    scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
+    theme_bw()
+
+#Step 2: Turn the ggplot into a plotly plot and use plotly options.
+ggplotly(g, tooltip = c("text"), dynamicTicks = TRUE)
+```
+
+### 
+
+There are (limited) options for animation, as demonstrated in the plot
+below. Run the code to see the plot.
+
+::: question
+Change the code, so the pop ups only show the country name.
+:::
+
+```{r plotly2, exercise=TRUE}
+#Step 1: create a ggplot and use a variable to define the frames of the animation
+p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(aes(size = pop, frame = year, ids = country)) +
+  scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
+
+#Step 2: Turn the ggplot into a plotly plot.
+ggplotly(p)
+```
+
+::: {#plotly2-hint}
+**Hint:** Have a look at the help for the `ggplotly()` function.
+:::
+
+```{r plotly2-solution}
+p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(aes(size = pop, frame = year, ids = country)) +
+  scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
+
+ggplotly(p, tooltip = "country")
+```
+
+```{r plotly2-check}
+gradethis::grade_code()
+```
+
+

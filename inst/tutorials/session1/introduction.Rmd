@@ -60,13 +60,12 @@ consumers <- UsingRTutorials::consumers #
 }
 </style>
 ```
-
 ## Overview
 
 -   Welcome and Course Organization
 -   R Basics
 -   First Visualizations: The Grammar of Graphics with ggplot::
--   Collaboration on the Data Project
+-   Collaboration on a Complex Data Project
 
 ## Course Organization
 
@@ -102,15 +101,21 @@ Tell us about yourself:
 
 We hope you will:
 
-\- Have a working knowledge of R essentials and be able to get started
-with your own data.\
-- Understand why R is awesome!\
-- Develop know-how to quickly find out what you don’t know and keep developing independently.
+-   Have a working knowledge of R essentials and be able to get started
+    with your own data.
 
+-   Understand why R is awesome and integrate it in your regular
+    research workflow.
+
+-   Develop know-how to quickly find out what you don’t know and keep
+    developing independently.
+
+::: emphasis
 "Frustration is natural when you start programming in R [...]. But while
 you should expect to be a little frustrated, take comfort in that this
 experience is typical and temporary: it happens to everyone, and the
 only way to get over it is to keep trying." (Wickham et al., 2023)
+:::
 
 ### Materials
 
@@ -152,65 +157,79 @@ Replicable research: Quarto
 
 Cheat sheets!
 
-NOTE: The tidyverse package(s) are loaded in the tutorials, so they can be used.
+NOTE: The tidyverse package(s) are loaded in the tutorials, so they can
+be used.
 
 ### Topics
 
 ```{r schedule, echo=FALSE}
-data.frame(Week = c(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 7),
+data.frame(Week = c(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7),
            Date = c("Oct 29", "Oct 31", "Nov 5",
                     "Nov 7", "Nov 12", "Nov 14",
                     "Nov 19", "Nov 21", "Nov 26",
                     "Nov 28", "Dec 3", "Dec 5",
-                    "Dec 10", "Dec 12", "Dec 13"),
+                    "Dec 10", "Dec 12"),
            Topics = c(
              " Welcome, Basics, and First Visualizations",
-             " Data Wrangling (dplyr::)",
+             " Data Wrangling (dplyr::) & Introduction to Quarto",
              " Data Tidying 1",
              " Data Tidying 2",
-             " Workflow: Quarto, Github",
-             " Special types of data (factors, strings...)",
-             " Visualization",
-             " Intermezzo: Review, Practice, Individual Consultations",
+             " Review and Group Consultations",
+             " Special Types of Data",
+             " Visualization 1",
+             " Review and Individual Consultations",
              " Modelling 1",
              " Modelling 2",
-             " Programming in R",
-             " Report layout",
-             " Exam Preparation: Review, Practice, and Q&A",
-             " No Class: Individual Exam Preparation",
-             " Exam"
+             " Visuzalization 2",
+             " Programming",
+             " Your Future with R",
+             " Optional Session: Exam Preparation"
            )) |>
   knitr::kable(format = "html", col.names = c("Week", "Date", "Topics & Chapters"), align = c("l", "l", "l")) |>
   kableExtra::kable_styling(bootstrap_options = "striped", full_width = TRUE)
 ```
 
+**Deadlines:**
+
+-   Data Project - Group part: November 21st, 2024, 5 PM
+
+-   Data Project - Individual part: December 6th, 2024, 5 PM
+
+-   Exam: December 13th, 2024
+
 ### Grading
 
 Final grade:
 
-1.  Data Project: reproducible report with one data visualization per team member (40%).
-2.  On-Campus Exam (60%) 
+1.  Data Project: reproducible report with one data visualization per
+    team member (40%).
+2.  On-Campus Exam (60%)
 
 ### Exam
 
-The exam consists of a series of coding exercises similar to those in *R for Data Science*. The exam will be held on campus and fully relies on your knowledge of R, meaning that you are not allowed to use the book and will not have access to the internet.
+The exam consists of a series of coding exercises similar to those in *R
+for Data Science*. The exam will be held on campus and fully relies on
+your knowledge of R, meaning that you are not allowed to use the book
+and will not have access to the internet.
 
 ### Data Project: Tell a visual story
 
-The data project consists of a collective effort (the group part) and an individual effort (the individual part). Rather than working towards one final deadline, we will work according to an adjusted version of a project management procedure called SCRUM (here: SCRUM-light). This means that you will work on the group-project in SCRUM-like sprints (short intervals of about 1 week) and submit intermediary products throughout the course. 
+The data project consists of a collective effort (the group part) and an
+individual effort (the individual part). The two parts will be submitted
+and graded separately according to the rubric available on Canvas.
 
--   Exploratory analysis of a complex data set: Showcase your R skills.
+Exploratory analysis of a complex data set: Showcase your R skills.
+
 -   Groups of 5 students.
 -   Group effort: Tidying the dataset.
--   Individual effort: One data visualization per student based on the
-    tidy data.
+-   Individual effort: Print-ready presentation of one data
+    visualization per student based on the tidy data.
 -   Reproducible: All steps from raw data to final results (Quarto).
--   *SCRUM-light* project management.
 
 ### Telling a Visual Story in R
 
-- What's possible?: https://r-graph-gallery.com/
-- Inspiration: Data journalism & Academic Publications
+-   What's possible?: <https://r-graph-gallery.com/>
+-   Inspiration: Data journalism & Academic Publications
 
 ```{r out.width="70%"}
 knitr::include_graphics("images/plotExample1.png")
@@ -235,7 +254,7 @@ A visualization requires a lot of data wrangling:
 
 ### Get inspired...
 
-Some examples of data visualizations:
+Some examples of real-world data visualizations:
 
 -   fivethirtyeight (<https://fivethirtyeight.com/>). Some data sets are
     available in fivethirtyeight R package.
@@ -251,9 +270,9 @@ Books:
 
 ### Session Organization
 
-- Come prepared and bring questions.
-- Work on interactive tutorials together. 
-- Some sessions: Review, practice, group work, or Q&A
+-   Come prepared and bring questions.
+-   Work on interactive tutorials together.
+-   Some sessions: Review, practice, group work, or Q&A
 
 ### Study Buddies
 
@@ -275,6 +294,12 @@ Recommendations
 We will randomly assign a suggested study buddy to you on Canvas.
 
 ### SCRUM(-Light)
+
+To help you accomplish the complex group project in the short time we
+have in this course, we will use an adjusted version of a project
+management procedure called SCRUM (*here: SCRUM-light*). This procedure
+helps you plan and continuously evaluate your work as a group in
+so-called sprints (1-week intervals).
 
 SCRUM is a framework for managing teamwork in a **systematic** and
 **empirically informed** manner.
@@ -308,16 +333,17 @@ page contains the data and data descriptions.
 Who will work on which complex dataset (and with whom)?
 
 ::: emphasis
-Submit a list of (\~5) team members & an (ideally creative) team name on the Canvas
-discussion board.
+Submit a list of (\~5) team members & an (ideally creative) team name on
+the Canvas discussion board.
 :::
 
 ### Questions about the Syllabus?
 
 ## Welcome to R and RStudio
 
--  R: a programming language for statistical computing and graphics.
--  RStudio: an integrated development environment (IDE) for R. In other words: a user-friendly interface for working with R.
+-   R: a programming language for statistical computing and graphics.
+-   RStudio: an integrated development environment (IDE) for R. In other
+    words: a user-friendly interface for working with R.
 
 ```{r out.width="100%"}
 knitr::include_graphics("images/RStudio.png")
@@ -360,7 +386,8 @@ Alternatively:
 
 -   Restart R (Session \> Restart R) to show the tutorials in the
     RStudio *Tutorial* tab.
--   Click *Start Tutorial* for tutorial **Session 1** in the *Tutorial* tab. (Takes some time!)
+-   Click *Start Tutorial* for tutorial **Session 1** in the *Tutorial*
+    tab. (Takes some time!)
 -   Show the tutorial in a new window with the
     <img src="images/ShowNewWindow.png" width="234px"/> button.
 -   While you are working with the tutorial, you can also work in
@@ -375,7 +402,8 @@ Alternatively:
 
 Your tutorial answers are saved until you press *Start Over*.
 
-Use button <img src="images/stopButton.png"/> in the top right corner of the RStudio console to stop the tutorial.
+Use button <img src="images/stopButton.png"/> in the top right corner of
+the RStudio console to stop the tutorial.
 
 ## Coding in R: Using functions
 
@@ -408,7 +436,7 @@ will open in a browser window. If you use the help funstion in RStudio,
 the help page opens in the *Help* tab.
 :::
 
-```{r argumentsNamed1-solution}
+```{r argumentsNamed1-solution, exercise.reveal_solution = FALSE}
 seq(from = 1, to = 15, by = 2)
 ```
 
@@ -459,6 +487,16 @@ seq(10, 1, 1)
 ::: {#argumentsNamed3-hint}
 **Hint:** What does the error message say if you run the code?
 :::
+
+```{r argumentsNamed3-solution, exercise.reveal_solution = FALSE}
+seq(10, 1, -1)
+```
+
+```{r argumentsNamed3-check}
+gradethis::grade_code(
+  incorrect = "Add a minus sign in front of the by argument to count down instead of up."
+  )
+```
 
 ### Where do the results go?
 
@@ -647,7 +685,7 @@ We are going to recreate the above plot in steps.
 -   y: vertical axis.
 
 ::: question
-Add the points to the plot.
+Create the plane by specifying the x and y dimensions of the plot.
 :::
 
 ```{r ggplotPlane, exercise = TRUE, exercise.lines = 8, message=FALSE, warning=FALSE}
@@ -672,8 +710,7 @@ ggplot(
   mapping =
     aes(x = ad_expo,
         y = brand_aw)
-  )+
-  geom_point()
+  )
 ```
 
 ```{r ggplotPlane-check}
@@ -812,370 +849,67 @@ ggplot(
 gradethis::grade_code()
 ```
 
-### Step 4 - Labels
+## Debugging
 
-```{r plot-recreate4, exercise=FALSE, message=FALSE, warning=FALSE}
-# Standard ggplot plot with title and axis labels.
-ggplot2::ggplot(
-  data = consumers,
-  mapping =
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
-  geom_point(
-    mapping = aes(color = gender, shape = wom),
-    size = 4
-    ) +
-  geom_smooth(
-    method = "lm",
-    formula = y ~x,
-    se = FALSE,
-    color = "black"
-    ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    )
-```
+Your friend tried to create a non-stacked bar chart showing the
+proportion of females in the consumers data set who heard by word of
+mouth against the proportion who did not, as well as the proportion of
+males who heard and who did not hear by word of mouth.
 
 ::: question
-Add the labels to the plot or change the labels. Mind the details.
+Your friend did not manage to get the code to work. Can you do that?
 :::
 
-```{r ggplotLabels, exercise = TRUE, exercise.lines = 20, message=FALSE, warning=FALSE}
-# Copy the solution to the preceding exercise here as your starting point.
-ggplot(
-  data = consumers
+```{r debug, exercise = TRUE, eval=FALSE}
+ggplot(data consumers) +
+  geom_bar(
+    mapping = aes(
+      x = wom, 
+      color = gender,
+      position = "dodge"
   )
 ```
 
 <!-- To hide the solution, use a textual hint. -->
 
-::: {#ggplotLabels-hint}
-**Hint:** Mind the details of the regression line.
+::: {#debug-hint}
+**Hints:**
+
+-   Pay attention to the error messages when you run the code.
+-   For proportions, you have to use a computed variable: check out the
+    help on `geom_bar()`.
+-   You may want to check the *R for Data Science* book: bar charts are
+    tricky.
 :::
 
-```{r ggplotLabels-solution}
-ggplot(
-  data = consumers,
-  mapping =
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
-  geom_point(
-    mapping = aes(shape = wom, color = gender),
-    size = 4
-    ) +
-  geom_smooth(
-    method = "lm",
-    se = FALSE,
-    color = "black"
-    ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    )
-```
-
-```{r ggplotLabels-check}
-gradethis::grade_code()
-```
-
-### Facetting
-
-Different graphs for different groups of observations.
-
--   facet_wrap(\~ x): one grouping variable
--   facet_grid(y \~ x): two grouping variables
-
-```{r plot_facet_example, exercise=FALSE, message=FALSE, warning=FALSE}
-# Adaptation: word of mouth as facets instead of shape.
-ggplot(
-  data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y =brand_aw)
-  )+
-  geom_point(
-    mapping = aes(color = gender),
-    size = 4
-    ) +
-  geom_smooth(
-    mapping = 
-    aes(color = gender),
-    method = "lm",
-    se = FALSE
-    ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    ) +
-  facet_wrap(vars(wom))
-```
-
-::: question
-Adjust the visualization to match the plot above. Create two plots in
-one row.
-:::
-
-```{r plot_facet, exercise=TRUE, exercise.lines = 20, warning=FALSE, message=FALSE }
-# Copy the solution to the preceding exercise here as your starting point.
-ggplot()
-```
-
-::: {#plot_facet-hint}
-**Hint:** You must use the vars() function to identify the variable that
-is used to create facets.
-:::
-
-```{r plot_facet-solution}
-# Adaptation: word of mouth as facets instead of shape.
-ggplot(
-  data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y =brand_aw)
-  )+
-  geom_point(
-    mapping = aes(color = gender),
-    size = 4
-    ) +
-  geom_smooth(
-    mapping = 
-    aes(color = gender),
-    method = "lm",
-    se = FALSE
-    ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    ) +
-  facet_wrap(~wom)
-```
-
-```{r plot_facet-check}
-gradethis::grade_code(
-  correct = "You can also use facet_wrap(vars(wom))."
-)
-```
-
-### Adding labels (advanced)
-
-We may want to know who is the outlier in the plot, having an
-exceptionally low exposure score. Use `geom_text()` to add the
-participants' first names to the plot, as shown below. Carefully inspect
-the arguments for this geom.
-
-```{r plot_label_show, echo=FALSE, warning=FALSE, message=FALSE}
-# Adaptation: add firstname as label.
-ggplot2::ggplot(
-  data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
-  geom_point(
-    mapping = aes(shape = wom, color = gender),
-    size = 4
-    ) +
-  geom_smooth(
-    mapping = 
-    aes(color = gender),
-    method = "lm",
-    se = FALSE,
-    ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    ) +
-  geom_text(
-    aes(label = firstname),
-    nudge_y = 0.4,
-    check_overlap = TRUE
-    )
-```
-
-::: question
-Create this graph yourself.
-:::
-
-```{r plot_label, exercise=TRUE, exercise.lines = 20, warning=FALSE, message=FALSE}
-ggplot(
-  data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
-  geom_point(
-    mapping = aes(shape = wom, color = gender),
-    size = 4
-    ) +
-  geom_smooth(
-    mapping = 
-    aes(color = gender),
-    method = "lm",
-    se = FALSE,
-    ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    ) +
-  geom_text()
-```
-
-::: {#plot_label-hint}
-**Hint:** Use help on this geom to get more information about the
-arguments of this geom.
-:::
-
-```{r plot_label-solution}
-# Adaptation: swap color and shape, line color as aesthetic.
-ggplot(
-  data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
-  geom_point(
-    mapping = aes(shape = wom, color = gender),
-    size = 4
-    ) +
-  geom_smooth(
-    mapping = 
-    aes(color = gender),
-    method = "lm",
-    se = FALSE,
-    ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    ) +
-  geom_text(
-    aes(label = firstname),
-    nudge_y = 0.4,
-    check_overlap = TRUE
-    )
-```
-
-```{r plot_label-check}
-gradethis::grade_code(
-  correct = "The example plot uses `geom_text()` because the boxes created by `geom_label()` obscure the data."
+```{r debug-solution}
+ggplot(data = consumers) +
+  geom_bar(
+    mapping = aes(
+      x = wom, 
+      y = ..prop..,
+      group = gender,
+      fill = gender
+    ),
+    position = "dodge"
   )
 ```
 
-### Adding primitives (advanced)
-
-Actually, we can draw all kinds of shapes on the plot, for example, an
-arrow drawing attention to the extremely low exposure score.
-
-::: question
-Use `geom_segment` to create this plot.
-:::
-
-```{r plot_primitives_show, echo=FALSE, warning=FALSE, message=FALSE}
-# Adaptation: Add arrow pointing to extreme value.
-ggplot2::ggplot(
-  data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
-  geom_point(
-    mapping = aes(shape = wom, color = gender),
-    size = 4
-    ) +
-  geom_smooth(
-    mapping = 
-    aes(color = gender),
-    method = "lm",
-    se = FALSE
-    ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    ) +
-  geom_segment(
-    x = 1, xend = 1, y = 4, yend = 2,
-    arrow = arrow(
-      type = "closed"
-    )
-  )
-```
-
-```{r plot_primitives, exercise=TRUE, exercise.lines = 20}
-ggplot(
-  data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
-  geom_point(
-    mapping = aes(shape = wom, color = gender),
-    size = 4
-    ) +
-  geom_smooth(
-    mapping = 
-    aes(color = gender),
-    method = "lm",
-    se = FALSE
-    ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    ) +
-  geom_segment()
-```
-
-::: {#plot_primitives-hint}
-**Hint:** Pay attention to the `arrow` argument. It uses a function! Use
-help on the geom and on this function.
-:::
-
-```{r plot_primitives-solution}
-# Adaptation: Add arrow pointing to extreme value.
-ggplot(
-  data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
-  geom_point(
-    mapping = aes(shape = wom, color = gender),
-    size = 4
-    ) +
-  geom_smooth(
-    mapping = 
-    aes(color = gender),
-    method = "lm",
-    se = FALSE
-    ) +
-  labs(
-    title = "Does brand awareness depend on exposure, word-of-mouth, and gender?",
-    x = "Exposure to the campaign",
-    y = "Brand awareness"
-    ) +
-  geom_segment(
-    x = 1, xend = 1, y = 4, yend = 2,
-    arrow = arrow(
-      type = "closed"
-    )
-  )
-```
-
-```{r plot_primitives-check}
+```{r debug-check}
 gradethis::grade_code(
-  correct = "And yes, you can change the color and size of the arrow just like you can change them for points and other geoms."
-)
+  correct = "To get proportions, you must indeed specify both the y argument (indicating that you want proportions) and the group argument (specifying which total to use for caluclating proportions).", 
+  incorrect = "If you don't see the problems, build up the graph from zero, step by step."
+  )
 ```
+
+::: tip
+**Programming Tips**
+
+-   When you program something complicated, build it in steps.
+-   Check intermediate results regularly by running the code and
+    inspecting the results.
+:::
+
 
 ## Evaluating a Plot
 
@@ -1328,400 +1062,11 @@ output$regPlot <- renderPlot({
 Book on ggplot2:
 
 -   Hadley Wickham, ggplot2. Elegant Graphics for Data Analysis.
-    Springer. <https://ggplot2-book.org/> 
+    Springer. <https://ggplot2-book.org/>
 
 Interactive training:
 
 -   <https://www.datacamp.com/courses/data-visualization-with-ggplot2-1>
-
-## Debugging (advanced)
-
-Your friend tried to create a non-stacked bar chart showing the
-proportion of females in the consumers data set who heard by word of
-mouth against the proportion who did not, as well as the proportion of
-males who heard and who did not hear by word of mouth.
-
-::: question
-Your friend did not manage to get the code to work. Can you do that?
-:::
-
-```{r debug, exercise = TRUE, eval=FALSE}
-ggplot(data consumers) +
-  geom_bar(
-    mapping = aes(
-      x = wom, 
-      color = gender,
-      position = "dodge"
-  )
-```
-
-<!-- To hide the solution, use a textual hint. -->
-
-::: {#debug-hint}
-**Hints:**
-
--   Pay attention to the error messages when you run the code.
--   For proportions, you have to use a computed variable: check out the
-    help on `geom_bar()`.
--   You may want to check the *R for Data Science* book: bar charts are
-    tricky.
-:::
-
-```{r debug-solution}
-ggplot(data = consumers) +
-  geom_bar(
-    mapping = aes(
-      x = wom, 
-      y = ..prop..,
-      group = gender,
-      fill = gender
-    ),
-    position = "dodge"
-  )
-```
-
-```{r debug-check}
-gradethis::grade_code(
-  correct = "To get proportions, you must indeed specify both the y argument (indicating that you want proportions) and the group argument (specifying which total to use for caluclating proportions).", 
-  incorrect = "If you don't see the problems, build up the graph from zero, step by step."
-  )
-```
-
-::: tip
-**Programming Tips**
-
--   When you program something complicated, build it in steps.
--   Check intermediate results regularly by running the code and
-    inspecting the results.
-:::
-
-## Fancy Stuff
-
-### `gganimate` package
-
-If you want to animate your `ggplot` plot, the package
-[`gganimate`](https://gganimate.com/index.html) provides you with tools
-to create an animated GIF (with the `gifski` package) or a video (with
-the `av` package).
-
-The code below creates an animated gif using
-[Gapminder](https://www.gapminder.org/) data on life expectancy, GDP per
-capita, and population size by country.
-
-::: question
-Play around with the settings that are specific to `animate()`.
-:::
-
-Note that it takes quite some time to generate the animation.
-
-```{r gganimate1, exercise=TRUE, exercise.lines = 32, exercise.timelimit = 120, eval=FALSE}
-# Install the following packages if they haven't been installed.
-library(gganimate)
-library(gifski)
-library(gapminder) #data used
-
-# This code creates an animated ggplot
-g <- ggplot(gapminder::gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
-  geom_point(alpha = 0.7, show.legend = FALSE) +
-  scale_colour_manual(values = country_colors) +
-  scale_size(range = c(2, 12)) +
-  scale_x_log10() +
-  facet_wrap(~continent) +
-  # Here comes the gganimate specific bits
-  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
-  transition_time(year) +
-  ease_aes('linear') +
-  shadow_wake(
-    wake_length = 0.2
-  )
-
-# And here, we show the animated plot.
-gganimate::animate(
-  plot = g, #gganimate plot to be shown
-  nframes = 78, #1 frame for each year from 1952 to 2007 plus 2x11 additional frames for start and end 
-  renderer = gifski_renderer( #save as animated GIF
-    file = "gapminder.gif",
-    loop = TRUE
-    ),
-  start_pause = 12, #first frame shows 12 times
-  end_pause = 12, #last frame shows 36 times
-  rewind = FALSE #roll back to the start
-)
-```
-
-### 
-
-If you would have a look at the gapminder data (e.g., with
-`View(gapminder)`), you would see that the data are available for 1952,
-1957, 1962, 1967, and so on. The `gganimate()` animation creates frames
-for the years in between. In a way, the data for the in-between-years
-are fabricated; they may give a wrong view of reality.
-
-::: tip
-**Programming Tip**
-
--   Carefully inspect the results created by packages that do a lot of
-    work for you. They may do things that you do not want.
-:::
-
-Movement is fascinating but it can also be frustrating if the user
-cannot pause or determine the speed of the animation. *Evaluate the pros
-and cons of animations critically.*
-
-### `ggplotly()` in the `plotly` package
-
-The `plotly` library is designed for creating interactive graphics. It
-has its own language for creating graphs but for the `ggplot` user, it
-provides the 'ggplotly()' function to change a `ggplot` plot into an
-interactive `plotly` plot.
-
-The `plotly` library offers the option to zoom, select items in the
-graph, and see additional information about the items in the graph.
-
-::: question
-Run the code to see the graph.
-:::
-
-If you carefully position your cursor on a dot, the respondent's first
-name will pop up (works better if you select the *Compare data on hover*
-option).
-
-```{r plotly1, exercise=TRUE, exercise.lines = 26}
-#these packages have been installed by UsingRTutorials
-library(plotly) 
-library(gapminder) #contains the data used here
-
-#Step 1: create a ggplot
-g <- ggplot(
-  data = consumers,
-  aes(x = ad_expo, y = brand_aw)
-  ) +
-    geom_point(aes(color = gender), size = 2) +
-    geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)) +
-    geom_smooth(
-      data = consumers[consumers$ad_expo > 1 & consumers$gender == "male",], 
-      mapping = aes(x = ad_expo, y = brand_aw),
-      method = "lm", formula = y ~ x, se = FALSE, color = "blue", linetype = "dashed"
-      ) +
-    geom_text(
-      aes(label = firstname),
-      alpha = 0 #trick: make labels invisible (transparent)
-      ) +
-    scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
-    scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
-    theme_bw()
-
-#Step 2: Turn the ggplot into a plotly plot and use plotly options.
-ggplotly(g, tooltip = c("text"), dynamicTicks = TRUE)
-```
-
-### 
-
-There are (limited) options for animation, as demonstrated in the plot
-below. Run the code to see the plot.
-
-::: question
-Change the code, so the pop ups only show the country name.
-:::
-
-```{r plotly2, exercise=TRUE}
-#Step 1: create a ggplot and use a variable to define the frames of the animation
-p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
-  geom_point(aes(size = pop, frame = year, ids = country)) +
-  scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
-
-#Step 2: Turn the ggplot into a plotly plot.
-ggplotly(p)
-```
-
-::: {#plotly2-hint}
-**Hint:** Have a look at the help for the `ggplotly()` function.
-:::
-
-```{r plotly2-solution}
-p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
-  geom_point(aes(size = pop, frame = year, ids = country)) +
-  scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
-
-ggplotly(p, tooltip = "country")
-```
-
-```{r plotly2-check}
-gradethis::grade_code()
-```
-
-### Shiny
-
-The [`shiny`]() package is the RStudio contribution to interactive R
-products. Actually, this tutorial is made with Shiny and it contains a
-Shiny app, namely, the animated plots used in the *Evaluating a plot*
-Section.
-
-Here is the code for these plots. You cannot run the code here because
-we cannot start a Shiny app from within a Shiny app (this tutorial). If
-you create a new Shiny app in RStudio (*File \> New File \> Shiny Web
-App*) and copy and paste the below code into the Shiny app file
-(replacing all existing contents), you can run the app from RStudio (use
-the *Run App* button).
-
-::: question
-Experiment with the user interface and the R code.
-:::
-
-```{r shiny1, eval=FALSE, echo=TRUE}
-# load the shiny package
-library(shiny)
-
-# first part of the app: the User Interface (ui)
-ui <- fluidPage(
-    fluidRow( #the first (and only) row in the interface
-        column(2, #the first (left) column, width 2 out of 12
-               radioButtons("radio", label = h3("Select a plot"),
-                            choices = list("Plot 1" = 1, #label and value if selected
-                                           "Plot 2" = 2, 
-                                           "Plot 3" = 3, 
-                                           "Plot 4" = 4, 
-                                           "Plot 5" = 5, 
-                                           "Plot 6" = 6), 
-                            selected = 1),
-               #only a slider can be animated
-               sliderInput("slider", label = "", min = 0, max = 20, value = 0,
-                           step = 1, ticks = FALSE, 
-                           animate = TRUE
-               )
-        ),
-        column(10, #the second (right) column, width 10 out of 12
-               plotOutput("regPlot") #containing the plot named regPlot
-        )
-    )  
-)
-
-# second part of the app: the R code
-server <- function(input, output, session) {
-  # create a plot named regPlot to be shown in the output
-  output$regPlot <- renderPlot({
-    # the basic (empty) plot  
-    g <- ggplot(
-      data = consumers,
-      aes(x = ad_expo, y = brand_aw)
-      ) +
-      scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
-      scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
-      theme_bw( base_size = 14 )
-    
-    ## Create a plot version for each radio option
-    if (input$radio == 1) { 
-      # just add regression line and confidence interval to the empty plot
-      g <- g + geom_smooth(method = "lm", 
-                           formula = y ~ x, se = TRUE, 
-                           color = "black")
-    }
-    else if (input$radio == 2) {
-      # point size reflects brand_aw
-      g <- g + 
-        geom_point(aes(size = brand_aw), color = "grey") +
-        geom_smooth(method = "lm", formula = y ~ x, se = FALSE)
-    }
-    else if (input$radio == 3) {
-      # outlier not visible (and regression line without outlier)
-      g <- g + 
-        geom_point(size = 2, color = "grey") +
-        geom_smooth(data = consumers[consumers$ad_expo > 1,], 
-                    mapping = aes(x = ad_expo, y = brand_aw),
-                    method = "lm", formula = y ~ x, se = FALSE) +
-        scale_x_continuous(limits = c(4, 10))
-    }
-    else if (input$radio == 4) {
-      # grey total regression line, red regression line without outlier
-      g <- g + 
-        geom_point(size = 2, 
-          aes(color = ifelse(ad_expo > 1, "grey", "red")), show.legend = FALSE) +
-        geom_smooth(method = "lm", formula = y ~ x, se = FALSE, 
-                    color = "grey", size = 2) +
-        geom_smooth(
-          # trick: base R to create a subset of all consumers, omitting the outlier
-          data = consumers[consumers$ad_expo > 1,], 
-          mapping = aes(x = ad_expo, y = brand_aw),
-          method = "lm", formula = y ~ x, se = FALSE, color = "red"
-        ) +
-        geom_text(x = 3.9, y = 4.3, label = "without outlier", 
-                  size = 3, color = "red", alpha = 0.6) +
-        scale_color_manual(values = c("red", "grey"))
-    }
-    else if (input$radio == 5) {
-      # regression line per gender, with additional regression line 
-      # for males without outlier
-      g <- g + 
-        geom_point(aes(color = gender), size = 2) +
-        geom_smooth(
-          method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)
-          ) +
-        geom_smooth(
-          data = consumers[consumers$ad_expo > 1 & consumers$gender == "male",], 
-          mapping = aes(x = ad_expo, y = brand_aw),
-          method = "lm", formula = y ~ x, se = FALSE, 
-          color = "blue", linetype = "dashed"
-        ) +
-        geom_text(x = 4.1, y = 3.4, label = "without outlier", 
-                  size = 3, color = "blue", alpha = 0.6)
-    }
-    else if (input$radio == 6) {
-      # density conours and regression lines per gender
-      g <- g + 
-        geom_density2d(aes(color = gender),  adjust = 2) +
-        geom_smooth(
-          method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)
-          )
-    }
-    
-    # Show plot, depending on slider value
-    # This is the animation trick: slider values range from 0 to 20,
-    # if it is 0, a text is shown, if it is 1 or 2 or at least 10, 
-    # the plot is shown, a text is shown between 2 and 10, and
-    # a text is added to the plot if the slider is 20.
-    if (input$slider == 0) {
-      #show press button text
-      ggplot(data = consumers) + 
-        geom_text(
-          x = 0.5, y = 0.5, 
-          label = "Press the little play button", size = 12
-          ) 
-    } 
-    else if ((input$slider > 0 & input$slider < 4) | (input$slider > 10)) {
-      # ask user to reset the slider 
-      if (input$slider == 20) {
-        if (input$radio == 3 ) {hor_pos = 7}
-        else {hor_pos = 5.5}
-        g <- g + geom_text(
-          x = hor_pos, y = 8.5, 
-          label = "Reset the slider to 0\nbefore you watch another plot.", 
-          size = 8
-          )
-      }
-      #show plot
-      g
-    } 
-    else {
-      # What did you see?
-      ggplot(data = consumers) + 
-        geom_text(
-          x = 0.5, y = 0.5, 
-          label = "What did you see?", size = 18
-          )
-    }
-  })  
-}
-
-# the command to create and run the app
-shinyApp(ui, server)
-```
-
-Check out the [Shiny demos
-gallery](https://shiny.rstudio.com/gallery/#demos) for inspiration.
-Start simple!
-
-If you want to create a Shiny app, first create your plot with
-`ggplot()`, then add it to the Shiny app.
 
 ## Start working on the Data Project
 
@@ -1742,13 +1087,13 @@ empirically informed manner.
 
 **Relevant SCRUM terms**
 
-| Term            | Using R Definition                                                                                                                                                |
-|-----------------|-------------------------------------------------------|
+| Term            | Using R Definition                                                                                                                                                  |
+|------------------|------------------------------------------------------|
 | Sprints         | Short intervals in which the team sets goals, completes tasks and then evaluates. We'll have several 1-week sprints (with sprint 1 being a bit shorter: Tue - Thu). |
-| SCRUM Master    | Person who oversees and facilitates the sprint. Assign a different team member per week.                                                                          |
-| Product         | Intermediate parts of the project that are handed it at specified deadlines.                                                                                                                                            |
-| Product Goals   | The grading criteria each product needs to fulfill (see Syllabus).                                                                                                 |
-| Product Backlog | A detailed to do lists that translates the product goals into concrete smaller tasks needed to achieve each product goal.                                         |
+| SCRUM Master    | Person who oversees and facilitates the sprint. Assign a different team member per week.                                                                            |
+| Product         | Intermediate parts of the project that are handed it at specified deadlines.                                                                                        |
+| Product Goals   | The grading criteria each product needs to fulfill (see Syllabus).                                                                                                  |
+| Product Backlog | A detailed to do lists that translates the product goals into concrete smaller tasks needed to achieve each product goal.                                           |
 
 The SCRUM(-light) procedure is described in detail on
 [Canvas](https://canvas.uva.nl/courses/40018/pages/scrum-procedure?module_item_id=1902863).
@@ -1832,4 +1177,5 @@ plots) are preserved in this tutorial, so you can use the code later.
 -   Contact your buddy.
 -   Study the assigned book chapters before the next session.
 -   Submit questions about the course material on Canvas.
--   SCRUM masters: Make sure your teams are organized to complete Sprint 1 by Thursday.
+-   SCRUM masters: Make sure your teams are organized to complete Sprint
+    1 by Thursday.
