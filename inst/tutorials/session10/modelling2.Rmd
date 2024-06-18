@@ -64,8 +64,20 @@ model_1aBayes <- UsingRTutorials::model_1aBayes
 
 ## Overview
 
--   Practice with Statistical Models and Extensions
--   Presenting results: Print-Quality Results Tables
+-   Practice with Statistical Models 
+-   Presenting results in Reproducible Text and Print-Quality Tables
+
+## Practice with Statistical Models
+
+[ADD??]
+
+## Reproducible Presentation of Results
+
+Once you fit your statistical model, you'll need to interpret and present the results, 
+ideally in a way that is easily reproducible. R provides many useful tools for this. 
+Let's take a look. 
+
+### 
 
 ### Example data
 
@@ -85,9 +97,94 @@ Inspect variable summaries.
 summary(glbwarm)
 ```
 
-## Print-Quality Results Tables
+### Present Statistical Results in Text
 
-### Off-The-Shelf Tables
+Let's present the results of the following *t* test in APA style using 
+reproducible code.
+
+::: question
+Run an independent samples *t* test to examine whether younger participants (age < median age)
+show more support for government action than older participants (age >= median age).
+:::
+
+```{r ttest, exercise = TRUE,exercise.eval = TRUE}
+# First a new variable 'age_cat' to specify the age groups "younger" and "older" and save it in the glbwarm dataframe.
+
+# Then conduct the t-test.
+```
+
+```{r ttest-solution}
+# First a new variable 'age_cat' to specify the age groups and save it in the glbwarm dataframe.
+glbwarm <- glbwarm |>
+  mutate(age_cat = ifelse(age < median(age, na.rm = TRUE), "younger", "older"))
+# Then conduct the t-test and save it in a results object called result_t
+result_t <- glbwarm |> t.test(govact ~ age_cat, data = _)
+```
+
+```{r ttest-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = ""
+  )
+```
+
+###
+
+The code below takes our `result_t` object and formats it in APA style. The 
+resulting text is fully reproducible and helps you avoid copy-pasting, typos, 
+and extra work in case your data changes.
+
+<div class="question" >
+What does the `digits` argument do?
+</div>
+
+```{r APA1, exercise = TRUE, exercise.eval = TRUE, exercise.lines = 7, exercise.setup="ttest-solution"}
+paste0(                       # base R function to concatenate strings
+  "*t* (", 
+  round(result_t$parameter, digits = 2), ") = ",        # df
+  round(result_t$statistic, digits = 2),                # t
+  ", *p* = ", round(result_t$p.value, digits = 3),      # p
+  ", 95%CI[", round(result_t$conf.int[1], digits = 2),  # 95%CI lower
+  ", ", round(result_t$conf.int[2], digits = 2), "]")   # 95%CI upper
+```
+
+The stars will turn *t* and *p* into italics in a rendered document.
+
+### 
+
+This works well for this particular t-test, but it isn't very flexible. What
+if the p-value of a test is < .001? We should report it as "p < .001". Below
+is a more flexible version of our code that implements this.
+
+<div class="question" >
+
+1.   What does the `digits` argument do?
+2.   To which function does it belong?
+3.   Explain how 'ifelse()` works.
+
+Experiment with the code to check your answers.
+</div>
+
+```{r APA2, exercise = TRUE}
+paste0("*t* (", 
+  format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
+  format(round(result_t$statistic, digits = 2), nsmall = 2), 
+  ", *p* ", 
+  ifelse(result_t$p.value < 0.0005, 
+         paste0("= ", format(round(result_t$p.value, digits = 3), nsmall = 2)),
+         "< 0.001"),
+  ", 95%CI[", format(round(result_t$conf.int[1], digits = 2), nsmall = 2),
+  ", ", format(round(result_t$conf.int[2], digits = 2), nsmall = 2), "]")
+```
+
+<!-- To hide the solution, use a textual hint. -->
+<div id="APA2-hint">
+__Hint:__ Use help on functions `format()` and `ifelse()`.
+</div>
+
+### Print-Quality Results Tables
+
+#### Off-The-Shelf Tables
 
 There are several packages that help you to tabulate statistical results. The table below lists some of them with their characteristic features.
 
@@ -110,7 +207,9 @@ dt |>
   footnote(symbol = "Results of two or more models in one table.")
 ```
 
-### Print-Quality Table With `texreg`
+### 
+
+#### Print-Quality Table With `texreg`
 
 ```{r model2_texreg, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(texreg)
@@ -194,7 +293,9 @@ texreg::htmlreg(list(model_1,model_1a), #the regression model(s) shown
         vertical.align.px = 6)
 ```
 
-### Functions for lm objects
+### 
+
+#### Functions for lm objects
 
 `htmlreg()` is one example of a function that operates on lm() objects.
 
@@ -218,7 +319,9 @@ Find out what these functions do. Apply them to `model_1` and check out the opti
 **Hint:** Read the help info to these functions.
 :::
 
-### Custom Tables with `broom` and `knitr`
+###
+
+#### Custom Tables with `broom` and `knitr`
 
 For full control of your table, create it with packages `broom` and `knitr`.
 
@@ -230,7 +333,7 @@ You need 3 steps:
 2.  Select and adjust values to suit your needs.
 3.  Create a table with `knitr::kable()` and `kableExtra` with all formatting options you need.
 
-### Use function `tidy()` in the `broom` package to extract relevant statistics
+#### Step 1: Use function `tidy()` in the `broom` package to extract relevant statistics
 
 ::: question
 Use `tidy()` and data objext `model_1a` to see the regression coefficients with their standard errors, t values, p values as a tibble.
@@ -261,7 +364,7 @@ gradethis::grade_code(
   )
 ```
 
-### Step 2: Select and adjust values to suit your needs.
+#### Step 2: Select and adjust values to suit your needs.
 
 `broom` produces a tibble (data frame), so you can wrangle it like any other.
 
@@ -301,7 +404,7 @@ model_1a |>
 
 ```
 
-### Step 3: Create a table with `knitr::kable()` and `kableExtra`
+#### Step 3: Create a table with `knitr::kable()` and `kableExtra`
 
 With `knitr` and `kableExtra`, we can create a table including footnotes.
 
