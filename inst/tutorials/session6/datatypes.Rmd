@@ -1225,7 +1225,7 @@ Well, what's the difference between the two topics? Note that the results may ch
 -   Sprint 3: Complete backlog, Retrospective & Review.
 -   Sprint 4: Planning, Update Project Backlog.
     -   New additions: Practice with special variable types that occur in your dataset and complete related tidying tasks.
-    -   Remember that starting after Session 7, you can also start to seriously think about your individual project in parallel to finishing the group part by the deadline.
+    -   Remember that starting after Session 7, you can also start to seriously think about your individual project in parallel to finishing the group part by the deadline. Plan in time to prepare for individual consultations in Session 8.
 
 ## And as always...
 
