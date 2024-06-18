@@ -702,7 +702,7 @@ Use the visual editor for easy:
 -   Insertion of footnotes.
 -   Insertion of references.
 
-#### Adding (formatted) text
+### Formatting Text
 
 ::: question
 Now, add a description of the plot or data file for the reader of the document.
