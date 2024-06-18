@@ -95,9 +95,7 @@ summary(glbwarm)
 
 ### *t* test: `t.test()`
 
-You already know how to execute an independent-samples *t* test (Session 5).
-
-There are different versions of the same function for different *t* tests.
+Different types of *t* tests can be computed using one convenient formula.
 
 Usage (in `?t.test`):
 
@@ -166,14 +164,257 @@ gradethis::grade_code(
   )
 ```
 
+### Intermezzo: Extracting Statistical Results Using Lists
+
+The summary of results given when you run a *t* test or another statistical test is great, but it is useful to be able to access individual elements of that result (e.g. the p- or T-value) separately, either to use them in calculations or present them in reproducible reports.
+
+In R, the results of statistical tests are stored as lists. Let's briefly look at how to extract elements from a list.
+
+#### Lists
+
+### 
+
+-   Vector: Collection of one type of elements.
+-   List: Collection of (possibly) multiple types of elements.
+
+A `List` may store anything (your perfect cupboard?)
+
+Examples:
+
+1.  Data frame (or tibble): list of (logic/num/char) vectors (variables).\
+    Restriction: All vectors have the same length.\
+2.  Statistical results: list with coefficients, etc.\
+3.  Nested data: More than one value per variable per case.
+
+#### Extracting statistical results
+
+A *t* test yields a results object, which is a list.
+
+```{r storeresults,echo=TRUE}
+# Store the results of a t test.
+result_t <- glbwarm |> t.test(negemot ~ sex, data = _)
+result_t #Default print method for these results.
+```
+
+-   Results of t test are saved as data object `result_t` here, so we can inspect the results object in the Environment (if you run this code in RStudio).
+
+### 
+
+Function `str()` shows the contents of a list.
+
+::: question
+Try to recognize the contents of this list.
+:::
+
+```{r str, exercise=TRUE, exercise.eval = TRUE}
+str(result_t)
+```
+
+-   List elements are different: one number, two numbers, character string.\
+-   "names" attribute: the name(s) of the list element value(s).
+-   other attribute: other description of the list element value, e.g., the confidence level of the confidence interval.
+
+Note:
+
+-   *t* test results are stored as object of class: `htest` (bottom of the output);
+-   Other R functions (e.g., `print()`) know what to do with the list.
+
+#### Extracting an element from a list
+
+We get elements from a list:
+
+-   Appending the element name between `[[]]` to the list name;
+-   Appending the element name with `$` to the list name.
+
+::: question
+Extract the confidence interval from the t test results data object (`result_t`) with `[[]]` and show (print) it (instead of saving it as a new data object).
+:::
+
+```{r extractbracket, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#extractbracket-hint}
+**Hint:** The element name must be in quotation marks. See the book section on *Recursive Vectors (Lists)*.
+:::
+
+```{r extractbracket-solution}
+result_t[["conf.int"]]
+```
+
+```{r extractbracket-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Perhaps you used the element number in the list instead of the element name to extract the confidence level. That is OK."
+  )
+```
+
+::: question
+Do the same thing but now use `$`.
+:::
+
+```{r extractdollar, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#extractdollar-hint}
+**Hint:** See the book section on *Recursive Vectors (Lists)*.
+:::
+
+```{r extractdollar-solution}
+result_t$conf.int
+```
+
+```{r extractdollar-check}
+gradethis::grade_code(
+  correct = "`$conf.int` is shorthand for `[['conf.int']]`.", 
+  incorrect = ""
+  )
+```
+
+### 
+
+Let's go one level down in the list of t test results:
+
+-   Extract the value of an attribute with the `attributes()` function.
+
+```{r}
+str(result_t[4])
+```
+
+::: question
+Show the confidence level (as a number) using only dollar signs (`$`), not square brackets (`[[]]`). Show the result on the screen.
+:::
+
+```{r extractlevel, exercise = TRUE}
+
+```
+
+```{r extractlevel-hint-1}
+# The confidence level is an attribute (`attr` in the structure overview presented above), so use the `attributes()` function.
+attributes()
+```
+
+```{r extractlevel-hint-2}
+# Pull out the confidence interval from the results. Complete this code.
+attributes(result_t)
+```
+
+```{r extractlevel-hint-3}
+# Have a look at the output of the attributes() function. How can you get the number of the confidence level?
+attributes(result_t$conf.int)
+```
+
+```{r extractlevel-solution, exercise.reveal_solution = FALSE}
+attributes(result_t$conf.int)$conf.level
+```
+
+```{r extractlevel-check}
+gradethis::grade_code(
+  correct = "We can use the dolar sign directly after the attributes() function. Isn't that nice?", 
+  incorrect = "If you just get the number 0.95, you are fine. Probably, you used [[]] instead of $. If you get more than just the number, you have to go down one level in the list that `attributes()` generates."
+  )
+```
+
+### 
+
+Instead of the attribute value, we can get the attribute name with the `names()` function.
+
+::: question
+Extract the label "conf.level" from the list of t test results.
+:::
+
+```{r extractlabel, exercise = TRUE}
+
+```
+
+```{r extractlabel-hint-1}
+# If you want the name of an attribute, apply the `names()` function to an attribute that you extract with attributes().
+names(attributes( ))
+```
+
+```{r extractlabel-solution, exercise.reveal_solution = FALSE}
+names(attributes(result_t$conf.int))
+```
+
+```{r extractlabel-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Did you use [[]] instead of $?"
+  )
+```
+
+### 
+
+Let us practice some more.
+
+::: question
+Get the name and value (rounded to one decimal place) of the mean of the second group in the results of the *t* test (`result_t`).
+:::
+
+```{r paste0, exercise = TRUE}
+
+```
+
+```{r paste0-hint-1}
+# Build your code in steps. First, find the group means in the results.
+str(result_t)
+```
+
+```{r paste0-hint-2}
+# Second, pull the mean from the results data object. You know how to get only the second mean (complete the code below).
+result_t$estimate
+```
+
+```{r paste0-hint-3}
+# Third, round the mean with the round() function (use Help). Complete the code below.
+round(result_t$estimate[[2]] )
+```
+
+```{r paste0-hint-4}
+# Fourth, pull the name of the second group from the results data object. Complete the code below.
+names(result_t$estimate)[2]
+```
+
+```{r paste0-solution, exercise.reveal_solution = FALSE}
+names(result_t$estimate)[2]
+round(result_t$estimate[[2]], digits = 1)
+```
+
+```{r paste0-check}
+gradethis::grade_code(
+  correct = "", 
+  incorrect = "Check out the hints to this exercise. And mind the blanks in the resulting sentence."
+  )
+```
+
+### 
+
+::: tip
+**Programming Tips**
+
+-   Attribute names and attribute values are nested within a list element.\
+-   `attributes()` creates a list; select from this list with \$ or [[]].
+-   'Drill' into lower levels step by step:
+    -   `attributes(result_t)` returns all first-level names and attributes (as a list);
+    -   `attributes(result_t$conf.int)` returns all attributes of this element;
+    -   `attributes(result_t$conf.int)$conf.level` gives the value of the conf.level attribute;\
+    -   `names(attributes(result_t$conf.int))` returns the name of the conf.int attribute.\
+-   `result_t$conf.int[1]` yields the lower limit of the confidence interval
+:::
+
 ### F test on Two Variances: `var.test()`
 
-In contrast to SPSS, R only gives you what you ask for.
+Let's return to our *t* test. In contrast to SPSS, R only gives you what you ask for.
 
 -   If you ask for a *t* test, you get a *t* test but not checks on assumptions.
 -   You have to apply those checks yourself.
 
-Version of the independent samples *t* test that we must use, depends on whether the population variances are equal for the two groups.
+The version of the independent samples *t* test that we must use, depends on whether the population variances are equal for the two groups.
 
 ::: question
 Use the function `var.test` to test if `govact` variances are equal for females and males in the population.
@@ -293,7 +534,7 @@ lm(formula, data, subset, weights, na.action,
    singular.ok = TRUE, contrasts = NULL, offset, ...)
 ```
 
-See (the first edition) book p. 358-371 {Section 23.4} for using regression formulas: *In the second edition, modeling part has been removed.*
+See (the [first edition](https://r4ds.had.co.nz/)) book p. 358-371 {Section 23.4} for using regression formulas: *In the second edition, modeling part has been removed.*
 
 -   including interactions and
 -   transformations within a formula.
@@ -573,13 +814,10 @@ shinystan::launch_shinystan(model_1aBayes)
 
 ## What's next
 
-We are in the middle of Sprint 5. 
+-   We are in the middle of Sprint 5. Continue to work on your Sprint Backlog.
 
--   Continue to work on your Sprint Backlog. 
--   Sprint 4: Planning, Update Project Backlog.
-
-### Note
-
-Statistical analyses are not necessary for the Data Project. The Data Project focuses on visualizations.
-
-You can, however, use statistical analysis to detect patterns in your data that you then try to visualize. If you do that, do not use off-the-shelf plots. Show that you can create a plot that hopefully is more attractive and more informative than off-the-shelf statistical plots.
+```{=html}
+<!-- -->
+```
+-   Next session: Modelling 2/Presenting results
+    -   Note: Statistical analyses are not necessary for the Data Project. The Data Project focuses on visualizations. You can, however, use statistical analysis to detect patterns in your data that you then try to visualize. Next session, we will discuss how to do this. Although R offers some off-the-shelf plots for presenting statistical results, it is usually better to create a custom plot that hopefully is more attractive and more informative than off-the-shelf statistical plots.
