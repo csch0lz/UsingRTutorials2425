@@ -464,6 +464,7 @@ Some final points about tabulating results:
         -   Working on your individual project.
         -   Exploring your data for interesting patterns using statistical analysis.
         -   Time to practice and review for the exam.
+        -   Plan in time to format your final report based on content discussed in Session 11. 
     
 ### Reminder
 
