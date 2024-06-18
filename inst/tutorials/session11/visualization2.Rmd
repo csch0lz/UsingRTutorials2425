@@ -477,6 +477,64 @@ For additional table layout options:
 -   Package `kableExtra::`
 -   Documentation: [kableExtra vignette](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
 
+### Nice tables
+
+R has several packages for creating tabular output. In a later session, we will discuss some packages for tabulating statistical output.
+
+Here, we present a function (`kable()`) in a basic package for tabular output (`knitr`), which works very well with piping and Quarto (discussed later in this tutorial). In addition, we use the `kableExtra` function to fine-tune tables created with `kable()`.
+
+### 
+
+Let's start by noting that we must have the data in the required shape before we create a table. In other words, `kable()` does not do any counting or summarizing for us. It only displays our data.
+
+::: question
+Make sense of the code below; add comments explaining every step. What happens if you do not drop the `sex` variable?
+:::
+
+```{r kable, exercise = TRUE, exercise.eval = TRUE}
+Glasgow |>
+  group_by(sex, wave) |>
+  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) |>
+  ungroup() |>
+  select(-sex) |> 
+  kable(
+    digits = 2,
+    col.names = c("Wave", "Proportion using tobacco"),
+    align = "lcc",
+    caption = "Proportion of Glasgow students using tobacco."
+  )
+```
+
+```{r kable-hint-1}
+# Use help on the `kable()` function (`?kable`) for more information on the options provided by `kable()`.
+```
+
+### 
+
+The above table is not particularly pretty, so let us improve it with the help of package `kableExtra`.
+
+```{r tableExampleExtra, exercise=TRUE, exercise.eval=TRUE}
+library(kableExtra)
+Glasgow |>
+  group_by(sex, wave) |>
+  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) |>
+  ungroup() |>
+  select(-sex) |> 
+  kable(
+    digits = 2,
+    col.names = c("Wave", "Proportion using tobacco"),
+    align = "lcc",
+    caption = "Proportion of Glasgow students using tobacco."
+  ) |>
+  kableExtra::kable_classic(full_width = FALSE) |>
+  kableExtra::pack_rows("Boys", 1, 3) |>
+  kableExtra::pack_rows("Girls", 4, 6)
+```
+
+::: question
+Play around with this table using the code box below. Check out the options offered by `kableExtra` on the [package website](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
+:::
+
 ### Cross-references
 
 Quarto allows you to number and cross-reference figures, tables, and sections.
@@ -523,6 +581,53 @@ Problems with rendering to PDF:
 
 -   Characters like `%`, `\`, `/` have special meaning in LaTeX, which is the language used to create the PDF.
 -   Ensure that variable names or captions do not include them.
+
+#### Quarto plot
+
+Code chunks that produce a plot will show a plot in a knitted document.
+
+You may want to change the appearance of the plot with code chunk options.
+
+Main options for a code chunk creating a plot (chapter 28.6):
+
+-   `fig-cap : ""`: Add a caption to the plot.
+-   `fig-asp: 0.6`: Set the ratio of plot height to plot width.
+-   `out-width : "70%"`: Set plot width as a percentage of text width.
+
+::: question
+-   Add one of the plots created in the Data Project part of the previous session in a separate code chunk.
+-   Add a caption to the plot and change the plot to a square layout. Render the document to check the results.
+:::
+
+### 
+
+::: tip
+**Programming Tips**
+
+-   Carefully inspect a rendered Quarto document for the presence and layout of plots and tables and for unwanted code or R messages.
+:::
+
+#### Adding (formatted) text
+
+::: question
+Now, add a description of the plot or data file for the reader of the document.
+:::
+
+Use Quarto text formatting options if needed, see *Help\>Markdown Quick Reference* in RStudio for the main options.
+
+Some often used text formatting in Quarto.
+
+```{r eval=FALSE, echo=TRUE}
+-   Headers: #, ##, ###
+-   Font type: *italics*, **bold**
+-   (un)ordered lists: First level *, second level indented +
+-   links: [linked phrase](http://example.com)
+-   image: ![](example.png)
+-   blockquotes: >
+-   LaTeX equations: $equation$
+-   superscript^2^ and subscript~2~
+```
+
 
 ## Polishing Your Graphics
 

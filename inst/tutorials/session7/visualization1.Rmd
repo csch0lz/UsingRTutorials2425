@@ -1,14 +1,12 @@
 ---
-title: "Session 1: Welcome, Basics, and First Visualizations"
+title: "Session 7: Visualization 1"
 output: 
   learnr::tutorial:
     progressive: true
     allow_skip: true
 runtime: shiny_prerendered
 description: >
-  Check your understanding of RStudio, loading packages and data;
-  create basic plots with `ggplot()`, receive
-  programming tips, and check out some fancy visualization stuff.
+  Get more familiar with `ggplot()` and check out some fancy visualization stuff.
 editor_options: 
   markdown: 
     wrap: 72
@@ -479,6 +477,30 @@ gradethis::grade_code(
   correct = "And yes, you can change the color and size of the arrow just like you can change them for points and other geoms."
 )
 ```
+
+## Adding summaries to plots
+
+If you store summary information about a data set in a data object, you can display the summary information in ggplot() along with the original data. Every geom can have its own data argument, so specify the data object with summaries in a geom that visualizes the summary information.
+
+The below graph, for example, shows the number of friendships for boys and girls over the three waves (with jitter) as well as their average number of friends.
+
+{r summaryPlot, exercise = TRUE, exercise.eval = TRUE}
+#Calculate and save average number of friends.
+averages <- Glasgow |>
+  #group waves by sex
+  group_by(sex, wave) |>
+  #calculate mean, ignoring missing values
+  summarise(mean_friends = mean(friendships, na.rm = TRUE))
+#Create plot
+ggplot() +
+  #add individual friendship score with jitter
+  geom_jitter(data = Glasgow, aes(x = wave, y = friendships, color = sex)) +
+  #add mean scores as large boxes
+  geom_point(data = averages, aes(x = wave, y = mean_friends, color = sex), shape = "square", size = 4) +
+  #add lines to link the means: note the `group` argument
+  geom_line(data = averages, aes(x = wave, y = mean_friends, group = sex, color = sex))
+
+Play around with this plot. For example, use geom_text() to add the values of the group means to the plot.
 
 ## Evaluating a Plot
 

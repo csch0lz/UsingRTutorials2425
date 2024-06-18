@@ -57,7 +57,6 @@ Glasgow <- UsingRTutorials::Glasgow
 
 -   Q&A
 -   Data Wrangling with `dplyr::`
--   Workflow and Data Import
 -   Quarto basics: Integrating text and data for reproducible research
 
 ## Q&A
@@ -80,6 +79,8 @@ Data wrangling: Transforming (raw) data into (useful) information.
 :::
 
 ### 
+
+**Example Dataset: Glasgow**
 
 Today, we use a data set containing information about friendships, tobacco, alcohol, and substance use among 160 students, who were followed over their second, third and fourth year at a secondary school in Glasgow (*Teenage Friends and Lifestyle Study* research project).
 
@@ -848,92 +849,6 @@ gradethis::grade_result(
 -   Never assume that data are complete. Formulate which regularities you expect in the data and use code to check them.
 :::
 
-## Fancy Stuff
-
-### Nice tables
-
-R has several packages for creating tabular output. In a later session, we will discuss some packages for tabulating statistical output.
-
-Here, we present a function (`kable()`) in a basic package for tabular output (`knitr`), which works very well with piping and Quarto (discussed later in this tutorial). In addition, we use the `kableExtra` function to fine-tune tables created with `kable()`.
-
-### 
-
-Let's start by noting that we must have the data in the required shape before we create a table. In other words, `kable()` does not do any counting or summarizing for us. It only displays our data.
-
-::: question
-Make sense of the code below; add comments explaining every step. What happens if you do not drop the `sex` variable?
-:::
-
-```{r kable, exercise = TRUE, exercise.eval = TRUE}
-Glasgow |>
-  group_by(sex, wave) |>
-  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) |>
-  ungroup() |>
-  select(-sex) |> 
-  kable(
-    digits = 2,
-    col.names = c("Wave", "Proportion using tobacco"),
-    align = "lcc",
-    caption = "Proportion of Glasgow students using tobacco."
-  )
-```
-
-```{r kable-hint-1}
-# Use help on the `kable()` function (`?kable`) for more information on the options provided by `kable()`.
-```
-
-### 
-
-The above table is not particularly pretty, so let us improve it with the help of package `kableExtra`.
-
-```{r tableExampleExtra, exercise=TRUE, exercise.eval=TRUE}
-library(kableExtra)
-Glasgow |>
-  group_by(sex, wave) |>
-  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) |>
-  ungroup() |>
-  select(-sex) |> 
-  kable(
-    digits = 2,
-    col.names = c("Wave", "Proportion using tobacco"),
-    align = "lcc",
-    caption = "Proportion of Glasgow students using tobacco."
-  ) |>
-  kableExtra::kable_classic(full_width = FALSE) |>
-  kableExtra::pack_rows("Boys", 1, 3) |>
-  kableExtra::pack_rows("Girls", 4, 6)
-```
-
-::: question
-Play around with this table using the code box below. Check out the options offered by `kableExtra` on the [package website](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
-:::
-
-### Adding summaries to plots
-
-If you store summary information about a data set in a data object, you can display the summary information in `ggplot()` along with the original data. Every geom can have its own data argument, so specify the data object with summaries in a geom that visualizes the summary information.
-
-The below graph, for example, shows the number of friendships for boys and girls over the three waves (with jitter) as well as their average number of friends.
-
-```{r summaryPlot, exercise = TRUE, exercise.eval = TRUE}
-#Calculate and save average number of friends.
-averages <- Glasgow |>
-  #group waves by sex
-  group_by(sex, wave) |>
-  #calculate mean, ignoring missing values
-  summarise(mean_friends = mean(friendships, na.rm = TRUE))
-#Create plot
-ggplot() +
-  #add individual friendship score with jitter
-  geom_jitter(data = Glasgow, aes(x = wave, y = friendships, color = sex)) +
-  #add mean scores as large boxes
-  geom_point(data = averages, aes(x = wave, y = mean_friends, color = sex), shape = "square", size = 4) +
-  #add lines to link the means: note the `group` argument
-  geom_line(data = averages, aes(x = wave, y = mean_friends, group = sex, color = sex))
-```
-
-::: question
-Play around with this plot. For example, use `geom_text()` to add the values of the group means to the plot.
-:::
 
 ## Quarto Basics: Integrating text and data for reproducible research
 
@@ -974,8 +889,6 @@ Store the Data Project data files in this directory.
 We are not going to use script files because we embed all our code within the Quarto document (next topic).
 
 ### Quarto: Reproducible Research
-
-### 
 
 You will be working with Quarto to complete your group project.
 
@@ -1080,51 +993,6 @@ Now, you are sure that the data will be read in the right way.
 -   In a code chunk, press Ctr/Cmd-Enter to run the command in which your cursor is positioned.
 :::
 
-#### Quarto plot
-
-Code chunks that produce a plot will show a plot in a knitted document.
-
-You may want to change the appearance of the plot with code chunk options.
-
-Main options for a code chunk creating a plot (chapter 28.6):
-
--   `fig-cap : ""`: Add a caption to the plot.
--   `fig-asp: 0.6`: Set the ratio of plot height to plot width.
--   `out-width : "70%"`: Set plot width as a percentage of text width.
-
-::: question
--   Add one of the plots created in the Data Project part of the previous session in a separate code chunk.
--   Add a caption to the plot and change the plot to a square layout. Render the document to check the results.
-:::
-
-### 
-
-::: tip
-**Programming Tips**
-
--   Carefully inspect a rendered Quarto document for the presence and layout of plots and tables and for unwanted code or R messages.
-:::
-
-#### Adding (formatted) text
-
-::: question
-Now, add a description of the plot or data file for the reader of the document.
-:::
-
-Use Quarto text formatting options if needed, see *Help\>Markdown Quick Reference* in RStudio for the main options.
-
-Some often used text formatting in Quarto.
-
-```{r eval=FALSE, echo=TRUE}
--   Headers: #, ##, ###
--   Font type: *italics*, **bold**
--   (un)ordered lists: First level *, second level indented +
--   links: [linked phrase](http://example.com)
--   image: ![](example.png)
--   blockquotes: >
--   LaTeX equations: $equation$
--   superscript^2^ and subscript~2~
-```
 
 #### Render to PDF
 
@@ -1165,8 +1033,8 @@ YAML option `keep_tex: TRUE` saves the TeX file (extension `.tex`), which you ca
 -   Meet your study buddy
 -   Next steps group project:
     -   Sprint 1: Review & Retrospective
-    -   Sprint 2: Planning 
--   Some inspiration for planning: 
+    -   Sprint 2: Planning
+-   Some inspiration for planning:
     -   You can already: organize your group work in a Quarto file and practice data wrangling skills
     -   Plan in some time to start data tidying after Session 3.
     -   Plan in some time for everybody to practice with ggplot() on the Data Project.
