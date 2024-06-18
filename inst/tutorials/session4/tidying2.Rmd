@@ -63,7 +63,6 @@ Student <- GlasgowFriends |> select(student, neighbourhood, schooldist, hoodname
 ```
 ## Overview
 
--   AI
 -   Four principles of tidy data
 -   Principle 3: Each variable must have its own column.
 -   Principle 4: Each value must have its own cell.
@@ -267,20 +266,18 @@ gradethis::grade_code(
 -   Determine the initial structure of your dataset.
 -   What are they primary keys?
 -   What violations of the tidy data principles can you see?
--   Adress the issues:
--   Start with Principle 1 (redistributing data to different tibbles if
-    necessary)
--   Continue with Principle 2 (pivot_longer)
--   Finish by addressing issues for Principle 3 and 4
+-   Address any issues:
+    -   Start with Principle 1 (redistributing data to different tibbles
+        if necessary)
+    -   Continue with Principle 2 (pivot_longer)
+    -   Finish by addressing issues for Principle 3 and 4
 -   Confirm and document the new structure of your dataset.
--   What are the primary and foreign keys of the final data set?
--   How can different data sources be joined?
+    -   What are the primary and foreign keys of the final data set?
+    -   How can different data sources be joined?
 
 This concludes data tidying.
 
 ## Meet the Experts
-
-### 
 
 -   You need to know about and apply all tidy data principles in your
     *Group Data Project*.
@@ -810,10 +807,11 @@ digraph database {
 
 ## Data Project
 
-We are completing Sprint 2. Remember to do the Sprint 2 Retrospective and Review and Plan Sprint 3. 
+We are completing Sprint 2. Remember to do the Sprint 2 Retrospective
+and Review and Plan Sprint 3.
 
-Tips for your upcoming Sprint Backlog: With the skills
-discussed today, you can:
+Tips for your upcoming Sprint Backlog: With the skills discussed today,
+you can:
 
 -   Check and tidy your complex data sets according to principles 3-4.
 -   Check which of your complex data sets can be linked. Some of them
@@ -833,7 +831,8 @@ groups.
 
 **Review course content**
 
-Submit questions and/or difficult topics for review by completing the "Session 5 Preparation" Assignment on Canvas by the end of day Sunday,
+Submit questions and/or difficult topics for review by completing the
+"Session 5 Preparation" Assignment on Canvas by the end of day Sunday,
 November 10th.
 
 **Group consultations for the Data Project**
