@@ -6,7 +6,8 @@ output:
     allow_skip: yes
 runtime: shiny_prerendered
 description: |
-  Apply your skills in statistical analysis within R.
+  Discuss advanced topics related to the clear, visually pleasing, and
+  reproducible presentation of R-based projects and results.
 ---
 
 ```{r setup, include=FALSE}
@@ -29,6 +30,8 @@ glbwarm <- UsingRTutorials::glbwarm
 glbwarm_spss <- UsingRTutorials::glbwarm_spss
 # The estimated regression model with rstanarm. 
 model_1aBayes <- UsingRTutorials::model_1aBayes
+
+Glasgow <- UsingRTutorials::Glasgow
 ```
 
 <!-- Define programming tip style -->
@@ -60,9 +63,19 @@ model_1aBayes <- UsingRTutorials::model_1aBayes
 ```
 ## Overview
 
-## Results Plots
+-   Plotting statistical results
 
-Once you've fit an appropriate statistical model to your data, you may want to visualize the results. R offers a variety of packages that produce custom plots for different types of models. Let's explore some of these options.
+-   Polishing your graphics
+
+-   Report layout in Quarto
+
+## Plotting Statistical Results
+
+Next to presenting your statistical results in text and tables, you may want to visualize some interesting effects. R offers a variety of packages that produce custom plots for different types of models. Let's explore some of these options.
+
+**Spoiler:** Although they can be useful for quick and dirty exploration, we will advise you not to use them, but to create your own custom plots instead.
+
+### 
 
 We will use an example model fit to the `glbwarm` dataset (`model_1a`). As you can see below, this model regresses support for government action on party identification as well as an interaction between age and negative emotions.
 
@@ -113,15 +126,15 @@ gradethis::grade_code(
 
 There are many packages offering ready-to-use plots, for example:
 
--   `coefplot`: plots regression coefficients for one or more models (`ggplot2` plots)
--   `visreg`: plots regression lines (`ggplot2` plots).
--   `effects`: plots regression lines (not `ggplot2` plots).
+-   `coefplot`: plots regression coefficients for one or more models (generates `ggplot2` plots)
+-   `visreg`: plots regression lines (generates `ggplot2` plots).
+-   `effects`: plots regression lines (does not not generate `ggplot2` plots).
 
-Note that `ggplot2` plots created by such packages can be further customized: Save the plot (e.g., `p`) and then add layers, themes, ... (e.g., `p + theme_bw()`).
+**Note:** If such a package generates `ggplot2` plots, they can be further customized. Save the plot (e.g., `p`) and then add layers, themes, ... (e.g., `p + theme_bw()`).
 
 ### Interaction Plot with the `effects` Package
 
-You can graph interaction effects with the `effects` package in two steps.
+You can plot interaction effects with the `effects` package in two steps.
 
 ```{r effects, exercise=TRUE, exercise.setup = "lmplots-setup", exercise.eval = TRUE }
 # Load effects package.
@@ -203,7 +216,7 @@ Do you notice differences between your plot and the plot created with the `effec
 
 Which plot do you trust more?
 
-### More ggplot practice
+### ANOVA Means Plot with `ggplot()`
 
 It is not that difficult to create a means plot showing the results of analysis of variance.
 
@@ -279,7 +292,6 @@ glbwarm |> group_by(partyid, sex) |>
   theme(legend.position=c(0.8,0.8), legend.background=element_rect(fill=alpha('white',0)))
 ```
 
-
 ```{r anovaplot-check}
 gradethis::grade_code(
   correct = "", 
@@ -319,316 +331,6 @@ glbwarm <- UsingRTutorials::glbwarm
 }
 </style>
 ```
-## Overview
-
-Course Content
-
--   Report Layout.
--   Polishing Your Graphics.
--   Finalizing the Group Project.
-
-## Report Layout With Quarto
-
-In Quarto, many output characteristics can be set in the YAML header at the beginning of the document.
-
-::: question
-In RStudio, open a new Quarto document. One-by-one, add the following options to the YAML header and render the document to see how it changes.
-:::
-
--   Table of contents: `toc: true`
--   Change the position of the table of contents: `toc-location: left` or `toc-location: body`
--   Section numbering: `number_sections: true`
--   Figure and table captions:
-    -   Add a figure and a table to the document (e.g. use data from the `palmerpenguins::` package).
-    -   Add labels (`#| label: fig-/tbl-`) and captions (`#| fig-cap: "your caption"`/`#| tbl-cap: "your caption"`)
-    -   Change the caption locations: for instance `fig-cap-location: bottom` or `tbl-cap-location: top`
-
-You can find many more options online. Careful: Look at the options that are available for your intended output document (e.g. PDF, Word, or HTML): <https://quarto.org/docs/output-formats/all-formats.html>
-
-### Visual editor
-
-```{r out.width="80%"}
-knitr::include_graphics("images/VisualEditor.png")
-```
-
-Use the visual editor for easy:
-
--   Text formatting.
--   Table and figure insertion.
--   Table formatting.
--   Insertion of footnotes.
--   Insertion of references.
-
-### References
-
-To include literature references in an Quarto document, you need four things:
-
-1.  A bibliography file containing the referenced literature, preferably in BibTex format: `references.bib`. Note: You can also pull references directly from popular reference managers like Zotero or online sources like PubMed.
-2.  A line in the YAML specifying the bibliography file(s) to use, for example, `bibliography: references.bib`. Note: If you do not start with a pre-defined .bib file, but instead rely fully on a reference manager, this line will be added automatically to the YAML header when you add your first reference.
-3.  A line in the YAML specifying the format to be used for the references, for example, `csl: apa.csl`. Note: The file `apa.csl` needs to be saved in the working directory (more below).
-4.  A citation key in the text where you want to insert the reference, for example, "As argued by [@McQuail2005], Communication Science deals with ...".
-
-```{r out.width="90%"}
-knitr::include_graphics("images/InsertCitation.png")
-```
-
-Adding a reference within the visual editor:
-
--   Put the cursor where you want the reference.
--   Select *Citation* from the *Insert* menu.
-    1.  Select your reference software (if any) to select a reference.
-    2.  Or select the R packages that you are using, to acknowledge the work of the authors.
-    3.  The default file name of the references file is `references.bib`.
-    4.  Insert the selected references in the Quarto document.
-
-### 
-
-RStudio then:
-
-1.  Inserts the reference in the document.
-2.  Creates or expands the file `references.bib`.
-3.  Adds this file to the YAML, so a list of references is created when you knit the document.
-
-::: question
--   Open a new Quarto file. On the first page, cite the following R packages: `base`, `tidyverse`, `knitr`, and `kableExtra`.
-:::
-
-### 
-
-To get the literature references in APA style, we need a citation style file.
-
-::: question
--   Download the file with the APA journal citation style `apa.csl` from <https://www.zotero.org/styles>.
--   Save it in your working directory.
--   Reference the APA journal citation style `apa.csl` in the YAML of the Quarto file. Add the line: `csl: apa.csl`
--   Render the document to HTML and inspect the references. All okay?
-:::
-
-<!-- Define emphasis style -->
-
-```{=html}
-<style>
-.emphasis {
-  color: #e8301b;
-}
-Ensure that the references and citation style files are saved in the working directory!
-</style>
-```
-### Figure code chunk options
-
-Figures usually demand additional attention:
-
--   not too small and not too large,
--   have a caption,
--   are shown in the right place.
-
-*YAML Header* sets for all figures:
-
--   Where the figure caption is located: `fig-cap-location: top` or how it's aligned: `fig-align: left`
--   Default width: `fig-width`
--   For more options see: <https://quarto.org/docs/output-formats/all-formats.html> (choose your output format)
-
-Adjust a single figure with code chunk options (<https://quarto.org/docs/computations/execution-options.html>):
-
--   `#| fig.cap =` figure caption as string.
--   `#| fig.align =` 'left', 'right', or 'center'.
--   `#| out.width =` width of figure in output in percentage of line width (`"80%"`) or as a fixed width in pixels for HTML (`"300px"`) or inches, centimeters for PDF and Word (`"4.5in"`, `"6cm"`).
--   `#| fig.asp =` ratio of height to width.
-
-Figures are automatically numbered in PDF output, but not in Word or HTML. To accomplish this, you need to use cross-referencing. More below.
-
-Note:
-
--   If the size of a figure in the document is too small, `knitr` may end with the error message that the margins are too large.
-
-::: question
--   Reduce the size of a figure in a Quarto file to 50 percent (half the line width), make it square, and add the caption "This is my figure."
-:::
-
-### Custom tables
-
-Table menu in visual editor:
-
--   Helps including a table that you type from scratch.
--   Only use for a diagram.
--   Never use for R results!
-
-### 
-
-Present summary results as a table with `knitr::kable()` in a code chunk.
-
-::: question
--   Make sense of the below pipe (add comments).
-:::
-
-```{r resultstable, exercise = TRUE, exercise.lines = 8, exercise.eval = TRUE}
-glbwarm |> 
-  group_by(sex) |> 
-  summarise(sex_mean = round(mean(govact), digits=2), 
-            sex_sd = round(sd(govact), digits=2)) |> 
-  kable(col.names = c("Sex", "Average Score", "Standard Deviation"),
-        caption = "Table: Support for government intervention across the sexes.")
-```
-
-### 
-
-For additional table layout options:
-
--   Package `kableExtra::`
--   Documentation: [kableExtra vignette](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
-
-### Nice tables
-
-R has several packages for creating tabular output. In a later session, we will discuss some packages for tabulating statistical output.
-
-Here, we present a function (`kable()`) in a basic package for tabular output (`knitr`), which works very well with piping and Quarto (discussed later in this tutorial). In addition, we use the `kableExtra` function to fine-tune tables created with `kable()`.
-
-### 
-
-Let's start by noting that we must have the data in the required shape before we create a table. In other words, `kable()` does not do any counting or summarizing for us. It only displays our data.
-
-::: question
-Make sense of the code below; add comments explaining every step. What happens if you do not drop the `sex` variable?
-:::
-
-```{r kable, exercise = TRUE, exercise.eval = TRUE}
-Glasgow |>
-  group_by(sex, wave) |>
-  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) |>
-  ungroup() |>
-  select(-sex) |> 
-  kable(
-    digits = 2,
-    col.names = c("Wave", "Proportion using tobacco"),
-    align = "lcc",
-    caption = "Proportion of Glasgow students using tobacco."
-  )
-```
-
-```{r kable-hint-1}
-# Use help on the `kable()` function (`?kable`) for more information on the options provided by `kable()`.
-```
-
-### 
-
-The above table is not particularly pretty, so let us improve it with the help of package `kableExtra`.
-
-```{r tableExampleExtra, exercise=TRUE, exercise.eval=TRUE}
-library(kableExtra)
-Glasgow |>
-  group_by(sex, wave) |>
-  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) |>
-  ungroup() |>
-  select(-sex) |> 
-  kable(
-    digits = 2,
-    col.names = c("Wave", "Proportion using tobacco"),
-    align = "lcc",
-    caption = "Proportion of Glasgow students using tobacco."
-  ) |>
-  kableExtra::kable_classic(full_width = FALSE) |>
-  kableExtra::pack_rows("Boys", 1, 3) |>
-  kableExtra::pack_rows("Girls", 4, 6)
-```
-
-::: question
-Play around with this table using the code box below. Check out the options offered by `kableExtra` on the [package website](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
-:::
-
-### Cross-references
-
-Quarto allows you to number and cross-reference figures, tables, and sections.
-
-**Cross-referencing a figure added using an image file**
-
--   Add the figure by adding the following in the Markdown (text) part of a Quarto document. IMPORTANT: do this in the Source editor, not the visual editor: `![CAPTION](FILENAME.png){#LABEL}`
--   Elsewhere in the document, reference the figure in your text: "See `@fig-CAPTION` for an illustration
-
-**Cross-referecing tables and figures created in code chunks**
-
--   Create the figure (e.g. using `ggplot::`) or table inside a code chunk
-
--   Add the beginning of the code chunk:
-
-    -   add a figure label (`#| label: fig-LABEL`) and caption (`#| fig-cap: CAPTION`);
-
-    -   or add a table label (`#| label: tbl-LABEL`) and caption (`#| tbl-cap: CAPTION`)
-
-::: question
--   Add a section label to the **Quarto** Section in a new Quarto file and use it to refer to this section in a sentence "As we have seen in Section 0.1, we can show statistical results in a Quarto document." that you add to the **Running Code** Section. (e.g. `## Introduction {#sec-introduction}`)
--   Add a figure using an image file on your computer and cross-reference it: "Figure 1 is beautiful, isn't it?"
-:::
-
-::: tip
-**Programming Tip**
--   Don't use blanks in Section ID labels or names of code chunks that create a table or figure.
-:::
-
-### Rendering Problems
-
-Problems with rendering to HTML:
-
--   Probably errors in your code (also applies to Word and PDF).
--   Spot and fix them.
--   Use code chunk option `eval=FALSE` to see if a code chunk causes the problem.
-
-Problems with rendering to Word:
-
--   Functions for tables and figures may not work for Word.
--   Knit to HTML and import HTML in Word.
-
-Problems with rendering to PDF:
-
--   Characters like `%`, `\`, `/` have special meaning in LaTeX, which is the language used to create the PDF.
--   Ensure that variable names or captions do not include them.
-
-#### Quarto plot
-
-Code chunks that produce a plot will show a plot in a knitted document.
-
-You may want to change the appearance of the plot with code chunk options.
-
-Main options for a code chunk creating a plot (chapter 28.6):
-
--   `fig-cap : ""`: Add a caption to the plot.
--   `fig-asp: 0.6`: Set the ratio of plot height to plot width.
--   `out-width : "70%"`: Set plot width as a percentage of text width.
-
-::: question
--   Add one of the plots created in the Data Project part of the previous session in a separate code chunk.
--   Add a caption to the plot and change the plot to a square layout. Render the document to check the results.
-:::
-
-### 
-
-::: tip
-**Programming Tips**
-
--   Carefully inspect a rendered Quarto document for the presence and layout of plots and tables and for unwanted code or R messages.
-:::
-
-#### Adding (formatted) text
-
-::: question
-Now, add a description of the plot or data file for the reader of the document.
-:::
-
-Use Quarto text formatting options if needed, see *Help\>Markdown Quick Reference* in RStudio for the main options.
-
-Some often used text formatting in Quarto.
-
-```{r eval=FALSE, echo=TRUE}
--   Headers: #, ##, ###
--   Font type: *italics*, **bold**
--   (un)ordered lists: First level *, second level indented +
--   links: [linked phrase](http://example.com)
--   image: ![](example.png)
--   blockquotes: >
--   LaTeX equations: $equation$
--   superscript^2^ and subscript~2~
-```
-
-
 ## Polishing Your Graphics
 
 ### Labels and legend position
@@ -968,6 +670,266 @@ gradethis::grade_code(
   )
 ```
 
+## Report Layout With Quarto
+
+In Quarto, many output characteristics can be set in the YAML header at the beginning of the document.
+
+::: question
+In RStudio, open a new Quarto document. One-by-one, add the following options to the YAML header and render the document to see how it changes.
+:::
+
+-   Table of contents: `toc: true`
+-   Change the position of the table of contents: `toc-location: left` or `toc-location: body`
+-   Section numbering: `number_sections: true`
+-   Figure and table captions:
+    -   Add a figure and a table to the document (e.g. use data from the `palmerpenguins::` package).
+    -   Add labels (`#| label: fig-/tbl-`) and captions (`#| fig-cap: "your caption"`/`#| tbl-cap: "your caption"`)
+    -   Change the caption locations: for instance `fig-cap-location: bottom` or `tbl-cap-location: top`
+
+You can find many more options online. Careful: Look at the options that are available for your intended output document (e.g. PDF, Word, or HTML): <https://quarto.org/docs/output-formats/all-formats.html>
+
+### Visual editor
+
+```{r out.width="80%"}
+knitr::include_graphics("images/VisualEditor.png")
+```
+
+Use the visual editor for easy:
+
+-   Text formatting.
+-   Table and figure insertion.
+-   Table formatting.
+-   Insertion of footnotes.
+-   Insertion of references.
+
+#### Adding (formatted) text
+
+::: question
+Now, add a description of the plot or data file for the reader of the document.
+:::
+
+Use Quarto text formatting options if needed, see *Help\>Markdown Quick Reference* in RStudio for the main options.
+
+Some often used text formatting in Quarto.
+
+```{r eval=FALSE, echo=TRUE}
+-   Headers: #, ##, ###
+-   Font type: *italics*, **bold**
+-   (un)ordered lists: First level *, second level indented +
+-   links: [linked phrase](http://example.com)
+-   image: ![](example.png)
+-   blockquotes: >
+-   LaTeX equations: $equation$
+-   superscript^2^ and subscript~2~
+```
+
+### References
+
+To include literature references in an Quarto document, you need four things:
+
+1.  A bibliography file containing the referenced literature, preferably in BibTex format: `references.bib`. Note: You can also pull references directly from popular reference managers like Zotero or online sources like PubMed.
+2.  A line in the YAML specifying the bibliography file(s) to use, for example, `bibliography: references.bib`. Note: If you do not start with a pre-defined .bib file, but instead rely fully on a reference manager, this line will be added automatically to the YAML header when you add your first reference.
+3.  A line in the YAML specifying the format to be used for the references, for example, `csl: apa.csl`. Note: The file `apa.csl` needs to be saved in the working directory (more below).
+4.  A citation key in the text where you want to insert the reference, for example, "As argued by [@McQuail2005], Communication Science deals with ...".
+
+```{r out.width="90%"}
+knitr::include_graphics("images/InsertCitation.png")
+```
+
+Adding a reference within the visual editor:
+
+-   Put the cursor where you want the reference.
+-   Select *Citation* from the *Insert* menu.
+    1.  Select your reference software (if any) to select a reference.
+    2.  Or select the R packages that you are using, to acknowledge the work of the authors.
+    3.  The default file name of the references file is `references.bib`.
+    4.  Insert the selected references in the Quarto document.
+
+### 
+
+RStudio then:
+
+1.  Inserts the reference in the document.
+2.  Creates or expands the file `references.bib`.
+3.  Adds this file to the YAML, so a list of references is created when you knit the document.
+
+::: question
+-   Open a new Quarto file. On the first page, cite the following R packages: `base`, `tidyverse`, `knitr`, and `kableExtra`.
+:::
+
+### 
+
+To get the literature references in APA style, we need a citation style file.
+
+::: question
+-   Download the file with the APA journal citation style `apa.csl` from <https://www.zotero.org/styles>.
+-   Save it in your working directory.
+-   Reference the APA journal citation style `apa.csl` in the YAML of the Quarto file. Add the line: `csl: apa.csl`
+-   Render the document to HTML and inspect the references. All okay?
+:::
+
+<!-- Define emphasis style -->
+
+```{=html}
+<style>
+.emphasis {
+  color: #e8301b;
+}
+Ensure that the references and citation style files are saved in the working directory!
+</style>
+```
+### Figure code chunk options
+
+Figures usually demand additional attention:
+
+-   not too small and not too large,
+-   have a caption,
+-   are shown in the right place.
+
+*YAML Header* sets for all figures:
+
+-   Where the figure caption is located: `fig-cap-location: top` or how it's aligned: `fig-align: left`
+-   Default width: `fig-width`
+-   For more options see: <https://quarto.org/docs/output-formats/all-formats.html> (choose your output format)
+
+Adjust a single figure with code chunk options (<https://quarto.org/docs/computations/execution-options.html>):
+
+-   `#| fig.cap =` figure caption as string.
+-   `#| fig.align =` 'left', 'right', or 'center'.
+-   `#| out.width =` width of figure in output in percentage of line width (`"80%"`) or as a fixed width in pixels for HTML (`"300px"`) or inches, centimeters for PDF and Word (`"4.5in"`, `"6cm"`).
+-   `#| fig.asp =` ratio of height to width.
+
+Figures are automatically numbered in PDF output, but not in Word or HTML. To accomplish this, you need to use cross-referencing. More below.
+
+Note:
+
+-   If the size of a figure in the document is too small, `knitr` may end with the error message that the margins are too large.
+
+::: question
+-   Reduce the size of a figure in a Quarto file to 50 percent (half the line width), make it square, and add the caption "This is my figure."
+-   Add one of the plots created in the Data Project part of the previous session in a separate code chunk.
+-   Add a caption to the plot and change the plot to a square layout. Render the document to check the results.
+:::
+
+### Custom tables
+
+We have already explored tables when discussing the presentation of statistical results.
+Tables can also be useful for presenting other types of information and overviews
+in your reports.
+
+###
+
+**Using the Visual Editor**
+
+-   Helps including a table that you type from scratch.
+-   Only use for a diagram.
+-   Never use for R results!
+
+### 
+
+**Using R Code for Reproducibility**
+
+As discussed in the modelling sections of this course, the `kable()` provides basic options for tabular output (within the `knitr` package). It works works very well with piping and Quarto. In addition, we use the `kableExtra` function to fine-tune tables created with `kable()`.
+
+**Example:** Present summary results as a table with `knitr::kable()` and `kableExtra`.
+
+Let's start by noting that we must have the data in the required shape before we create a table. In other words, `kable()` does not do any counting or summarizing for us. It only displays our data.
+
+::: question
+Make sense of the code below; add comments explaining every step. What happens if you do not drop the `sex` variable?
+:::
+
+```{r kable, exercise = TRUE, exercise.eval = TRUE}
+Glasgow |>
+  group_by(sex, wave) |>
+  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) |>
+  ungroup() |>
+  select(-sex) |> 
+  kable(
+    digits = 2,
+    col.names = c("Wave", "Proportion using tobacco"),
+    align = "lcc",
+    caption = "Proportion of Glasgow students using tobacco."
+  )
+```
+
+```{r kable-hint-1}
+# Use help on the `kable()` function (`?kable`) for more information on the options provided by `kable()`.
+```
+
+### 
+
+The above table is not particularly pretty, so let us improve it with the help of package `kableExtra`.
+
+```{r tableExampleExtra, exercise=TRUE, exercise.eval=TRUE}
+library(kableExtra)
+Glasgow |>
+  group_by(sex, wave) |>
+  summarise(tobacco_prop = mean(tobacco != "1 none", na.rm = TRUE)) |>
+  ungroup() |>
+  select(-sex) |> 
+  kable(
+    digits = 2,
+    col.names = c("Wave", "Proportion using tobacco"),
+    align = "lcc",
+    caption = "Proportion of Glasgow students using tobacco."
+  ) |>
+  kableExtra::kable_classic(full_width = FALSE) |>
+  kableExtra::pack_rows("Boys", 1, 3) |>
+  kableExtra::pack_rows("Girls", 4, 6)
+```
+
+::: question
+Play around with this table using the code box above. Check out the options offered by `kableExtra` on the [package website](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html).
+:::
+
+### Cross-references
+
+Quarto allows you to number and cross-reference figures, tables, and sections.
+
+**Cross-referencing a figure added using an image file**
+
+-   Add the figure by adding the following in the Markdown (text) part of a Quarto document. IMPORTANT: do this in the Source editor, not the visual editor: `![CAPTION](FILENAME.png){#LABEL}`
+-   Elsewhere in the document, reference the figure in your text: "See `@fig-CAPTION` for an illustration
+
+**Cross-referecing tables and figures created in code chunks**
+
+-   Create the figure (e.g. using `ggplot::`) or table inside a code chunk
+
+-   Add the beginning of the code chunk:
+
+    -   add a figure label (`#| label: fig-LABEL`) and caption (`#| fig-cap: CAPTION`);
+
+    -   or add a table label (`#| label: tbl-LABEL`) and caption (`#| tbl-cap: CAPTION`)
+
+::: question
+-   Add a section label to the **Quarto** Section in a new Quarto file and use it to refer to this section in a sentence "As we have seen in Section 0.1, we can show statistical results in a Quarto document." that you add to the **Running Code** Section. (e.g. `## Introduction {#sec-introduction}`)
+-   Add a figure using an image file on your computer and cross-reference it: "Figure 1 is beautiful, isn't it?"
+:::
+
+::: tip
+**Programming Tip** - Don't use blanks in Section ID labels or names of code chunks that create a table or figure.
+:::
+
+### Rendering Problems
+
+Problems with rendering to HTML:
+
+-   Probably errors in your code (also applies to Word and PDF).
+-   Spot and fix them.
+-   Use code chunk option `eval=FALSE` to see if a code chunk causes the problem.
+
+Problems with rendering to Word:
+
+-   Functions for tables and figures may not work for Word.
+-   Knit to HTML and import HTML in Word.
+
+Problems with rendering to PDF:
+
+-   Characters like `%`, `\`, `/` have special meaning in LaTeX, which is the language used to create the PDF.
+-   Ensure that variable names or captions do not include them.
+
+
 ## Fancy Stuff
 
 ### APA format article with `apaquarto::`
@@ -1009,16 +971,22 @@ All information about `apaquarto` is available at <https://github.com/wjschne/ap
 
 ### Templates for other journals
 
-Quarto provides a long list of templates for specific journals. For details, see: https://quarto.org/docs/journals/formats.html.  
+Quarto provides a long list of templates for specific journals. For details, see: <https://quarto.org/docs/journals/formats.html>.
 
 ### Dashboards
 
-A dashboard is used to show a group of related data visualizations. 
+A dashboard is used to show a group of related data visualizations.
 
-Below is a screen shot of an example created using Quarto an Shiny, and available at https://quarto.org/docs/dashboards/examples/. 
+Below is a screen shot of an example created using Quarto an Shiny, and available at <https://quarto.org/docs/dashboards/examples/>.
 
 ```{r out.width="100%"}
 knitr::include_graphics("images/dashboard.png")
 ```
 
 Read more about dashboards at <https://quarto.org/docs/dashboards/> .
+
+## What's Next
+
+- We are half-way through Sprint 6.
+- Take a moment to update your Sprint Backlog. What knowledge from today's session can you use to further improve your report?
+- For inspiration, carefully inspect your rendered Quarto document for the presence and layout of plots and tables and for unwanted code or R messages.
