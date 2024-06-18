@@ -1030,4 +1030,107 @@ ggplotly(p, tooltip = "country")
 gradethis::grade_code()
 ```
 
+## Fancy Stuff
 
+### Networks
+
+Many-to-many relations can be visualized as networks. Friendship
+nominations among students can be depicted with nodes representing
+students and arrows showing friendship nominations.
+
+The `StudentWaveFriend` tibble contains all the information that we need
+to draw a friendship network for the Glasgow data:
+
+-   Variable `student` in this tibble represents the student nominating
+    a friend.
+-   Variable `friend` represents the student nominated.
+
+A line in a network is just a pair of nodes!
+
+There are many R packages for network visualization and network analysis
+or modelling. [Network visualization with
+R](https://kateto.net/network-visualization) offers a tutorial on some R
+packages for network visualization. The examples below use the `igraph`
+package.
+
+::: question
+Use the tutorial referenced above and the `igraph` documentation to play
+around with the friendship network in wave1.
+:::
+
+```{r network1-setup}
+#preparing data tibbles for network
+Student <- GlasgowFriends |> select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) |> distinct()
+StudentWave <- GlasgowFriends |> select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) |> distinct()
+StudentWaveFriend <- StudentWave |> 
+  gather(key = "friendnumber", value = "friend", friend_1:friend_6, na.rm = TRUE) |>
+  select(student, wave, friend)
+```
+
+```{r network1, exercise = TRUE, exercise.lines = 20, exercise.eval = TRUE, fig.asp=0.5, out.width="100%", fig.cap="Figure: Friendship nominations at the first wave. Mutual nominations are black, unilateral nominations are orange."}
+# Install the igraph package (once).
+# install.packages("igraph")
+# Load the igraph package.
+library(igraph)
+# Retrieve the friendship nominations in the first wave and ensure that the
+# first two columns are the sender and receiver of the nomination.
+arrows_wave1 <- StudentWaveFriend |>
+  filter(wave == "t1") |>
+  select(student, friend)
+#add color variable for sexes
+nodes_wave1 <- Student |>
+  mutate(sex_color = ifelse(sex == "boy", "steelblue1", "tomato1"))
+# Create an igraph object: a list of nodes (=vertices) combined with a list of lines/arrows.
+net_wave1 <- igraph::graph_from_data_frame(d=arrows_wave1, vertices=nodes_wave1, directed=TRUE)
+
+# Create a layout: positioning of the nodes.
+set.seed(35546)
+layout_1 <- igraph::layout_with_fr(net_wave1)
+# Spread out the network horizontally.
+layout_1 <- igraph::norm_coords(layout_1, ymin=-1, ymax=1, xmin=-2, xmax=2)
+# Plot the network.
+par(mar = c(0, 0, 0, 0))
+plot(net_wave1, 
+     vertex.label = NA, #hide node labels
+     vertex.size = 8, #vertex size
+     vertex.color = V(net_wave1)$sex_color,
+     edge.arrow.size=.4, # arrowhead size
+     #give reciprocal arrows (edges) a different colour than unilateral arrows:
+     edge.color = ifelse(which_mutual(net_wave1), "gray40", "tan1"),
+     rescale = FALSE, #don't rescale to square network
+     layout = layout_1 #use the previously created node coordinates
+     )
+legend("topleft", c("Boys", "Girls"), pch=21, col="#777777", pt.bg=c("steelblue1", "tomato1"), pt.cex=2, cex=.8, bty="n", ncol=1)
+```
+
+### A geographic network
+
+With `ggplot()` and the `map::` package, we can plot geographical
+networks.
+
+For example, the flights to/from NY City in the `nycflights13::`
+(example data in the book).
+
+```{r nycflightsmap, exercise = TRUE, exercise.eval = TRUE}
+# Load the nycflights13 package.
+library(nycflights13)
+# Connect the flights (origin & destination) and airports tables (airport coordinates).
+flights |> #use the flights tibble in the nycflights13 package
+  #add coordinates to airport where flight originates
+  inner_join(select(airports, origin = faa, origin_lat = lat, origin_lon = lon), 
+             by = "origin") |>
+  #add coordinates to destination airport
+  inner_join(select(airports, dest = faa, dest_lat = lat, dest_lon = lon), by = "dest"
+  ) |>
+  # select the first 100 flights for illustrative purposes
+  slice(1:100) |>
+  # pipe the data into ggplot()
+  ggplot(aes(
+    x = origin_lon, xend = dest_lon,
+    y = origin_lat, yend = dest_lat
+    )) +
+    borders("state") +
+    geom_segment(arrow = arrow(length = unit(0.1, "cm"))) +
+    coord_quickmap() +
+    labs(y = "Latitude", x = "Longitude")
+```
