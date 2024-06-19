@@ -6,7 +6,10 @@ output:
     allow_skip: yes
 runtime: shiny_prerendered
 description: |
-  Easy work flows and strategies to use R in collaborative, open science research.
+  Easy work flows and strategies to keep using R in collaborative, open science research.
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -14,13 +17,7 @@ description: |
 library(tidyverse)
 library(learnr)
 library(gradethis)
-library(knitr)
-library(kableExtra)
 library(haven) #For importing SPSS data files.
-library(car) #For ANOVA.  
-library(texreg) #For pretty regression results.
-library(effects) #For two-way interaction plots.
-library(broom) #For cleaning up statistical results.
 
 tutorial_options(exercise.timelimit = 20, exercise.checker = gradethis::grade_learnr)
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -30,8 +27,6 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 # Ensure that the data is loaded for the remainder of this tutorial.
 glbwarm <- UsingRTutorials::glbwarm
 glbwarm_spss <- UsingRTutorials::glbwarm_spss
-# The estimated regression model with rstanarm. 
-model_1aBayes <- UsingRTutorials::model_1aBayes
 ```
 
 <!-- Define programming tip style -->
@@ -61,23 +56,48 @@ model_1aBayes <- UsingRTutorials::model_1aBayes
 }
 </style>
 ```
-
 ## Overview
 
-## (Reference) Importing SPSS Data
+-   Commit to switching
 
-### 
+-   Keep learning & teaching
 
-SPSS data files have a complicated setup with variable labels and value labels.
+-   Collaborate
+
+-   Practice Open Science
+
+## Commit to Switching
+
+-   Becoming truly proficient in R requires lots of practice.
+
+-   We recommend to fully commit to switching whenever possible to give
+    yourself the best chances of succeeding.
+
+-   Do you need to edit, sort, or check something in an Excel sheet?
+    Clean data? Make a figure? Make a table with descriptives? Run an
+    analysis? –\> Do it in R!
+
+::: question
+Think about any ongoing or upcoming data-related projects. What could be
+done in R? What not? Why?
+:::
+
+### (Reference) Importing SPSS Data
+
+SPSS data files have a complicated setup with variable labels and value
+labels.
 
 R data frames or tibbles do not have such labels.
 
-In case you later have SPSS data that you want to analyze in R, here are **two options** for importing SPSS data.
+In case you later have SPSS data that you want to analyze in R, here are
+**two options** for importing SPSS data.
 
-### Option 1. Export from SPSS to .csv and import .csv in R.
+#### Option 1. Export from SPSS to .csv and import .csv in R.
 
--   Export data from SPSS to a CSV file with value labels for categorical variables:
-    -   *File \> Export \> CSV Data* with *Save value labels where defined instead of data values*.
+-   Export data from SPSS to a CSV file with value labels for
+    categorical variables:
+    -   *File \> Export \> CSV Data* with *Save value labels where
+        defined instead of data values*.
 -   Use `read_csv()` (as you learned before) to import the CSV file.
 
 ::: question
@@ -91,9 +111,11 @@ glbwarm <- read_csv("data/glbwarm.csv")
 str(glbwarm)
 ```
 
-### Option 2. Import SPSS .sav file directly with tidyverse package `haven`.
+#### Option 2. Import SPSS .sav file directly with tidyverse package `haven`.
 
-The tidyverse package `haven` contains function `read_sav()` (or `read_spss()`) for importing SPSS (and other software packages) data files.
+The tidyverse package `haven` contains function `read_sav()` (or
+`read_spss()`) for importing SPSS (and other software packages) data
+files.
 
 ::: question
 Import the SPSS file `data/glbwarm.sav` and have a look at it.
@@ -115,7 +137,8 @@ Imported categorical variables such as *ideology*:
 -   If you don't want that, change them into factors.
 
 ::: question
-Use the `haven::as_factor()` function to add a variable named `sex_fct` to tibble `glbwarm_spss`.
+Use the `haven::as_factor()` function to add a variable named `sex_fct`
+to tibble `glbwarm_spss`.
 :::
 
 ```{r sex_fct, exercise = TRUE}
@@ -128,9 +151,61 @@ glbwarm_spss |> count(sex, sex_fct)
 
 ### 
 
-Passing the entire tibble `glbwarm_spss` to `haven::as_factor()`will change all labelled variables into factors.
+Passing the entire tibble `glbwarm_spss` to `haven::as_factor()`will
+change all labelled variables into factors.
 
-I am not sure this is what you want here. Perhaps you would like to use the `ideology` variable as a seven-point scale.
+I am not sure this is what you want here. Perhaps you would like to use
+the `ideology` variable as a seven-point scale.
+
+## Keep Learning & Teaching
+
+::: emphasis
+If someone asks you: "Do you know R?", you can now proudly and
+confidently say: "Yes, some of it."
+:::
+
+-   The R universe is incredibly large and versatile. Whatever
+    data-related task you can come up with - there is likely going to be
+    an R-based solution to your issues.
+
+-   New projects will likely require you to learn new things in R.
+
+-   Luckily there are lots of resources to help you develop yourself as
+    an R programmer. Here are some examples:
+
+###
+
+### Documentation
+
+[add examples of documentation]
+
+### Stack Overflow (and other fora)
+
+[ADD exercise to ask a question]
+
+### AI (e.g. GitHub Co-Pilot for RStudio)
+
+[ADD exercise to write prompts for the AI and see how it does - do some
+with the teacher and some on your own]
+
+### Community
+
+-   take and give back!
+
+## Collaborate
+
+various ways to collaborate - example GitHub
+
+## Practice Open, Reproducible Science
+
+-   Share data and code with DOI identifiers (e.g. github, OSF,
+    Figshare)
+
+-   Reproducible reports
+
+-   Reproducible power points
+
+## Fancy Stuff
 
 ### Shiny
 
@@ -304,4 +379,3 @@ Start simple!
 
 If you want to create a Shiny app, first create your plot with
 `ggplot()`, then add it to the Shiny app.
-
