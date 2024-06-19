@@ -70,6 +70,7 @@ report_ttest <- function(result_t) {
 }
 </style>
 ```
+
 ## Overview
 
 Writing code is like writing any other text: There are many different ways of achieving the same goal and you should aim to be as clear and concise as possible. It is good practice to go back and edit your first-draft code.
@@ -77,6 +78,7 @@ Writing code is like writing any other text: There are many different ways of ac
 -   What is "good" code?
 -   Functions
 -   Control Flow: Conditions
+-   Edit your code
 
 ## What is "good" code?
 
@@ -103,6 +105,7 @@ Good code is:
 -   Reproducible:
 
     -   The script should run from start to finish without manual intervention.
+    -   Ideally, all numbers or outputs based on data are generated using code, not typed manually.
 
 -   Produce Readable Output:
 
@@ -481,7 +484,17 @@ In the `report_ttest()` function, we deal with single values instead of vectors:
 -   Use double `||` (or) and `&&` (and) instead of `|` and `&`. The latter are for vectorised operations, e.g., in `mutate()`.\
 -   `==` is vectorised. Unless you're sure that there is one value (as in `class()`), use non-vectorised `identical()`.
 
+## Edit Your Code
+
+:::question
+Spend some time reviewing your own code for the individual project and group project:
+
+- Is the code readable, modular, correct, and reproducible? Does it produce readable output?
+- Are there any functions you could create to make your code more efficient?
+- Are there any conditions you could add to your code to make it more robust?
+:::
+
 ## What's Next
 
 -   Good luck with the individual deadline tomorrow. Make sure to review your code. Is it correct, concise, and well commented?
--   Prepare for the exam.
+-   Prepare for the exam and submit questions.
