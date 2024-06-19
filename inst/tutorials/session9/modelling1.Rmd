@@ -28,6 +28,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 ```{r, context="data", include=FALSE}
 # Ensure that the data is loaded for the remainder of this tutorial.
+flights4 <- UsingRTutorials::flights4
 glbwarm <- UsingRTutorials::glbwarm
 glbwarm_spss <- UsingRTutorials::glbwarm_spss
 # The estimated regression model with rstanarm. 
@@ -117,6 +118,24 @@ t.test(formula, data, subset, na.action, ...)
 -   the function with `x, y` is for paired samples *t* tests.\
 -   the function with a formula is for two samples *t* tests; `y` must be a variable with two categories.
 
+#### `_` in a pipe
+
+- All `tidyverse` functions have the data frame as the first argument.
+- This is not necessarily the case for base R functions or other functions outside the `tidyverse`.
+- If you use piping with these functions, use an underscore (`_`) as a placeholder to indicate where in the function the piped-in object should be entered.
+- A second use of the `_` placeholder is when you do not use a function in the pipe.
+
+**Example**
+
+The code below tests whether the average arrival delay (`arr_delay0`) differs between the two airports of origin (`origin`) included in the `flights4` tibble and then extracts the t-statistic from the result. Pay attention to the placement of the `_`.
+
+```{r pipedot, exercise = TRUE}
+flights4 |> t.test(arr_delay0 ~ origin, data = _) |> #a function where data is not the first argument
+  _$statistic #not a function
+```
+
+#### t-test Practice
+
 ::: question
 Use a *t* test and the `glbwarm` data object for testing the following null hypotheses (in this order):
 
@@ -139,7 +158,7 @@ Send the results to the screen.
 ```{r ttest-hint-2}
 # Note that the 'data = ' argument only works if we use the formula form 'y ~ x'.
 # Independent samples t test:
-t.test(negemot ~ sex, data = glbwarm)
+glbwarm |> t.test(negemot ~ sex, data = _)
 # For the other versions, the tibble name must be used and the dollar sign to
 # fuly define the variable.
 # t test on one mean (complete it yourself):
@@ -152,7 +171,7 @@ t.test(glbwarm$negemot, ... )
 ```
 
 ```{r ttest-solution, exercise.reveal_solution = FALSE}
-t.test(negemot ~ sex, data = glbwarm)
+glbwarm |> t.test(negemot ~ sex, data = _)
 t.test(glbwarm$negemot, mu = 3.0)
 t.test(glbwarm$negemot, glbwarm$posemot, paired = TRUE)
 ```

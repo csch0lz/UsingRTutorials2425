@@ -108,6 +108,13 @@ The `tidyverse` approach to data wrangling can be summarized as follows:
 -   Breakdown transformations into logical steps.
 -   Chain transformations into a pipe `|>`): Use resulting data of previous step as input data of next step.
 
+**Why use pipes?**
+
+-   much more concise;
+-   no intermediary data objects that clutter your environment;
+-   no intermediary data objects must be specified as argument;
+-   no risk of inadvertently overwriting an intermediary data object.
+
 ### 
 
 ```{r}
