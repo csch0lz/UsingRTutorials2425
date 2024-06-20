@@ -82,6 +82,8 @@ Think about any ongoing or upcoming data-related projects. What could be
 done in R? What not? Why?
 :::
 
+### 
+
 ### (Reference) Importing SPSS Data
 
 SPSS data files have a complicated setup with variable labels and value
@@ -171,19 +173,79 @@ confidently say: "Yes, some of it."
 -   New projects will likely require you to learn new things in R.
 
 -   Luckily there are lots of resources to help you develop yourself as
-    an R programmer. Here are some examples:
+    an R programmer.
 
-###
+### 
 
 ### Documentation
 
-[add examples of documentation]
+-   Cheat sheets:
+-   `help()` and `?` in RStudio
+-   Online package documentation (e.g. for
+    [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf))
 
 ### Stack Overflow (and other fora)
 
-[ADD exercise to ask a question]
+-   R users form a very active community.
 
-### AI (e.g. GitHub Co-Pilot for RStudio)
+-   Stack Overflow: Well-known forum and large archive for R questions
+    (<https://stackoverflow.com/questions/tagged/r>)
+
+-   Read replies for issues similar to yours or ask your own questions
+    (remember to stick to the required format!)
+
+-   Once you feel confident: Be an active part of the community.
+    Contribute your own answers!
+
+### AI 
+
+-   AI tools are making coding easier and more convenient by the minute.
+-   For instance, several AI tools can generate code based on prompts directly inside RStudio.
+-   It is worth taking some time to consider the ethical implications of using AI in your work (e.g. https://www.unesco.org/en/artificial-intelligence/recommendation-ethics)
+
+::: emphasis
+Don't make the mistake to become a passive user. AI is only as good as the prompts you supply and it is not without its limitations. You'll need at least a basic understanding of what you are doingin R AND with the AI to accurately describe what you want and understand when the AI is making a mistake or misinterpreting your prompts.
+
+Always double-check and test any results!
+:::
+
+###
+
+#### Github Co-Pilot for R Studio
+
+-   Github Co-Pilot is a new AI tool that can generate code based on prompts in form of comments directly inside RStudio.
+-   It's free for UvA students.
+
+::: question 
+Step 1: Sign-up for Github Co-Pilot on Github
+:::
+
+::: question 
+Step 2: Install the Github Co-Pilot extension in RStudio
+:::
+
+::: question 
+Step 3: Start using Github Co-Pilot in RStudio
+:::
+
+###
+
+Let's try it out.
+
+::: question
+Open an R Script and write the following comment: "# Add 3 to 5"
+:::
+
+::: question
+Now a little more complicated: "# "
+:::
+
+```{r}
+# A function that reports the result of t.test in APA format
+
+
+```
+
 
 [ADD exercise to write prompts for the AI and see how it does - do some
 with the teacher and some on your own]
