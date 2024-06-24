@@ -71,14 +71,16 @@ consumers <- UsingRTutorials::consumers #
 
 ### Lecturers
 
-Dr. Christin Scholz, [c.scholz\@uva.nl](mailto:c.scholz@uva.nl){.email}
+Dr. Felicia Loecherbach, [f.loecherbach\@uva.nl](f.loecherbach@uva.nl){.email}
 
-Assistant Professor Health & Persuasive Communication ACHC
-Communication, Brain & Society Lab, www.cobras-lab.com
+Assistant Professor Political Communication & Journalism, www.felicialoecherbach.com
+
 
 Dr. Xin Gao, [x.gao2\@uva.nl](mailto:x.gao2@uva.nl){.email}
 
 Lecturer Research Methods
+
+
 
 ### Our expectations
 
