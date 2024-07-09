@@ -86,13 +86,13 @@ done in R? What not? Why?
 
 ### (Reference) Importing SPSS Data
 
+For those switching from SPSS to R, a first step is importing your SPSS
+data.
+
 SPSS data files have a complicated setup with variable labels and value
-labels.
+labels.R data frames or tibbles do not have such labels.
 
-R data frames or tibbles do not have such labels.
-
-In case you later have SPSS data that you want to analyze in R, here are
-**two options** for importing SPSS data.
+Here are **two options** for importing SPSS data.
 
 #### Option 1. Export from SPSS to .csv and import .csv in R.
 
@@ -197,47 +197,57 @@ confidently say: "Yes, some of it."
 -   Once you feel confident: Be an active part of the community.
     Contribute your own answers!
 
-### AI 
+### AI
 
 -   AI tools are making coding easier and more convenient by the minute.
--   For instance, several AI tools can generate code based on prompts directly inside RStudio.
--   It is worth taking some time to consider the ethical implications of using AI in your work (e.g. https://www.unesco.org/en/artificial-intelligence/recommendation-ethics)
+-   For instance, several AI tools can generate code based on prompts
+    directly inside RStudio.
+-   It is worth taking some time to consider the ethical implications of
+    using AI in your work (e.g.
+    <https://www.unesco.org/en/artificial-intelligence/recommendation-ethics>)
 
 ::: emphasis
-Don't make the mistake to become a passive user. AI is only as good as the prompts you supply and it is not without its limitations. You'll need at least a basic understanding of what you are doingin R AND with the AI to accurately describe what you want and understand when the AI is making a mistake or misinterpreting your prompts.
+Don't make the mistake to become a passive user. AI is only as good as
+the prompts you supply and it is not without its limitations. You'll
+need at least a basic understanding of what you are doing in R AND with
+the AI to accurately describe what you want and understand when the AI
+is making a mistake or misinterpreting your prompts.
 
 Always double-check and test any results!
 :::
 
-###
+### 
 
 #### Github Co-Pilot for R Studio
 
--   Github Co-Pilot is a new AI tool that can generate code based on prompts in form of comments directly inside RStudio.
+![Source: copilot.github.com](images/github_copilot.png){width="171"}
+
+-   Github Co-Pilot is a new AI tool that can generate code based on
+    prompts in form of comments directly inside RStudio.
 -   It's free for UvA students.
 
-::: question 
+::: question
 Step 1: Sign-up for Github Co-Pilot on Github
 :::
 
-::: question 
+::: question
 Step 2: Install the Github Co-Pilot extension in RStudio
 :::
 
-::: question 
+::: question
 Step 3: Start using Github Co-Pilot in RStudio
 :::
 
-###
+### 
 
 Let's try it out.
 
 ::: question
-Open an R Script and write the following comment: "# Add 3 to 5"
+Open an R Script and write the following comment: "\# Add 3 to 5"
 :::
 
 ::: question
-Now a little more complicated: "# "
+Now a little more complicated: "\# "
 :::
 
 ```{r}
@@ -245,7 +255,6 @@ Now a little more complicated: "# "
 
 
 ```
-
 
 [ADD exercise to write prompts for the AI and see how it does - do some
 with the teacher and some on your own]
