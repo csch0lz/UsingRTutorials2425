@@ -216,48 +216,82 @@ is making a mistake or misinterpreting your prompts.
 Always double-check and test any results!
 :::
 
-### 
-
-#### Github Co-Pilot for R Studio
+### Github Co-Pilot for R Studio
 
 ![Source: copilot.github.com](images/github_copilot.png){width="171"}
 
 -   Github Co-Pilot is a new AI tool that can generate code based on
     prompts in form of comments directly inside RStudio.
 -   It's free for UvA students.
+-   Using Co-Pilot is NOT a requirement for this class.
+
+#### How to Install GitHub Co-Pilot (!!OPTIONAL!!)
 
 ::: question
 Step 1: Sign-up for Github Co-Pilot on Github
 :::
 
+-   Go to [www.github.com](www.github.com)
+
+-   Make a GitHub account:
+
+    -   If you don't have one yet, make a new account using your UvA
+        e-mail.
+
+    -   If you already have an account, ad your UvA e-mail to that
+        account.
+
+-   Activate your Github Co-Pilot subscription:
+
+    -   Go to this page while logged in to your Github account:
+        <https://github.com/education>
+
+    -   Click on "Join Github Education"
+
+    -   Fill in the form and wait for approval.
+    
+###
+
 ::: question
-Step 2: Install the Github Co-Pilot extension in RStudio
+Step 2: Enable Github Co-Pilot in RStudio
 :::
+
+-   Follow the instructions on this page:
+    <https://docs.posit.co/ide/user/ide/guide/tools/copilot.html>
+
+
+###
 
 ::: question
 Step 3: Start using Github Co-Pilot in RStudio
 :::
 
-### 
+###
 
-Let's try it out.
+#### Demo
 
-::: question
-Open an R Script and write the following comment: "\# Add 3 to 5"
-:::
+Once you are approved, you can type comments (starting with #) specifying what you want to do in RStudio and GitHub Co-Pilot will generate code for you. Let's try
 
 ::: question
-Now a little more complicated: "\# "
+Open an R Script and write the following comment: "# Add 3 to 5" Then hit enter. Once GitHub Co-Pilot recommends code for you, hit Tab to accept the recommendation.
 :::
 
-```{r}
-# A function that reports the result of t.test in APA format
+###
 
+::: question
+Now a little more complicated. Run the following two lines of code: 
 
-```
+- `load(palmerpenguins)`
+- `penguins<-penguins`
 
-[ADD exercise to write prompts for the AI and see how it does - do some
-with the teacher and some on your own]
+Then write the following comment: "# Create a scatterplot of bill_length_mm and bill_depth_mm with species as color" and hit enter. Once GitHub Co-Pilot recommends code for you, hit Tab to accept the recommendation.
+:::
+
+###
+
+::: question
+Experiment with more comments to ask GitHub Co-Pilot to add more layers to the graph. 
+:::
 
 ### Community
 
