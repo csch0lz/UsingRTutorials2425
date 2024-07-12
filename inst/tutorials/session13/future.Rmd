@@ -249,8 +249,8 @@ Step 1: Sign-up for Github Co-Pilot on Github
     -   Click on "Join Github Education"
 
     -   Fill in the form and wait for approval.
-    
-###
+
+### 
 
 ::: question
 Step 2: Enable Github Co-Pilot in RStudio
@@ -259,52 +259,188 @@ Step 2: Enable Github Co-Pilot in RStudio
 -   Follow the instructions on this page:
     <https://docs.posit.co/ide/user/ide/guide/tools/copilot.html>
 
-
-###
+### 
 
 ::: question
 Step 3: Start using Github Co-Pilot in RStudio
 :::
 
-###
+### 
 
 #### Demo
 
-Once you are approved, you can type comments (starting with #) specifying what you want to do in RStudio and GitHub Co-Pilot will generate code for you. Let's try
+Once you are approved, you can type comments (starting with \#)
+specifying what you want to do in RStudio and GitHub Co-Pilot will
+generate code for you. Let's try
 
 ::: question
-Open an R Script and write the following comment: "# Add 3 to 5" Then hit enter. Once GitHub Co-Pilot recommends code for you, hit Tab to accept the recommendation.
+Open an R Script and write the following comment: "\# Add 3 to 5" Then
+hit enter. Once GitHub Co-Pilot recommends code for you, hit Tab to
+accept the recommendation.
 :::
 
-###
+### 
 
 ::: question
-Now a little more complicated. Run the following two lines of code: 
+Now a little more complicated. Run the following two lines of code:
 
-- `load(palmerpenguins)`
-- `penguins<-penguins`
+-   `load(palmerpenguins)`
+-   `penguins<-penguins`
 
-Then write the following comment: "# Create a scatterplot of bill_length_mm and bill_depth_mm with species as color" and hit enter. Once GitHub Co-Pilot recommends code for you, hit Tab to accept the recommendation.
+Then write the following comment: "\# Create a scatterplot of
+bill_length_mm and bill_depth_mm with species as color" and hit enter.
+Once GitHub Co-Pilot recommends code for you, hit Tab to accept the
+recommendation.
 :::
 
-###
+### 
 
 ::: question
-Experiment with more comments to ask GitHub Co-Pilot to add more layers to the graph. 
+Experiment with more comments to ask GitHub Co-Pilot to add more layers
+to the graph.
 :::
-
-### Community
-
--   take and give back!
 
 ## Collaborate
 
-various ways to collaborate - example GitHub
+There are various tools available to help you organize collaborations in
+R (e.g. when multiple have to work on the same script or Quarto file).
+One approach is using GitHub.
+
+-   Easy synchronization across all collaborators.
+
+-   Secure version control features that also let you recover old
+    versions.
+
+-   Easily keep track of remaining issues and bugs.
+
+\###
+
+Here is a simple workflow (although GitHub has many more great
+functionalities!):
+
+-   Download GitHub Desktop: <https://github.com/apps/desktop>
+
+-   Create a new repository which will hold all your files:
+
+    -   In the upper left corner, click "Add" and then "Create new
+        Repository..."
+
+    -   Choose a name for your repository and choose the folder on your
+        computer that contains the relevant files (e.g. the R Project,
+        Quarto and data files).
+
+    -   Click on "Create Repository" and then "Publish repository".
+
+    -   Private? If you want the repository to only be visible to
+        collaborators, make sure "Keep this code private" is checked.
+        Then hit "Publish Repository again.
+
+-   Go to [www.github.com](www.github.com) and sign in to your account.
+    You should now be able to see your newly created repository.
+
+-   Under Settings \> Collaborators you can add your collaborators to
+    the repository.
+
+-   Add an existing repository to GitHub Desktop:
+
+    -   In the upper left corner, click "Add" and then "Clone
+        Repository..."
+
+    -   You will be asked to choose from a list of repositories you are
+        able to access. Choose the repository you want to clone and a
+        local path in which it should live on your computer. Then hit
+        "Clone".
+
+    -   GitHub will create a local copy of the repository on your
+        computer that is linked to the online version.
+
+-   Work collaboratively on a repository:
+
+    -   **Fetch:** First, make sure you are working with the latest
+        version: Before you work on the repository, always click "Fetch
+        origin". Github Desktop will synchronize your computer with any
+        changes your collaborators might have made to the online version
+        of the repository.
+
+    -   **Work:** Make any changes files in the local path that belong
+        to your repository. GitHub Desktop will automatically keep track
+        of all the changes you made in the local path.
+
+    -   **Commit & Push:**
+
+        -   Once you are ready, go back to your repository on GitHub
+            Desktop and give a short summary of the changes you've made
+            in the lower left corner. Then hit "Commit".
+
+        -   To actually synchronize your changes with the online
+            repository, you then also need to hit "Push Origin" at the
+            top of the GitHub Desktop window. The next time a
+            collaborator fetches from the online repository, it will
+            contain the changes you've made.
 
 ## Practice Open, Reproducible Science
 
--   Share data and code with DOI identifiers (e.g. github, OSF,
-    Figshare)
+-   RStudio is a great companion for reproducible science projects:
+
+    -   Integrate your R files into your scientific workflow. (e.g. Use
+        GitHub for storage and version control of R projects and link it
+        to your pre-registration and materials on OSF:
+        <https://help.osf.io/article/211-connect-github-to-a-project>)
+
+    -   Collaborate on fully reproducible analyses.
+
+    -   Create complete, fully APA conform manuscripts in directly
+        Quarto.
+
+### APA format article with `apaquarto::`
+
+Instead of adapting a standard Quarto document, you can use `apaquarto`,
+which contains an APA7 article template.
+
+A great extension for Open Science projects!
+
+-   Write fully reproducible papers in Quarto and produce perfect, APA
+    styled rendered documents in PDF or Word.
+-   Include graphs and tables, designed according to APA style.
+-   `apaquarto` integrates smoothly with .bib files and reference
+    managers like Zotero.
+
+::: question
+Install `apaquarto`
+:::
+
+-   Go to: <https://github.com/wjschne/apaquarto>
+
+-   Click on Code (1) and then Download Zip (2)
+
+```{r, out.width="100%"}
+knitr::include_graphics("images/github.png")
+```
+
+-   Unzip the downloaded folder on your computer (remember the
+    location).
+
+-   Open the `apaquarto.Rproj` file inside the folder.
+
+-   In `RStudio`, you can now open the template file `template.qmd` . It
+    includes examples of various scenarios you might want to implement
+    (e.g. citations, plots and tables).
+
+::: question
+-   Create a copy of the `template.qmd` file.
+-   Inspect the contents of the template, check out the options.
+-   Render it to pdf or Word and inspect the knitted document.
+-   Apply your skills for cross-referencing sections, tables, and
+    figures.
+:::
+
+All information about `apaquarto` is available at
+<https://github.com/wjschne/apaquarto> .
+
+### Templates for other journals
+
+Quarto provides a long list of templates for specific journals. For
+details, see: <https://quarto.org/docs/journals/formats.html>.
 
 -   Reproducible reports
 

@@ -932,47 +932,6 @@ Problems with rendering to PDF:
 
 ## Fancy Stuff
 
-### APA format article with `apaquarto::`
-
-Instead of adapting a standard Quarto document, you can use `apaquarto`, which contains an APA7 article template.
-
-A great extension for Open Science projects!
-
--   Write fully reproducible papers in Quarto and produce perfect, APA styled rendered documents in PDF or Word.
--   Include graphs and tables, designed according to APA style.
--   `apaquarto` integrates smoothly with .bib files and reference managers like Zotero.
-
-::: question
-Install `apaquarto`
-:::
-
--   Go to: <https://github.com/wjschne/apaquarto>
-
--   Click on Code (1) and then Download Zip (2)
-
-```{r, out.width="100%"}
-knitr::include_graphics("images/github.png")
-```
-
--   Unzip the downloaded folder on your computer (remember the location).
-
--   Open the `apaquarto.Rproj` file inside the folder.
-
--   In `RStudio`, you can now open the template file `template.qmd` . It includes examples of various scenarios you might want to implement (e.g. citations, plots and tables).
-
-::: question
--   Create a copy of the `template.qmd` file.
--   Inspect the contents of the template, check out the options.
--   Render it to pdf or Word and inspect the knitted document.
--   Apply your skills for cross-referencing sections, tables, and figures.
-:::
-
-All information about `apaquarto` is available at <https://github.com/wjschne/apaquarto> .
-
-### Templates for other journals
-
-Quarto provides a long list of templates for specific journals. For details, see: <https://quarto.org/docs/journals/formats.html>.
-
 ### Dashboards
 
 A dashboard is used to show a group of related data visualizations.
