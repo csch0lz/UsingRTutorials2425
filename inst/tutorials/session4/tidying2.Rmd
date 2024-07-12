@@ -264,8 +264,9 @@ gradethis::grade_code(
 ## Overview Data Tidying Steps
 
 -   Determine the initial structure of your dataset.
--   What are they primary keys?
--   What violations of the tidy data principles can you see?
+    -   What are they primary keys? Are there duplicated rows? If so,
+        why?
+    -   What violations of the tidy data principles can you see?
 -   Address any issues:
     -   Start with Principle 1 (redistributing data to different tibbles
         if necessary)
