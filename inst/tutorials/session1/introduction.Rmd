@@ -851,6 +851,58 @@ ggplot(
 gradethis::grade_code()
 ```
 
+### It's Your Turn
+
+Let's look at another dataset called "Motor Trend Car Road Tests" (`mtcars`). This dataset describes fuel consumption and ten other aspects of 32 cars built in the early 70s. 
+
+::: question
+1. Call `help(mtcars)` to get an overview of the variables.
+2. Use `mtcars` to recreate the plot below.
+:::
+
+```{r carsPlot, exercise=FALSE, message=FALSE, warning=FALSE}
+ggplot(data = mtcars, mapping = aes(x = wt, y = mpg)) +
+  geom_point( aes(color=as.factor(vs)) ) +
+  geom_smooth(method='lm', se=FALSE,color='black') +
+  labs(
+    title = "Fuel consumption and weight of cars",
+    x = "Weight (1000 lbs)",
+    y = "Miles per gallon",
+    color = "Engine (0 = V-shaped, 1 = straight)"
+  )
+```
+
+```{r ggplotCars, exercise = TRUE, exercise.lines = 15, message=FALSE, warning=FALSE}
+ggplot(
+  data = mtcars
+  )
+```
+::: {#ggplotRegression-hint}
+**Hint:** Pay close attention to which visual attributes are mapped to a variable and which are not.
+:::
+
+```{r ggplotCars-solution}
+ggplot(
+  data = mtcars, 
+  mapping = aes(x = wt, y = mpg)) +
+geom_point( 
+  mapping = aes(color=as.factor(vs))) +
+geom_smooth(
+  method='lm', 
+  se=FALSE,
+  color='black') +
+labs(
+  title = "Fuel consumption and weight of cars",
+  x = "Weight (1000 lbs)",
+  y = "Miles per gallon",
+  color = "Engine (0 = V-shaped, 1 = straight)"
+)
+```
+
+```{r ggplotCars-check}
+gradethis::grade_code()
+```
+
 ## Debugging
 
 Your friend tried to create a non-stacked bar chart showing the
