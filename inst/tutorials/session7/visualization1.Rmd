@@ -127,7 +127,6 @@ ggplot(
     )
 ```
 
-
 ### Axis Labels
 
 ::: question
@@ -156,7 +155,8 @@ ggplot(
 <!-- To hide the solution, use a textual hint. -->
 
 ::: {#ggplotLabels-hint}
-**Hint:** Consider the details of both axes and the title. Use '\n' to add linebreaks to a label.
+**Hint:** Consider the details of both axes and the title. Use '\n' to
+add linebreaks to a label.
 :::
 
 ```{r ggplotLabels-solution}
@@ -482,15 +482,19 @@ gradethis::grade_code(
 
 ### Adding summaries to plots
 
-An important goal when visualizing data is to visually emphasize important
-trends in the data. One way to do this is to display summary information
-together with all data points. 
+An important goal when visualizing data is to visually emphasize
+important trends in the data. One way to do this is to display summary
+information together with all data points.
 
-To do this, you first need to store summary information about a data set in a data object. 
-Every geom can have its own data argument, so specify the data
-object with summaries in a geom that visualizes the summary information.
+To do this, you first need to store summary information about a data set
+in a data object. Every geom can have its own data argument, so specify
+the data object with summaries in a geom that visualizes the summary
+information.
 
-The below graph shows an example based on our (fake) consumer data. It shows the average brand awareness for male and female participants (with jitter) who have high (above median) or low (below median) exposure to the ads as well as their average brand awareness.
+The below graph shows an example based on our (fake) consumer data. It
+shows the average brand awareness for male and female participants (with
+jitter) who have high (above median) or low (below median) exposure to
+the ads as well as their average brand awareness.
 
 ```{r prepSumPlot, echo=FALSE}
 consumers<-consumers |> 
@@ -515,14 +519,14 @@ ggplot() +
 aes(x = ad_expo2, y = mean_brand_aw, group = gender, color = gender))
 ```
 
-###
+### 
 
-If we want to visually emphasize some parts of the graph over others, we can further tweak the different
-visual elements, for instance by adjusting colors
-and sizes. 
+If we want to visually emphasize some parts of the graph over others, we
+can further tweak the different visual elements, for instance by
+adjusting colors and sizes.
 
 ::: question
-Add transparency to `geom_jitter` to visually emphasize the mean scores. 
+Add transparency to `geom_jitter` to visually emphasize the mean scores.
 :::
 
 ```{r summaryPlot2, exercise = TRUE, exercise.eval = TRUE}
@@ -534,7 +538,196 @@ aes(x = ad_expo2, y = mean_brand_aw, group = gender, color = gender))
 ```
 
 Play around with this plot. For example, use geom_text() to add the
-values of the group means to the plot or change the theme to make the background less prominent.
+values of the group means to the plot or change the theme to make the
+background less prominent.
+
+### Your turn
+
+Let's make a different type of graph using the same `consumers` data
+set.
+
+```{r barEx_prep, echo=FALSE}
+aggregate_consumers=consumers |> 
+  group_by(wom,gender) |> 
+  summarise(mean_brand_aw = mean(brand_aw, na.rm = TRUE),
+            se = sd(brand_aw, na.rm = TRUE)/sqrt(n()))
+```
+
+```{r barEx_show, exercise=FALSE, warning=FALSE, message=FALSE}
+ggplot(
+  data=aggregate_consumers,
+  mapping=aes(x=wom, y=mean_brand_aw,color=gender)
+) + 
+  geom_jitter(
+    data=consumers,
+    mapping=aes(y=brand_aw),color='black') +
+  geom_bar(stat="summary", fun=mean, position="dodge", alpha=0) +
+  labs(
+    x="Word of mouth",
+    y="Brand awareness",
+    color="Gender",
+    title='Average Brand Awareness by Group'
+  )
+```
+
+### 
+
+::: question
+Try to recreate the graph above as closely as you can using the `consumers` data. Hint: First create an aggregated dataframe `aggregate_consumers` with the mean brand awareness by gender and wom group.
+:::
+
+```{r barEx, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#barEx-hint}
+**Hint:** Consider carefully which geom should make use of which dataframe (consumers vs. aggregate_consumers) and adjust the `data` and `mapping` arguments accordingly.
+Use the `alpha` argument to make the bars transparent. 
+:::
+
+```{r barEx-solution, exercise.reveal_solution = FALSE}
+ggplot(
+  data=aggregate_consumers,
+  mapping=aes(x=wom, y=mean_brand_aw,color=gender)
+) + 
+  geom_jitter(
+    data=consumers,
+    mapping=aes(y=brand_aw),color='black') +
+  geom_bar(stat="summary", fun=mean, position="dodge", alpha=0) +
+  labs(
+    x="Word of mouth",
+    y="Brand awareness",
+    color="Gender",
+    title='Average Brand Awareness by Group'
+  )
+```
+
+```{r barEx-check}
+gradethis::grade_code(
+  )
+```
+
+### Error Bars
+
+Great work! Now let's add confidence intervals. There are R packages
+that compute the confidence intervals directly and you can find those
+easily by Googling. However, we can also easily create them ourselves:
+
+-   Confidence interval of the mean = `mean +/- 1.96 * standard error`.
+
+-   Standard error of the mean = standard deviation / sqrt(N)
+
+::: question
+Create the dataframe `aggregate_consumers_se` containing the mean brand awareness (called `mean_brand_aw`) grouped by gender and word of mouth together with its standard error (called `se_brand_aw`).
+:::
+
+```{r aggCon, exercise = TRUE}
+
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#aggCon-hint}
+**Hint:** Don't forget to group the dataset before summarising.
+:::
+
+```{r aggCon-solution, exercise.reveal_solution = FALSE}
+aggregate_consumers_se=consumers |> 
+  group_by(wom,gender) |> 
+  summarise(mean_brand_aw = mean(brand_aw, na.rm = TRUE),
+            se_brand_aw = sd(brand_aw, na.rm = TRUE)/sqrt(n()))
+```
+
+```{r aggCon-check}
+gradethis::grade_code(
+  )
+```
+
+###
+
+Now we can add error bars to our graph using `geom_errorbar()`. The final graph should look like this:
+
+```{r errorBar_prep, echo=FALSE}
+aggregate_consumers_se=consumers |> 
+  group_by(wom,gender) |> 
+  summarise(mean_brand_aw = mean(brand_aw, na.rm = TRUE),
+            se_brand_aw = sd(brand_aw, na.rm = TRUE)/sqrt(n()))
+```
+
+```{r errorBar_show}
+ggplot(
+  data=aggregate_consumers_se,
+  mapping=aes(x=wom, y=mean_brand_aw,color=gender)
+) + 
+  geom_jitter(
+    data=consumers,
+    mapping=aes(y=brand_aw),color='black') +
+  geom_bar(stat="summary", fun=mean, position="dodge", alpha=0) +
+  labs(
+    x="Word of mouth",
+    y="Brand awareness",
+    color="Gender",
+    title='Average Brand Awareness by Group'
+  ) +
+  geom_errorbar(aes(ymin=mean_brand_aw - 1.96*se_brand_aw, ymax=mean_brand_aw + 1.96*se_brand_aw),width=0.9, position='dodge') 
+
+```
+
+###
+
+::: question
+Look up `help(geom_errorbar)` and try to add errorbars to the graph we created earlier.
+:::
+
+```{r errorBar, exercise = TRUE, exercise.setup = 'aggCon-solution'}
+ggplot(
+  data=aggregate_consumers_se,
+  mapping=aes(x=wom, y=mean_brand_aw,color=gender)
+) + 
+  geom_jitter(
+    data=consumers,
+    mapping=aes(y=brand_aw),color='black') +
+  geom_bar(stat="summary", fun=mean, position="dodge", alpha=0) +
+  labs(
+    x="Word of mouth",
+    y="Brand awareness",
+    color="Gender",
+    title='Average Brand Awareness by Group'
+  ) +
+  geom_errorbar() 
+```
+
+<!-- To hide the solution, use a textual hint. -->
+
+::: {#errorBar-hint}
+**Hint:** Make sure to use the `mapping` argument to specify `ymin` and `ymax` to ensure that the correct means and standard errors are used per group. Use `position='dodge'` to display the errorbars together with their group. 
+:::
+
+```{r errorBar-solution, exercise.reveal_solution = FALSE}
+ggplot(
+  data=aggregate_consumers_se,
+  mapping=aes(x=wom, y=mean_brand_aw,color=gender)
+) + 
+  geom_jitter(
+    data=consumers,
+    mapping=aes(y=brand_aw),color='black') +
+  geom_bar(stat="summary", fun=mean, position="dodge", alpha=0) +
+  labs(
+    x="Word of mouth",
+    y="Brand awareness",
+    color="Gender",
+    title='Average Brand Awareness by Group'
+  ) +
+  geom_errorbar(aes(ymin=mean_brand_aw - 1.96*se_brand_aw, ymax=mean_brand_aw + 1.96*se_brand_aw),position='dodge') 
+
+```
+
+```{r errorBar-check}
+gradethis::grade_code(
+  )
+```
 
 ## Debugging
 
@@ -596,7 +789,6 @@ gradethis::grade_code(
 -   Check intermediate results regularly by running the code and
     inspecting the results.
 :::
-
 
 ## Evaluating a Plot
 
@@ -917,7 +1109,8 @@ nominations among students can be depicted with nodes representing
 students and arrows showing friendship nominations.
 
 The `StudentWaveFriend` tibble contains all the information that we need
-to draw a friendship network for the Glasgow data which we worked with in previous sessions:
+to draw a friendship network for the Glasgow data which we worked with
+in previous sessions:
 
 -   Variable `student` in this tibble represents the student nominating
     a friend.
@@ -1015,7 +1208,10 @@ flights |> #use the flights tibble in the nycflights13 package
 
 ## What's next
 
-- We are in the middle of Sprint 4. Keep working on your Sprint Backlog. 
-- Good luck with the group part deadline!
-- You now have important information relevant to your individual Data Project. 
-- Prepare for next session's individual consultations by starting to work on your individual part. Come with questions!
+-   We are in the middle of Sprint 4. Keep working on your Sprint
+    Backlog.
+-   Good luck with the group part deadline!
+-   You now have important information relevant to your individual Data
+    Project.
+-   Prepare for next session's individual consultations by starting to
+    work on your individual part. Come with questions!

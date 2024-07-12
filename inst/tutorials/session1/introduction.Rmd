@@ -851,6 +851,12 @@ ggplot(
 gradethis::grade_code()
 ```
 
+###
+
+::: emphasis
+There are more advanced details we can improve about this graph. We'll get back to it in Session 1: Visualization 1. 
+:::
+
 ### It's Your Turn
 
 Let's look at another dataset called "Motor Trend Car Road Tests" (`mtcars`). This dataset describes fuel consumption and ten other aspects of 32 cars built in the early 70s. 
@@ -863,13 +869,7 @@ Let's look at another dataset called "Motor Trend Car Road Tests" (`mtcars`). Th
 ```{r carsPlot, exercise=FALSE, message=FALSE, warning=FALSE}
 ggplot(data = mtcars, mapping = aes(x = wt, y = mpg)) +
   geom_point( aes(color=as.factor(vs)) ) +
-  geom_smooth(method='lm', se=FALSE,color='black') +
-  labs(
-    title = "Fuel consumption and weight of cars",
-    x = "Weight (1000 lbs)",
-    y = "Miles per gallon",
-    color = "Engine (0 = V-shaped, 1 = straight)"
-  )
+  geom_smooth(method='lm', se=FALSE,color='black') 
 ```
 
 ```{r ggplotCars, exercise = TRUE, exercise.lines = 15, message=FALSE, warning=FALSE}
@@ -890,13 +890,7 @@ geom_point(
 geom_smooth(
   method='lm', 
   se=FALSE,
-  color='black') +
-labs(
-  title = "Fuel consumption and weight of cars",
-  x = "Weight (1000 lbs)",
-  y = "Miles per gallon",
-  color = "Engine (0 = V-shaped, 1 = straight)"
-)
+  color='black') 
 ```
 
 ```{r ggplotCars-check}
