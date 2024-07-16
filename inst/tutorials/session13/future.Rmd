@@ -1,5 +1,5 @@
 ---
-title: 'Session 14: Your Future with R'
+title: 'Session 13: Your Future with R'
 output:
   learnr::tutorial:
     progressive: yes
@@ -414,7 +414,7 @@ Install `apaquarto`
 -   Click on Code (1) and then Download Zip (2)
 
 ```{r, out.width="100%"}
-knitr::include_graphics("images/github.png")
+knitr::include_graphics("images/github_copilot.png")
 ```
 
 -   Unzip the downloaded folder on your computer (remember the
