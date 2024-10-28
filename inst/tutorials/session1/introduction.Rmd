@@ -935,7 +935,7 @@ ggplot(data = consumers) +
   geom_bar(
     mapping = aes(
       x = wom, 
-      y = ..prop..,
+      y = after_stat(prop),
       group = gender,
       fill = gender
     ),
