@@ -1014,7 +1014,7 @@ Render to a paper document:
 
 -   render to PDF or Word.
 -   PDF output is supported better than Word,
--   but requires the installation of a TeX package (see Canvas page "Course Introduction")
+-   but requires the installation of a TeX package (see Canvas page "Welcome to Using R!")
 
 ::: question
 Render your Quarto document to PDF to check that it works and LaTeX package is correctly installed.
