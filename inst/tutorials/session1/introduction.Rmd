@@ -222,7 +222,7 @@ and graded separately according to the rubric available on Canvas.
 
 Exploratory analysis of a complex data set: Showcase your R skills.
 
--   Groups of 5 students.
+-   Groups of 4 or 5 students.
 -   Group effort: Tidying the dataset.
 -   Individual effort: Print-ready presentation of one data
     visualization per student based on the tidy data.
@@ -961,8 +961,7 @@ gradethis::grade_code(
 
 ## Evaluating a Plot
 
-Once you master the `ggplot2` package and other packages for creating
-plots (see the **Fancy stuff** part of this tutorial), you should start
+Once you master the `ggplot2` package, you should start
 thinking about what you want to convey with a plot and whether the plot
 conveys your message in a clear and attractive way.
 
@@ -1112,9 +1111,7 @@ Book on ggplot2:
 -   Hadley Wickham, ggplot2. Elegant Graphics for Data Analysis.
     Springer. <https://ggplot2-book.org/>
 
-Interactive training:
 
--   <https://www.datacamp.com/courses/data-visualization-with-ggplot2-1>
 
 ## Start working on the Data Project
 
@@ -1143,19 +1140,9 @@ empirically informed manner.
 | Product Goals   | The grading criteria each product needs to fulfill (see Syllabus).                                                                                                  |
 | Product Backlog | A detailed to do lists that translates the product goals into concrete smaller tasks needed to achieve each product goal.                                           |
 
-The SCRUM(-light) procedure is described in detail on
-[Canvas](https://canvas.uva.nl/courses/40018/pages/scrum-procedure?module_item_id=1902863).
+The SCRUM(-light) procedure and Sprint 1 are described in detail on Canvas.
 
-### Sprint 1
 
-```{r out.width="100%"}
-knitr::include_graphics("images/SCRUM.png")
-```
-
-Sprint 1 is guided. Check out the partially filled in Product Backlog
-template for Week 1 in the [SCRUM
-guide](https://canvas.uva.nl/courses/40018/pages/scrum-procedure?module_item_id=1902863)
-on Canvas.
 
 ### Complete as part of Sprint 1: Apply your skills from Session 1 to your Data Project
 
@@ -1219,6 +1206,15 @@ ggplot()
 
 Note: As long as you do not press the *Start Over* button, the code (and
 plots) are preserved in this tutorial, so you can use the code later.
+
+### Sprint 2: Next week
+
+```{r out.width="100%"}
+knitr::include_graphics("images/SCRUM.png")
+```
+
+
+
 
 ### We’ve made a start!
 
