@@ -27,8 +27,11 @@ library(tidyverse)
 
 ```{r, context="data", include=FALSE}
 # Ensure that the data is loaded for the remainder of this tutorial.
-consumers <- UsingRTutorials::consumers #  
+consumers <- UsingRTutorials::consumers #
 # Alternatives: readr::read_csv("http://82.196.4.233:3838/www/consumers.csv") or readr::read_csv("data/consumers.csv")
+consumers <- consumers |>
+  mutate(ad_expo2 = case_when(ad_expo < median(ad_expo) ~ "low exposure", ad_expo >= median(ad_expo) ~ "high exposure"))
+
 GlasgowFriends <- UsingRTutorials::GlasgowFriends
 ```
 
@@ -76,7 +79,8 @@ to an advertising campaign for the brand.
 tibble::tibble(
   `Variable name` = c("ad_expo", "wom", "gender", "brand_aw", "firstname"),
   `Variable Label` = c("Exposure to the campaign", "Heard about the brand through word of mouth", "Gender of the respondent", "Awareness of the brand", "Respondent's first name"),
-  `Value Labels`= c("1 = No exposure; 10 = Max exposure", "yes, no", "female, male", "1 = Not aware; 10 = Max aware", "")) |>
+  `Value Labels` = c("1 = No exposure; 10 = Max exposure", "yes, no", "female, male", "1 = Not aware; 10 = Max aware", "")
+) |>
   knitr::kable(booktabs = TRUE)
 ```
 
@@ -87,24 +91,26 @@ tibble::tibble(
 ggplot2::ggplot(
   data = consumers,
   mapping =
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(color = gender, shape = wom),
     size = 4
-    ) +
+  ) +
   geom_smooth(
     method = "lm",
-    formula = y ~x,
+    formula = y ~ x,
     se = FALSE,
     color = "black"
-    ) +
+  ) +
   labs(
     title = "Does brand awareness depend on exposure, \nword-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    )
+  )
 ```
 
 **Here is how far we got:**
@@ -113,18 +119,20 @@ ggplot2::ggplot(
 ggplot(
   data = consumers,
   mapping =
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(shape = wom, color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
     method = "lm",
     se = FALSE,
     color = "black"
-    )
+  )
 ```
 
 ### Axis Labels
@@ -134,22 +142,24 @@ Add the labels to the plot or change the labels. Mind the details.
 :::
 
 ```{r ggplotLabels, exercise = TRUE, exercise.lines = 20, message=FALSE, warning=FALSE}
-# The code below creates the final solution we arrived at in Session 1. 
+# The code below creates the final solution we arrived at in Session 1.
 ggplot(
   data = consumers,
   mapping =
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(shape = wom, color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
     method = "lm",
     se = FALSE,
     color = "black"
-    )
+  )
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -163,23 +173,25 @@ add linebreaks to a label.
 ggplot(
   data = consumers,
   mapping =
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(shape = wom, color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
     method = "lm",
     se = FALSE,
     color = "black"
-    ) +
+  ) +
   labs(
     title = "Does brand awareness depend on exposure, \nword-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    )
+  )
 ```
 
 ```{r ggplotLabels-check}
@@ -197,25 +209,27 @@ Different graphs for different groups of observations.
 # Adaptation: word of mouth as facets instead of shape.
 ggplot(
   data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y =brand_aw)
-  )+
+  mapping =
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
-    mapping = 
-    aes(color = gender),
+    mapping =
+      aes(color = gender),
     method = "lm",
     se = FALSE
-    ) +
+  ) +
   labs(
     title = "Does brand awareness depend on exposure, \nword-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    ) +
+  ) +
   facet_wrap(vars(wom))
 ```
 
@@ -238,25 +252,27 @@ is used to create facets.
 # Adaptation: word of mouth as facets instead of shape.
 ggplot(
   data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y =brand_aw)
-  )+
+  mapping =
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
-    mapping = 
-    aes(color = gender),
+    mapping =
+      aes(color = gender),
     method = "lm",
     se = FALSE
-    ) +
+  ) +
   labs(
     title = "Does brand awareness depend on exposure, \nword-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    ) +
+  ) +
   facet_wrap(~wom)
 ```
 
@@ -277,30 +293,32 @@ the arguments for this geom.
 # Adaptation: add firstname as label.
 ggplot2::ggplot(
   data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
+  mapping =
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(shape = wom, color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
-    mapping = 
-    aes(color = gender),
+    mapping =
+      aes(color = gender),
     method = "lm",
     se = FALSE,
-    ) +
+  ) +
   labs(
     title = "Does brand awareness depend on exposure, \nword-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    ) +
+  ) +
   geom_text(
     aes(label = firstname),
     nudge_y = 0.4,
     check_overlap = TRUE
-    )
+  )
 ```
 
 ::: question
@@ -310,25 +328,27 @@ Create this graph yourself.
 ```{r plot_label, exercise=TRUE, exercise.lines = 20, warning=FALSE, message=FALSE}
 ggplot(
   data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
+  mapping =
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(shape = wom, color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
-    mapping = 
-    aes(color = gender),
+    mapping =
+      aes(color = gender),
     method = "lm",
     se = FALSE,
-    ) +
+  ) +
   labs(
     title = "Does brand awareness depend on exposure, \nword-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    ) +
+  ) +
   geom_text()
 ```
 
@@ -341,36 +361,38 @@ arguments of this geom.
 # Adaptation: swap color and shape, line color as aesthetic.
 ggplot(
   data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
+  mapping =
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(shape = wom, color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
-    mapping = 
-    aes(color = gender),
+    mapping =
+      aes(color = gender),
     method = "lm",
     se = FALSE,
-    ) +
+  ) +
   labs(
     title = "Does brand awareness depend on exposure, \nword-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    ) +
+  ) +
   geom_text(
     aes(label = firstname),
     nudge_y = 0.4,
     check_overlap = TRUE
-    )
+  )
 ```
 
 ```{r plot_label-check}
 gradethis::grade_code(
   correct = "The example plot uses `geom_text()` because the boxes created by `geom_label()` obscure the data."
-  )
+)
 ```
 
 ### Adding primitives
@@ -386,25 +408,27 @@ Use `geom_segment` to create this plot.
 # Adaptation: Add arrow pointing to extreme value.
 ggplot2::ggplot(
   data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
+  mapping =
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(shape = wom, color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
-    mapping = 
-    aes(color = gender),
+    mapping =
+      aes(color = gender),
     method = "lm",
     se = FALSE
-    ) +
+  ) +
   labs(
     title = "Does brand awareness depend on exposure, \nword-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    ) +
+  ) +
   geom_segment(
     x = 1, xend = 1, y = 4, yend = 2,
     arrow = arrow(
@@ -416,25 +440,27 @@ ggplot2::ggplot(
 ```{r plot_primitives, exercise=TRUE, exercise.lines = 20}
 ggplot(
   data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
+  mapping =
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(shape = wom, color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
-    mapping = 
-    aes(color = gender),
+    mapping =
+      aes(color = gender),
     method = "lm",
     se = FALSE
-    ) +
+  ) +
   labs(
     title = "Does brand awareness depend on exposure, \nword-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    ) +
+  ) +
   geom_segment()
 ```
 
@@ -447,25 +473,27 @@ help on the geom and on this function.
 # Adaptation: Add arrow pointing to extreme value.
 ggplot(
   data = consumers,
-  mapping = 
-    aes(x = ad_expo,
-        y = brand_aw)
-  )+
+  mapping =
+    aes(
+      x = ad_expo,
+      y = brand_aw
+    )
+) +
   geom_point(
     mapping = aes(shape = wom, color = gender),
     size = 4
-    ) +
+  ) +
   geom_smooth(
-    mapping = 
-    aes(color = gender),
+    mapping =
+      aes(color = gender),
     method = "lm",
     se = FALSE
-    ) +
+  ) +
   labs(
     title = "Does brand awareness depend on exposure, \nword-of-mouth, and gender?",
     x = "Exposure to the campaign",
     y = "Brand awareness"
-    ) +
+  ) +
   geom_segment(
     x = 1, xend = 1, y = 4, yend = 2,
     arrow = arrow(
@@ -496,27 +524,24 @@ shows the average brand awareness for male and female participants (with
 jitter) who have high (above median) or low (below median) exposure to
 the ads as well as their average brand awareness.
 
-```{r prepSumPlot, echo=FALSE}
-consumers<-consumers |> 
-  mutate(ad_expo2=case_when(ad_expo<median(ad_expo)~"low exposure",ad_expo>=median(ad_expo)~"high exposure"))
-```
-
 ```{r summaryPlot, exercise = TRUE, exercise.eval = TRUE}
-#Calculate and save 
-#brand awareness by groups. 
-#group by gender and ad exposure groups (above/below median)
-averages <- consumers |> group_by(gender,ad_expo2) |> 
-  #calculate mean, ignori missing values
+# Calculate and save
+# brand awareness by groups.
+# group by gender and ad exposure groups (above/below median)
+averages <- consumers |> group_by(gender, ad_expo2) |>
+  # calculate mean, ignori missing values
   summarise(mean_brand_aw = mean(brand_aw, na.rm = TRUE))
-#Create plot
-ggplot() + 
-  #add individual brand awareness score with jitter 
-  geom_jitter(data= consumers, aes(x = ad_expo2, y = brand_aw, color=gender)) +
-#add mean scores as crosses
-  geom_point(data = averages, aes(x = ad_expo2, y = mean_brand_aw, color = gender), shape='cross',size = 4) +
-  #add lines to link the means: note the `group` argument 
-  geom_line(data = averages,
-aes(x = ad_expo2, y = mean_brand_aw, group = gender, color = gender))
+# Create plot
+ggplot() +
+  # add individual brand awareness score with jitter
+  geom_jitter(data = consumers, aes(x = ad_expo2, y = brand_aw, color = gender)) +
+  # add mean scores as crosses
+  geom_point(data = averages, aes(x = ad_expo2, y = mean_brand_aw, color = gender), shape = "cross", size = 4) +
+  # add lines to link the means: note the `group` argument
+  geom_line(
+    data = averages,
+    aes(x = ad_expo2, y = mean_brand_aw, group = gender, color = gender)
+  )
 ```
 
 ### 
@@ -530,11 +555,17 @@ Add transparency to `geom_jitter` to visually emphasize the mean scores.
 :::
 
 ```{r summaryPlot2, exercise = TRUE, exercise.eval = TRUE}
-ggplot() + 
-  geom_jitter(data= consumers, aes(x = ad_expo2, y = brand_aw, color=gender), alpha=0.3) +
-  geom_point(data = averages, aes(x = ad_expo2, y = mean_brand_aw, color = gender), shape='cross',size = 4) +
-  geom_line(data = averages,
-aes(x = ad_expo2, y = mean_brand_aw, group = gender, color = gender))
+averages <- consumers |> group_by(gender, ad_expo2) |>
+  # calculate mean, ignori missing values
+  summarise(mean_brand_aw = mean(brand_aw, na.rm = TRUE))
+
+ggplot() +
+  geom_jitter(data = consumers, aes(x = ad_expo2, y = brand_aw, color = gender), alpha = 0.3) +
+  geom_point(data = averages, aes(x = ad_expo2, y = mean_brand_aw, color = gender), shape = "cross", size = 4) +
+  geom_line(
+    data = averages,
+    aes(x = ad_expo2, y = mean_brand_aw, group = gender, color = gender)
+  )
 ```
 
 Play around with this plot. For example, use geom_text() to add the
@@ -547,26 +578,29 @@ Let's make a different type of graph using the same `consumers` data
 set.
 
 ```{r barEx_prep, echo=FALSE}
-aggregate_consumers=consumers |> 
-  group_by(wom,gender) |> 
-  summarise(mean_brand_aw = mean(brand_aw, na.rm = TRUE),
-            se = sd(brand_aw, na.rm = TRUE)/sqrt(n()))
+aggregate_consumers <- consumers |>
+  group_by(wom, gender) |>
+  summarise(
+    mean_brand_aw = mean(brand_aw, na.rm = TRUE),
+    se = sd(brand_aw, na.rm = TRUE) / sqrt(n())
+  )
 ```
 
 ```{r barEx_show, exercise=FALSE, warning=FALSE, message=FALSE}
 ggplot(
-  data=aggregate_consumers,
-  mapping=aes(x=wom, y=mean_brand_aw,color=gender)
-) + 
+  data = aggregate_consumers,
+  mapping = aes(x = wom, y = mean_brand_aw, color = gender)
+) +
   geom_jitter(
-    data=consumers,
-    mapping=aes(y=brand_aw),color='black') +
-  geom_bar(stat="summary", fun=mean, position="dodge", alpha=0) +
+    data = consumers,
+    mapping = aes(y = brand_aw), color = "black"
+  ) +
+  geom_bar(stat = "summary", fun = mean, position = "dodge", alpha = 0) +
   labs(
-    x="Word of mouth",
-    y="Brand awareness",
-    color="Gender",
-    title='Average Brand Awareness by Group'
+    x = "Word of mouth",
+    y = "Brand awareness",
+    color = "Gender",
+    title = "Average Brand Awareness by Group"
   )
 ```
 
@@ -588,25 +622,31 @@ Use the `alpha` argument to make the bars transparent.
 :::
 
 ```{r barEx-solution, exercise.reveal_solution = FALSE}
+aggregate_consumers <- consumers |>
+  group_by(wom, gender) |>
+  summarise(
+    mean_brand_aw = mean(brand_aw, na.rm = TRUE),
+    se = sd(brand_aw, na.rm = TRUE) / sqrt(n())
+  )
 ggplot(
-  data=aggregate_consumers,
-  mapping=aes(x=wom, y=mean_brand_aw,color=gender)
-) + 
+  data = aggregate_consumers,
+  mapping = aes(x = wom, y = mean_brand_aw, color = gender)
+) +
   geom_jitter(
-    data=consumers,
-    mapping=aes(y=brand_aw),color='black') +
-  geom_bar(stat="summary", fun=mean, position="dodge", alpha=0) +
+    data = consumers,
+    mapping = aes(y = brand_aw), color = "black"
+  ) +
+  geom_bar(stat = "summary", fun = mean, position = "dodge", alpha = 0) +
   labs(
-    x="Word of mouth",
-    y="Brand awareness",
-    color="Gender",
-    title='Average Brand Awareness by Group'
+    x = "Word of mouth",
+    y = "Brand awareness",
+    color = "Gender",
+    title = "Average Brand Awareness by Group"
   )
 ```
 
 ```{r barEx-check}
-gradethis::grade_code(
-  )
+gradethis::grade_code()
 ```
 
 ### Error Bars
@@ -634,15 +674,16 @@ Create the dataframe `aggregate_consumers_se` containing the mean brand awarenes
 :::
 
 ```{r aggCon-solution, exercise.reveal_solution = FALSE}
-aggregate_consumers_se=consumers |> 
-  group_by(wom,gender) |> 
-  summarise(mean_brand_aw = mean(brand_aw, na.rm = TRUE),
-            se_brand_aw = sd(brand_aw, na.rm = TRUE)/sqrt(n()))
+aggregate_consumers_se <- consumers |>
+  group_by(wom, gender) |>
+  summarise(
+    mean_brand_aw = mean(brand_aw, na.rm = TRUE),
+    se_brand_aw = sd(brand_aw, na.rm = TRUE) / sqrt(n())
+  )
 ```
 
 ```{r aggCon-check}
-gradethis::grade_code(
-  )
+gradethis::grade_code()
 ```
 
 ###
@@ -650,29 +691,31 @@ gradethis::grade_code(
 Now we can add error bars to our graph using `geom_errorbar()`. The final graph should look like this:
 
 ```{r errorBar_prep, echo=FALSE}
-aggregate_consumers_se=consumers |> 
-  group_by(wom,gender) |> 
-  summarise(mean_brand_aw = mean(brand_aw, na.rm = TRUE),
-            se_brand_aw = sd(brand_aw, na.rm = TRUE)/sqrt(n()))
+aggregate_consumers_se <- consumers |>
+  group_by(wom, gender) |>
+  summarise(
+    mean_brand_aw = mean(brand_aw, na.rm = TRUE),
+    se_brand_aw = sd(brand_aw, na.rm = TRUE) / sqrt(n())
+  )
 ```
 
 ```{r errorBar_show}
 ggplot(
-  data=aggregate_consumers_se,
-  mapping=aes(x=wom, y=mean_brand_aw,color=gender)
-) + 
+  data = aggregate_consumers_se,
+  mapping = aes(x = wom, y = mean_brand_aw, color = gender)
+) +
   geom_jitter(
-    data=consumers,
-    mapping=aes(y=brand_aw),color='black') +
-  geom_bar(stat="summary", fun=mean, position="dodge", alpha=0) +
-  labs(
-    x="Word of mouth",
-    y="Brand awareness",
-    color="Gender",
-    title='Average Brand Awareness by Group'
+    data = consumers,
+    mapping = aes(y = brand_aw), color = "black"
   ) +
-  geom_errorbar(aes(ymin=mean_brand_aw - 1.96*se_brand_aw, ymax=mean_brand_aw + 1.96*se_brand_aw),width=0.9, position='dodge') 
-
+  geom_bar(stat = "summary", fun = mean, position = "dodge", alpha = 0) +
+  labs(
+    x = "Word of mouth",
+    y = "Brand awareness",
+    color = "Gender",
+    title = "Average Brand Awareness by Group"
+  ) +
+  geom_errorbar(aes(ymin = mean_brand_aw - 1.96 * se_brand_aw, ymax = mean_brand_aw + 1.96 * se_brand_aw), width = 0.9, position = "dodge")
 ```
 
 ###
@@ -683,20 +726,21 @@ Look up `help(geom_errorbar)` and try to add errorbars to the graph we created e
 
 ```{r errorBar, exercise = TRUE, exercise.setup = 'aggCon-solution'}
 ggplot(
-  data=aggregate_consumers_se,
-  mapping=aes(x=wom, y=mean_brand_aw,color=gender)
-) + 
+  data = aggregate_consumers_se,
+  mapping = aes(x = wom, y = mean_brand_aw, color = gender)
+) +
   geom_jitter(
-    data=consumers,
-    mapping=aes(y=brand_aw),color='black') +
-  geom_bar(stat="summary", fun=mean, position="dodge", alpha=0) +
-  labs(
-    x="Word of mouth",
-    y="Brand awareness",
-    color="Gender",
-    title='Average Brand Awareness by Group'
+    data = consumers,
+    mapping = aes(y = brand_aw), color = "black"
   ) +
-  geom_errorbar() 
+  geom_bar(stat = "summary", fun = mean, position = "dodge", alpha = 0) +
+  labs(
+    x = "Word of mouth",
+    y = "Brand awareness",
+    color = "Gender",
+    title = "Average Brand Awareness by Group"
+  ) +
+  geom_errorbar()
 ```
 
 <!-- To hide the solution, use a textual hint. -->
@@ -707,88 +751,26 @@ ggplot(
 
 ```{r errorBar-solution, exercise.reveal_solution = FALSE}
 ggplot(
-  data=aggregate_consumers_se,
-  mapping=aes(x=wom, y=mean_brand_aw,color=gender)
-) + 
+  data = aggregate_consumers_se,
+  mapping = aes(x = wom, y = mean_brand_aw, color = gender)
+) +
   geom_jitter(
-    data=consumers,
-    mapping=aes(y=brand_aw),color='black') +
-  geom_bar(stat="summary", fun=mean, position="dodge", alpha=0) +
-  labs(
-    x="Word of mouth",
-    y="Brand awareness",
-    color="Gender",
-    title='Average Brand Awareness by Group'
+    data = consumers,
+    mapping = aes(y = brand_aw), color = "black"
   ) +
-  geom_errorbar(aes(ymin=mean_brand_aw - 1.96*se_brand_aw, ymax=mean_brand_aw + 1.96*se_brand_aw),position='dodge') 
-
+  geom_bar(stat = "summary", fun = mean, position = "dodge", alpha = 0) +
+  labs(
+    x = "Word of mouth",
+    y = "Brand awareness",
+    color = "Gender",
+    title = "Average Brand Awareness by Group"
+  ) +
+  geom_errorbar(aes(ymin = mean_brand_aw - 1.96 * se_brand_aw, ymax = mean_brand_aw + 1.96 * se_brand_aw), position = "dodge")
 ```
 
 ```{r errorBar-check}
-gradethis::grade_code(
-  )
+gradethis::grade_code()
 ```
-
-## Debugging
-
-Your friend tried to create a non-stacked bar chart showing the
-proportion of females in the consumers data set who heard by word of
-mouth against the proportion who did not, as well as the proportion of
-males who heard and who did not hear by word of mouth.
-
-::: question
-Your friend did not manage to get the code to work. Can you do that?
-:::
-
-```{r debug, exercise = TRUE, eval=FALSE}
-ggplot(data consumers) +
-  geom_bar(
-    mapping = aes(
-      x = wom, 
-      color = gender,
-      position = "dodge"
-  )
-```
-
-<!-- To hide the solution, use a textual hint. -->
-
-::: {#debug-hint}
-**Hints:**
-
--   Pay attention to the error messages when you run the code.
--   For proportions, you have to use a computed variable: check out the
-    help on `geom_bar()`.
--   You may want to check the *R for Data Science* book: bar charts are
-    tricky.
-:::
-
-```{r debug-solution}
-ggplot(data = consumers) +
-  geom_bar(
-    mapping = aes(
-      x = wom, 
-      y = ..prop..,
-      group = gender,
-      fill = gender
-    ),
-    position = "dodge"
-  )
-```
-
-```{r debug-check}
-gradethis::grade_code(
-  correct = "To get proportions, you must indeed specify both the y argument (indicating that you want proportions) and the group argument (specifying which total to use for caluclating proportions).", 
-  incorrect = "If you don't see the problems, build up the graph from zero, step by step."
-  )
-```
-
-::: tip
-**Programming Tips**
-
--   When you program something complicated, build it in steps.
--   Check intermediate results regularly by running the code and
-    inspecting the results.
-:::
 
 ## Evaluating a Plot
 
@@ -836,19 +818,24 @@ time.
 ```{r, echo=FALSE}
 fluidPage(
   fluidRow(
-    column(2,
-      radioButtons("radio", label = h3("Select a plot"),
-    choices = list("Plot 1" = 1, "Plot 2" = 2, "Plot 3" = 3, "Plot 4" = 4, "Plot 5" = 5, "Plot 6" = 6), 
-    selected = 1),
-      sliderInput("slider", label = "", min = 0, max = 20, value = 0,
-                  step = 1, ticks = FALSE, 
-                  animate = TRUE
+    column(
+      2,
+      radioButtons("radio",
+        label = h3("Select a plot"),
+        choices = list("Plot 1" = 1, "Plot 2" = 2, "Plot 3" = 3, "Plot 4" = 4, "Plot 5" = 5, "Plot 6" = 6),
+        selected = 1
+      ),
+      sliderInput("slider",
+        label = "", min = 0, max = 20, value = 0,
+        step = 1, ticks = FALSE,
+        animate = TRUE
       )
     ),
-    column(10,
+    column(
+      10,
       plotOutput("regPlot")
     )
-  )  
+  )
 )
 ```
 
@@ -857,82 +844,82 @@ output$regPlot <- renderPlot({
   g <- ggplot(
     data = consumers,
     aes(x = ad_expo, y = brand_aw)
-    ) +
+  ) +
     scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
     scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
-    theme_bw( base_size = 14 )
-  
+    theme_bw(base_size = 14)
+
   ## Create plot versions
-  if (input$radio == 1) { 
+  if (input$radio == 1) {
     # just regression line and confidence interval
     g <- g + geom_smooth(method = "lm", formula = y ~ x, se = TRUE, color = "black")
-    }
-  else if (input$radio == 2) {
+  } else if (input$radio == 2) {
     # point size reflects brand_aw
-    g <- g + 
+    g <- g +
       geom_point(aes(size = brand_aw), color = "grey") +
       geom_smooth(method = "lm", formula = y ~ x, se = FALSE)
-    }
-  else if (input$radio == 3) {
+  } else if (input$radio == 3) {
     # outlier not visible (and regression line without outlier)
-    g <- g + 
+    g <- g +
       geom_point(size = 2, color = "grey") +
-      geom_smooth(data = consumers[consumers$ad_expo > 1,], 
+      geom_smooth(
+        data = consumers[consumers$ad_expo > 1, ],
         mapping = aes(x = ad_expo, y = brand_aw),
-        method = "lm", formula = y ~ x, se = FALSE) +
+        method = "lm", formula = y ~ x, se = FALSE
+      ) +
       scale_x_continuous(limits = c(4, 10))
-    }
-  else if (input$radio == 4) {
+  } else if (input$radio == 4) {
     # grey total regression line, red regression line without outlier
-    g <- g + 
+    g <- g +
       geom_point(size = 2, aes(color = ifelse(ad_expo > 1, "grey", "red")), show.legend = FALSE) +
       geom_smooth(method = "lm", formula = y ~ x, se = FALSE, color = "grey", size = 2) +
       geom_smooth(
-        data = consumers[consumers$ad_expo > 1,], 
+        data = consumers[consumers$ad_expo > 1, ],
         mapping = aes(x = ad_expo, y = brand_aw),
         method = "lm", formula = y ~ x, se = FALSE, color = "red"
-        ) +
+      ) +
       geom_text(x = 3.9, y = 4.3, label = "without outlier", size = 3, color = "red", alpha = 0.6) +
       scale_color_manual(values = c("red", "grey"))
-    }
-  else if (input$radio == 5) {
+  } else if (input$radio == 5) {
     # regression line per gender, with additional regression line for males without outlier
-    g <- g + 
+    g <- g +
       geom_point(aes(color = gender), size = 2) +
       geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)) +
       geom_smooth(
-        data = consumers[consumers$ad_expo > 1 & consumers$gender == "male",], 
+        data = consumers[consumers$ad_expo > 1 & consumers$gender == "male", ],
         mapping = aes(x = ad_expo, y = brand_aw),
         method = "lm", formula = y ~ x, se = FALSE, color = "blue", linetype = "dashed"
-        ) +
+      ) +
       geom_text(x = 4.1, y = 3.4, label = "without outlier", size = 3, color = "blue", alpha = 0.6)
-    }
-  else if (input$radio == 6) {
+  } else if (input$radio == 6) {
     # density conours and regression lines per gender
-    g <- g + 
-      geom_density2d(aes(color = gender),  adjust = 2) +
+    g <- g +
+      geom_density2d(aes(color = gender), adjust = 2) +
       geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender))
-    }
-  
+  }
+
   ## Show plot, depending on slider value
   if (input$slider == 0) {
-    #show press button text
-    ggplot(data = consumers) + geom_text(x = 0.5, y = 0.5, label = "Press the little play button", size = 12) 
-    } 
-  else if ((input$slider > 0 & input$slider < 4) | (input$slider > 10)) {
-    # ask user to reset the slider 
+    # show press button text
+    ggplot(data = consumers) +
+      geom_text(x = 0.5, y = 0.5, label = "Press the little play button", size = 12)
+  } else if ((input$slider > 0 & input$slider < 4) | (input$slider > 10)) {
+    # ask user to reset the slider
     if (input$slider == 20) {
-      if (input$radio == 3 ) {hor_pos = 7}
-      else {hor_pos = 5.5}
-      g <- g + geom_text(x = hor_pos, y = 8.5, label = "Reset the slider to 0\nbefore you watch another plot.", size = 8)
+      if (input$radio == 3) {
+        hor_pos <- 7
+      } else {
+        hor_pos <- 5.5
       }
-    #show plot
-    g
-    } 
-  else {
-    # What did you see?
-    ggplot(data = consumers) + geom_text(x = 0.5, y = 0.5, label = "What did you see?", size = 18)
+      g <- g + geom_text(x = hor_pos, y = 8.5, label = "Reset the slider to 0\nbefore you watch another plot.", size = 8)
     }
+    # show plot
+    g
+  } else {
+    # What did you see?
+    ggplot(data = consumers) +
+      geom_text(x = 0.5, y = 0.5, label = "What did you see?", size = 18)
+  }
 })
 ```
 
@@ -970,7 +957,7 @@ Note that it takes quite some time to generate the animation.
 # Install the following packages if they haven't been installed.
 library(gganimate)
 library(gifski)
-library(gapminder) #data used
+library(gapminder) # data used
 
 # This code creates an animated ggplot
 g <- ggplot(gapminder::gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
@@ -980,24 +967,24 @@ g <- ggplot(gapminder::gapminder, aes(gdpPercap, lifeExp, size = pop, colour = c
   scale_x_log10() +
   facet_wrap(~continent) +
   # Here comes the gganimate specific bits
-  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  labs(title = "Year: {frame_time}", x = "GDP per capita", y = "life expectancy") +
   transition_time(year) +
-  ease_aes('linear') +
+  ease_aes("linear") +
   shadow_wake(
     wake_length = 0.2
   )
 
 # And here, we show the animated plot.
 gganimate::animate(
-  plot = g, #gganimate plot to be shown
-  nframes = 78, #1 frame for each year from 1952 to 2007 plus 2x11 additional frames for start and end 
-  renderer = gifski_renderer( #save as animated GIF
+  plot = g, # gganimate plot to be shown
+  nframes = 78, # 1 frame for each year from 1952 to 2007 plus 2x11 additional frames for start and end
+  renderer = gifski_renderer( # save as animated GIF
     file = "gapminder.gif",
     loop = TRUE
-    ),
-  start_pause = 12, #first frame shows 12 times
-  end_pause = 12, #last frame shows 36 times
-  rewind = FALSE #roll back to the start
+  ),
+  start_pause = 12, # first frame shows 12 times
+  end_pause = 12, # last frame shows 36 times
+  rewind = FALSE # roll back to the start
 )
 ```
 
@@ -1039,31 +1026,31 @@ name will pop up (works better if you select the *Compare data on hover*
 option).
 
 ```{r plotly1, exercise=TRUE, exercise.lines = 26}
-#these packages have been installed by UsingRTutorials
-library(plotly) 
-library(gapminder) #contains the data used here
+# these packages have been installed by UsingRTutorials
+library(plotly)
+library(gapminder) # contains the data used here
 
-#Step 1: create a ggplot
+# Step 1: create a ggplot
 g <- ggplot(
   data = consumers,
   aes(x = ad_expo, y = brand_aw)
+) +
+  geom_point(aes(color = gender), size = 2) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)) +
+  geom_smooth(
+    data = consumers[consumers$ad_expo > 1 & consumers$gender == "male", ],
+    mapping = aes(x = ad_expo, y = brand_aw),
+    method = "lm", formula = y ~ x, se = FALSE, color = "blue", linetype = "dashed"
   ) +
-    geom_point(aes(color = gender), size = 2) +
-    geom_smooth(method = "lm", formula = y ~ x, se = FALSE, aes(color = gender)) +
-    geom_smooth(
-      data = consumers[consumers$ad_expo > 1 & consumers$gender == "male",], 
-      mapping = aes(x = ad_expo, y = brand_aw),
-      method = "lm", formula = y ~ x, se = FALSE, color = "blue", linetype = "dashed"
-      ) +
-    geom_text(
-      aes(label = firstname),
-      alpha = 0 #trick: make labels invisible (transparent)
-      ) +
-    scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
-    scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
-    theme_bw()
+  geom_text(
+    aes(label = firstname),
+    alpha = 0 # trick: make labels invisible (transparent)
+  ) +
+  scale_x_continuous(name = "Exposure", breaks = 1:10, limits = c(1, 10)) +
+  scale_y_continuous(name = "Brand awareness", breaks = 1:10, limits = c(1, 10)) +
+  theme_bw()
 
-#Step 2: Turn the ggplot into a plotly plot and use plotly options.
+# Step 2: Turn the ggplot into a plotly plot and use plotly options.
 ggplotly(g, tooltip = c("text"), dynamicTicks = TRUE)
 ```
 
@@ -1077,12 +1064,12 @@ Change the code, so the pop ups only show the country name.
 :::
 
 ```{r plotly2, exercise=TRUE}
-#Step 1: create a ggplot and use a variable to define the frames of the animation
+# Step 1: create a ggplot and use a variable to define the frames of the animation
 p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
   geom_point(aes(size = pop, frame = year, ids = country)) +
-  scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
+  scale_x_log10() # this changes the scale to a log scale, so very large differences are compressed
 
-#Step 2: Turn the ggplot into a plotly plot.
+# Step 2: Turn the ggplot into a plotly plot.
 ggplotly(p)
 ```
 
@@ -1093,7 +1080,7 @@ ggplotly(p)
 ```{r plotly2-solution}
 p <- ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
   geom_point(aes(size = pop, frame = year, ids = country)) +
-  scale_x_log10() #this changes the scale to a log scale, so very large differences are compressed
+  scale_x_log10() # this changes the scale to a log scale, so very large differences are compressed
 
 ggplotly(p, tooltip = "country")
 ```
@@ -1130,17 +1117,21 @@ around with the friendship network in wave1.
 :::
 
 ```{r network1-setup}
-#preparing data tibbles for network
-Student <- GlasgowFriends |> select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) |> distinct()
-StudentWave <- GlasgowFriends |> select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6 ) |> distinct()
-StudentWaveFriend <- StudentWave |> 
+# preparing data tibbles for network
+Student <- GlasgowFriends |>
+  select(student, neighbourhood, schooldist, hoodname, age, sex, smoking_at_home, smoking_parents, smoking_siblings) |>
+  distinct()
+StudentWave <- GlasgowFriends |>
+  select(student, wave, alcohol, cannabis, money, romantic, friend_1, friend_2, friend_3, friend_4, friend_5, friend_6) |>
+  distinct()
+StudentWaveFriend <- StudentWave |>
   gather(key = "friendnumber", value = "friend", friend_1:friend_6, na.rm = TRUE) |>
   select(student, wave, friend)
 ```
 
 ```{r network1, exercise = TRUE, exercise.lines = 20, exercise.eval = TRUE, fig.asp=0.5, out.width="100%", fig.cap="Figure: Friendship nominations at the first wave. Mutual nominations are black, unilateral nominations are orange."}
 # Install the igraph package (once).
-#install.packages("igraph")
+# install.packages("igraph")
 # Load the igraph package.
 library(igraph)
 # Retrieve the friendship nominations in the first wave and ensure that the
@@ -1148,30 +1139,30 @@ library(igraph)
 arrows_wave1 <- StudentWaveFriend |>
   filter(wave == "t1") |>
   select(student, friend)
-#add color variable for sexes
+# add color variable for sexes
 nodes_wave1 <- Student |>
   mutate(sex_color = ifelse(sex == "boy", "steelblue1", "tomato1"))
 # Create an igraph object: a list of nodes (=vertices) combined with a list of lines/arrows.
-net_wave1 <- igraph::graph_from_data_frame(d=arrows_wave1, vertices=nodes_wave1, directed=TRUE)
+net_wave1 <- igraph::graph_from_data_frame(d = arrows_wave1, vertices = nodes_wave1, directed = TRUE)
 
 # Create a layout: positioning of the nodes.
 set.seed(35546)
 layout_1 <- igraph::layout_with_fr(net_wave1)
 # Spread out the network horizontally.
-layout_1 <- igraph::norm_coords(layout_1, ymin=-1, ymax=1, xmin=-2, xmax=2)
+layout_1 <- igraph::norm_coords(layout_1, ymin = -1, ymax = 1, xmin = -2, xmax = 2)
 # Plot the network.
 par(mar = c(0, 0, 0, 0))
-plot(net_wave1, 
-     vertex.label = NA, #hide node labels
-     vertex.size = 8, #vertex size
-     vertex.color = V(net_wave1)$sex_color,
-     edge.arrow.size=.4, # arrowhead size
-     #give reciprocal arrows (edges) a different colour than unilateral arrows:
-     edge.color = ifelse(which_mutual(net_wave1), "gray40", "tan1"),
-     rescale = FALSE, #don't rescale to square network
-     layout = layout_1 #use the previously created node coordinates
-     )
-legend("topleft", c("Boys", "Girls"), pch=21, col="#777777", pt.bg=c("steelblue1", "tomato1"), pt.cex=2, cex=.8, bty="n", ncol=1)
+plot(net_wave1,
+  vertex.label = NA, # hide node labels
+  vertex.size = 8, # vertex size
+  vertex.color = V(net_wave1)$sex_color,
+  edge.arrow.size = .4, # arrowhead size
+  # give reciprocal arrows (edges) a different colour than unilateral arrows:
+  edge.color = ifelse(which_mutual(net_wave1), "gray40", "tan1"),
+  rescale = FALSE, # don't rescale to square network
+  layout = layout_1 # use the previously created node coordinates
+)
+legend("topleft", c("Boys", "Girls"), pch = 21, col = "#777777", pt.bg = c("steelblue1", "tomato1"), pt.cex = 2, cex = .8, bty = "n", ncol = 1)
 ```
 
 ### A geographic network
@@ -1186,24 +1177,24 @@ For example, the flights to/from NY City in the `nycflights13::`
 # Load the nycflights13 package.
 library(nycflights13)
 # Connect the flights (origin & destination) and airports tables (airport coordinates).
-flights |> #use the flights tibble in the nycflights13 package
-  #add coordinates to airport where flight originates
-  inner_join(select(airports, origin = faa, origin_lat = lat, origin_lon = lon), 
-             by = "origin") |>
-  #add coordinates to destination airport
-  inner_join(select(airports, dest = faa, dest_lat = lat, dest_lon = lon), by = "dest"
+flights |> # use the flights tibble in the nycflights13 package
+  # add coordinates to airport where flight originates
+  inner_join(select(airports, origin = faa, origin_lat = lat, origin_lon = lon),
+    by = "origin"
   ) |>
+  # add coordinates to destination airport
+  inner_join(select(airports, dest = faa, dest_lat = lat, dest_lon = lon), by = "dest") |>
   # select the first 100 flights for illustrative purposes
   slice(1:100) |>
   # pipe the data into ggplot()
   ggplot(aes(
     x = origin_lon, xend = dest_lon,
     y = origin_lat, yend = dest_lat
-    )) +
-    borders("state") +
-    geom_segment(arrow = arrow(length = unit(0.1, "cm"))) +
-    coord_quickmap() +
-    labs(y = "Latitude", x = "Longitude")
+  )) +
+  borders("state") +
+  geom_segment(arrow = arrow(length = unit(0.1, "cm"))) +
+  coord_quickmap() +
+  labs(y = "Latitude", x = "Longitude")
 ```
 
 ## What's next
