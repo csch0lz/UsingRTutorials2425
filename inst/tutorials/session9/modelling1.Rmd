@@ -209,7 +209,7 @@ Examples:
 
 A *t* test yields a results object, which is a list.
 
-```{r storeresults,echo=TRUE}
+```{r storeresults,exercise=TRUE, exercise.eval = TRUE}
 # Store the results of a t test.
 result_t <- glbwarm |> t.test(negemot ~ sex, data = _)
 result_t #Default print method for these results.
@@ -225,7 +225,7 @@ Function `str()` shows the contents of a list.
 Try to recognize the contents of this list.
 :::
 
-```{r str, exercise=TRUE, exercise.eval = TRUE}
+```{r str, exercise=TRUE, exercise.eval = TRUE, exercise.setup = "storeresults"}
 str(result_t)
 ```
 
@@ -249,7 +249,7 @@ We get elements from a list:
 Extract the confidence interval from the t test results data object (`result_t`) with `[[]]` and show (print) it (instead of saving it as a new data object).
 :::
 
-```{r extractbracket, exercise = TRUE}
+```{r extractbracket, exercise = TRUE, exercise.setup = "storeresults"}
 
 ```
 
@@ -274,7 +274,7 @@ gradethis::grade_code(
 Do the same thing but now use `$`.
 :::
 
-```{r extractdollar, exercise = TRUE}
+```{r extractdollar, exercise = TRUE, exercise.setup = "storeresults"}
 
 ```
 
@@ -309,7 +309,7 @@ str(result_t[4])
 Show the confidence level (as a number) using only dollar signs (`$`), not square brackets (`[[]]`). Show the result on the screen.
 :::
 
-```{r extractlevel, exercise = TRUE}
+```{r extractlevel, exercise = TRUE, exercise.setup = "storeresults"}
 
 ```
 
@@ -347,7 +347,7 @@ Instead of the attribute value, we can get the attribute name with the `names()`
 Extract the label "conf.level" from the list of t test results.
 :::
 
-```{r extractlabel, exercise = TRUE}
+```{r extractlabel, exercise = TRUE, exercise.setup = "storeresults"}
 
 ```
 
@@ -375,7 +375,7 @@ Let us practice some more.
 Get the name and value (rounded to one decimal place) of the mean of the second group in the results of the *t* test (`result_t`).
 :::
 
-```{r paste0, exercise = TRUE}
+```{r paste0, exercise = TRUE, exercise.setup = "storeresults"}
 
 ```
 
@@ -754,7 +754,7 @@ The anova functions return a data frame, which you can use as any data frame.
 
 For example, knit it to a pretty (HTML or PDF) table with `knitr::kable()`.
 
-We will do that later on in this tutorial.
+We will do that in the tutorial on Thursday.
 
 ### Missing Values
 
