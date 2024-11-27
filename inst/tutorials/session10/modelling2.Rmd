@@ -67,9 +67,6 @@ model_1aBayes <- UsingRTutorials::model_1aBayes
 -   Practice with Statistical Models 
 -   Presenting results in Reproducible Text and Print-Quality Tables
 
-## Practice with Statistical Models
-
-[ADD??]
 
 ## Reproducible Presentation of Results
 
@@ -165,7 +162,7 @@ is a more flexible version of our code that implements this.
 Experiment with the code to check your answers.
 </div>
 
-```{r APA2, exercise = TRUE}
+```{r APA2, exercise = TRUE,exercise.setup="ttest-solution"}
 paste0("*t* (", 
   format(round(result_t$parameter, digits = 2), nsmall = 2), ") = ",
   format(round(result_t$statistic, digits = 2), nsmall = 2), 
@@ -325,7 +322,7 @@ Find out what these functions do. Apply them to `model_1` and check out the opti
 
 For full control of your table, create it with packages `broom` and `knitr`.
 
-(`broom` is part of the tidyverse package)
+(`broom` is not part of the tidyverse package)
 
 You need 3 steps:
 
