@@ -64,7 +64,7 @@ model_1aBayes <- UsingRTutorials::model_1aBayes
 
 ## Overview
 
--   Practice with Statistical Models 
+-   Questions from the previous session about statistical model? 
 -   Presenting results in Reproducible Text and Print-Quality Tables
 
 
@@ -145,7 +145,15 @@ paste0(                       # base R function to concatenate strings
   ", ", round(result_t$conf.int[2], digits = 2), "]")   # 95%CI upper
 ```
 
-The stars will turn *t* and *p* into italics in a rendered document.
+The stars will turn *t* and *p* into italics in a rendered document by using \`r `.
+
+`r paste0(
+  "*t* (", 
+  round(result_t$parameter, digits = 2), ") = ",        # df
+  round(result_t$statistic, digits = 2),                # t
+  ", *p* = ", round(result_t$p.value, digits = 3),      # p
+  ", 95%CI[", round(result_t$conf.int[1], digits = 2),  # 95%CI lower
+  ", ", round(result_t$conf.int[2], digits = 2), "]") `
 
 ### 
 
